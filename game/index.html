@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=640">
+    <title>测试</title>
+    <meta content="text/html" charset="utf-8">
+    <script src="jquery.min.1.7.1.js"></script>
+    <script src="easeljs-0.7.1.min.js"></script>
+    <script src="preloadjs-0.4.1.min.js"></script>
+    <script src="tweenjs-0.5.1.min.js"></script>
+    <script src="soundjs-0.5.2.min.js"></script>
+
+
+    <script src="pageController.js"></script>
+    <script src="OneItem.js"></script>
+    <script src="board.js"></script>
+    <script src="backui.js"></script>
+    <script src="game.js"></script>
+    <script>
+        $(function()
+        {
+            startLoading();
+
+            $("#introPage").css("top",(window.innerHeight-640)/2+"px");
+            $("#topPage").css("top",(window.innerHeight-640)/2+"px");
+
+            installTop10([
+                {"name":"赵俊杰","score":100},
+                {"name":"赵俊杰","score":1500},
+                {"name":"赵俊杰","score":1060},
+                {"name":"赵俊杰","score":1050},
+                {"name":"赵俊杰","score":1080},
+                {"name":"赵俊杰","score":1006},
+                {"name":"赵俊杰","score":1020},
+            ]);
+        });
+
+    </script>
+
+    <link href="One.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <canvas id="mainCanvas" style="background-color: gray;position:fixed;left: 0px;top:0px;"></canvas>
+    <div style="display:none; z-index:100; position:fixed; bottom:1px; right:1px; color:#FFFFFF; font-weight:bold; background-color: #999999; width: 200px;">
+        width:<span class="widths"></span><br>
+        height:<span class="heights"></span><br>
+        fps: <span id = 'fps'>fps</span>
+    </div>
+
+    <div id="preloading" style="z-index: 150;position: fixed;top:0px;left:0px;">
+        <img src="assets/Loading/background.jpg"></img>
+        <div style="position:absolute;left:89px;top:550px;">
+            <img src="assets/Loading/loading.png"/>
+            <img id="progressBar" src="assets/Loading/loadingprogress.png" style="position:absolute;left:0px;top:28px;width:445px;height:11px;"/>
+            <img id="progressCar" src="assets/Loading/loadingcar.png" style="position:absolute;left:0px;top:-30px;"/>
+        </div>
+        <img id="startBtn" src="assets/Loading/start.png" onclick="startGame();" style="display:none;position:absolute;left:220px;top:420px;"/>
+    </div>
+
+    <div id="endPage"  style="display:none;position:fixed;top:0px;left:0px;z-index:200">
+        <img src = "assets/End/end.jpg"/>
+        <div id="scoreT" style="position:fixed;top:550px;left:340px;">
+            <img src="assets/End/1.png"/>
+            <img src="assets/End/0.png"/>
+        </div>
+        <img src="assets/End/back.png" onclick="tryReStart();" style="position:absolute;top:700px;left:220px;"/>
+    </div>
+
+    <div id="introPage" onclick="hideGuiZhe();" style="display:none;position:fixed;left:50px;top:0px;z-index:250">
+        <img src="assets/End/intro.png">
+            <img src="assets/End/x.png"  style="position:absolute;right:0px;top:0px;"/>
+        </img>
+    </div>
+
+    <div id="topPage" onclick="hidePaiHangBang();" style="display:none;position:fixed;left:50px;z-index:300">
+        <img src="assets/End/top.png">
+            <img src="assets/End/x.png"  style="position:absolute;right:0px;top:0px;"/>
+            <div id="topContent" style="height:400px;width:420px; overflow-y:auto; position:absolute;top:130px;left:70px;">
+                <ul style="list-style-type:none;margin:0px;padding:0px;">
+                    <li><img src="assets/End/h1.png"/><span class="name">赵俊俊:</span><span class="score">39283</span></li>
+                    <li><img src="assets/End/h1.png"/><span class="name">赵俊俊:</span><span class="score">39283</span></li>
+                    <li><img src="assets/End/h1.png"/><span class="name">赵俊俊:</span><span class="score">39283</span></li>
+                    <li><img src="assets/End/h1.png"/><span class="name">赵俊俊:</span><span class="score">39283</span></li>
+                    <li><img src="assets/End/h1.png"/><span class="name">赵俊:</span><span class="score">39283</span></li>
+                    <li><img src="assets/End/h1.png"/><span class="name">赵俊:</span><span class="score">39283</span></li>
+                </ul>
+            </div>
+        </img>
+
+    </div>
+
+    <audio id="background_music" src="assets/sound/s_background.ogg" autoplay="autoplay" loop="loop"></audio>
+</body>
+</html>
