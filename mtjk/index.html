@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>麦田健康欢迎您</title>
+    <script type="text/javascript"></script>
+    <meta name="description" content="wincome" />
+    <meta name="author" content="Administrator" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-itunes-app" content="app-id=453480684"/>
+    <link rel="shortcut icon" href="img/logo.ico" />
+    <link rel="stylesheet" href="css/jquery.fullPage.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/welcome.css" />
+    <link rel="stylesheet" href="css/jquery.bxslider.css">
+
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            my_section1.init();
+            $('#welcome').fullpage({
+                'verticalCentered': false,
+                'css3': true,
+                'sectionsColor': ['#6cbb52','#e89c38', '#FD5454' ,'#40a3e1'],
+                'navigation': true,
+                'navigationPosition': 'right',
+                //'easing' : 'easeInOutBounce',
+                'afterRender' : function (index,anchorLink ) {
+                    $(".iphone_img").addClass('fadeInTop');
+                },
+                'afterSlideLoad':function(index ) {
+
+                }
+                ,
+                'afterLoad': function(anchorLink, index){
+                    if( index == 2) {
+                        $(".iphone_img").removeClass('fadeInTop');
+                    }
+                    if(index==3){
+                        my_section1.init();
+                    }
+                    if(index==1){
+                        my_section1.init();
+                    }
+                    if(index==2){
+                        my_section2.init();
+                    }
+                    if(index==4){
+                        my_section2.init();
+                    }
+                    if(index==3){
+                        my_section3.init();
+                    }
+
+                },
+                'onLeave': function(index, nextIndex, direction){
+                    if( nextIndex  == 1 ) {
+                        $(".iphone_img").addClass('fadeInTop');
+                    }
+                    if(index==1){
+                        my_section1.anim();
+                    }
+                    if(index==3){
+                        my_section1.anim();
+                    }
+                    if(index==2){
+                        my_section2.anim();
+                    }
+                    if(index==4){
+                        my_section2.anim();
+                    }
+                    if(index==3){
+                        my_section3.anim();
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="welcome">
+    <div class="section" id="section0">
+        <div class="my_section">
+            <div class="my_codoon fl">
+                <div class="text1_box">
+                    <div class="text1 fl">让健康人人触手可及</div>                    
+                    <div class="blank0"></div>
+                </div>
+                <p><div class="text2">中国最专业的在线健康咨询服务平台</div></p>
+                <div class="download_box">
+                    <div class="left">                        
+                        <div class="icon erweima"><img width="110" height="110" src="img/qr.jpg"/></div>
+                    </div>
+                    <div class="right">
+
+                        <a href="http://www.healthzone.com.cn/assets/appDownload.html" class="item pc_download item_pc" style="margin-bottom:15px;">Andriod版下载</a>
+                        <a href="#" class="item pc_download item_pc">iPhone版下载</a>
+
+                        <a href="#" class="item mobile_download mobile_icon"><img src="http://static.codoon.com/image/welcome/2015/now_download.png" alt=""></a>
+                    </div>
+                    <div class="blank10"></div>                    
+                </div>
+            </div>
+            <div class="iphone fr">
+                <div class="iphone_icon iphone_img">
+                    <div id="iphone_slider_wrapper">
+                        <div id="iphone_slider">
+                            <ul id="iphone_slider_ul">                                
+                                <li><img src="img/phonepic1.png"></li>
+                                <li><img src="img/phonepic2.png"></li>
+                                <li><img src="img/phonepic3.png"></li>
+                            </ul>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="blank0"></div>
+        </div>
+    </div>
+    <div class="section" id="section1">
+        <div class="my_section ">
+            <div class="rom_txt fr">
+                <h2 class="bigtit">健康专家在线咨询</h2>
+                <div class="blank10"></div>
+                <p class="notes">我们的健康管理人员大多数来自国内三甲医院</p>
+                <p class="notes">他们均拥有丰富的健康管理实践经验</p>
+                <p class="notes">专注解决慢病人群,特殊人群的营养健康问题</p>                
+            </div>
+            <div class="cod_rom fl">
+                <img src="img/doctor.png" alt="">
+                
+            </div>
+            <div class="blank0"></div>
+        </div>
+    </div>
+    <div class="section" id="section2">
+        <div class="my_section">
+            <div class="rom_txt fl souhuan">
+                <h2 class="bigtit">智能健康机器人</h2>
+
+                <ul style="width: 268px" class="clearfix">
+                    <li>三高问答</li>
+                    <li>事务宜忌</li>
+                    <li>指标检测</li>
+                    <li>食材推荐</li>
+
+                </ul>
+
+                <p style="
+    margin-top: 20px;
+" class="notes">智能大白,为您的健康保驾护航</p>
+               
+            </div>
+            <div class="shouhuanImg  fr">
+                <img src="img/bigwhite.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="section" id="section3">
+        <div class="my_section">
+            <div class="rom_txt fr souhuan fourtext">
+
+
+
+
+                <h2 class="bigtit">家庭健康圈</h2>
+                
+                
+                <ul style="width: 300px" class="clearfix">
+                    <li>家庭健康档案</li>
+                    <li>指标预警&nbsp;&nbsp;家庭分享</li>                    
+                </ul>
+                
+                <p class="notes" >家庭健康关怀无处不在</p>
+                
+            </div>
+            <div class="familyImg  fl">
+                <img src="img/family.png" alt="">
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="fixed head">
+    <div class="head_content">
+        <div class="icon logo logo_blue fl"></div>
+        <div class="fr login_box">
+
+            <a href="#" class="">登录</a>
+            <span class="">|</span>
+            <a href="#" class="">注册</a>
+
+        </div>
+    </div>
+    <div class="line"></div>
+</div>
+<div class="fixed bottom">
+    <div class="bottom_content">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">使用条款</a>
+        <span>|</span>
+        <a href="#">加入我们</a>
+
+        <br />
+        <p>Copyright © 2010-2014 Wincome 沪ICP备12014086号</p>
+    </div>
+</div>
+<div>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f340efa1307a47e7d89c5d277cc552cd";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</div>
+
+
+</body>
