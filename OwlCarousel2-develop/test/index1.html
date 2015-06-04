@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+		<title>Owl Carousel 2</title>
+
+		<link rel="stylesheet" href="../bower_components/qunit/qunit/qunit.css" />
+		<link rel="stylesheet" href="../src/css/owl.theme.default.css" />
+		<link rel="stylesheet" href="../src/css/owl.carousel.css" />		
+
+		<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js">
+		</script>
+		<script src="../bower_components/qunit/qunit/qunit.js"></script>
+
+		<script src="../src/js/owl.carousel.js"></script>
+		<script src="../src/js/owl.support.js"></script>
+		<!--<script src="unit/core.js"></script>-->
+	</head>
+	<body>
+		
+		<div class="owl-carousel">
+			<img src="../docs_src/assets/img/u=3591818604,1991042111&fm=21&gp=0.jpg"/>
+			<img src="../docs_src/assets/img/u=3591818604,1991042111&fm=21&gp=0.jpg"/>
+			<img src="../docs_src/assets/img/u=3591818604,1991042111&fm=21&gp=0.jpg"/>
+		    <!--<div class="item"><h4>1</h4></div>
+		    <div class="item"><h4>2</h4></div>
+		    <div class="item"><h4>3</h4></div>
+		    <div class="item"><h4>4</h4></div>
+		    <div class="item"><h4>5</h4></div>
+		    <div class="item"><h4>6</h4></div>
+		    <div class="item"><h4>7</h4></div>
+		    <div class="item"><h4>8</h4></div>
+		    <div class="item"><h4>9</h4></div>
+		    <div class="item"><h4>10</h4></div>
+		    <div class="item"><h4>11</h4></div>
+		    <div class="item"><h4>12</h4></div>-->
+		</div>
+		
+		
+		<script>
+			$('.owl-carousel').owlCarousel({
+			    loop:true,
+			    nav:true,
+			    margin:10,
+			    nav:true,
+			    items : 1, 
+			    /*responsive:{
+			        0:{
+			            items:1
+			        },
+			        600:{
+			            items:3
+			        },
+			        1000:{
+			            items:5
+			        }
+			    }*/
+			})
+		</script>
+		
+	</body>	
+</html>
