@@ -1,0 +1,111 @@
+[
+    {
+        "planid":1,
+        "title":"增强抵抗力，再也不想感冒了。",
+        "items":["跑步","游泳","骑车"],
+        "time":["2014年1月1日","2014年1月31日"],
+        "timeDis":["2014-01-01","2014-01-31"],
+        "remind":"1",
+        "detail":[
+            {
+                "sid":1,
+                "freq":["1", "1", "0", "1", "0", "1", "1"],
+                "sportid":2,
+                "name":"跑步",
+                "pic":"img/swim-icon.png",
+                "iscycle":"1",
+                "time":30
+            },{
+                "sid":2,
+                "freq":["1", "1", "0", "1", "0", "1", "1"],
+                "sportid":3,
+                "name":"跑步",
+                "pic":"img/swim-icon.png",
+                "iscycle":"1",
+                "time":20
+            },{
+                "sid":3,
+                "freq":["1", "1", "0", "1", "0", "1", "1"],
+                "sportid":4,
+                "name":"跑步",
+                "pic":"img/swim-icon.png",
+                "iscycle":"0",
+                "time":10
+            }
+        ]
+    },
+    {
+        "planid":2,
+        "title":"两个月减掉10公斤！",
+        "items":["跑步","游泳"],
+        "time":["2014年2月1日","2014年3月31日"],
+        "timeDis":["2014-02-01","2014-03-31"],
+        "remind":"0",
+        "detail":[
+            {
+                "sid":1,
+                "freq":["1", "1", "0", "1", "0", "1", "1"],
+                "sportid":2,
+                "name":"跑步",
+                "pic":"img/swim-icon.png",
+                "iscycle":"1",
+                "time":40
+            },{
+                "sid":2,
+                "freq":["1", "1", "0", "1", "0", "1", "1"],
+                "sportid":3,
+                "name":"跑步",
+                "pic":"img/swim-icon.png",
+                "iscycle":"1",
+                "time":30
+            }
+        ]
+    },
+    {
+        "planid":3,
+        "title":"呼吸新鲜空气。",
+        "items":["跑步"],
+        "time":["2014年4月1日","2014年4月31日"],
+        "timeDis":["2014-04-01","2014-04-31"],
+        "remind":"1",
+        "detail":[
+            {
+                "sid":1,
+                "freq":["1", "1", "0", "1", "0", "1", "1"],
+                "sportid":2,
+                "name":"跑步",
+                "pic":"img/swim-icon.png",
+                "iscycle":"0",
+                "time":20
+            }
+        ]
+    },
+    {
+        "planid":4,
+        "title":"瘦腿！！！",
+        "items":["跑步","骑车"],
+        "time":["2014年5月1日","2014年6月1日"],
+        "timeDis":["2014-05-01","2014-06-01"],
+        "remind":"0",
+        "detail":[
+            {
+                "sid":1,
+                "freq":["1", "1", "0", "1", "0", "1", "1"],
+                "sportid":2,
+                "name":"跑步",
+                "pic":"img/swim-icon.png",
+                "iscycle":"0",
+                "time":25
+            },{
+                "sid":2,
+                "freq":["1", "1", "0", "1", "0", "1", "1"],
+                "sportid":5,
+                "name":"跑步",
+                "pic":"img/swim-icon.png",
+                "iscycle":"1",
+                "time":15
+            }
+        ]
+    }
+
+]

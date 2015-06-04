@@ -1,0 +1,80 @@
+[
+    {
+        "color":"purple",
+        "date":"2014年10月3日",
+        "year":"2014",
+        "day":"星期六",
+        "time":"1:30 PM",
+        "unit":"美年",
+        "file":"upload/nodejs.pdf",
+        "content":"血糖指标正常，继续保持。血糖指标正常，继续保持。",
+        "type":"tj",
+        "pos":"left"
+    },
+    {
+        "color":"blue",
+        "date":"2014年4月2日",
+        "year":"2014",
+        "day":"星期六",
+        "time":"1:30 PM",
+        "unit":"国宾",
+        "file":"upload/nodejs.pdf",
+        "content":"血糖指标正常，继续保持。血糖指标正常，继续保持。",
+        "rating":5,
+        "type":"jk",
+        "pos":"right"
+    },
+    {
+        "color":"purple",
+        "date":"2013年10月3日",
+        "year":"2013",
+        "day":"星期六",
+        "time":"1:30 PM",
+        "unit":"美年",
+        "file":"upload/nodejs.pdf",
+        "content":"血糖指标正常，继续保持。血糖指标正常，继续保持。",
+        "type":"tj",
+        "pos":"left"
+    },
+    {
+        "color":"blue",
+        "date":"2013年12月8日",
+        "year":"2013",
+        "day":"星期六",
+        "time":"1:30 PM",
+        "unit":"慈铭",
+        "file":"upload/nodejs.pdf",
+        "content":"血糖指标正常，继续保持。血糖指标正常，继续保持。",
+        "rating":4,
+        "type":"jk",
+        "pos":"right"
+    },
+    
+    {
+        "color":"purple",
+        "date":"2012年5月9日",
+        "year":"2012",
+        "day":"星期五",
+        "time":"9:30 AM",
+        "unit":"瑞慈",
+        "file":"upload/nodejs.pdf",
+        "content":"血糖指标正常，继续保持。血糖指标正常，继续保持。",
+        "type":"tj",
+        "pos":"left"
+    },
+    {
+        "color":"blue",
+        "date":"2013年12月8日",
+        "year":"2013",
+        "day":"星期六",
+        "time":"1:30 PM",
+        "unit":"慈铭",
+        "file":"upload/nodejs.pdf",
+        "content":"血糖指标正常，继续保持。血糖指标正常，继续保持。",
+        "rating":4,
+        "type":"jk",
+        "pos":"right"
+    }
+    
+]
+

@@ -1,0 +1,214 @@
+<div class="profile-info col-xs-19">
+
+	<div class="panel mh">
+
+		<div class="panel-heading">
+			慢病食物宜忌
+			<div class="pull-right">
+				<a class="control-label btn btn-xs btn-primary"  win-web-slide> <i class="fa fa-tint"></i>请选择慢病</a>
+			</div>
+		</div>
+
+
+		<div class="panel-body">
+
+			<div class="filter " id="search1-chronic">
+				<div class="search1-chronic" data-form="chronic">
+					<label ng-repeat="disease in diseases"
+						class="checkbox checkbox-inline label_check" 
+						ng-class="{c_on:disease.checked}"
+						for="f_chronic{{$index}}">
+						<input ng-model="disease.checked" id="f_chronic{{$index}}"
+						value="{{disease.value}}" type="checkbox" name="chronic" />
+						{{disease.name}}
+					</label>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<form ng-submit="askForAnswer()" id="form-search1" class="ajax"
+					data-avatar="img/pro-ac-1.png">
+					<div class="input-group m-bot15 meals-search col-xs-24">
+						<input id='keyword' win-web-search-keyword-select type="text" ng-model="word" class="form-control"
+							name="keyword" placeholder="食物名称"  ng-focus="searchFocus()" /> <i
+							class="fa fa-search" ng-click="askForAnswer()"></i>
+						<div ng-show="focusFlag" style="border:1px solid rgb(220, 190, 190);">
+							<ul ng-repeat="keyword in keywords">
+								<li class="key" win-web-search-keyword ng-click="selectKeyword(keyword)" style="font: 14px arial;line-height: 20px;padding-left:13px;cursor: default;">{{keyword}}</li>
+							</ul>
+						</div>	
+							
+					</div>
+				</form>
+			</div>
+
+            <div id="dialog-window">
+                <div ng-repeat="data in queryDatas | orderBy:predicate:reverse"
+                    class="repeated-item">
+                    <div win-web-searchh-one-answer ng-show="data.single"></div>
+                    <div win-web-searchh-multi-answer ng-hide="data.single"></div>
+                    <div win-web-searchh-userdialog></div>
+                </div>
+                
+                <div class="panel-body" style="">
+                    <img src="img/kficon.png" alt="" class="pull-left mt">
+                    <div class="pannel-kfbg pull-left ml2">
+                        <div class="top"></div>
+                        <div class="middle">
+                            <h1> <i class="fa fa-smile-o"></i> 食物宜忌使用小贴士</h1>
+                            <p></p><ul><li>1. 选择一些慢病</li><li>2. 在搜索框输入食物名称</li><li>3. 按下键盘上的回车键或点击右侧的搜索图标进行搜索</li></ul><p></p>
+                        </div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+
+            </div>
+
+			<script type="text/html" id="tpl-dialog-window-none">
+                <div class="panel-body">
+                    <img src="img/kficon.png" alt="" class="pull-left mt"/>
+                    <div class="pannel-kfbg pull-left ml2">
+                        <div class="top"></div>
+                        <div class="middle">
+                            <h1>对不起，没有找到和“{{keyword}}”相关的食材。</h1>
+                            <p>如果您对我们的服务有什么意见或建议，请告诉我们，帮助我们更好的去完善......</p>
+                            <div class="row mt10 feedback-input">
+                                <form action="">
+                                    <div class="col-xs-18 full-left">
+                                        <textarea class="form-control" name="content" maxlength="256" rows="3"
+                                                  placeholder="" >弃我而去玩儿</textarea>
+
+                                    </div>
+                                    <div class="col-xs-4 full-right">
+                                        <button type="submit" class="btn btn-primary btn-block">提交</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+            </script>
+
+			<script type="text/html" id="tpl-dialog-window-tip">
+                <div class="panel-body">
+                    <img src="img/kficon.png" alt="" class="pull-left mt"/>
+                    <div class="pannel-kfbg pull-left ml2">
+                        <div class="top"></div>
+                        <div class="middle">
+                            <h1>{{#title}}</h1>
+                            <p>{{#description}}</p>
+                        </div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+            </script>
+
+
+			<script type="text/ng-template" id="oneAnswer1.html">
+             <div class="panel-body">
+                    <img src="img/kficon.png" alt="" class="pull-left mt"/>
+                    <div class="pannel-kfbg kfbg1 pull-left ml2">
+                        <div class="top"></div>
+                        <div class="middle">
+                            <table class="table-search1 table table-bordered">
+                                <tr>
+                                    <td rowspan="2" colspan="2">
+                                        <img src="{{data.answers[0].pic}}" alt="" width="300" class="pic"/>
+                                    </td>
+                                    <th>
+                                        食材名称：
+                                    </th>
+                                    <td class="text-center">
+                                        {{data.answers[0].title}}
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <th>
+                                        宜忌指数：
+                                    </th>
+                                    <td>
+                                    <span class="rating rating-sm" win-web-common-star  stars="{{data.answers[0].stars}}">
+                                        <span class="star"></span>
+                                        <span class="star"></span>
+                                        <span class="star"></span>
+                                        <span class="star"></span>
+                                        <span class="star"></span>
+                                    </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        食材简介：
+                                    </th>
+                                    <td colspan="3">
+                                       <span ng-bind-html="data.answers[0].reason"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        营养价值：
+                                    </th>
+                                    <td colspan="3">
+										 <span ng-bind-html="data.answers[0].function"></span>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="bottom"></div>
+                        <!--<a class="more" href="search1_view.html?id={{id}}" target="_blank">查看详细 <i class="fa fa-share"></i></a>-->
+                    </div>
+                </div>
+             
+             </script>
+			<script type="text/ng-template" id="multiAnswer1.html">
+            <div class="panel-body">
+                    <img src="img/kficon.png" alt="" class="pull-left mt"/>
+                    <div class="pannel-kfbg pull-left ml2">
+                        <div class="top"></div>
+                        <div class="middle">
+                            <h1><i class="fa fa-question-circle"></i> 您想找的是不是下面这些食材？</h1>
+                            <ul>
+                                <li ng-repeat="answer in data.answers"><a href=""  ng-click="getOneAnswer(answer)">{{$index+1}}、{{answer.title}}</a></li>
+                            </ul>
+                             
+		<pagination total-items="resultCounts" ng-model="currentPage"
+			ng-change="pageChanged()" boundary-links="true"
+			items-per-page="itemsPerPage" max-size="maxSize"
+			previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+			last-text="&raquo;"></pagination>
+                        </div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+            </script>
+			<script type="text/ng-template" id="userdialog1.html">
+             <div class="panel-body">
+                    <div class="activity alt terques ">
+                    <span class="activity-img">
+                      <img src="{{avatar}}" alt="" height="70"/>
+                    </span>
+                        <div class="activity-desk">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="arrow-alt"></div>
+                                    <p>{{data.word}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </script>
+
+
+			
+
+		</div>
+	</div>
+
+
+</div>
+
+

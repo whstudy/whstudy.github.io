@@ -1,0 +1,81 @@
+[
+    {
+        "id":1,
+        "title":"回顾最近半年到一年的生活， 在下列符合您情况的描述前打勾",
+        "name":"A",
+        "type":"checkbox",
+        "data":[
+            {
+                "title":"现在年龄在65岁以上",
+                "checked":false,
+                "value":1
+            },
+            {
+                "title":"喜欢吃咸的和辣的食物",
+                "checked":true,
+                "value":2
+            },
+            {
+                "title":"食量较大，经常吃得很饱",
+                "checked":false,
+                "value":3
+            }
+        ]
+    },
+    {
+        "id":2,
+        "title":"回顾最近半年到一年的生活， 在下列“符合情况”或“出现过好几次”的描述前打勾",
+        "name":"B",
+        "type":"checkbox",
+        "data":[
+            {
+                "title":"被指出患有代谢综合征(肥胖等)",
+                "checked":true,
+                "value":1
+            },
+            {
+                "title":"严重的肩酸，肩膀发僵",
+                "checked":false,
+                "value":2
+            },
+            {
+                "title":"经常觉得头很沉",
+                "checked":false,
+                "value":3
+            },
+            {
+                "title":"不明原因地经常头痛",
+                "checked":false,
+                "value":4
+            }
+            
+        ]
+    },
+    {
+        "id":3,
+        "title":"回顾最近半年到一年的生活， 在下列符合您情况的描述前打勾",
+        "name":"C",
+        "type":"checkbox",
+        "data":[
+            {
+                "title":"现在年龄在65岁以上",
+                "checked":false,
+                "value":1
+            },
+            {
+                "title":"喜欢吃咸的和辣的食物",
+                "checked":false,
+                "value":2
+            },
+            {
+                "title":"食量较大，经常吃得很饱",
+                "checked":false,
+                "value":3
+            }
+        ]
+    }
+    
+    
+    
+]
+

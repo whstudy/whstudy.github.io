@@ -1,0 +1,33 @@
+[
+    {
+       "blood_pressure":{
+                           "name":"血压",
+                           "type":[
+                                    { "db_pressure":{
+                                                        "name":"舒张压",
+                                                        "value":[32,33,33,22]                                                                                         
+                                                     } 
+                                    },   
+                                    { "sb_pressure":{
+                                                        "name":"收缩压",
+                                                        "value":[32,33,33,22]                                                         
+                                                     } 
+                                    }
+                                  ]
+                        }
+   },
+   
+   {
+       "weight":{
+                    "name":"体重",
+                    "value":[43,32,12,56,45] 
+                }
+   },
+   
+   {
+       "blood_sugar":{
+                        "name":"血糖",
+                        "value":[43,32,12,56] 
+                     }
+   }
+]

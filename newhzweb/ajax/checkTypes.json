@@ -1,0 +1,30 @@
+[
+	 {
+		 "checkTypeId":1,
+		 "checkTypeName":"血常规" 
+	 },
+	 {
+		 "checkTypeId":2,
+		 "checkTypeName":"尿常规" 
+	 },
+	 {
+		 "checkTypeId":3,
+		 "checkTypeName":"表面抗原"
+	 },
+	 {
+		 "checkTypeId":4,
+		 "checkTypeName":"心电图"	 
+	 },
+	 {
+		 "checkTypeId":5,
+		 "checkTypeName":"B超" 
+	 },
+	 {
+		 "checkTypeId":6,
+		 "checkTypeName":"胸透"
+	 },
+	 {
+		 "checkTypeId":6,
+		 "checkTypeName":"彩超"
+	 }	 
+]

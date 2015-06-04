@@ -1,0 +1,52 @@
+<link href="css/medical.css" rel="stylesheet">
+
+<div style="z-index:10;position: absolute" class="panel">
+	<div class="RongMain">
+	  <div class="h1Title">健康咨询</div>
+	  
+	  <div class="guestMain" style="width:1150px;">
+		    <div class="aminQAlist replay" ng-repeat="question in questions">
+			      <h1><font class="zxtime">咨询时间：2014-10-15 | <a  ng-show="question.answer == ''" win-web-replay>回复</a></font><span>李一</span> ｜ 高血压患者 ｜ 曹杨小区 63号 601  </h1>
+			      <div class="userImg"><img src="images/icon-userhead.jpg" ></div>
+			      <dl>
+			      <dt>
+			      	{{question.question}}
+			      	<dd class="red" ng-show="question.answer !== ''">{{question.answer}}<span class="timeSpan">答复时间：2014年10月6日12:00:25</span></dd>
+			      </dt>
+			      </dl>
+			      <div class="lableBar" id="replay_{{$index}}" style="border-top:1px solid #ccc; background:#FFC;display:none">
+						  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+							  <tr>
+							    <td width="136" class="textTd"><font style="font-size:14px">回复内容</font></td>
+							    <td colspan="2" class="boxTd"><textarea name="textarea" id="textarea" cols="45" rows="5" class="dxTextbox" ng-model="question.answerTemp"></textarea></td>
+							  </tr>
+							  <tr >
+							    <td>&nbsp;</td>
+							    <td width="354">&nbsp;</td>
+							    <td width="315">
+							      <input type="submit" name="button" id="button" value="提交" class="btn_submit_green" ng-click="reply(question.id,$index)">
+							      <input type="submit" name="button" id="button" value="清空" class="btn_reset_hui">
+							    </td>
+							  </tr>
+						 </table>
+				  </div>
+	    	</div>
+	    
+	  	<div class="fybar"> 
+			<span class="disabled">&lt; </span>
+			<span class="current">1</span>
+			<a href="#?page=2">2</a>
+			<a href="#?page=3">3</a>
+			<a href="#?page=4">4</a>
+			<a href="#?page=5">5</a>
+			<a href="#?page=6">6</a>
+			<a href="#?page=7">7</a>
+			...
+			<a href="#?page=199">199</a>
+			<a href="#?page=200">200</a>
+			<a href="#?page=2"> &gt;</a>
+		</div> 
+	
+	 </div>
+	</div>
+</div>

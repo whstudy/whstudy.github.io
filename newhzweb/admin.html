@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" ng-app="app">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+
+        <link rel="stylesheet" type="text/css" href="admin/ng-grid.css" />
+
+<link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.ztree.all-3.5.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="admin/app.js"></script>
+                    <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js">
+                    </script>
+<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- <script src="js/require.js" data-main="win/common/main.js"> -->
+<!-- </script> -->
+<script src="js/angular-route.min.js"></script>
+<script src="js/ui-bootstrap-0.11.0.min.js"></script>
+
+        <script type="text/javascript" src="admin/ng-grid.debug.js"></script>
+
+ <style>
+        .gridStyle {
+		    border: 1px solid rgb(212,212,212);
+		    width: 100%; 
+		    height: 700px;
+		}
+        </style>
+
+
+</head>
+<body ng-controller='MyController' style="
+    padding: 10px;
+">
+<ul id="tree" left-tree class="ztree" ng-model="selectNode" style="
+    float: left;
+    font-size: 15px;
+"></ul>
+
+<!-- <a href="#~/index2">111111</a> -->
+<!-- <a href="#~/index3">22222</a> -->
+
+<!-- <button ng-click="a();">aaaaaa</button> -->
+
+
+
+
+<!-- <pre> -->
+<!-- {{selectNode | json}} -->
+<!-- </pre> -->
+
+
+<!--                     <script src="js/require.js" data-main="win/common/main.js"> -->
+<!--                     </script> -->
+
+<div ng-view style="
+    float: right;
+    width: 85%;
+"></div>
+
+
+
+
+
+</body>
+</html>

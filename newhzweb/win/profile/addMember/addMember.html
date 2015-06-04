@@ -1,0 +1,142 @@
+<div class="col-xs-19">
+
+	<div style="overflow:auto;padding: 30px;" class="panel">
+		
+		<div style="font-size: 30px;border-bottom: 1px solid;margin-bottom:10px;font-size: 20px;">
+			<span>家庭成员>创建成员</span>			
+		</div>
+
+
+		<div class="panel">
+			<div class="panel-body">
+				<div class="tab-content">
+				  <div id="tc_profile_1" class="tab-pane active">
+					<form id="addMem" class="form-horizontal ng-pristine ng-valid">
+						
+						<!-- 称呼 -->
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="callname">称呼*</label>
+								<div class="col-xs-12">
+									<input type="text" id="callname" name="callname" class="form-control ng-pristine ng-valid" ng-model="user.call">
+								</div>
+							</div>
+						</div>
+
+						<!-- 性别 -->
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="">性别 *</label>
+								<div class="col-xs-12" >
+									<label class="radio radio-inline label_radio" ng-class="{r_on:user.gender == 1}" for="gender0">
+										<input id="gender0"  type="radio" name="pregnant" ng-click="user.gender = 1">男
+									</label>
+									<label class="radio radio-inline label_radio " ng-class="{r_on:user.gender == 0}" for="gender1">
+										<input id="gender1"  type="radio" name="pregnant" ng-click="user.gender = 0">女 
+									</label>
+								</div>								
+							</div>
+						</div>
+						
+						<!-- 出生年月 -->
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="birthday">出生年月*</label>
+								<div class="col-xs-12">
+<!-- 									<input type="date" id="birthday" name="birthday" class="form-control ng-pristine ng-valid ng-valid-email" ng-model="user.birthday"> -->
+								<input name="birthday" type="text" class="form-control col-md-10 datepicker ng-pristine ng-valid" b-datepicker="" data-date-format="yyyy-mm-dd" ng-model="user.birthday" readonly="readOnly" style="cursor:pointer">
+								</div>
+							</div>
+						</div>
+						
+						<!-- 所在地 -->
+						<!-- <div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_prov">所在地 *</label>
+								<div class="col-xs-8">
+									<select class="form-control ng-pristine ng-valid" ng-model="province" ng-change="changeProvince()" ng-options="c.name for c in provinces"><option value="" class="">选择省份 </option></select>
+								</div>
+								<div class="col-xs-10">
+									<select class="form-control ng-pristine ng-valid" ng-model="city" ng-options="c.name for c in citys"><option value="" class="">请选择城市</option></select>
+								</div>
+
+							</div>
+						</div> -->
+									
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_height">身高* </label>
+								<div class="col-xs-5">
+									<input class="form-control ng-pristine ng-valid ng-valid-number" id="f_height" name="height" ng-model="user.tall" type="number" data-original-title="" title="">
+								</div>
+								<div class="col-xs-6 help">
+									cm 
+								</div>
+
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_height">体重* </label>
+								<div class="col-xs-5">
+									<input class="form-control ng-pristine ng-valid ng-valid-number" id="f_height" name="weight" ng-model="user.weight" type="number" data-original-title="" title="">
+								</div>
+								<div class="col-xs-6 help">
+									kg
+								</div>
+							</div>
+						</div>
+						
+						
+						<!-- 创建 -->
+						<div class="form-group">
+							<div class="col-xs-20">
+								<div class="col-xs-4 col-xs-offset-8">
+									<button ng-click="addMember()" class="bg s_btn btn_big">创建</button>
+<!-- 									<button onclick="location.href='#~/profileAddMemberSuccess'" class="bg s_btn btn_big">创建</button> -->
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+	
+		</div>
+		<div class="progress panel-footer progress-xs">
+			<div class="progress-bar progress-bar-danger" style="width: 100%"></div>
+		</div>
+	</div>
+	</div>
+
+	
+</div>
+<div win-web-common-alert option="alertOption"></div>
+
+<script>
+$('#addMem').validate({
+    rules:{
+        callname:{
+            required:true
+        },
+        pregnant:{
+            required:true
+        },
+        birthday:{
+            required:true
+        },
+        height:{
+            required:true,
+            number:true,
+            min:10,
+            max:300
+        },
+        weight:{
+            required:true,
+            number:true,
+            min:10,
+            max:500
+        } 
+    }
+});
+</script>

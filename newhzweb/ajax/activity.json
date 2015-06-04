@@ -1,0 +1,33 @@
+[
+    {
+        "color":"purple",
+        "icon":"file", 
+        "time":"1:30 PM",
+        "content":"我完美地提交了人生第一份健康报告。",
+        "pos":"left"
+    },
+    {
+        "color":"green",
+        "icon":"user", 
+        "time":"9:30 AM",
+        "content":"我光荣地加入了健康空间。",
+        "pos":"right"
+    },
+    {
+        "color":"terques",
+        "icon":"user", 
+        "time":"9:30 AM",
+        "content":"我光荣地加入了健康空间。",
+        "pos":"left"
+    },
+    {
+        "color":"blue",
+        "icon":"user", 
+        "time":"9:30 AM",
+        "content":"我光荣地加入了健康空间。",
+        "pos":"right"
+    }
+    
+    
+]
+

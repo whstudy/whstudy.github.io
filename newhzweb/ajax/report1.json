@@ -1,0 +1,43 @@
+{
+    "id":null,
+    "spaceId":null,
+	"user":{
+               "id":1,
+               "spaceId":1,
+               "userName":"demo",
+               "passWord":null,
+               "locationName":null
+            },
+    "report":[
+	            {
+                    "color":"purple",
+                    "date":"12月3日",
+                    "day":"星期六",
+                    "time":"1:30 PM",
+                    "content":"我上传了一份体检报告。",
+                    "pos":"left"
+                },
+				{
+                    "color":"purple",
+                    "date":"12月3日",
+                    "day":"星期六",
+                    "time":"1:30 PM",
+                    "content":"我上传了一份体检报告。",
+                    "pos":"right"
+                },
+                {
+                    "color":"purple",
+                    "date":"12月3日",
+                    "day":"星期六",
+                    "time":"1:30 PM",
+                    "content":"我上传了一份体检报告。",
+                    "pos":"left"
+                }
+	        ],
+    "year":{
+	           "year":"2010年",
+			   "year":"2011年",
+			   "year":"2012年",
+			   "year":"2013年"
+	       }
+}

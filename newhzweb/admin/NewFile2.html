@@ -1,0 +1,91 @@
+
+<!--         <div class="gridStyle" ng-grid="gridOptions">222222</div> -->
+<!--         <div class="selectedItems">{{mySelections}}</div> -->
+<!--         <input value="aaaaa" type="button" ng-click="del()"/> -->
+
+        
+  <div class="modal fade  ng-scope" tabindex="-1" id="modal-set" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog"  style="top:200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">修改用户资料</h4>
+            </div>  
+			<div class="modal-body row" style="
+			    font-size: 15px;
+			">         
+			
+			<table style="
+			    margin: 0 auto;
+			"> 
+			<tr>  
+					<td>id:</td><td><input id="requestedUsername" ng-model="callName" type="text"/></td>
+			</tr>
+			<tr>  
+					<td>名字:</td><td><input id="requestedUsername" ng-model="callName" type="text"/></td>
+			</tr>
+			<tr>  
+					<td>称呼:</td><td><input id="requestedUsername" ng-model="callName" type="text"/></td>
+			</tr>												
+				
+			</table>
+						             
+            </div>
+            <div class="modal-footer row">            	
+                <button type="submit" class="btn btn-primary" ng-click="changeCallName();">&nbsp;&nbsp;确定&nbsp;&nbsp;</button>
+                <button type="submit" class="btn btn-primary"  data-dismiss="modal">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <div class="modal fade  ng-scope" tabindex="-1" id="modal-set1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog"  style="top:200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">删除用户资料</h4>
+            </div>  
+			<div class="modal-body row" style="
+			    font-size: 15px;
+			">         
+			
+			是否确认删除用户
+						             
+            </div>
+            <div class="modal-footer row">            	
+                <button type="submit" class="btn btn-primary" ng-click="changeCallName();">&nbsp;&nbsp;确定&nbsp;&nbsp;</button>
+                <button type="submit" class="btn btn-primary"  data-dismiss="modal">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </div>
+</div>
+        
+   <div class="pull-right"><a data-toggle="modal"  href="#modal-set">新增</a></div>
+             
+		<table class="table table-striped">
+		<tr>
+		<th>用户ID</th>
+		<th>用户名</th>
+		<th>编辑</th>
+		</tr>
+		<tr ng-repeat="o in data">
+		<td>{{o.allowance}}</td>
+		<td>{{o.name}}</td>
+		<td><a data-toggle="modal"  href="#modal-set">修改</a><a  data-toggle="modal" href="#modal-set1">删除</a></td>
+		</tr>
+		</table>
+		
+		
+		<div style="
+    clear: both;
+">
+            <div class="pull-right">
+            <pagination total-items="chronicCounts" ng-model="currentPage" style="margin:0"
+			ng-change="pageChanged()" boundary-links="true"
+			items-per-page="itemsPerPage" max-size="maxSize"
+			previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+			last-text="&raquo;"></pagination>
+            </div>
+</div>

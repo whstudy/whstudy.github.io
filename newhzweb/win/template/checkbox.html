@@ -1,0 +1,80 @@
+	
+<!-- 	<link rel="stylesheet" type="text/css" href="resources/css/black/easyui.css"> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="resources/css/icon.css"> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="resources/css/main.css"> -->
+<!-- 	<script type="text/javascript" src="resources/assets/jquery.js"></script> -->
+	<script type="text/javascript" src="resources/assets/jquery.easyui.min.js"></script>
+
+
+	<div style="margin:20px 0;">
+<!-- 		<a href="#" class="easyui-linkbutton" onclick="getChecked()">GetChecked</a> -->
+		<a href="#" class="easyui-linkbutton" onclick="roleSQ()">提交</a>  
+	</div>
+	<div style="margin:10px 0">
+	</div>
+	<div class="easyui-panel" style="padding:5px;width:100%">
+		<ul id="tt" class="easyui-tree"></ul>
+	</div>
+	<script type="text/javascript">
+		
+		var tt=$('#tt');
+	
+		tt.tree({
+			data:[{
+				"id":1,
+				"text":"My Documents",
+				"children":[{
+					"id":11,
+					"text":"Photos",
+					"state":"closed",
+					"children":[{
+						"id":111,
+						"text":"Friend"
+					},{
+						"id":112,
+						"text":"Wife"
+					},{
+						"id":113,
+						"text":"Company"
+					}]
+				},{
+					"id":12,
+					"text":"Program Files",
+					"children":[{
+						"id":121,
+						"text":"Intel"
+					},{
+						"id":122,
+						"text":"Java",
+						"attributes":{
+							"p1":"Custom Attribute1",
+							"p2":"Custom Attribute2"
+						}
+					},{
+						"id":123,
+						"text":"Microsoft Office",
+						"checked":true
+					},{
+						"id":124,
+						"text":"Games",
+						"checked":true
+					}]
+				},{
+					"id":13,
+					"text":"index.html",
+					"checked":true
+				},{
+					"id":14,
+					"text":"about.html",
+					"checked":false
+				},{
+					"id":15,
+					"text":"welcome.html"
+				}]
+			}]
+,
+			animate:true,
+			checkbox:true
+        });
+					
+	</script>

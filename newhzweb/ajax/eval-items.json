@@ -1,0 +1,59 @@
+[
+    {
+        "id":1,
+        "title":"高血压",
+        "pic":"img/ceping01.jpg",
+        "content":"高血压（hypertension）是最常见的心血管疾病，是全球范围内的重大公共卫生问题。"
+    },
+    {
+        "id":2,
+        "title":"高血脂",
+        "pic":"img/ceping02.jpg",
+        "content":"脂肪代谢或运转异常使血浆一种或多种脂质高于正常称为高血脂症。"
+    },
+    {
+    	"id":3,
+        "title":"糖尿病",
+        "pic":"img/ceping06.jpg",
+        "content":"糖尿病（diabetes mellitus）是一种常见的内分泌代谢疾病。"
+    },
+    {
+        "id":4,
+        "title":"冠心病",
+        "pic":"img/ceping04.jpg",
+        "content":"冠状动脉性心脏病简称冠心病。"
+    },
+    {
+        "id":5,
+        "title":"睡眠质量",
+        "pic":"img/ceping05.jpg",
+        "content":"失眠是指无法入睡或无法保持睡眠状态，导致睡眠不足。"
+    },
+    {
+        "id":6,
+        "title":"骨质疏松",
+        "pic":"img/ceping03.jpg",
+        "content":"骨质疏松(osteoporosis)是多种原因引起的一组骨病。"
+    },
+    {
+        "id":7,
+        "title":"老年痴呆",
+        "pic":"img/ceping07.jpg",
+        "content":"老年痴呆临床上以记忆障碍、失语、失用、失认等全面性痴呆表现为特征。"
+    },
+    {
+        "id":8,
+        "title":"心梗",
+        "pic":"img/ceping08.jpg",
+        "content":"动脉硬化会导致身体的各种组织器官的运作受阻碍。"
+    },
+    {
+        "id":9,
+        "title":"中风",
+        "pic":"img/ceping09.jpg",
+        "content":"脑梗死是指脑动脉堵塞血液无法继续流动导致下游部分的脑细胞坏死的疾病。"
+    }
+    
+    
+]
+

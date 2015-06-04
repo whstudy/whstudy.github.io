@@ -1,0 +1,158 @@
+ 
+
+				<div class="profile-info col-xs-19">
+
+
+					<div class="panel">
+						<div class="panel-heading">运动日记</div>
+						<div class="panel-body">
+
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-24">
+											<div id="sport-diary" class="has-toolbar"></div>
+										</div>
+									</div>
+
+
+								</div>
+
+								<div class="col-xs-12">
+									<div class="well sport-diary">
+										<script type="text/html" id="tpl-diary-item">
+                            {{each data}}
+                            <div class="form-group">
+                                <div class="col-xs-6 text-center">
+                                    <img src="{{$value.pic}}" alt="" height="30"/> <br/>
+                                    <span>{{$value.name}}</span>
+                                </div>
+                                <div class="col-xs-18">
+                                    <div class="col-xs-20">
+                                        <input class="form-control" name="sport[{{$value.id}}]" type="text" value="0"/>
+                                    </div>
+                                    <div class="help col-xs-4">分钟</div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </script>
+										<form class=" form-horizontal" id="sport-eval" method="post">
+
+											<fieldset id="sport-fields"></fieldset>
+											<div class="form-group row">
+												<label class="help col-xs-6" for=""></label>
+												<div class="col-xs-18">
+													<a href="#modal-items" class="btn btn-success"
+														data-toggle="modal"> <i class="fa fa-plus"></i> 添加运动
+													</a>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="help col-xs-6" for="">日期：</label>
+												<div class="col-xs-18">
+													<input class="form-control datepicker" name="date"
+														data-date-format="yyyy-mm-dd" type="text" />
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xs-24">
+													<div class="form-group row">
+														<label class="help col-xs-6" for="">运动后状况：</label>
+														<div class="col-xs-18">
+															<textarea class="form-control" name="stat" rows="3"></textarea>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-xs-24">
+													<div class="form-group row">
+														<label class="help col-xs-6" for="">运动后体重：</label>
+														<div class="col-xs-5">
+															<input class="form-control" name="weight" type="text" />
+														</div>
+														<div class="help col-xs-4">kg</div>
+													</div>
+												</div>
+											</div>
+
+
+
+											<div class="row">
+												<div class="col-xs-24 text-center">
+													<button class="btn btn-shadow btn-danger" type="submit">运动评估</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div id="modal-items" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title">选择运动项目</h4>
+							</div>
+							<div class="modal-body border-bottm">
+								<div class="col-xs-7">
+									<select class="form-control" name="prov" id="f_prov">
+										<option value="">运动目的</option>
+										<option value="1">运动目的1</option>
+										<option value="2">运动目的2</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<select class="form-control" name="prov" id="f_prov">
+										<option value="">运动场地</option>
+										<option value="1">运动场地1</option>
+										<option value="2">运动场地2</option>
+									</select>
+								</div>
+								<div class="col-xs-7">
+									<select class="form-control" name="prov" id="f_prov">
+										<option value="">适宜人群</option>
+										<option value="1">适宜人群1</option>
+										<option value="2">适宜人群2</option>
+									</select>
+								</div>
+								<div class="col-xs-3">
+									<button type="button" data-toggle="button"
+										class="btn btn-white">筛选</button>
+								</div>
+							</div>
+							<div class="modal-body oh">
+								<script type="text/html" id="tpl-sport-items-list">
+                    {{each data}}
+                    <li>
+                        <a href="#"
+                           data-id="{{$value.id}}"
+                           data-pic="{{$value.pic}}"
+                           data-name="{{$value.name}}">
+                            <img src="{{$value.pic}}" alt="{{$value.name}}"/><br/>{{$value.name}}
+                        </a>
+                    </li>
+                    {{/each}}
+                </script>
+								<ul class="sport-items" id="sport-items-list">
+
+								</ul>
+							</div>
+							<div class="modal-footer">
+								<button data-dismiss="modal" class="btn btn-danger"
+									type="button">关闭</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			 

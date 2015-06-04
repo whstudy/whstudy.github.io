@@ -1,0 +1,68 @@
+<div class="profile-info col-xs-13" ng-controller="ChronicDetalCtrl">
+
+    <ul class="breadcrumb">
+        <li><a href="#~/index"><i class="fa fa-home"></i> 首页</a></li>
+        <li><a href="#~/chronic">精华文章</a></li>
+        <li><a ng-href='#~/chronicCat/{{article.type}}'>{{typeName[article.type]}}</a></li>
+        <li class="active">正文</li>
+    </ul>
+    
+    <div class="panel">
+        
+        <div class="panel-body">
+            <h3 class="text-center" id="articleId">{{article.title}}</h3>
+            <ul class="list-inline text-center">
+                <li>来源：{{article.source}}</li>
+                <li>发布日期：{{article.date}}</li>
+                <li>浏览次数：{{article.views}}</li>
+            </ul>
+
+            <div class="article-pic">
+                <img class="" ng-src="{{article.pic}}" alt="" id="articlePic"/>
+            </div>
+
+            <div class="article-content" style="word-break:break-all; word-wrap: break-word;">
+
+                <div ng-bind-html="article.htmlContent"></div>  
+                
+                <!-- <div class="panel-body text-center">
+                    <button data-id="1" data-action="fav" type="button" ng-click="addfavorite(article.id,article.title,$event)" id="btn-fav" class="btn btn-sm btn-success">
+                        <i class="fa fa-heart-o"></i>
+                        收藏 (<span>{{article.favorites}}</span>)
+                    </button>
+                    &nbsp;
+                    <button data-id="1" data-action="thumb" type="button" win-web-chronic-share id="sina" ng-click="operation(article.id,'share',$event)" id="btn-thumb" class="btn btn-sm btn-success">
+                        <i class="glyphicon glyphicon-share"></i>
+                        分享 (<span>{{article.shares}}</span>)
+                    </button>
+                    &nbsp;
+                    <button id="upsid" data-id="1" data-action="thumb" type="button"  ng-click="operation(article.id,'up',$event)" id="btn-thumb" class="btn btn-sm btn-danger">
+                        <i class="fa fa-thumbs-o-up"></i>
+                        赞一个 (<span>{{article.ups}}</span>)
+                    </button>
+                    &nbsp;
+                    <button id="downsid" data-id="1" data-action="thumb" type="button"  ng-click="operation(article.id,'down',$event)" id="btn-thumb" class="btn btn-sm btn-danger">
+                        <i class="glyphicon glyphicon-thumbs-down"></i>
+                        踩一个 (<span>{{article.downs}}</span>)
+                    </button>
+                </div> -->
+                
+            </div>
+        </div>
+    </div>
+      
+     <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a ng-href="#~/chronicDetail/{{article.preId}}" ng-class="{'hide':article.preId==0}">上一篇：{{article.preTitle}}</a>
+                </div>
+                <div class="col-xs-12 text-right">
+                    <a ng-href="#~/chronicDetail/{{article.nextId}}" ng-class="{'hide':article.nextId==0}">下一篇：{{article.nextTitle}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+ <div ng-include="chronicRight"></div>

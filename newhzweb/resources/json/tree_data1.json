@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "children": [
+      {
+        "id": 4,
+        "children": [
+          {
+            "id": 7,
+            "children": [],
+            "text": "节点7",            
+            "checked": false,
+            "attributes": {
+              "url": "../datagrid/clientpagination.html"
+            }
+          },
+          {
+            "id": 8,
+            "children": [],
+            "text": "节点8",            
+            "checked": false,
+            "attributes": {
+              "url": "/"
+            }
+          }
+        ],
+        "text": "节点4",
+        "state": "closed",
+        "checked": false,
+        "attributes": {
+          "url": "/"
+        }
+      },
+      {
+        "id": 5,
+        "children": [
+          {
+            "id": 9,
+            "children": [],
+            "text": "节点9",
+            "state": "closed",
+            "checked": false,
+            "attributes": {
+              "url": "/"
+            }
+          }
+        ],
+        "text": "节点5",
+        "state": "closed",
+        "checked": false,
+        "attributes": {
+          "url": "/"
+        }
+      },
+      {
+        "id": 6,
+        "children": [],
+        "text": "节点6",
+        "state": "closed",
+        "checked": false,
+        "attributes": {
+          "url": "/"
+        }
+      }
+    ],
+    "text": "节点1",
+    "checked": false,
+    "attributes": {
+      "url": "/"
+    }
+  },
+  {
+    "id": 2,
+    "children": [],
+    "text": "节点2",
+    "state": "closed",
+    "checked": false,
+    "attributes": {
+      "url": "/"
+    }
+  },
+  {
+    "id": 3,
+    "children": [],
+    "text": "节点3",
+    "state": "closed",
+    "checked": false,
+    "attributes": {
+      "url": "/"
+    }
+  },
+  {
+    "id": 10,
+    "children": [],
+    "text": "节点10",
+    "state": "closed",
+    "checked": false,
+    "attributes": {
+      "url": "/"
+    }
+  }
+]

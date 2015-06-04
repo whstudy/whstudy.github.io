@@ -1,0 +1,32 @@
+{
+    "id":null,
+    "spaceId":null,
+	"user":{
+               "id":1,
+               "spaceId":1,
+               "userName":"demo",
+               "passWord":null,
+               "locationName":null
+            },
+	"timeline":[
+	               {
+                       "color":"purple",
+                       "date":"12��3��",
+                       "day":"������",
+                       "time":"1:30 PM",
+                       "content":"�Ҳ����˸�����Ϣ��",
+                       "icon":"user",
+                       "pos":"left"
+                   },
+				   {
+                       "color":"purple",
+                       "date":"12��3��",
+                       "day":"������",
+                       "time":"1:30 PM",
+                       "content":"�Ҳ����˸�����Ϣ��",
+                       "icon":"user",
+                       "pos":"left"
+                   }
+	           ],
+	   
+}

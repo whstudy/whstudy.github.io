@@ -1,0 +1,54 @@
+[
+			 {
+				 "departmentId":1,
+				 "departmentName":"全科诊室",
+				 "doctors":[
+				            	{
+				            		"doctorId":1,
+				            		"doctorName":"张医生"
+				            	},
+				            	{
+				            		"doctorId":2,
+				            		"doctorName":"李医生"
+				            	}
+				            	
+				            
+				            ]
+				 
+			 },
+			 {
+				 "departmentId":2,
+				 "departmentName":"中医诊室",
+				 "doctors":[
+				            	{
+				            		"doctorId":3,
+				            		"doctorName":"张医生"
+				            	},
+				            	{
+				            		"doctorId":4,
+				            		"doctorName":"王医生"
+				            	}
+				            	
+				            
+				            ]
+				 
+			 },
+			 {
+				 "departmentId":3,
+				 "departmentName":"康复治疗室",
+				 "doctors":[
+				            	{
+				            		"doctorId":5,
+				            		"doctorName":"张医生"
+				            	},
+				            	{
+				            		"doctorId":6,
+				            		"doctorName":"杨医生"
+				            	}
+				            	
+				            
+				            ]
+				 
+			 }
+		 
+		 ]

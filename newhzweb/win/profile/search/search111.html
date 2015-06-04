@@ -1,0 +1,159 @@
+<div class="col-xs-19">
+<!-- 	家庭成员 -->
+	<div style="padding: 30px;" class="panel">
+<!-- 	<div style="margin:10px"> -->
+	<div>
+		<!-- 家庭成员 -->
+		<div style="font-size: 30px;border-bottom: 1px solid;margin-bottom:2px;font-size: 22px;">
+			<span>查找新成员</span>					
+<div style="margin-top:10px;float:right;width: 250px;" class="clearfix">
+<div class="input-append input-prepend">
+<span class="add-on"><i class="icon-search"></i></span>
+<input type="text" name="s" id="search" placeholder="" value="" style="width:200px;height: 35px;">
+<button style="margin-bottom: 17px;margin-left: -10px;" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
+</div>
+</div>
+
+
+			
+<!-- 			<form style="float:right;width: 30%;display: inline-block;" ng-submit="askForAnswer()" id="form-search1" class="ajax ng-pristine ng-valid" data-avatar="img/pro-ac-1.png"> -->
+<!-- 					<div class="input-group m-bot15 meals-search col-xs-24"> -->
+<!-- 						<input id="keyword" win-web-search-keyword-select="" type="text" ng-model="word" class="form-control ng-pristine ng-valid" name="keyword" placeholder="输入对方帐号或姓名" ng-focus="searchFocus()"> 						 -->
+<!-- 						<div ng-show="focusFlag" style="border:1px solid rgb(220, 190, 190);" class=""> -->
+<!-- 							ngRepeat: keyword in keywords -->
+<!-- 						</div>	 -->
+<!-- 						<i style="background:blue;width:20px" class="fa fa-search" ng-click="askForAnswer()"></i>												 -->
+<!-- 					</div> -->
+
+<!-- 				</form> -->
+
+
+			<div class="panel-body">
+				
+			</div>		
+		</div>
+		
+		<div>
+		<ul>
+		
+		<li style="position:relative;padding:10px; display: inline-block; background:#9DB3B0;height:200px;width:150px;margin:10px" ng-repeat="o in familyUsers ">
+		
+				<div class="btn-group familyMenu">
+				   <button type="button" class="btn btn-success dropdown-toggle btn-xs" 
+				      data-toggle="dropdown">
+				      <span class="caret"></span>
+				   </button>
+				   <ul class="dropdown-menu" role="menu">
+				      <li><a href="#">修改称呼</a></li>
+				      <li><a href="#">取消关注</a></li>			     
+				   </ul>
+				</div>
+		
+			<div style="margin:0 auto;width:100px">
+				<a  href="#"> <img ng-src="file/processDownload?file={{o.pic}}" style="border-radius: 0;width:100px;height:100px" alt=""> </a>
+			<div>			
+				<h4>{{o.name}}</h4>
+				<p>{{o.userName}}</p>
+			</div>
+			</div>
+		</li>
+		
+<!-- 		<li style="display: inline-block;" ng-repeat="o in familyUsers "> -->
+<!-- 		<div class="profile-nav col-xs-5" style="width: 180px;float: none;">				 -->
+<!-- 				<div class="btn-group" style="position: absolute;z-index: 10;left: 6px;"> -->
+<!-- 				   <button type="button" class="btn btn-success dropdown-toggle btn-xs"  -->
+<!-- 				      data-toggle="dropdown"> -->
+<!-- 				      <span class="caret"></span> -->
+<!-- 				   </button> -->
+<!-- 				   <ul class="dropdown-menu" role="menu"> -->
+<!-- 				      <li><a href="#">修改称呼</a></li> -->
+<!-- 				      <li><a href="#">取消关注</a></li>			      -->
+<!-- 				   </ul> -->
+<!-- 				</div> -->
+										
+<!-- 			<div class="panel "> -->
+<!-- 					<div class="user-heading round" style="background: #9DB3B0;"> -->
+<!-- 						<a style="border:1px;border-radius: 0;" href="#"> <img ng-src="file/processDownload?file={{o.pic}}" style="border-radius: 0;width:100px;height:100px" alt=""> </a> -->
+<!-- 						<h1 style="font-size:20px" class="ng-binding">{{o.name}}</h1> -->
+<!-- 						<p class="ng-binding">{{o.userName}}</p> -->
+<!-- 					</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		</li>		 -->
+		
+<!-- 		<li style="display: inline-block;"> -->
+<!-- 		<div class="profile-nav col-xs-5" style="width: 200px;float: none;">							 -->
+<!-- 			<div class="panel "> -->
+<!-- 					<div class="user-heading round" style="background: #9DB3B0;"> -->
+<!-- 						<a style="border-radius: 0;" href="#"> <img  style="border-radius: 0;width:100px;height:100px" src="http://localhost:8080/winWeb/file/processDownload?file=159null1421822940535" alt=""> </a> -->
+<!-- 						<h1 class="ng-binding">11111</h1> -->
+<!-- 						<p class="ng-binding">2222</p> -->
+<!-- 					</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		</li> -->
+		
+		</ul>
+		</div>
+		</div>
+		
+		<div>
+		<div style="font-size: 30px;border-bottom: 1px solid;margin-bottom:2px;font-size: 22px;">
+			我创建的									
+		</div>
+		
+				<div>
+				
+				
+		<ul>
+		
+		<li style="position:relative;padding:10px; float: left;background:#9DB3B0;height:200px;width:150px;margin:10px" ng-repeat="o in familyUsers ">		
+				<div class="btn-group familyMenu">
+				   <button type="button" class="btn btn-success dropdown-toggle btn-xs" 
+				      data-toggle="dropdown">
+				      <span class="caret"></span>
+				   </button>
+				   <ul class="dropdown-menu" role="menu">
+				      <li><a href="#">修改称呼</a></li>
+				      <li><a href="#">删除</a></li>			     
+				   </ul>
+				</div>
+		
+			<div style="margin:0 auto;width:100px">
+				<a  href="#"> <img ng-src="file/processDownload?file={{o.pic}}" style="border-radius: 0;width:100px;height:100px" alt=""> </a>
+			<div>			
+				<h4>{{o.name}}</h4>
+<!-- 				<p>{{o.userName}}</p> -->
+			</div>
+			</div>
+		</li>		
+		
+		<li style="padding:10px;float:left; background:#9DB3B0;height:200px;width:150px;margin:10px" >	
+			<div style="margin:0 auto;width:100px">
+				<a style="font-size:130px"  class="fa fa-plus" href="#">				
+<!-- 				<img  ng-src="file/processDownload?file=" style="border-radius: 0;width:100px;height:100px" alt="" src="file/processDownload?file="> -->
+				</a>
+				添加新成员
+			</div>
+
+		</li>
+	
+		</ul>
+		
+
+		
+		</div>		
+		</div>
+		
+		<div style="clear:both;position:relative;display:block">	
+			<h3 class="glyphicon glyphicon-info-sign">提示</h3>
+			<div>对于自创建成员,目前暂不支持外部数据导入,包含体检机构,社区医疗中心等</div>
+		</div>
+		
+		<div class="progress panel-footer progress-xs">
+			<div class="progress-bar progress-bar-danger" style="width: 100%"></div>
+		</div>
+	</div>	
+	</div>
+</div>
+<div win-web-common-alert option="alertOption"></div>

@@ -1,0 +1,158 @@
+<div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-24 " id="params">
+                    <div class="btn-group" ng-repeat="index in option " style="padding: 2px;">
+                        <button ng-class="{'btn-warning':index.name==monitorName}" class="btn btn-xs btn-success"
+                                ng-click="setChartData($index,index.name)">{{index.name}}
+                        </button>
+                        <button class="btn btn-xs btn-success" ng-click="fnDeleteTypeConfirm($index,index.name)">
+                            <i class="fa fa-times"></i>
+                        </button>
+						&nbsp;
+                    </div>
+                    <a href="#~/monitor#modal-add" class="btn btn-xs btn-primary"  data-toggle="modal"> <i class="fa fa-plus"></i> 新增指标 </a>
+                    <a    class="btn btn-xs btn-danger pull-right"  ng-click="showAddMonitor()">
+                   	   <i class="fa fa-plus"></i> 录入记录
+                    </a>
+                </div>
+            </div>
+            <div id="monitor-stat" style="height:300px;width:120%;margin-left:-10%"></div>
+        </div>
+    </div>
+
+    <div class="panel" ng-show="evalShow" id="monitorDetail">
+        <div class="panel-heading">
+            我的评估结果 <button type="button" class="close" data-dismiss="modal" ng-click="evalShow = false"><span aria-hidden="true">&times;</span></button>
+        </div>
+		<div class="panel-body" ng-hide="evalShow">
+			<div style="text-Align:center"><h1>点击图表中橙色节点查看评估结果</h1></div>
+		</div>
+        <div class="panel-body" ng-show="evalShow">
+            <div class="col-xs-20 col-xs-offset-2  alert alert-{{data.stat.type}} row" ng-class="{'result-panel-high':data.stat.num>1,'result-panel':data.stat.num<=1}">
+                <div class=" btn-{{data.stat.type}}" ng-class="{'result-stat-high':data.stat.num>1,'result-stat':data.stat.num<=1}">{{data.stat.name}}</div>
+                <div class="col-xs-20 col-xs-offset-4">
+                    <div class="progress">                        
+                        <div class=" progress-bar-cursor tooltips-show"
+                             data-original-title="{{data.date}} 我的{{data.name}}是 {{data.value}}"
+                            ng-style="{'margin-left':data.percent + '%'}">
+                             <div win-web-d-monitor-tool-tips></div>
+                        </div>
+
+                        <div ng-repeat="dataSection in data.sections.range track by $index" class="progress-bar progress-bar-{{data.sections.type[$index]}}"
+                            ng-style="{'width':dataSection + '%'}">
+<!--                             <span class="cursor-value"  -->
+<!--                             ng-style="{'left':$index < 2 && (data.name == '血清甘油三酯 ')? '6px':''}">{{data.sections.value[$index]}}</span> -->
+                        </div>
+                        
+<div style="position:absolute;top:20px;left:-10px">0</div>
+
+						<div class="text-{{data.sections.type[$index]}}" style="box-sizing: border-box;float:left;text-align:right;" ng-repeat="dataSection in data.sections.range track by $index"
+                            ng-style="{'width':dataSection + '%'}">
+                            {{data.sections.value[$index]}}
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+				<div class="col-xs-20 col-xs-offset-4" ng-show="data.stat.num>1">
+                    <div class="progress">
+<!--                         <div class="progress-bar" style="width:0%;"> -->
+<!--                             <span class="cursor-value">{{data1.sections.min}}</span> -->
+<!--                         </div> -->
+                        <div class=" progress-bar-cursor tooltips-show"
+                             data-original-title="{{data1.date}} 我的{{data1.name}}是 {{data1.value}}"
+                            ng-style="{'margin-left':data1.percent + '%'}">
+                             <div win-web-d-monitor-tool-tips></div>
+                        </div>
+
+                        <div ng-repeat="dataSection in data1.sections.range track by $index" class="progress-bar progress-bar-{{data1.sections.type[$index]}}"
+                            ng-style="{'width':dataSection + '%'}">
+<!--                             <span class="cursor-value" ng-style="{'left':$index == 1 && (data.name == '红细胞计数')? '20px':'' }">{{data1.sections.value[$index]}}</span> -->
+                        </div>
+                        
+<div style="position:absolute;top:20px;left:-10px">0</div>
+
+						<div class="text-{{data1.sections.type[$index]}}" style="box-sizing: border-box;float:left;text-align:right;" ng-repeat="dataSection in data1.sections.range track by $index"
+                            ng-style="{'width':dataSection + '%'}">
+                            {{data1.sections.value[$index]}}
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-body  ">
+            <div class="alert alert-{{data.stat.type}} col-xs-22 col-xs-offset-1">
+
+                <div class="">
+
+                    <h2>{{data.stat.h2}}</h2>
+
+                    <p ng-bind-html='data.stat.p'> </p>
+
+                </div>
+                <hr class="mt"/>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal " id="modal-add-data" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" action="" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">录入指标数据(一天只能录入一次)</h4>
+                </div>
+                <div class="modal-body">
+
+					<div class="form-group">
+                            <label class="col-xs-9 control-label" >选择日期：</label>
+                            <div class="col-xs-12">
+                               <input type="text" class="form-control datepicker"  data-date-format="yyyy-mm-dd"  b-datepicker  ng-model="newMonitor.time"/>	
+                            </div>
+                   </div>					
+
+                    <fieldset class="params" data-param="1">
+                        <div class="form-group" ng-repeat="legend in legends">
+							<label class="col-xs-9 control-label" for="f_field{{$index}}" ng-hide="{{legend == '血红蛋白' || legend == '红细胞计数'}}">{{legend+'('+unit+')'}}：</label>
+							<label class="col-xs-9 control-label" for="f_field{{$index}}" ng-show="{{legend == '血红蛋白'}}">血红蛋白(g/L)：</label>
+							<label class="col-xs-9 control-label" for="f_field{{$index}}" ng-show="{{legend == '红细胞计数'}}">红细胞计数(万/L)：</label>
+                            <div class="col-xs-12">
+                                <input id="f_field{{$index}}"  value="0"
+                                       class="form-control" type="text" ng-model="newMonitor['monScore'+($index+1)]"/>
+                            </div>
+                        </div>
+						<div class="text-center" style="padding:10px;">{{alertOption}}</div>
+                    </fieldset>
+                     
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="addMonitor()" class="btn btn-primary btn-shadow submit">&nbsp;&nbsp;录入&nbsp;&nbsp;</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>  
+<!-- 确认删除模态框  -->
+<div class="modal modal-alert fade" id="modal-del">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                <div class="modal-title">提示</div>
+            </div>
+            <div class="modal-body alert-{{option.type}}">
+                <p>删除该指标？</p>
+                <div class="text-center mt">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="deleteMonitorType()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

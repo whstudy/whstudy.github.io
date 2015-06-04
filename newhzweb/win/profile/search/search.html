@@ -1,0 +1,155 @@
+<div class="col-xs-19">
+<!-- 	家庭成员 -->
+	<div style="overflow:auto;padding: 30px;" class="panel">
+<!-- 	<div style="margin:10px"> -->
+	<div style="
+    font-size: 30px;border-bottom: 1px solid;margin-bottom:2px;font-size: 22px;
+">
+		<!-- 家庭成员 -->
+		<div style="
+    position: relative;
+    top: -17px;
+">
+<div style="
+    float: left;
+    position: relative;
+    top: 25px;
+    font-size: 17px;
+">查找新成员</div>
+
+
+<div class="modal fade  ng-scope" tabindex="-1" id="modal-set" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">添加成员</h4>
+            </div>  
+            <div class="modal-body row">
+	             
+	             	<div style="
+    font-size: 16px;
+">向用户 <span id="user">王五民(280023)</span>发出申请</div>
+
+					<input id="requestedUsername" ng-model="requestedUsername" type="hidden"/>
+	             	<textarea id="requestMessage" ng-model="requestMessage" rows="" cols="" style="margin: 0px; width: 578px; height: 209px;"></textarea>
+	             
+            </div>
+            <div class="modal-footer">            	
+                <button type="button" class="btn btn-primary" ng-click="requestAttention();">&nbsp;&nbsp;发送&nbsp;&nbsp;</button>
+                <button type="submit" class="btn btn-primary"  data-dismiss="modal">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </div>
+</div>		
+
+<form method="get" action=#~/profileSearch>
+
+<div href="#~/profileSearch/{{keyword}}" style="margin-top:10px;float:right;width: 277px;position: relative;bottom: -6px;left: -400px;" class="clearfix">
+
+<span class="bg s_ipt_wr quickdelete-wrap" style="
+    border: 1px solid #b6b6b6;
+"><input ng-model="keyword" placeholder="输入对方帐号或姓名" id="kw" name="wd" class="s_ipt" value="" maxlength="100" autocomplete="off"  style="
+    height: 20px;
+    border: none;
+    outline: 0;
+    line-height: 15px;
+    font-size:14px
+"></span><span class="bg s_btn_wr" style="
+    height: 32px;
+    display: inline-block;
+    background-color: rgb(51, 133, 255);
+">
+
+<a href="#~/profileSearch/{{keyword}}">
+	<button id="su" class="bg s_btn">
+		<i class="glyphicon glyphicon-search" style="color: white;"></i>
+	</button>
+</a>
+
+</span>
+</div>
+
+</form>
+
+
+<script>
+function toPage(){	
+	location.href='#~/profileSearch/'+$("#kw").val();	
+}
+</script>
+
+</div>
+
+<div class="panel-body" style="
+    border-bottom: 1px solid;
+">
+				
+			</div>
+				
+		</div>
+		
+		<div>
+		
+<!-- 		<table> -->
+<!-- 		<tr> -->
+		
+<!-- 		</tr> -->
+<!-- 		</table> -->
+		
+		<ul>
+						
+		<li ng-repeat="o in users" style="margin-top:30px">
+		<div class="fl">
+<!-- 		<img height=50 width=50 alt="" src="http://img3.3lian.com/2006/013/02/006.jpg"> -->
+		<img height=50 width=50 alt="" src="{{o.picture? 'file/processDownload?file=' +o.picture:'img/pro-ac-1.png'}}">		
+		</div>
+<div style="margin-left:70px;border-bottom: 1px solid;height: 67px;">
+			<div style="height: 80px;">
+			<div><span style="
+    font-weight: bold;
+    font-size: 15px;
+">{{o.userName}}</span>
+			<div class="fr" style="
+    position: relative;
+    top: 13px;
+">
+
+<!-- <a href="#~/monitor#modal-set" class="btn btn-xs btn-primary pull-right" data-toggle="modal"> <i class="glyphicon glyphicon-cog"></i> 编辑 </a> -->
+			
+			<button ng-show="{{o.relation}}" onclick="fz(this)" realName="{{o.realName}}" userName="{{o.userName}}" href="#modal-set" class="bg s_btn" data-toggle="modal">+添加成员</button>
+			
+			{{newData}}
+			
+			<script>
+			
+				var addFriendBtn;
+			
+				function fz(my){
+					addFriendBtn=my;
+					console.log($(my));					
+					var user=$(my).attr("realName")+"("+$(my).attr("userName")+")";
+					$(".modal-dialog #user").text(user);
+					$(".modal-dialog #requestedUsername").val($(my).attr("userName"));
+					$("#requestMessage").val("");
+				}
+			</script>
+			
+			<span ng-show="{{!o.relation}}">已添加</span>
+			
+			</div>
+			</div>
+			<div style="
+    position: relative;
+    top: 22px;
+">{{o.realName}}</div>			
+			</div>			
+		</div>		
+		</li>
+		</ul>
+				
+				
+	</div>	
+	</div>
+</div>
+<div win-web-common-alert option="alertOption"></div>

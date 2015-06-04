@@ -1,0 +1,522 @@
+<div class="col-xs-19">
+<!-- 	家庭成员 -->
+	<div style="overflow:auto;padding: 30px;" class="panel">
+<!-- 	<div style="margin:10px"> -->
+	<div>
+		<!-- 家庭成员 -->
+		<div style="font-size: 30px;border-bottom: 1px solid;margin-bottom:2px;font-size: 22px;">
+			<span>家庭成员>我创建的>{{call}}</span>
+		</div>
+
+		
+<div class="panel">
+		<!-- 家庭成员 -->		
+		
+		<div class="panel-heading1 tab-bg-green1" style="margin-top:15px;width: 160px;">
+			<ul class="nav nav-tabs" style="width: 200px;border-bottom: none;color:white">
+				<li class="active">
+					<a data-toggle="tab" href="#~/profile#tc_profile_1">基本信息</a>
+				</li>
+				<li class="">
+					<a data-toggle="tab" href="#~/profile#tc_profile_3" ng-hide="addUserFlag" class="">健康信息</a>
+				</li>				
+			</ul>
+		</div>
+	<div class="panel-body">
+			<div class="tab-content">
+				<div id="tc_profile_1" class="tab-pane active">
+					<form class="form-horizontal" action="" method="post">
+						<!-- <div class="form-group" >
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_nick">帐号</label>
+								<div class="help col-xs-8">{{profile.name}}</div>
+							</div>
+						</div> -->
+						
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_avatar">头像</label>
+								<div class="col-xs-5">
+									<img ng-src="{{profile.imgUrl}}" height="50" alt="" />
+								</div>
+								<div class="col-xs-13 help">
+									<input id="f_avatar" name="avatar" class="form-control"
+									type="file" ng-file-select="onFileSelect($files)" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_realname">称呼</label>
+								<div class="help col-xs-8">{{call}}</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="">性别</label>
+								<div class="col-xs-12">
+									<label ng-show="profile.gender=='1'" class="control-label">男 </label>
+									<label ng-show="profile.gender=='0'" class="control-label">女 </label>
+								</div>
+							</div>
+
+						</div>
+						
+						<!-- <div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="">身份证</label>
+								<div class="col-xs-12 help">
+									{{profile.idCode}}
+								</div>
+								<div class="help col-xs-6"></div>
+							</div>
+						</div> -->
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_birth">出生年月</label>
+								<div class="col-xs-8 help">
+									{{profile.birthday}}
+								</div>
+							</div>
+						</div>
+						
+						<!-- <div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_prov">所在地 *</label>
+								<div class="col-xs-8">
+									<select class="form-control" ng-model="province" ng-change="changeProvince()" ng-options="c.name for c in provinces">
+										<option value="">选择省份 </option>
+									</select>
+								</div>
+								<div class="col-xs-10">
+									<select class="form-control" ng-model="city" ng-options="c.name for c in citys">
+										<option value="">请选择城市</option>
+									</select>
+								</div>
+
+							</div>
+						</div> -->
+						
+						<!-- <div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="email">邮箱</label>
+								<div class="col-xs-12">
+									<input type="email" id="f_idcard" name="email"
+									class="form-control" ng-model="profile.email" />
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="mobile">手机</label>
+								<div class="col-xs-12">
+									<input type="text" id="f_idcard" name="mobile"
+									class="form-control" ng-model="profile.mobile" />
+								</div>
+								<div class="help col-xs-6"></div>
+							</div>
+						</div> -->
+						
+						<div class="form-group">
+							<div class="col-xs-24 row">
+								<label class="col-xs-3 control-label" for="f_slogan">健康宣言</label>
+								<div class="col-xs-10">
+									<textarea ng-model="profile.description"
+														class="form-control" id="f_slogan" name="slogan" rows="4"></textarea>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-xs-20">
+								<div class="col-xs-4 col-xs-offset-8">
+									<button class="btn btn-shadow btn-danger btn-block btn-sm"
+									type="submit" ng-click="submitPerson()" ng-hide="addUserFlag">
+										保存
+									</button>
+									<!-- <button class="btn btn-shadow btn-danger btn-block btn-sm"
+									type="submit" ng-click="addUser()" ng-show="addUserFlag">
+										注册
+									</button> -->
+									<button class="btn btn-shadow btn-danger btn-block btn-sm"
+									type="submit" ng-click="fnAddUserNext()" ng-show="addUserFlag">
+										下一步
+									</button>
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				
+				<div id="tc_profile_3" class="tab-pane">
+					<form class="form-horizontal" action="" method="post">
+						<div class="form-group"   win-web-profile-bmi>
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_height">身高 *</label>
+								<div class="col-xs-5">
+									<input class="form-control" id="f_height" name="height" ng-model="profile.tall"	type="number" />
+								</div>
+								<div class="col-xs-6 help">
+									cm 
+								</div>
+
+							</div>
+
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_weight">体重 *</label>
+								<div class="col-xs-5">
+									<input id="f_weight" name="weight" class="form-control" ng-model="profile.weight" type="number" />
+								</div>
+								<div class="col-xs-6 help">
+									kg 
+								</div>
+							</div>
+						</div>
+						
+						<!-- BMI-->
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_weight">BMI</label>
+								<div class="col-xs-5">
+									<label class="control-label"> {{bmi}}</label>
+								</div>
+								<div class="col-xs-6 help">
+									kg / m <sup>2</sup>
+								</div>
+							</div>
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_weight">体形</label>
+								<div class="col-xs-6">
+									<label class="control-label">{{figture}}</label>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 运动-->
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">吸烟</label>
+								<div class="col-xs-8">
+									<select class="form-control" ng-model="smoke" ng-options="c.name for c in smokes">
+										<!--<option value="99">请选择</option>-->	
+									</select>
+								</div>
+							</div>
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">饮酒</label>
+								<div class="col-xs-8">
+									<select class="form-control" ng-model="drink" ng-options="c.name for c in drinks">
+										<!--<option value="99">请选择</option>-->
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">运动</label>
+								<div class="col-xs-8">
+									<select class="form-control" ng-model="sport" ng-options="c.name for c in sports">
+										<!--<option value="99">请选择</option>-->
+									</select>
+								</div>
+							</div>
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">睡眠</label>
+								<div class="col-xs-8">
+									<select class="form-control" ng-model="sleep" ng-options="c.name for c in sleeps">
+										<!--<option value="99">请选择</option>-->
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">行业</label>
+								<div class="col-xs-8">
+									<select class="form-control" ng-model="job" ng-options="c.name for c in jobs">
+										<!--<option value="99">请选择</option>-->
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" ng-show="profile.gender=='0'">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="">是否孕产妇</label>
+								<div class="col-xs-12" data-form="pregnant">
+									<label class="radio radio-inline label_radio " ng-class="{r_on:profile.isPregnant == 1}" for="f_pregnant0">
+										<input id="f_pregnant0" value="1" type="radio"  name="pregnant" ng-click="profile.isPregnant=1" >
+										是 </label>
+
+									<label class="radio radio-inline label_radio " ng-class="{r_on:profile.isPregnant == 0}" for="f_pregnant1">
+										<input id="f_pregnant1" value="0" type="radio" name="pregnant"  ng-click="profile.isPregnant=0;profile.pregnatWeeks=0" >
+										否 </label>
+								</div>								
+							</div>
+						</div>
+						
+						<div class="form-group" ng-show="profile.isPregnant&&profile.gender=='0'">
+							<div class="col-xs-24 row">
+								<label class="col-xs-3 control-label" for="">怀孕 *</label>	
+								<div class="col-xs-2">
+									<input class="form-control" ng-model="profile.pregnatWeeks" type="text" />
+								</div>
+								<div class="col-xs-18 help">
+									周    （0-12周）孕早期 （13-27周）孕中期 （28周以上）孕晚期
+								</div>					
+							</div>
+						</div>
+						
+						<div class="form-group">
+
+							<div class="col-xs-24 row">
+								<label class="col-xs-3 control-label" for="">手术史</label>
+								<div class="col-xs-10" data-form="operations">
+									<label class="radio radio-block label_radio " for="f_operations0" ng-class="{r_on:profile.operationHis==0}">
+										<input id="f_operations0" value="0" type="radio" name="operations" ng-click="profile.operationHis=0" >
+										无 </label>
+
+									<label class="radio radio-block label_radio " for="f_operations1" ng-class="{r_on:profile.operationHis==1}">
+										<input id="f_operations1" value="1" type="radio" name="operations" ng-click="profile.operationHis=1">
+										局部麻醉的小手术（对正常运动无影响） </label>
+
+									<label class="radio radio-block label_radio" for="f_operations2" ng-class="{r_on:profile.operationHis==2}">
+										<input id="f_operations2" value="2" type="radio" name="operations" ng-click="profile.operationHis=2">
+										中型手术（对剧烈运动有影响） </label>
+
+									<label class="radio radio-block label_radio " for="f_operations3" ng-class="{r_on:profile.operationHis==3}">
+										<input id="f_operations3" value="3" type="radio" name="operations" ng-click="profile.operationHis=3">
+										大型手术（基本不适合较大强度运动） </label>
+
+								</div>
+
+							</div>
+
+						</div>
+						
+						
+						<!-- 家族史-->
+						<div class="form-group">
+							<div class="col-xs-24 row">
+								<label class="col-xs-3 control-label" for="">家族史</label>
+								<div class="col-xs-21 diseases-items" data-form="familyHistory">
+										<label class="checkbox checkbox-inline label_check label-none"  ng-class="{c_on:noFamilyDiseases}"  ng-click="noFamilyDiseasesMethod()" >
+											<input  value="0" type="checkbox" ng-model="noFamilyDiseases">无 
+										</label>
+										<div id="familyDiseases" win-web-profile-family-disease>
+											<label ng-repeat="v in familyDiseases" class="checkbox checkbox-inline label_check"  ng-class="{c_on:v.checked}" >
+												<input type="checkbox" ng-model="v.checked">{{v.name}}
+											</label>	
+										</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 我的疾病 -->
+						<div class="form-group">
+							<div class="col-xs-24 row">
+								<label class="col-xs-3 control-label" for="">我的疾病情况</label>
+								<div class="col-xs-21 diseases-items" data-form="diseases">
+									<label class="checkbox checkbox-inline label_check label-none"  ng-class="{c_on:noDiseases}"  ng-click="noDiseasesMethod()" >
+										<input   type="checkbox" ng-model="noDiseases">无
+									</label>
+								<div id="disease" win-web-profile-disease>
+									<label  ng-repeat="disease in diseases" class="checkbox checkbox-inline label_check" for="f_diseases{{$index}}" ng-class="{c_on:disease.checked}" >
+										<input type="checkbox" id="f_diseases{{$index}}"  ng-model="disease.checked">{{disease.name}}
+									</label>
+								  </div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-20">
+								<div class="col-xs-4 col-xs-offset-8">
+									<button class="btn btn-shadow btn-danger btn-block  btn-sm" type="submit" ng-click="submitHealth()" ng-hide="addUserFlag">
+										保存
+									</button>
+									 <button class="btn btn-shadow btn-danger btn-block btn-sm"
+									type="submit" ng-click="addUser()" ng-show="addUserFlag">
+										注册
+									</button>
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div id="tc_profile_4" class="tab-pane" >
+
+					<form class="form-horizontal" action="" method="post">
+
+						<fieldset>
+							<legend>
+								修改密码
+							</legend>
+							<div class="form-group">
+								<div class="col-xs-12 row">
+									<label class="col-xs-6 control-label" for="f_password">当前密码</label>
+									<div class="col-xs-8">
+										<input id="f_password" name="password"
+										class="form-control" type="password" ng-model="currentPwd" />
+									</div>
+									<div class="help col-xs-6">
+										*
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-12 row">
+									<label class="col-xs-6 control-label" for="f_newPassword">新密码</label>
+									<div class="col-xs-8">
+										<input id="f_newPassword" name="newPassword"
+										class="form-control" type="password" ng-model="newPwd"/>
+									</div>
+									<div class="help col-xs-6">
+										*
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-12 row">
+									<label class="col-xs-6 control-label" for="f_newPassword2">重复密码</label>
+									<div class="col-xs-8">
+										<input id="f_newPassword2" name="newPassword2"
+										class="form-control" type="password" ng-model="confirmwd"/>
+									</div>
+									<div class="help col-xs-6">
+										*
+									</div>
+								</div>
+							</div>
+
+						</fieldset>
+						<div class="form-group">
+							<div class="col-xs-20">
+								<div class="col-xs-4 col-xs-offset-8">
+									<button class="btn btn-shadow btn-danger btn-block btn-sm"
+									type="submit" ng-click="submitSafety()">
+										保存
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="tc_profile_add" class="tab-pane" >
+					<form class="form-horizontal" action="" method="post">
+							<div class="form-group">
+								<div class="col-xs-16 row">
+									<label class="col-xs-6 control-label">姓名</label>
+									<div class="col-xs-10">
+										<input class="form-control" type="text" ng-model="newName" />
+									</div>
+									<div class="help col-xs-6">*</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-16 row">
+									<label class="col-xs-6 control-label" for="f_newPassword2">身份证</label>
+									<div class="col-xs-10">
+										<input class="form-control" type="text" ng-model="newIdCode" />
+									</div>
+									<div class="help col-xs-6">*</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-16 row">
+									<label class="col-xs-6 control-label" for="f_newPassword">密码</label>
+									<div class="col-xs-10">
+										<input class="form-control"  ng-model="newPassword" type="password" />
+									</div>
+									<div class="help col-xs-6">*</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-16 row">
+									<label class="col-xs-6 control-label" for="f_newPassword2">确认密码</label>
+									<div class="col-xs-10">
+										<input class="form-control"  ng-model="confirmPwd" type="password" />
+									</div>
+									<div class="help col-xs-6">*</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-16">
+									<div class="col-xs-4 col-xs-offset-8">
+										<button class="btn btn-shadow btn-danger btn-block btn-sm" type="submit" ng-click="fnRegister()">
+											注册
+										</button>
+									</div>
+								</div>
+							</div>
+					</form>
+				</div>	
+			</div>
+					
+		</div>
+		<div class="progress panel-footer progress-xs">
+			<div class="progress-bar progress-bar-danger" style="width: 100%"></div>
+		</div>
+	</div>
+</div>
+<div win-web-common-alert option="alertOption"></div>
+
+<script>
+// 基本信息
+$('#tc_profile_1>form').validate({
+    rules:{
+        mobile:{
+            mobile:true
+        },
+        email:{
+            email:true
+        }
+    }
+});
+jQuery.validator.addMethod("mobile", function(value, element) {
+	 var mobile = /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/;
+	 return this.optional(element) || (value.length == 11 && mobile.test(value));
+	}, "请正确填写您的手机号码");
+
+$('#tc_profile_3>form').validate({
+    rules:{
+        height:{
+            required:true,
+            number:true,
+            min:10,
+            max:300
+        },
+        weight:{
+            required:true,
+            number:true,
+            min:10,
+            max:500
+        } 
+    }
+});
+$('#tc_profile_4>form').validate({
+    rules:{
+        password:{
+            required:true,
+            rangelength:[6,30]
+        },
+        newPassword:{
+            required:true,
+            rangelength:[6,30]
+        },
+         newPassword2:{
+            required:true,
+            equalTo:"[name=newPassword]",
+            rangelength:[6,30]
+        }
+    }
+});
+</script>
+

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="zztac">
+    <meta name="keyword" content="健康空间">
+    
+    <title>健康空间</title>
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+    <link href="assets/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
+    
+    <link href="assets/bootstrap-fileupload/bootstrap-fileupload.css" rel="stylesheet" />
+    <link href="assets/jquery-multi-select/css/multi-select.css" rel="stylesheet" />
+    <link href="assets/Calendario/css/calendar.css" rel="stylesheet" />
+    <link href="assets/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="assets/Calendario/css/custom_2.css" rel="stylesheet" />
+    <link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+
+    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+<!--    <link href="css/style-responsive.css" rel="stylesheet" />-->
+
+    
+    
+</head>
+<body class="">
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-5">
+                <a class="logo" href="">
+                    <img src="img/logo.png" alt=""/>
+                </a>
+            </div>
+            <div class="col-xs-13">
+                <ul class="nav top-menu" id="main_menu">
+                    <li>
+                        <a href="index.html" title="首页" >
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="monitor.html" title="健康监测">
+                            <i class="fa fa-bar-chart-o"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="report.html" title="健康报告">
+                            <i class="fa fa-file-text-o"></i>
+                            <span class="badge bg-important">2</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="meals.html" title="营养管理">
+                            <i class="fa fa-cutlery"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sport.html" title="运动管理" class="active">
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                        
+                    </li>
+                    <li>
+                        <a href="chronic.html" title="慢病咨询">
+                            <i class="fa fa-tint"></i>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="profile.html" title="我的...">
+                            <i class="fa fa-user"></i>
+                        </a>
+                    </li>
+
+                </ul>
+
+                
+
+            </div>
+            <div class="col-xs-6">
+                <ul class=" top-menu pull-right">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="username"><small>个人中心</small></span>
+                            <b class="caret caret-inverse"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="profile.html">个人资料</a></li>
+                            <li><a href="login.html">注销</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="sub-nav" id="sub-menu">
+    <ul></ul>
+    <ul>
+        <li><a href="monitor.html">我的指标监测</a></li>
+        <li><a href="evaluate.html">我的风险监测</a></li>
+    </ul>
+    <ul></ul>
+    <ul>
+        <li><a href="meals.html">我吃的对吗？</a></li>
+        <li><a href="how.html">我该怎么吃？</a></li>
+    </ul>
+    <ul>
+        <li><a href="sport.html">哪些运动适合我</a></li>
+        <li><a href="plan_create.html">我的运动计划</a></li>
+        <li><a href="sport_eval.html">我的能量消耗</a></li>
+    </ul>
+    <ul>
+        <li><a href="chronic.html">慢病资讯</a></li>
+        <li><a href="search1.html">慢病食物宜忌</a></li>
+        <li><a href="search.html">慢病专业搜索</a></li>
+    </ul>
+    <ul>
+        <li><a href="diary.html">我的日记</a></li>
+        <li><a href="favorite.html">我的收藏</a></li>
+        <li><a href="share.html">我的分享</a></li>
+    </ul>
+</div>
+
+<div id="container" class="container">
+
+    
+    <!--main content start-->
+    <div id="main-content">
+        <div class="wrapper">
+            <!-- page start-->
+            <div class="row">
+                <div class="profile-nav col-xs-5" >
+    <div class="panel ">
+        <div class="user-heading round">
+            <a href="#">
+                <img src="img/pro-ac-1.png" alt="">
+            </a>
+            <h1>苏小雨</h1>
+            <p>我一定要减掉10公斤！</p>
+        </div>
+
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+                <a href="diary.html"> <i class="fa fa-user"></i>我的日记
+                    <span class="label label-danger pull-right r-activity">9</span>
+                </a>
+            </li>
+            <li>
+                <a href="favorite.html">
+                    <i class="fa fa-bookmark"></i>我的收藏
+                    
+                </a>
+            </li>
+            <li>
+                <a href="share.html">
+                    <i class="fa fa-share"></i>我的分享
+                </a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="panel">
+        <div class="panel-body">
+            <div class="custom-calendar-wrap">
+                <div id="custom-inner" class="custom-inner">
+                    <div class="custom-header clearfix">
+                        <div class="calendar-nav">
+                            <span id="custom-prev" class="custom-prev">
+                                <i class="fa fa-chevron-left"></i>
+                            </span>
+                            <span id="custom-next" class="custom-next">
+                                <i class="fa fa-chevron-right"></i>
+                            </span>
+                        </div>
+                        <h2 id="custom-month" class="custom-month"></h2>
+                        <h3 id="custom-year" class="custom-year"></h3>
+                    </div>
+                    <div id="calendar" class="fc-calendar-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-body">
+            <img src="img/tree.jpg" alt="" width="100%" height="280"/>
+        </div>
+    </div>
+
+</div>
+
+            
+<div class="profile-info col-xs-19">
+
+    <div class="panel panel-success">
+        <div class="panel-heading">我的运动计划</div>
+        <script type="text/html" id="tpl-sport-plans">
+            <tr>
+                <th>#</th>
+                <th>运动口号</th>
+                <th>运动项目</th>
+                <th>执行时间</th>
+                <th width="130">操作</th>
+            </tr>
+            {{colors=["success","warning","primary","danger"]}}
+            {{each data}}
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{$value.title}}</td>
+                    <td>
+                        {{each $value.items as $v $i}}
+                        
+                        <span class="badge bg-{{colors[$i]}}">{{$v}}</span>
+                        {{/each}}
+                    </td>
+                    <td>{{$value.time[0]}} - {{$value.time[1]}}</td>
+                    <td>
+                        <a href="" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> 删除</a>
+                        <a href="" class="btn btn-success btn-xs"><i class="fa fa-pencil-square-o"></i> 修改</a>
+                    </td>
+                </tr>
+            {{/each}}
+            <tr>
+                <td colspan="5" class="text-center">
+                    <a href="#panel-create" class="btn btn-sm btn-success " data-toggle="slide">
+                        <i class="fa fa-plus"></i>
+                        创建运动计划
+                    </a>
+                </td>
+            </tr>
+        </script>
+        <table class="table table-bordered table-striped table-center">
+            <tbody id="sport-plans" class="auto-tpl"
+                data-url="ajax/sport-plans.json"></tbody>
+        </table>
+    </div>
+
+    <div class="panel none panel-success " id="panel-create">
+        <div class="panel-heading">创建运动计划</div>
+        <div class="panel-body">
+
+            <form class="form-horizontal" action="" method="post">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="f_title">运动口号：</label>
+                    <div class="col-xs-12">
+                        <input class="form-control" type="text" id="f_title"/>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="f_from">执行时间：</label>
+                    <div class="col-xs-7">
+                        <div class="input-group input-large">
+                            <input type="text" class="form-control dpd1" id="f_from" name="from"
+                                   data-date-format="yyyy-mm-dd">
+                            <span class="input-group-addon">To</span>
+                            <input type="text" class="form-control dpd2" name="to"
+                                   data-date-format="yyyy-mm-dd">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="f_nick">运动项目：</label>
+                    <div class="col-xs-21">
+                        <script type="text/html" id="tpl-sport-tab">
+                            <li>
+                                <a href="#tc-item-{{id}}"
+                                   data-id="{{id}}"
+                                   data-pic="{{pic}}"
+                                   data-name="{{name}}"
+                                   data-toggle="tab" >
+                                    <img src="{{pic}}" alt=""/><br/>{{name}}    
+                                </a>
+                                <i class="fa fa-times close"></i>
+                            </li>
+                        </script>
+                        
+                        
+                        <ul class="sport-items choose-sport" id="sport-items-tab">
+                            <li>
+                                <a class="" data-toggle="modal" href="#modal-items">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <script type="text/html" id="tpl-sport-item">
+                    <div class="panel active p10 tab-pane" id="tc-item-{{id}}" data-id="{{$id}}">
+                        <div class="row p0">
+                            <label class="col-xs-3 control-label">运动频率：</label>
+                            <div class="checkboxes checkboxes-inline help col-xs-20">
+                                {{each week}}
+                                <label class="label_check" for="week{{id}}-{{$index}}" ng-class="{true:'c_on',false:'c_off'}[value.freq[$index]==1]">
+                                    <input name="week{{id}}" id="week{{id}}-{{$index}}" value="{{$index}}" type="checkbox" />{{$value}}
+                                </label>
+                                {{/each}}
+                                
+                            </div>
+                        </div>
+                        <div class="row p0">
+                            <label class="col-xs-3 control-label" for="f_loop">是否循环：</label>
+                            <div class="col-xs-6">
+                                <input type="checkbox" checked="" data-toggle="switch" />
+                            </div>
+                        </div>
+                        <div class="row p0">
+                            <label class="col-xs-3 control-label" for="f_time">运动时间：</label>
+                            <div class="col-xs-20">
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <div class="spinner-plan-time">
+                                            <div class="input-group pull-left" style="width:150px;">
+                                                <div class="spinner-buttons input-group-btn">
+                                                    <button type="button" class="btn spinner-up ">
+                                                        <i class="fa fa-plus fa-inverse"></i>
+                                                    </button>
+                                                </div>
+                                                <input type="text" class="spinner-input form-control" maxlength="3" value="30" readonly>
+                                                <div class="spinner-buttons input-group-btn">
+                                                    <button type="button" class="btn spinner-down">
+                                                        <i class="fa fa-minus fa-inverse"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-9 help">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </script>
+                
+                <div class=" has-js">
+                    <div class="">
+                        <div class="activity-desk m0 pr tab-content" id="sport-items-config">
+                            <div class="arrow-up"></div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xs-3 control-label" for="f_alert">运动提醒：</label>
+                    <div class="col-xs-8">
+                        <input type="checkbox" checked="" data-toggle="switch" />
+                    </div>
+                </div> 
+                <div class="form-group mt">
+                    <div class="col-xs-12 text-right"><button type="reset" class="btn btn-default">取消</button></div>
+                    <div class="col-xs-3"><button type="submit" class="btn btn-success">确定</button></div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    
+</div>
+
+
+<div  id="modal-items" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">在推荐的运动项目中挑选一个吧</h4>
+            </div>
+           
+            <div class="modal-body oh">
+                <script type="text/html" id="tpl-tab-sport-eval">
+                    {{each data}}
+                    <li class="{{if $index==0}}active{{/if}}">
+                        <a href="#tc-{{$value.id}}" data-toggle="tab">{{$value.name}}</a>
+                    </li>
+                    {{/each}}
+                </script>
+                <ul class="nav nav-tabs auto-tpl" id="tab-sport-eval"
+                    data-url="ajax/plan-sports.json">
+                </ul>
+
+                <script type="text/html" id="tpl-sport-items-list">
+                    {{each data}}
+                    <div class="tab-pane {{if $index==0}}active{{/if}}" id="tc-{{$value.id}}">
+                        <ul class="sport-items row">
+                            {{$value.data}}
+                            {{each $value.data as $v $i}}
+                            <li class="col-xs-6">
+                                <a href="#"
+                                   data-id="{{$v.id}}"
+                                   data-pic="{{$v.pic}}"
+                                   data-name="{{$v.name}}">
+                                    <img src="{{$v.pic}}" alt="{{$v.name}}"/><br/>{{$v.name}}
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{/each}}
+                </script>
+                <div class="tab-content" id="sport-items-list"
+                     data-url="ajax/plan-sports.json">
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-danger" type="button">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- page end-->
+</div>
+</div>
+</div>
+<div class="site-footer text-center">
+    <div class=" p10">
+        2014 &copy; 健康空间，版权所有
+        
+    </div>
+    <div class="linka">
+        <a href="">关于健康空间</a> | <a href="">联系我们</a> | <a href="">免责声明</a> | <a href="">帮助中心</a>
+    </div>
+    <a href="#" class="go-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    
+</div>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="js/html5shiv.js"></script>
+<script type="text/javascript" src="js/respond.min.js"></script>
+<script type="text/javascript" src="js/excanvas.compiled.js"></script>
+<![endif]-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>-->
+<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/bootstrap-switch.js"></script>
+<script type="text/javascript" src="assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="assets/fuelux/js/spinner.min.js"></script>
+<script type="text/javascript" src="assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<script type="text/javascript" src="assets/Calendario/js/jquery.calendario.js"></script>
+<script type="text/javascript" src="assets/infinite-scroll/js/jquery.infinitescroll.js"></script>
+<script type="text/javascript" src="assets/artTemplate/template.js"></script>
+<script type="text/javascript" src="assets/artTemplate/template-simple.js"></script>
+<script type="text/javascript" src="assets/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="assets/jquery-multi-select/js/jquery.quicksearch.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/jquery-validate.bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="js/jquery.validate.addon.js"></script>
+<script type="text/javascript" src="assets/echarts/echarts-plain.js"></script>
+<script type="text/javascript" src="assets/jquery-knob/js/jquery.knob.js"></script>
+<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="assets/owl-carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.stepy.js"></script>
+
+<script type="text/javascript" src="js/common-scripts.js"></script>
+<style type="text/css">
+    .jiathis_style_32x32 .jiathis_counter.jiathis_bubble_style{
+        width:60px !important;
+    }
+</style>
+</body>
+</html>

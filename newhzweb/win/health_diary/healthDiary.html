@@ -1,0 +1,29 @@
+<!-- 家庭成员 -->
+<!-- <div class="familyMenu">
+	<a ng-repeat="user in users" ng-click="fnSelectUserForHealthDiary(user.userName)">
+		<img ng-src="{{user.iconUrl}}"   data-original-title="{{user.name}}" win-web-tooltip  ng-class="{'select':user.name == username}" option="user.userName"/>
+	</a>
+</div> -->
+
+<div class="how col-xs-19">
+
+	<div class="panel">
+		<div class="panel-heading">我的健康日记</div>
+		<div class="panel-body">
+			<!-- <div style="width:30px;float:right;font-size:30px;">&times;</div> -->
+			<div><img src= "img/adv.jpg" style="width:100%;margin-top:-15px;"/></div>
+		</div>
+	</div>
+	
+		<!-- 健康行为指数趋势  -->
+	<div class="panel">
+		<div class="panel-heading">健康行为指数趋势</div>
+		<div class="panel-body">
+			<div win-web-common-chart option="charOption" style="height:270px;" id="healthDiaryChart"></div>
+		</div>
+	</div>
+
+</div>
+
+
+			 

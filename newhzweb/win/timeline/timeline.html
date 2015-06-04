@@ -1,0 +1,134 @@
+
+
+<div id="container" class="container">
+
+
+	<!--main content start-->
+	<div id="main-content">
+		<div class="wrapper">
+			<!-- page start-->
+			<div class="row">
+				<div class="profile-nav col-xs-5">
+					<div class="panel ">
+						<div class="user-heading round">
+							<a href="#"> <img src="img/pro-ac-1.png" alt=""> </a>
+							<h1>苏小雨</h1>
+							<p>我一定要减掉10公斤！</p>
+						</div>
+
+						<ul class="nav nav-pills nav-stacked">
+							<li class="active"><a href="#"> <i class="fa fa-user"></i>我的日记</a>
+							</li>
+							<li><a href="#"> <i class="fa fa-bookmark"></i>我的收藏 <span
+									class="label label-danger pull-right r-activity">9</span> </a>
+							</li>
+							<li><a href="#"> <i class="fa fa-share"></i>我的分享 </a>
+							</li>
+						</ul>
+
+					</div>
+					
+					<div class="panel">
+						<div class="panel-body">
+							<div class="custom-calendar-wrap" win-web-common-calender>
+								<div id="custom-inner" class="custom-inner">
+									<div class="custom-header clearfix">
+										<div class="calendar-nav">
+											<span id="custom-prev" class="custom-prev"> <i
+												class="fa fa-chevron-left"></i> </span> <span id="custom-next"
+												class="custom-next"> <i class="fa fa-chevron-right"></i>
+											</span>
+										</div>
+										<h2 id="custom-month" class="custom-month"></h2>
+										<h3 id="custom-year" class="custom-year"></h3>
+									</div>
+									<div id="calendar" class="fc-calendar-container"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-body">
+							<img src="img/tree.jpg" alt="" width="100%" height="280" />
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="col-xs-19">
+					<div class="panel">
+
+						<div class="panel-heading row">
+							<h2 class="col-xs-12">健康轴</h2>
+
+						</div>
+
+						<div class="panel-body row" win-web-timeline-infi-strol
+							scroll="scrolling()" option="scrollData">
+	
+							<div class="col-xs-20">
+								<div class="timeline" id="timeline-list"
+									ng-repeat="value in scrollData track by $index">
+
+									<!-- angular中加一个判断 value是否为string的方法 -->
+
+									<div class="timeline-item time" ng-show="{{value | isStr}}">
+										<div class="timeline-desk">
+											<div class="panel">
+												<span class="timeline-icon icon-wrapper larger "> <em>{{value}}</em>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="timeline-item" ng-hide="{{value | isStr}}"
+										ng-class="{true: 'alt'}[value.pos=='right']">
+										<div class="timeline-desk">
+											<div class="panel">
+												<div class="panel-body">
+													<span
+														ng-class="{true: 'arrow-alt', false: 'arrow'}[value.pos=='right']"></span>
+													<span class="timeline-icon icon-wrapper {{value.color}}">
+														<i class="fa fa-{{value.icon}}"></i> </span>
+
+													<h1 class="{{value.color}}">{{value.date}} |
+														{{value.day}}</h1>
+													<p>{{value.content}}</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-xs-4">
+								<div class="fb-timeliner">
+									<h2 class="recent-highlight">2014</h2>
+									<ul>
+										<li class="active"><a href="#">12月</a></li>
+										<li><a href="#">8月</a></li>
+										<li><a href="#">3月</a></li>
+										<li><a href="#">1月</a></li>
+									</ul>
+									<h2 class="">2013</h2>
+									<ul>
+										<li><a href="#">8月</a></li>
+										<li><a href="#">7月</a></li>
+										<li><a href="#">5月</a></li>
+										<li><a href="#">2月</a></li>
+									</ul>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+			<!-- page end-->
+		</div>
+	</div>
+</div>

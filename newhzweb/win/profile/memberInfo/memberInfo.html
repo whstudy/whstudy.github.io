@@ -1,0 +1,232 @@
+<div class="col-xs-19">
+<!-- 	家庭成员 -->
+	<div style="overflow:auto;padding: 30px;" class="panel">
+<!-- 	<div style="margin:10px"> -->
+	<div>
+		<!-- 家庭成员 -->
+		<div style="font-size: 30px;border-bottom: 1px solid;margin-bottom:2px;font-size: 22px;">
+			<span>家庭成员>关注>{{call}}</span>			
+		</div>
+
+<div class="modal fade  ng-scope" tabindex="-1" id="modal-set1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" style="top:200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">取消关注</h4>
+            </div>  
+            <div class="modal-body row" style="
+			    font-size: 15px;
+			">
+            
+					是否确认取消关注	
+						             
+            </div>
+            <div class="modal-footer">            	
+                <button type="submit" class="btn btn-primary" ng-click="cancleAttention(profile.name)">&nbsp;&nbsp;确定&nbsp;&nbsp;</button>
+                <button type="submit" class="btn btn-primary"  data-dismiss="modal">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </div>
+</div>
+		
+
+			<div style="margin-bottom:30px" class="panel-body">
+				<div class="fl">
+				<img width=100 height=100 alt="" src="{{profile.imgUrl}}"/>
+				<div>
+				
+				<span ng-if="call==undefined" style="position: absolute;
+								top: 81px;
+								left: 166px;
+								font-size: 20px;">{{profile.name}}</span>
+								
+				<span ng-if="call!=undefined" style="position: absolute;
+								top: 81px;
+								left: 166px;
+								font-size: 20px;">{{call}}</span>
+												
+				<div ng-hide="!profile.description" class="tooltip fade right in" style="top: 146px; left: 165px; display: block;">
+				<div class="tooltip-arrow"></div><div class="tooltip-inner">{{profile.description}}</div>
+				</div>
+				</div>
+				
+<!-- 				<div class="bubble-box arrow-left">  -->
+<!-- 				<div class="wrap">css bubble -- 箭头在左方</div>  -->
+<!-- 				</div> -->
+				 
+				</div>				
+				<div class="fr" style="margin-top: 8px;">
+					<div style="text-align: right;">健康号:<span style="
+    font-weight: bold;
+">{{profile.name}}</span></div>
+<div style="
+    position: relative;
+    top: 16px;
+">
+<!-- 					<button class="bg s_btn">取消关注</button> -->
+<!-- 					<button href="#~/profileMemberEdit/{{profile.name}}" onclick="{{profile.name}}location.href='#~/profileMemberEdit/{{profile.name}}'" class="bg s_btn">修改信息</button> -->
+					<a  data-toggle="modal" href="#modal-set1" class="bg s_btn">取消关注</a>
+					<a href="#~/profileMemberEdit/{{profile.name}}/{{call}}" class="bg s_btn"><i class="glyphicon glyphicon-edit"></i>修改信息</a>					
+					</div>
+				</div>				
+			</div>
+					
+	</div>
+		
+		<div style="width: 70%;border-right: 1px solid;" class="tab-content fl">
+				
+				<div id="tc_profile_3" class="tab-pane active">
+					<form class="form-horizontal ng-pristine ng-valid" action="" method="post" id="1271058360" novalidate="novalidate">
+						<div class="form-group" win-web-profile-bmi="">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_height">身高</label>
+								<div class="col-xs-12 help">
+									{{profile.tall}}cm 
+								</div>
+
+							</div>
+
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_weight">体重</label>								
+								<div class="col-xs-6 help">
+									{{profile.weight}}kg 
+								</div>
+							</div>
+						</div>
+						
+						<!-- BMI-->
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_weight">BMI</label>
+								<div class="col-xs-5">
+									<label class="control-label ng-binding"> {{bmi}}</label>
+								</div>
+								<div class="col-xs-6 help">
+									kg / m <sup>2</sup>
+								</div>
+							</div>
+							<div class="col-xs-12 row">
+								<label class="col-xs-6 control-label" for="f_weight">体形</label>
+								<div class="col-xs-6">
+									<label class="control-label ng-binding">{{figture}}</label>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 运动-->
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">吸烟</label>
+								<div class="col-xs-10 help">
+									{{smoke.name}}
+								</div>
+							</div>
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">饮酒</label>
+								<div class="col-xs-10 help">
+									{{drink.name}}
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">运动</label>
+								<div class="col-xs-12 help">
+									{{sport.name}}
+								</div>
+							</div>
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">睡眠</label>
+								<div class="col-xs-12 help">
+									{{sleep.name}}
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="control-label col-xs-6 " for="">职业</label>
+								<div class="col-xs-8 help">
+									{{job.name}}
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-7 control-label" for="">孕产情况</label>
+								<div class="col-xs-12 help" data-form="pregnant">
+										{{profile.isPregnant==1?'是':'否'}}										 
+								</div>								
+							</div>
+						</div>
+						
+						<div class="form-group ng-hide" ng-show="profile.isPregnant==1">
+							<div class="col-xs-24 row">
+								<label class="col-xs-3 control-label" for="">怀孕</label>	
+			
+								<div class="col-xs-18 help">
+									{{profile.pregnatWeeks}}周    （0-12周）孕早期 （13-27周）孕中期 （28周以上）孕晚期
+								</div>
+													
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-xs-24 row">
+								<label class="col-xs-3 control-label" for="">手术史</label>
+								<div ng-show="profile.operationHis==0" class="col-xs-8 help">
+									无
+								</div>
+								<div ng-show="profile.operationHis==1" class="col-xs-8 help">
+									局部麻醉的小手术（对正常运动无影响）
+								</div>
+								<div ng-show="profile.operationHis==2" class="col-xs-8 help">
+									中型手术（对剧烈运动有影响）
+								</div>
+								<div ng-show="profile.operationHis==3" class="col-xs-8 help">
+									大型手术（基本不适合较大强度运动）
+								</div>
+							</div>
+						</div>
+																						
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-7 control-label" for="">家族病史</label>
+									<div class="col-xs-8 help">
+									<label ng-repeat="v in familyDiseases">
+												<span ng-show="v.checked">{{v.name}}</span>
+									</label>	
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-12 row">
+								<label class="col-xs-7 control-label" for="">目前疾患</label>
+									<div class="col-xs-8 help">
+									<label  ng-repeat="v in diseases">
+												<span ng-show="v.checked">{{v.name}}</span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+					
+		</div>
+		
+		<div class="fr grxx" style="width: 30%;padding: 10px;">
+			<div>{{profile.nickname}} <span ng-if="profile.gender==0">♀</span><span ng-if="profile.gender==1">♂</span></div>
+<!-- 			<div>37岁 *2月27日生日,还有12天</div> -->
+			<div>{{profile.birthday}}</div>
+			<div>身份证:{{profile.idCode}}</div>
+<!-- 			<div>来源:龙华鑫园</div> -->
+		</div>
+		
+			
+	</div>
+</div>
+<div win-web-common-alert option="alertOption"></div>

@@ -1,0 +1,75 @@
+ 
+
+
+				<div class="how col-xs-19">
+					<div class="">
+
+						<div class="panel panel-success">
+							<div class="panel-heading">
+								我该怎么吃？ <span class="tools pull-right"> <a href=""><i
+										class="fa fa-share"></i> 分享</a>
+								</span>
+							</div>
+
+							<div class="panel-body">
+								<div class="col-xs-12">
+									<h4 class="text-center">三大能量来源比</h4>
+									<div class="panel-body">
+										<div id="chart-power" win-web-common-chart option="powerCharOption"
+											style="width: 350px; height: 230px; margin: 0px auto;"></div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<h4 class="text-center">三餐供能比</h4>
+									<div class="panel-body">
+										<div id="chart-meals" win-web-common-chart option="mealsCharOption"
+											style="width: 350px; height: 230px; margin: 0px auto;"></div>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-xs-16">
+
+							<div class="panel panel-success">
+								<div class="panel-heading">为您推荐的一日健康食谱</div>
+								<table win-web-how-menu
+									class="table table-bordered table-center " id="how-menu">
+
+								</table>
+							</div>
+						</div>
+						<div class="col-xs-8">
+							<div class="panel panel-success">
+								<div class="panel-heading">营养标签</div>
+								<!--<script type="text/html" id="tpl-how-tags">
+                    {{each data}}
+                    <tr class="{{if $index>=data.length-1}}text-danger{{/if}}">
+                        <th>{{$value[0]}}</th>
+                        <td>{{$value[1]}}</td>
+                    </tr>
+                    {{/each}}
+                </script>-->
+								<table class="table table-striped table-bordered table-hover">
+									<tbody data-url="ajax/how-tags.json" id="how-tags"
+										class="auto-tpl">
+										<tr ng-repeat="value in howTags" ng-class="isLast($index)">
+											<th>{{value[0]}}</th>
+											<td>{{value[1]}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+
+			 

@@ -1,0 +1,138 @@
+<link href="css/medical.css" rel="stylesheet">
+
+
+<div style="z-index:3;position: absolute">
+
+	<div class="RongMain1185">
+	  <div class="h1Title">家庭医生健康实时监测</div>	  
+	  
+	  <div class="zbjkBar">
+		  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableSearh">
+			  <tr>
+			    <td width="76" class="textTd">检查日期</td>
+			    <td width="399" class="boxTd">
+			    <li class="inline laydate-icon"  style="width:133px; margin-right:10px; float:left; font:normal 14px/28px '微软雅黑'; border:1px solid #e6e9ed; height:28px;">
+			    	<input type="text" class="form-control dpd1" b-datepicker id="seldate" name="from" data-date-format="yyyy-mm-dd" ng-model="hzBcDate1" style="width:133px;">
+			    </li>
+			    <li style="width:25px; float:left;">至</li>
+			    <li class="inline laydate-icon"  style="width:133px; float:left; font:normal 14px/28px '微软雅黑'; border:1px solid #e6e9ed; height:28px;">
+			    	<input type="text" class="form-control dpd1" b-datepicker id="seldate" name="from" data-date-format="yyyy-mm-dd" ng-model="hzBcDate2" style="width:133px;">
+			    </li>
+				</td>
+			    <td width="76" class="textTd">监测指标</td>
+			    <td width="361" class="boxTd"><select name="select" id="select" class="input1">
+			      <option>高血压</option>
+			    </select></td>
+			    <td width="213" rowspan="3" bgcolor="#ecedf1"><dl class="mineZx"><dt><a href="#~/answer">我的咨询</a></dt><dd><span>18</span>条</dd></dl></td>
+			  </tr>
+			  <tr>
+			    <td class="textTd">姓名</td>
+			    <td class="boxTd"><input name="input2" type="text" class="input1"></td>
+			    <td class="textTd">健康卡号</td>
+			    <td class="boxTd"><input name="input3" type="text" class="input1"></td>
+			    </tr>
+			  <tr>
+			    <td>&nbsp;</td>
+			    <td colspan="3"><span class="infoSM">
+			      <input type="submit" name="button" id="button" value="查询" class="btn_submit_green">
+			    </span></td>
+			</tr>
+		</table>
+  	</div>
+  
+  <div class="zbjkList">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="zbjkListTable">
+		  <tr class="title">
+			    <td class="title"> 序号</td>
+			    <td class="title"> 社区</td>
+			    <td class="title"> 门号</td>
+			    <td class="title"> 室号</td>
+			    <td class="title"> 姓名</td>
+			    <td class="title"> 指标类型</td>
+			    <td class="title"> 指标数据</td>
+			    <td class="title"> 评价 </td>
+			    <td class="title"> 趋势</td>
+			    <td class="title"> 反馈 </td>
+			    <td class="title"> 联系</td>
+			    <td class="title"> 录入时间</td>
+		  </tr>
+		  <tr ng-repeat="monitor in monitors track by $index" ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}" >
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{$index+1}}</td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{monitor.community}}</td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{monitor.doorNum}}</td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{monitor.roomNum}}</td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{monitor.name}}</td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{monitor.monitorType}}</td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{monitor.monitorData}}</td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}"><img ng-src="{{monitor.evaluate}}" border="0"></td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}"><a href="#" data-target="#chart" data-toggle="modal" ng-click="selectChart1(monitor.monitorId)"><img src="images/pjicon_qx.png" border="0" ></a></td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}"><a href="#" data-target="#myModal" data-toggle="modal" ng-click="selectChart(monitor.monitorId)"><img src="images/pjicon_guest.png" border="0" ng-show="monitor.feedback==''"><img src="images/pjicon_gueston.png" border="0" ng-show="monitor.feedback!=''"></a></td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{monitor.phone}}</td>
+			    <td ng-class="{'tdCss1':$index%2==0,'tdCss2':$index%2==1}">{{monitor.time}}</td>
+		  </tr>
+	</table>
+
+  </div>
+  
+		  <div class="fybar"> 
+		<span class="disabled">&lt; </span>
+		<span class="current">1</span>
+		<a href="#?page=2">2</a>
+		<a href="#?page=3">3</a>
+		<a href="#?page=4">4</a>
+		<a href="#?page=5">5</a>
+		<a href="#?page=6">6</a>
+		<a href="#?page=7">7</a>
+		...
+		<a href="#?page=199">199</a>
+		<a href="#?page=200">200</a>
+		<a href="#?page=2"> 
+		&gt; </a></div> 
+		
+
+
+</div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal" id="myModal"  tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">反馈内容</h4>
+      </div>
+      <div class="modal-body">
+
+   <textarea name="" cols="" rows="" style="width:100%;min-height:300px;" ng-model="feedback"></textarea>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" ng-click="saveEvalute()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="chart"  tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">趋势</h4>
+      </div>
+      <div class="modal-body">
+			<div id="monitor-stat" class="mt" style="height:300px;width:100%"></div>
+    
+      </div>
+      <div class="modal-footer">
+       <!--  <button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button>
+        <button type="button" class="btn btn-primary">保存</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+

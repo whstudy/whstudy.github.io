@@ -1,0 +1,63 @@
+{    
+    "id":null,
+    "spaceId":null,
+    "user":{
+               "id":1,
+               "spaceId":1,
+               "userName":"demo",
+               "passWord":null,
+               "locationName":null
+            },
+    "weather":{
+                 "city":"武汉",
+                 "date":"2014-04-15",
+                 "pm25":"11优",
+                 "weatherDetails":[
+                                      {
+                                          "date":null,"weather":null,
+                                          "wind":"东南风4-5级","temperature":"14度"
+                                       },
+                                       {
+                                          "date":null,"weather":null,
+                                          "wind":"东南风4-5级","temperature":"19 ~ 17度"
+                                        }
+                                   ]
+               },
+	"report":[
+	             {
+	                 "title1":"12月3日",
+		             "url":"img/report.jpg" 
+	             },
+				 {
+	                 "title":"12月4日",
+		             "url":"img/report.jpg" 
+	             },
+				 {
+	                 "title":"12月5日",
+		             "url":"img/report.jpg" 
+	             }
+			 ],		   
+    "activities":[
+                     {
+                         "color":"blue",
+                         "icon":"file",
+                         "time":"9:51 ����",
+                         "content":"�ʵ��İ�ɣ�ط�ʿ���",
+                         "pos":null
+                     },
+                     {
+                         "color":"blue",
+                         "icon":"file",
+                         "time":"9:51 ����",
+                         "content":"��ʦ����ʱ����ط�",
+                         "pos":null
+                     },
+                     {
+                         "color":"blue",
+                         "icon":"file",
+                         "time":"9:51 ����",
+                         "content":"�����滮�ֹ滮��",
+                         "pos":null
+                      }
+                  ]
+}

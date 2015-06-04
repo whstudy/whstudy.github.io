@@ -1,0 +1,16 @@
+ 
+{
+  "owl" : [
+       {"item" : "<li></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳1</div></a></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳2</div></a></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳3</div></a></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳4</div></a></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳5</div></a></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳6</div></a></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳7</div></a></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳8</div></a></li>"},
+      {"item" : "<li><a class='' href=''> <img src='img/run-icon.png'/><div>游泳9</div></a></li>"},
+       {"item" : "<li></li>"}
+  ]
+}

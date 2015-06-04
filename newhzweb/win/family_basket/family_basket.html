@@ -1,0 +1,216 @@
+<div class="profile-info col-xs-19">
+
+	<!-- 家庭菜篮 -->
+	<div class="panel">
+		<div class="panel-heading">家庭菜篮</div>
+		<div class="panel-body">
+			<h3>亲爱的~当我们获悉了您家所有成员的健康情况后，就默默为您的家庭挑选出所有适合全家食用的食材，赶紧去挑选今天要买的小菜吧！</h3>
+		</div>
+	</div>
+
+
+
+
+	<div class="panel">
+		<div class="panel-body">
+			<!-- <label  for="f_birth">出生年月</label> -->
+			<div class="col-xs-2 text-center">营养评估日期		
+			</div>
+			<div class="col-xs-4">			
+				<input id="f_birth"  value="选择日期" datepicker-popup="{{format}}" current-text="今天" clear-text="清除" close-text="完成"  ng-model="chosenDate"  is-open="opened"
+				class="form-control" name="birth"	type="text" size="16" ng-focus="open($event)" ng-change="findRecord()">
+			</div>
+			 		
+		</div>
+		<hr>
+		<ul class="nav-tabs pull-right meal-tabs">
+			<li class="active"><a data-toggle="tab"
+				ng-click="changeMealTime('breakfast')" style="cursor: pointer;"> 早餐 </a></li>
+			<li class=""><a data-toggle="tab"
+				ng-click="changeMealTime('lunch')" style="cursor: pointer;"> 中餐 </a></li>
+			<li class=""><a data-toggle="tab"
+				ng-click="changeMealTime('supper')" style="cursor: pointer;"> 晚餐 </a></li>
+		</ul>
+		
+		
+		<div class="panel-body">
+			<ul class="nav nav-pills col-xs-17" id="meals-category"
+				win-web-meal-filter>
+				<li class="active-danger"><a href="#" data-cid=""
+					ng-click="searchFood()"> 所有 </a></li>
+				<li ng-repeat="foodType in foodTypes"><a href=""
+					ng-click="searchFood(foodType.id)"> {{foodType.title}} </a></li>
+
+			</ul>
+			<div class="col-xs-7" style="display:none">
+				<div class="meals-search" id="meals-search">
+					<input type="text" id="meals-kw" class="form-control round-input"
+						value="" placeholder="食材搜索" /> <i class="fa fa-search" ></i>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-content" id="meals-content" >
+		<div class="row product-list tab-pane active">
+			<div class="col-xs-4" ng-repeat="food in foods2">
+				<div class="panel">
+					<div class="pro-img-box">
+						<img ng-src="{{food.img}}" alt="" class="meals-pic" /> <a 
+							class="adtocart" > <img ng-src="img/{{food.cart}}" alt="" class="adtocart-img"  ng-click="addMealToDesk(food)" />
+						</a>
+					</div>
+					<div class="panel-body text-center">
+						<div class="h4">
+							<a href="#" class="pro-title"> {{food.name}} </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel text-right">
+		<pagination total-items="foodsCounts" ng-model="currentPage"
+			ng-change="pageChanged()" boundary-links="true"
+			items-per-page="itemsPerPage" max-size="maxSize"
+			previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+			last-text="&raquo;"></pagination>
+
+	</div>
+
+</div>
+
+
+<div id="meals-panel" title="点我显示/隐藏餐盘" win-web-meal-panel>
+	<span>{{mealList.breakfast.length+mealList.lunch.length+mealList.supper.length}}</span>
+</div>
+
+<script type="text/ng-template" id="meal.html">
+				<div class="col-xs-8 meals-desk-list" ng-repeat="meal in mealList track by $index">
+
+				<a href="" class="close-desk"  ng-click="delteMeal($index,mealTime)"><i class="fa fa-times fa-inverse"></i></a>
+				<img ng-src="{{meal.img}}" class=" meals-spic"/>
+
+				<div class="spinner-meals mt-sm" win-web-common-spinner  step='1' value="meal.value" min='1' max='10'>
+				 
+				</div>
+				</div>
+			</script>
+<div id="meals-desk" class="">
+	<a href="" class="meals-close pull-right" win-web-meal-close-panel>
+		<i class="fa fa-times fa-inverse"></i>
+	</a>
+	<h3>已选食材</h3>
+	<h4>早餐</h4>
+	<div class="oh" id="meals-desk-1" win-web-meal-desk info="mealList.breakfast" time="breakfast"></div>
+	<h4>中餐</h4>
+	<div class="oh" id="meals-desk-2" win-web-meal-desk	info="mealList.lunch" time="lunch"></div>
+	<h4>晚餐</h4>
+	<div class="oh" id="meals-desk-3" win-web-meal-desk	 info="mealList.supper" time="supper"></div>
+	<div class="text-center mt">
+		<a class="btn btn-danger btn-shadow" href=""  ng-click="saveRecord()">
+			保存 </a>
+		<a class="btn btn-danger btn-shadow" href="#" win-web-meal-analysis>
+			营养分析 </a>
+	</div>
+</div>
+<div class="" id="meals-eval">
+
+	<a href="" class="meals-close pull-right" win-web-meal-close-panel>
+		<i class="fa fa-times fa-inverse"></i>
+	</a>
+	<h4>营养膳食健康指数</h4>
+	<div class="panel-body text-center">
+		<span class="rating" win-web-common-star stars="{{trophicIdx}}"> <span
+			class="star"></span> <span class="star"></span> <span class="star"></span>
+			<span class="star"></span> <span class="star"></span>
+		</span>
+	</div>
+	<h4>BMI指标分析</h4>
+	<div class="panel-body">
+		<div
+			class="col-xs-16 col-xs-offset-4 result-panel alert alert-success row">
+			<div class="result-stat btn-{{bmititlebg}}" >{{bmi.title}}</div>
+			<div class="col-xs-20 col-xs-offset-4">
+				<div class="progress">
+					<div class="progress-bar progress-bar-warning" style="width: 53%;">
+						<span class="cursor-value">18.5</span>
+					</div>
+					<div class="progress-bar progress-bar-cursor tooltips-show"
+					     data-original-title="{{bmi.bmi}}"
+                            ng-style="{'margin-left': bmipercent+'%'}">
+                    </div>
+					<div class="progress-bar progress-bar-success" style="width: 15%;">
+						<span class="cursor-value">23.9</span>
+					</div>
+					<div class="progress-bar progress-bar-warning" style="width: 11.5%;">
+						<span class="cursor-value">27.9</span>
+					</div>
+					<div class="progress-bar progress-bar-danger" style="width: 20%;">
+						<span class="cursor-value">35</span>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h4>营养摄入情况</h4>
+	<div class="panel-body">
+		<div id="chart-polygon" class="center-block" style="height: 300px;"></div>
+	</div>
+
+	<h4>三大能量来源比</h4>
+	<div class="panel-body">
+		<div id="chart-power1"
+			style="width: 350px; height: 230px; float: left;"></div>
+		<div id="chart-power2"
+			style="width: 350px; height: 230px; float: right;"></div>
+	</div>
+	<h4>三餐供能比</h4>
+	<div class="panel-body">
+		<div id="chart-meals1"
+			style="width: 350px; height: 230px; float: left;"></div>
+		<div id="chart-meals2"
+			style="width: 350px; height: 230px; float: right;"></div>
+	</div>
+
+	<h4>食物宜忌情况</h4>
+	<div class="panel-body meals-eval-good row">
+
+		<div class="col-xs-11 ">
+			<div class="title good">宜</div>
+			<table class="table table-bordered text-center">
+				<tr ng-repeat="food in foodOk">
+					<td><img ng-src="{{food.pic}}" /></td>
+					<td>{{food.name}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-xs-11 pull-right">
+			<div class="title bad">忌</div>
+			<table class="table table-bordered text-center">
+				<tr ng-repeat="food in fcNotComp">
+					<td><img ng-src="{{food.pic}}" /></td>
+					<td>{{food.name}}</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+</div>
+<div win-web-common-alert option="alertOption"></div>
+
+<script type="text/javascript" charset="utf-8">
+	$("#meals-desk,#meals-eval").niceScroll({
+		styler : "fb",
+		cursorcolor : "#e8403f",
+		cursorwidth : '6',
+		cursorborderradius : '10px',
+		background : '#404040',
+		spacebarenabled : false,
+		cursorborder : '',
+		zindex : '99999999'
+	});
+</script>

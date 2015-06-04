@@ -1,0 +1,376 @@
+<div class="profile-info col-xs-19">
+
+	<!-- 图表  -->
+	<div class="panel">
+		<div class="pandl-body" style="padding:10px;">
+			<div win-web-common-chart option="charOption" style="height:270px;"></div>
+		</div>
+	</div>
+	
+	<!-- 运动与行为 -->
+	<div class="panel">
+		<div class="panel col-xs-16">
+			<div class="panel-heading" style="border-bottom:0">
+				<div class="col-xs-8" >
+					<ul class="nav nav-tabs sportNav">
+						<li class="active" ><a href="#sport" data-toggle="tab" style="color:green;font-size:20px;">运动</a></li>
+						<li ><a href="#active" data-toggle="tab" style="color:green;font-size:20px;">日常活动</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-16">
+					<div>
+						<label class="control-label col-xs-8" style="line-height: 30px;">请选择日期：</label>
+						<div class="col-xs-8">
+							<input type="text"  class="form-control col-md-10 datepicker"  b-datepicker  data-date-format="yyyy-mm-dd" ng-model="sportDate" readOnly="readOnly" style="cursor:pointer"/>
+						</div>
+						<div class="col-xs-8">
+							<button type="submit" class="btn btn-success btn-sm" ng-click="fnGetSports()">确定</button>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="tab-content">
+				  <!-- 运动  -->
+				  <div class="tab-pane active " id="sport" >
+				  		<!-- 筛选panel -->
+						<div class="panel">
+							<div class="panel-heading">
+								 <span class="tools pull-right"> <a href="#" data-toggle="slide" win-web-sport-search-show>筛选</a></span>
+							</div>
+							<div class="panel-body">
+								<div class=" filter" id="filter-sport" style="display: block" win-web-sport-filter>
+									<ul class="nav nav-pills" ng-repeat="value in sportFilters">
+										<li class="active-danger"><a href="" ng-click="searchSport(value.field,'')">{{value.name}}</a></li>
+										<li ng-repeat="v in value.data"><a ng-click="searchSport(value.field,v.name)" href="" data-value="{{v.name}}">{{v.name}}</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+				  		<div class="col-xs-24">
+				  			<div class="panel">
+				  				<div class="panel-heading">适合我的运动</div>
+					  			<div ng-repeat="sport in sports" class="col-xs-24 panel-body" style="border: 1px solid #F1F1F1;margin-top:2px;">
+					  				<div class="col-xs-24">
+						  				<div class="col-xs-6">
+						  					<div style="width:100px;height:100px;border: 3px solid #DDDDDD;text-align: center;padding: 3px">
+						  						<img ng-src="{{sport.icon}}" style="height: 100%;width:100%;clear: both;border-radius:0%;" />
+						  					</div>
+						  				</div>
+						  				<div class="col-xs-6" style="line-height:25px;">
+						  					<div style="font-size: 20px;">{{sport.name}}</div>
+						  					<!-- 今日签到:<span style="color:#ED8135;font-size: 15px;">{{sport.signNumer}}</span>人<br>
+						  					人均时间:<span style="color:#ED8135;font-size: 15px;">{{sport.singAvgTime}}</span>分钟 -->
+						  				</div>
+						  				<div class="col-xs-12" style="text-align: right;">
+						  					<div ng-show='false'>
+						  						<span class="label label-warning">已签到</span>
+						  						<span class="label label-warning">已设置提醒</span>
+						  					</div>
+						  					<div class="row" style="margin-top:15px;text-align: right;">
+							  					<button type="button" class="btn btn-primary"  ng-click="fnSportDetail(sport.sid)">运动方案</button>
+												<!-- <button type="button" class="btn btn-success" ng-click="fnSetSport(sport.sid)">设置运动</button> -->
+												<button type="button" class="btn btn-primary" ng-click="fnSignSport(sport)">签到</button>
+											</div>
+						  				</div>
+						  			</div>
+						  			<div class="col-xs-24" style="border-top: 1px dashed #949494;margin-top:10px;background-color:#F9F9F9" ng-show="sport.signVo != null">
+						  				<div class="col-xs-8">时间：<span style="color:#ED8135;font-size: 22px;">{{sport.signVo.itemTime}}</span>分钟</div>
+						  				<div class="col-xs-8">能量：<span style="color:#ED8135;font-size: 22px;">{{sport.signVo.itemEnergy}}</span>kcal</div>
+						  				<div class="col-xs-8">米饭：<span style="color:#ED8135;font-size: 22px;">{{sport.signVo.itemEnergyRice}}</span>g</div>
+						  			</div>			
+					  			</div>
+				  			</div>
+				  		</div>
+				  </div>
+				  <!-- 日常活动  -->
+				  <div class="tab-pane" id="active">
+				  		<div style="margin-top:5px;">
+							<ul class="nav nav-tabs auto-tpl" id="tab-sport-eval">
+								<li ng-repeat="value in sportEvalItems" ng-class="{active:$index==0}">
+								<a href="#~/sport_eval#tc-{{value.typeid}}" data-toggle="tab" style="padding:9px;">{{value.name}}</a>
+								</li>
+							</ul>
+							<div class="tab-content auto-tpl">
+								<div ng-repeat="value in sportEvalItems" class="tab-pane" ng-class="{active:$index==0}" id="tc-{{value.typeid}}" style="padding:10px;">
+										<div  ng-repeat="v in value.data" class="col-xs-24" style="border: 1px solid #F1F1F1;margin-top:2px;padding: 10px;}">            	
+											<!-- <div class="col-xs-8" >
+							  					<img ng-src="{{v.pic}}" style="width:80px;height:80px;border-radius:0%;border: 3px solid rgb(40, 182, 115);margin-top:10px; "/>
+						  					</div> -->
+						  					<div class="col-xs-6" >
+							  					<div  style="width:100px;height:100px;border: 3px solid #DDDDDD;text-align: center;padding: 3px">
+							  						<img ng-src="{{v.pic}}" style="height: 100%;width:100%;clear: both;border-radius:0%;" />
+							  					</div>
+							  				</div>
+							  				<div class="col-xs-10" style="line-height:30px;">
+							  					<div style="font-size: 20px;">{{v.name}}</div>
+							  					今日签到:<span style="color:#ED8135;font-size: 15px;">{{v.signNumer}}</span>人 <br>
+							  					人均时间:<span style="color:#ED8135;font-size: 15px;">{{v.singAvgTime}}</span>分钟
+							  				</div>
+							  				<div class="col-xs-8 text-right" style="margin-top:15px;">
+												<button type="button" class="btn btn-success" data-toggle="modal" data-target="#sportSign" ng-click="fnSignSport(v)">签到</button>
+							  				</div>
+							  				<div class="col-xs-24" style="border-top: 1px dashed #949494;margin-top:10px;background-color:#F9F9F9" ng-show="v.itemTime != null">
+								  				<div class="col-xs-8">时常：<span style="color:#ED8135;font-size: 22px;">{{v.itemTime}}</span>分钟</div>
+								  				<div class="col-xs-8">能量：<span style="color:#ED8135;font-size: 22px;">{{v.itemEnergy}}</span>kcal</div>
+								  				<div class="col-xs-8">米饭：<span style="color:#ED8135;font-size: 22px;">{{v.itemEnergyRice}}</span>g</div>
+								  			</div>	
+										</div>
+								</div>
+							</div>
+						</div>
+				  </div>
+				</div>
+				
+			</div>
+		</div>
+	
+		<div class="col-xs-8 panel">
+			<h3 class="text-center">我的能量消耗</h3>
+			<div class="panel">
+				<div class="panel-heading tab-bg-dark-green">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#today" data-toggle="tab">今日</a></li>
+						<li><a href="#week" data-toggle="tab">本周</a></li>
+						<li><a href="#all" data-toggle="tab">累计</a></li>
+					</ul>
+				</div>
+				<div class="panel-body">
+					<!-- <div ng-hide='consumes[0]'>暂无数据</div> -->
+					<div class="tab-content">
+						<div class="tab-pane active " id="today" >
+							<div ng-repeat="consume in todayConsumesPage" class="row" style="border-bottom: 1px dashed #797979;margin-bottom:10px;margin-top:10px;padding-bottom:5px;">
+								<div class="col-xs-5">
+									<div style="width:55px;height:55px; border-radius:100%;border: 3px solid #DDDDDD;text-align: center;">
+				  						<img ng-src="{{consume.itemPic}}" style="height: 100%;width:100%;clear: both;border-radius:100%;" />
+				  					</div>
+								</div>
+								<div class="col-xs-10">
+									<div>{{consume.itemName}}</div>
+									时长:{{consume.itemTime}}分钟<br>
+									米饭:{{consume.itemEnergyRice}}g
+								</div>
+								<div class="col-xs-9">
+									能量:{{consume.itemEnergy}}kcal
+								</div>
+							</div>
+							<div class="row">
+								<div class="pull-left" ng-click="fnConsumePage()" style="cursor:pointer">
+									<i class="fa fa-chevron-left prev pull-left" style="font-size: 28px;" ng-click="fnConsumePage('today',0)"></i> 
+								</div>
+								<div class="pull-right" ng-click="fnConsumePage('today',1)" style="cursor:pointer">
+									<i class="fa fa-chevron-right next" style="font-size: 28px;" ></i>
+								</div>
+							</div>
+							<div class="row" style="background-color:#27A496;margin-top:25px;margin-bottom:15px;color: white;padding: 15px;">
+								<div class="col-xs-12">总活动时数：</div>
+								<div class="col-xs-12">{{consumes.consumes.todayTotalTime}}分钟</div>
+								<div class="col-xs-12">总消耗能量：</div>
+								<div class="col-xs-12">{{consumes.consumes.todayEnergy}}Kcal</div>
+								<div class="col-xs-12">总消耗米饭：</div>
+								<div class="col-xs-12">{{consumes.consumes.todayEnergyRice}}g</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="week" >
+							<div ng-repeat="consume in weekConsumesPage" class="row" style="border-bottom: 1px dashed #797979;margin-bottom:10px;margin-top:10px;padding-bottom:5px;">
+								<div class="col-xs-6">
+									<div style="width:55px;height:55px; border-radius:100%;border: 3px solid #DDDDDD;text-align: center;">
+				  						<img ng-src="{{consume.itemPic}}" style="height: 100%;width:100%;clear: both;border-radius:100%;" />
+				  					</div>
+								</div>
+								<div class="col-xs-10">
+									<div>{{consume.itemName}}</div>
+									时长:{{consume.itemTime}}分钟<br>
+									米饭:{{consume.itemEnergyRice}}g
+								</div>
+								<div class="col-xs-8">
+									能量:{{consume.itemEnergy}}kcal
+								</div>
+							</div>
+							<div class="row">
+								<div class="pull-left" ng-click="fnConsumePage()" style="cursor:pointer">
+									<i class="fa fa-chevron-left prev pull-left" style="font-size: 28px;" ng-click="fnConsumePage('week',0)"></i> 
+								</div>
+								<div class="pull-right" ng-click="fnConsumePage('week',1)" style="cursor:pointer">
+									<i class="fa fa-chevron-right next" style="font-size: 28px;" ></i>
+								</div>
+							</div>
+							<div class="row" style="background-color:#27A496;margin-top:25px;margin-bottom:15px;color: white;padding: 15px;">
+								<div class="col-xs-12">总活动时数：</div>
+								<div class="col-xs-12">{{consumes.consumes.weekTotalTime}}分钟</div>
+								<div class="col-xs-12">总消耗能量：</div>
+								<div class="col-xs-12">{{consumes.consumes.weekEnergy}}Kcal</div>
+								<div class="col-xs-12">总消耗米饭：</div>
+								<div class="col-xs-12">{{consumes.consumes.weekEnergyRice}}g</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="all" >
+							<div ng-repeat="consume in allConsumesPage" class="row" style="border-bottom: 1px dashed #797979;margin-bottom:10px;margin-top:10px;padding-bottom:5px;">
+								<div class="col-xs-5">
+									<div style="width:55px;height:55px; border-radius:100%;border: 3px solid #DDDDDD;text-align: center;">
+				  						<img ng-src="{{consume.itemPic}}" style="height: 100%;width:100%;clear: both;border-radius:100%;" />
+				  					</div>
+								</div>
+								<div class="col-xs-10">
+									<div>{{consume.itemName}}</div>
+									时长:{{consume.itemTime}}分钟<br>
+									米饭:{{consume.itemEnergyRice}}g
+								</div>
+								<div class="col-xs-9">
+									能量:{{consume.itemEnergy}}kcal
+								</div>
+							</div>
+							<div class="row">
+								<div class="pull-left" ng-click="fnConsumePage()" style="cursor:pointer">
+									<i class="fa fa-chevron-left prev pull-left" style="font-size: 28px;" ng-click="fnConsumePage('all',0)"></i> 
+								</div>
+								<div class="pull-right" ng-click="fnConsumePage('all',1)" style="cursor:pointer">
+									<i class="fa fa-chevron-right next" style="font-size: 28px;" ></i>
+								</div>
+							</div>
+							<div class="row" style="background-color:#27A496;margin-top:25px;margin-bottom:15px;color: white;padding: 15px;">
+								<div class="col-xs-12">总活动时数：</div>
+								<div class="col-xs-12">{{consumes.consumes.allTotalTime}}分钟</div>
+								<div class="col-xs-12">总消耗能量：</div>
+								<div class="col-xs-12">{{consumes.consumes.allEnergy}}Kcal</div>
+								<div class="col-xs-12">总消耗米饭：</div>
+								<div class="col-xs-12">{{consumes.consumes.allEnergyRice}}g</div>
+							</div>
+						</div>
+						
+					</div>
+
+					<div class="row" style="padding: inherit;">
+						我的减重目标:<input type="text" ng-model='consumes.loseWeightTarget' style="width:50px;" />公斤/周  <button class="btn btn-success" ng-click="fnSaveLostWeight()">保存</button>
+					</div>
+					<div class="row" style="color: #8F8F8F;padding: 15px;">
+						<div>我的基础代谢消耗：{{consumes.basicEnergyConsume}}kcal</div>
+						<div style="margin-top:10px;">今日膳食摄入能量：{{consumes.mealsEnergy}}kcal <span class="label label-warning" style="float: right;"><a href='#~/meals'>饮食日记</a></span> </div>
+						<div style="margin-top:10px;">每日需要消耗能量：{{consumes.normEnergyConsume}}kcal</div>
+					</div>
+					<!-- {{consumes.lwNormEnergyConsume}} -->
+					
+			</div>
+			<div class="text-center">
+				<img ng-src="{{consumePic}}" style="width:60px;">
+				实际消耗{{consumes.consumes.todayEnergy}}kcal
+			</div>
+
+			</div>
+		</div>
+	</div>
+
+	
+
+</div>
+<div win-web-common-alert option="alertOption"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="sportDeatil">
+  <div class="modal-dialog" style="width: 80%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">运动方案</h4>
+      </div>
+      <div class="modal-body" >
+      		<div class="row sport-desc">
+				<div class="col-xs-6">
+					<img ng-src="{{sportDetail.pic}}" alt="" class="" />
+				</div>
+				<div class="col-xs-13">
+					<div class=" h3">{{detail.name}}</div>
+					<ul class="">
+						<!-- <li><strong>运动方式：</strong> {{detail.way}}</li> -->
+						<li><strong>运动部位：</strong> {{sportDetail.where}}</li>
+						<li><strong>运动效力：</strong> {{sportDetail.function}}</li>
+					</ul>
+				</div>
+				<!--<div class="col-xs-5">
+					<a class="btn btn-success btn-lg btn-block"  win-web-create-plan option="sportDetail.sid">创建运动计划</a>
+				</div>-->
+			</div>
+			<div class="row">
+				<div class="col-xs-24 sport" ng-bind-html="sportDetail.content">
+				</div>
+			</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 设置运动  -->
+<div class="modal fade" id="setSport" >
+  <div class="modal-dialog" style="width: 50%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">设置运动</h4>
+      </div>
+      <div class="modal-body" >   	
+        	<div class="row">
+        		<label class="col-xs-4 control-label">运动频率：</label>
+       			<div class="checkboxes checkboxes-inline help col-xs-20">
+                    <label class="label_check"  ng-repeat="v in week" ng-class="{'c_on':oneItem.freq[$index] == '1'}">
+                        <input type="checkbox" ng-model="oneItem.freq[$index]" ng-true-value="1" ng-false-value="0" ng-click="freqChange()">{{v}}
+                    </label>
+                </div>
+        	</div>
+        	<div  class="row">
+        		<label class="col-xs-4 control-label">提醒时间：</label>
+        		<div class="col-xs-20">
+        			12：20
+        		</div>
+        	</div>
+        	<div  class="row">
+        		<label class="col-xs-4 control-label" for="f_time">运动时间：</label>
+                <div class="col-xs-20">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <div class="spinner-plan-time" win-web-common-spinner value="oneItem.time" step="5" min="0" max="120">
+                            </div>
+                            <div class="col-xs-9 help">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        	</div>
+        	<div  class="row">
+        		<label class="col-xs-4 control-label">是否循环：</label>
+        		<div class="col-xs-20">
+        			<div class="col-xs-6" win-web-switch on="oneItem.iscycle">
+        		</div>
+        	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click='fnSaveAmount111()'>保存</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!--运动签到  -->
+<div class="modal fade" id="signSport">
+  <div class="modal-dialog" style="width:300px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">运动签到</h4>
+      </div>
+      <div class="modal-body text-center" >
+        	<input type="text"  ng-model='time'/> 分钟
+        	<div style="color:red;text-align:center">{{alertContent}}</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click='fnSaveAmount()'>保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+			 

@@ -1,0 +1,177 @@
+<div class="col-xs-19" >
+
+    <div class="panel panel-success">
+        <div class="panel-heading">我的运动计划</div>
+
+        <table class="table table-bordered table-striped table-center" win-web-plas-s>
+          <tbody id="sport-plans" class="auto-tpl" win-web-plan-show>
+            <tr>
+                <th>#</th>
+                <th>运动口号</th>
+                <th>运动项目</th>
+                <th>执行时间</th>
+                <th width="130">操作</th>
+            </tr>
+            <tr ng-repeat="value in plans">
+                <td>{{$index+1}}</td>
+                <td>{{value.title}}</td>
+                <td>
+                    <span class="badge bg-{{itemColors[$index]}}" ng-repeat="item in value.items">{{item}}</span>
+                </td>
+                <td>{{value.time[0]}} - {{value.time[1]}}</td>
+                <td>                                       
+                    <a class="btn btn-danger btn-xs" ng-class="{'disabled': value.timeDis[1] < nowDate()}"  ng-click="delSportPlan(value.planid)"><i class="fa fa-times"></i> 删除</a>
+                    <a class="btn btn-success btn-xs" ng-show="value.timeDis[1] >= nowDate()" ng-click="updateSportPlan(value.planid)"><i class="fa fa-pencil-square-o"></i> 修改</a>
+                    <a class="btn btn-success btn-xs" ng-show="value.timeDis[1] < nowDate()" ng-click="updateSportPlan(value.planid)"><i class="glyphicon glyphicon-eye-open"></i> 查看</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" class="text-center">
+                    <a class="btn btn-sm btn-success " data-toggle="slide" ng-click="btnShow()">
+                        <i class="fa fa-plus"></i>
+                        创建运动计划
+                    </a>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+    <div class="panel panel-success none" id="panel-create" win-web-plan-items>
+        <div class="panel-heading">创建运动计划</div>
+        <div class="panel-body">
+
+            <form class="form-horizontal" action="" method="post">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="f_title">运动口号：</label>
+                    <div class="col-xs-11">
+                        <input class="form-control" type="text" id="f_title" ng-model="onePlan.title"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="f_from">执行时间：</label>
+                    <div class="col-xs-7">
+                        <div class="input-group input-large">
+                            <input type="text" b-datepicker class="form-control dpd1" id="f_from" name="from"
+                                   data-date-format="yyyy-mm-dd" ng-model="onePlan.timeDis[0]" ng-change="dateChange()">
+                            <span class="input-group-addon">To</span>
+                            <input type="text" b-datepicker class="form-control dpd2" name="to"
+                                   data-date-format="yyyy-mm-dd" ng-model="onePlan.timeDis[1]" ng-change="dateChange()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" >
+                    <label class="col-xs-3 control-label" for="f_nick">运动项目：</label>
+                    <div class="col-xs-21">                        
+                        <ul class="sport-items choose-sport" id="sport-items-tab">
+                            <li ng-repeat="value in onePlan.detail">
+                                <a href="" data-toggle="tab"  ng-click="showSportItem($index)">
+                                    <img style="width:50px;height:57px" ng-src="{{value.pic}}" alt=""/><br/>{{value.name}}
+                                </a>
+                                <i class="fa fa-times close" ng-click="removeSportItem($index)"></i>
+                            </li>
+                            <li>
+                                <a class="" data-toggle="modal" win-web-add-item-show ng-click="showSportItems()">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+ 
+                <div class="has-js">
+                    <div class="">
+                        <div class="activity-desk m0 pr tab-content" id="sport-items-config">
+                            <div class="arrow-up none"></div>
+                            <div class="panel p10 tab-pane" ng-class="{'active':showItem}">
+                                <div class="row p0">
+                                    <label class="col-xs-3 control-label">运动频率：</label>
+                                    <div class="checkboxes checkboxes-inline help col-xs-20">
+                                        <label class="label_check"  ng-repeat="v in week" ng-class="{'c_on':oneItem.freq[$index] == '1'}">
+                                            <input type="checkbox" ng-model="oneItem.freq[$index]" ng-true-value="1" ng-false-value="0" ng-click="freqChange()">{{v}}
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row p0">
+                                    <label class="col-xs-3 control-label" for="f_loop">是否循环：</label>
+                                    <div class="col-xs-6" win-web-switch on="oneItem.iscycle">
+                                    </div>
+                                </div>
+
+                                <div class="row p0">
+                                    <label class="col-xs-3 control-label" for="f_time">运动时间：</label>
+                                    <div class="col-xs-20">
+                                        <div class="row">
+                                            <div class="col-xs-9">
+                                                <div class="spinner-plan-time" win-web-common-spinner value="oneItem.time" step="5" min="0" max="120">
+                                                </div>
+                                                <div class="col-xs-9 help">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-xs-3 control-label">运动提醒：</label>
+                    <div class="col-xs-8" win-web-switch on="onePlan.remind" >
+                    </div>
+                </div> 
+
+                <div class="form-group mt">
+                    <div class="col-xs-12 text-right"><button type="reset" class="btn btn-shadow btn-default" ng-show="dateformat(onePlan.timeDis[1],'yyyy-MM-dd') >= nowDate()">取消</button></div>
+                    <div class="col-xs-3"><button type="submit" class="btn btn-shadow btn-danger" ng-show="dateformat(onePlan.timeDis[1],'yyyy-MM-dd') >= nowDate()" ng-click="saveSportPlan()">确定</button></div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    
+</div>
+
+
+<div  id="modal-items" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">选择运动项目</h4>
+            </div>
+            <div class="modal-body oh">
+
+                <ul class="nav nav-tabs auto-tpl" id="tab-sport-eval">
+                    <li ng-repeat="value in allCanSelPlanSports" ng-class="{active:$index==0}">
+                        <a href="#tc-{{value.typeid}}" data-toggle="tab">{{value.name}}</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content auto-tpl" id="sport-items-list" >
+                    <div class="tab-pane" ng-repeat="value in allCanSelPlanSports" ng-class="{active:$index==0}" id="tc-{{value.typeid}}">
+                        <ul class="sport-items row">
+
+                            <li class="col-xs-6" ng-repeat="v in value.data" ng-class="{active:$index==0}">
+                                <a win-web-sport-item-hide  data-id="{{v.itemid}}" ng-click="addItem(v.itemid)">
+                                    <img style="width:50px;height:57px" ng-src="{{v.pic}}" alt="{{v.name}}"/><br/>{{v.name}}
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-danger" type="button">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div win-web-common-alert option="alertOption"></div>

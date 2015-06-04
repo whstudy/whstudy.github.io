@@ -1,0 +1,202 @@
+ 
+
+				<div class="profile-info col-xs-19">
+
+
+					<div class="panel mh">
+						<div class="panel-heading">三高问答</div>
+
+
+						<div class="panel-body">
+							<div class=" panel-body">
+								<div class="row search-nav" win-web-search-nav-change>
+									<div class="col-xs-8">
+										<a href="" ng-click="changeKind('高血压')" class="active"
+											data-type="高血压" data-img="5"> <img
+											src="img/icon/5-active.png" alt="" />
+											<h4 class="f20">高血压</h4>
+										</a>
+
+									</div>
+									<div class="col-xs-8">
+										<a href="" ng-click="changeKind('高血脂')" data-type="高血脂"
+											data-img="6"> <img src="img/icon/6.png" alt="" />
+											<h4 class="f20">高血脂</h4>
+										</a>
+									</div>
+									<div class="col-xs-8">
+										<a href="" ng-click="changeKind('糖尿病')" data-type="糖尿病"
+											data-img="7"> <img src="img/icon/7.png" alt="" />
+											<h4 class="f20">糖尿病</h4>
+										</a>
+									</div>
+								</div>
+								<div class=" filter" id="filter-sport"	 win-web-sport-filter>
+									<ul class="nav nav-pills">
+										<li  ><a  href="#" ng-click="changeKindL('所有')">所有</a></li>
+										<li  ><a  href="#" ng-click="changeKindL('症状SYMPTOM')">症状</a></li>
+										<li  ><a  href="#" ng-click="changeKindL('指标检查诊断INDEX')">指标检查诊断</a></li>
+										<li  ><a  href="#" ng-click="changeKindL('饮食DIET')">饮食</a></li>
+										<li  ><a  href="#" ng-click="changeKindL('运动SPORT')">运动</a></li>
+										<li  ><a  href="#" ng-click="changeKindL('药物治疗DRUG')">药物治疗</a></li>
+										<li  ><a  href="#" ng-click="changeKindL('其他OTHER')" >其他</a></li>
+									</ul>
+								</div>
+								<form id="form-search" ng-submit="askForAnswer(kind,kindL,word)"
+									class="ajax" data-avatar="img/pro-ac-1.png">
+									<div class="input-group m-bot15 meals-search col-xs-24">
+										<input id='keyword' win-web-search-keyword-select type="text" ng-model="word" class="form-control" 
+											name="keyword" placeholder="问题关键词" value="症状" ng-focus="searchFocus()"/> <i
+											class="fa fa-search" ng-click="askForAnswer(kind,kindL,word)" ></i>
+											<div ng-show="focusFlag" style="border:1px solid rgb(220, 190, 190);">
+												<ul ng-repeat="keyword in keywords">
+													<li class="key" win-web-search-keyword  ng-click="selectKeyword(keyword)" style="font: 14px arial;line-height: 20px;padding-left:13px;cursor: default;">{{keyword}}</li>
+												</ul>
+											</div>
+									</div>
+								</form>
+							</div>
+
+							<script type="text/html" id="tpl-dialog-window-tip">
+                <div class="panel-body">
+                    <img src="img/kficon.png" alt="" class="pull-left mt"/>
+                    <div class="pannel-kfbg pull-left ml2">
+                        <div class="top"></div>
+                        <div class="middle">
+                            <h1>{{#title}}</h1>
+                            <p>{{#description}}</p>
+                        </div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+            </script>
+
+
+							<script type="text/ng-template" id="oneAnswer.html">
+           	<div class="panel-body">
+                    <img src="img/kficon.png" alt="" class="pull-left mt"/>
+                    <div class="pannel-kfbg pull-left ml2">
+                        <div class="top"></div>
+                        <div class="middle">
+                            <h1 ng-bind-html="data.answers[0].title"></h1>
+                            <p ng-bind-html="data.answers[0].word"></p>
+                            
+                            <div class="row feedback">
+                                <form action="">
+                                    <div class=" col-xs-7">
+                                        <label class="radio-inline label_radio" for="satisfied-1" ng-class="{r_on:showFeedDia==false}">
+                                            <input name="satisfied" id="satisfied-1" value="1" type="radio" ng-click="showFeedDia=false"/>已解决
+                                        </label>
+                                        <label class="radio-inline label_radio" for="satisfied-2" ng-class="{r_on:showFeedDia==true}">
+                                            <input name="satisfied" id="satisfied-2" value="2" type="radio" ng-click="showFeedDia=true" />未解决
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12  feedback-input row" ng-show="showFeedDia">
+                                        <div class="col-xs-13 full-left">
+                                            <select ng-model="submitAnswerType" name="content" id="f_content" class="form-control">
+                                                <option value="1" selected>未找到问题答案</option>
+                                                <option value="2">回答不精确</option>
+                                                <option value="3">回答不详细</option>
+                                                <option value="4">答非所问</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-6 full-right">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block" ng-click="submitAnswer(data.answers[0].id,submitAnswerType)">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <a class="more" href=""></a>
+
+                        </div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+           </script>
+							<script type="text/ng-template" id="multiAnswer.html">
+           	<div class="panel-body">
+                    <img src="img/kficon.png" alt="" class="pull-left mt"/>
+                    <div class="pannel-kfbg pull-left ml2">
+                        <div class="top"></div>
+                        <div class="middle">
+                            <h1 ng-hide="noResultFlag"><i class="fa fa-question-circle"></i> 您想问的是不是下面这些问题？</h1>
+                            <ul>
+                                <li ng-repeat="answer in data.answers"><a href="" ng-click="getOneAnswer(answer)" >{{$index+1}}、{{answer.title}}</a></li>
+                            </ul>
+							<ul ng-show="noResultFlag">
+								我们无法有效匹配您的关键信息，请您重新输入！建议您尝试在搜索框中换种问法输入，或者提取您问题中的一系列关键词输入。
+							</ul>
+                            <!--<a class="more" href="#">显示更多</a>-->
+							<pagination total-items="resultCounts" ng-hide="noResultFlag" 
+								ng-model="currentPage"
+								ng-change="pageChanged()"
+								boundary-links="true"
+								items-per-page="itemsPerPage"
+								max-size="maxSize"
+								previous-text="&lsaquo;" 
+								next-text="&rsaquo;"
+								first-text="&laquo;"
+								last-text="&raquo;">
+							</pagination>
+                        </div>
+                        <div class="bottom"></div>
+                    </div>
+                </div>
+           </script>
+							<script type="text/ng-template" id="userdialog.html">
+           	<div class="panel-body">
+                    <div class="activity alt terques">
+                    <span class="activity-img">
+                      <img src="img/pro-ac-1.png" alt="" height="70"/>
+                    </span>
+                        <div class="activity-desk">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="arrow-alt"></div>
+                                    <p>{{data.word}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </script>
+							<div id="dialog-window">
+								<div ng-repeat="data in queryDatas | orderBy:predicate:reverse"
+									class="repeated-item">
+									<div win-web-search-one-answer ng-show="data.single"></div>
+									<div win-web-search-multi-answer ng-hide="data.single"></div>
+									<div win-web-search-userdialog></div>
+								</div>
+								<div class="panel-body" style="">
+									<img src="img/kficon.png" alt="" class="pull-left mt">
+									<div class="pannel-kfbg pull-left ml2">
+										<div class="top"></div>
+										<div class="middle">
+											<h1>
+												<i class="fa fa-smile-o"></i> 专业搜索使用小贴士
+											</h1>
+											<p></p>
+											<ul>
+												<li>1. 选择一类疾病</li>
+												<li>2. 在搜索框输入问题描述(不含疾病名称)</li>
+												<li>3. 按下键盘上的回车键或点击右侧的搜索图标进行搜索</li>
+											</ul>
+											<p></p>
+										</div>
+										<div class="bottom"></div>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+
+
+				</div>
+
+
+<div win-web-common-alert option="alertOption"></div>
+
+
+		 

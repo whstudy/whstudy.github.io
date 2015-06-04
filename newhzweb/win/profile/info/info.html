@@ -1,0 +1,173 @@
+<html>
+    
+    <head>
+    </head>
+    
+    <body>
+     
+    <div class="modal fade  ng-scope" tabindex="-1" id="modal-set1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" style="top:200px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">接受申请</h4>
+            </div>  
+            <div class="modal-body row" style="
+			    font-size: 15px;
+			">
+            
+					<p>确认接受用户 {{djdxx.sendRealName}} ({{djdxx.sendName}}) 的成员申请?</p>
+					<p>注:接受后双方将建立家庭成员关系,双方都可以查看对方的全部信息,并能帮助完善部分个人信息以及健康信息</p>	
+						             
+            </div>
+            <div class="modal-footer">            	
+                <button type="submit" class="btn btn-primary" ng-click="attention(djdxx.sendId,2)">&nbsp;&nbsp;确认接受&nbsp;&nbsp;</button>
+                <button type="submit" class="btn btn-primary"  data-dismiss="modal">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+    
+        <div class="col-xs-19">
+            <div style="overflow: auto; padding: 30px;min-height: 580px;" class="panel">
+                <div style="font-size: 30px; border-bottom: 1px solid; margin-bottom: 2px; font-size: 22px;">
+                    <div style="position: relative; top: -17px;">
+                        <div style="float: left; position: relative; top: 25px; font-size: 17px;">
+                            消息中心
+                        </div>
+                    </div>
+                    <div class="panel-body" style="border-bottom: 1px solid;">
+                    </div>
+                </div>
+                <div style="width: 578px;">
+                    <ul>
+                        <li class="receiveMessages" style="margin-top: 30px" ng-repeat="msg in receiveMessages | orderBy:'sendDate':true">
+                            <div class="fl">
+                                <img height="50" width="50" alt="" src="http://img3.3lian.com/2006/013/02/006.jpg"
+                                />
+                            </div>
+                            <div style="margin-left: 70px; border-bottom: 1px solid; padding-bottom: 1px;">
+                                <div style="">
+                                    <div>
+                                        <span style="font-weight: bold; font-size: 15px;">
+                                            用户{{msg.sendRealName}}({{msg.sendName}})向你发来家庭成员请求
+                                        </span>
+                                        <div class="fr" style="">
+                                            <span>
+                                                {{msg.sendDate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 18px; height: 27px;">
+                                        留言:{{msg.message}}
+                                        <div class="fr" style="position: relative; top: 5px;">
+                                            <span ng-show="msg.status==2">
+                                                已接受
+                                            </span>
+                                            <span ng-show="msg.status==3">
+                                                已忽略
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div ng-show="msg.status==1" style="height: 44px;">
+                                        <div class="fr" style="position: relative; top: 5px;">
+                                            <span>
+                                                是否接受请求?
+                                            </span>
+<!--                                             ng-click="attention(msg.sendId,2)" -->
+                                            <button ng-click="jsxx(msg)" data-toggle="modal" href="#modal-set1" class="bg s_btn">
+                                                接受
+                                            </button>
+                                            <button ng-click="attention(msg.sendId,3)" class="bg s_btn">
+                                                忽略
+                                            </button>
+                                        </div>
+                                    </div>                                    
+                                    
+                                </div>
+                            </div>
+                        </li>                        
+                        
+                        <li class="sendMessages" style="display:none;margin-top: 30px" ng-repeat="msg in sendMessages | orderBy:'sendDate':true">
+                            <div style="margin-left: 20px; border-bottom: 1px solid; padding-bottom: 1px;">
+                                <div style="">
+                                    <div>
+                                        <span style="font-weight: bold; font-size: 15px;">
+                                            向用户{{msg.sendRealName}}({{msg.sendName}})发送家庭成员请求
+                                        </span>
+                                        <div class="fr" style="">
+                                            <span>
+                                                {{msg.sendDate}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div style="margin-top: 18px; height: 27px;">
+                                        <div class="fr" style="position: relative; top: 5px;">
+                                            <span ng-show="msg.status==1">
+                                                待处理
+                                            </span>
+                                            <span ng-show="msg.status==2">
+                                                已接受
+                                            </span>
+                                            <span ng-show="msg.status==3">
+                     待处理                          
+                                            </span>
+<!--                                             已忽略 -->
+                                        </div>
+                                    </div>
+                                    <!-- <div style="height: 44px;"> -->
+                                    <!-- <div class="fr" style="position: relative; top: 5px;"> -->
+                                    <!-- <span>是否接受请求?</span> -->
+                                    <!-- <button class="bg s_btn">接受</button> -->
+                                    <!-- <button class="bg s_btn">忽略</button> -->
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="" style="position: absolute; top: 93px; right: 38px;">
+                    <!-- <div class="bg s_btn"><a style="color:white" href="#~/profileInfo">收到的请求</a></div> -->
+                    <!-- <div style="margin-top: 1px" class="bg s_btn">发送的请求</div> -->
+                    <div style="
+                    border-right: solid 2px;
+                    width: 0px;
+                    height: 24px;
+                    position: absolute;
+                    left: 49px;
+                    top: -24px;
+                    ">
+                    </div>
+                    <button id="receiveBtn" onclick="showReceiveMessages();" style="display:block;" class="bg s_btn active">
+                        收到的请求
+                    </button>
+                    <button id="sendBtn" onclick="showSendMessages();" style="display:block;margin-top: 1px"
+                    class="bg s_btn">
+                        发送的请求
+                    </button>
+                </div>
+                <script type="text/javascript">
+                    function showReceiveMessages() {
+                        $(".receiveMessages").show();
+                        $(".sendMessages").hide();
+                        $("#receiveBtn").addClass("active");
+                        $("#sendBtn").removeClass("active");                        
+                    }
+
+                    function showSendMessages() {
+                        $(".receiveMessages").hide();
+                        $(".sendMessages").show();
+                        $("#receiveBtn").removeClass("active");
+                        $("#sendBtn").addClass("active");
+                    }
+                </script>
+            </div>
+        </div>
+        <div win-web-common-alert="" option="alertOption">
+        </div>
+    </body>
+
+</html>

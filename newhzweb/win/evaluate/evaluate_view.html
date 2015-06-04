@@ -1,0 +1,283 @@
+<div class="col-xs-14 eval-main" id="evaluate-main">
+    
+    <div class="panel panel-primary ">
+        <div class="panel-heading">
+            {{title}}介绍
+        </div>
+
+        <div class="panel-body ">
+            <p class="lh" >
+                <img ng-src="{{pic}}" alt="" class="eval-pic"/>
+                <span ng-bind-html="intro"></span>
+            </p>
+        </div>  
+    </div>
+
+    <div class="panel " win-web-eval-view-question>
+        <div class="panel-heading tab-bg-dark-green">
+            <ul class="nav nav-tabs nav-justified ">
+                <li class="active">
+                    <a href="#tc-2" data-toggle="tab"> 评估题目</a>
+                </li>
+                <li>
+                    <a  href="#tc-3" data-toggle="tab"> 评估结果</a>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body" >
+            <div class="tab-content">
+                <div class="tab-pane lh active " id="tc-2">
+                    <div class="progress progress-sm">
+                        <div class="progress-bar progress-bar-primary" style="width:{{1/rate*100+'%'}}"></div>
+                    </div>
+                    
+                    <div id="evaluate-view">
+                        <form action="" id="evaluate-form" class="">
+                            <div class="form-group question"
+                                 ng-repeat="$value in data"
+                                 data-index="{{$index}}" data-name="{{$value.name}}" ng-show="$index==0"
+                                  >
+                                <a name="question-{{$value.name}}" ></a>
+                                
+                                <button ng-show="data[$index-1]" class="btn btn-primary btn-block"
+                                        data-id="{{$index-1}}">
+                                    <i class="fa fa-chevron-up"></i>
+                                </button>
+                                
+                                <label class="form-label mt" for="">
+                                    问题{{$index+1}}: {{$value.title}}
+                                </label>
+                                <div class="control-group">
+                                    
+                                      <label niceform ng-repeat="($i,$v) in $value.data" class="{{$value.type}}" for="f_{{$value.name}}{{$i}}">
+                                        <div ng-show="$value.type=='checkbox'">
+                                            <input type="checkbox" ng-model="$v.checked" style="height:15px;width:15px;"/>
+                                          	<h5 ng-bind-html="$v.title" ng-click="$v.checked = !$v.checked"></h5>
+                                        </div>
+                                        <div ng-show="$value.type=='radio'" >
+                                           <input type="radio" ng-checked="$v.checked" name="f_{{$value.questionId}}" ng-click="evalTest($value,$index,$event)" style="height:15px;width:15px;"/> 
+                                           <h5 ng-bind-html="$v.title" win-web-radio-check></h5>
+                                        </div>
+                                       <!--  
+                                       <div ng-show="$value.type=='text'">
+                                            {{$v.title}}<br/>
+                                            <input type="text" ng-model="$v.value"/>
+                                        </div> 
+                                        -->
+                                    </label>
+                                    
+                                </div>
+                                
+                                <button  ng-show="data[$index+1]" class="btn btn-primary btn-block down"
+                                        data-id="{{$index+1}}">
+                                    <i class="fa fa-chevron-down"></i>
+                                </button>
+                                
+                            </div>
+                        </form>
+
+                    </div>
+                    
+                    <div class="none text-center" id="btn-result">
+                        <button class="btn btn-primary" ng-click="getResult()"> 查看结果 </button>
+                    </div>
+                    
+                </div>
+
+				<!-- 测试结果 -->
+                <div class="tab-pane" id="tc-3">
+                	
+                	<!-- 测试分数 -->
+                    <div class="alert alert-{{color}}" ng-hide="topic == '睡眠质量'">
+                        <div class="row">
+                            <div class="col-xs-8 text-center">
+                                <span class="badge bg-{{color}} fa-xl">{{result.score}}</span>
+                                <br/>
+                                <b>{{result.riskNumber}} </b>
+                            </div>
+                            <div class="col-xs-16" ng-bind-html="result.content"></div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="alert alert-{{color}}"  ng-show="topic == '睡眠质量'">
+                        <div class="row">
+                            <div class="col-xs-6 text-center">
+                                <span class="badge bg-danger fa-xl">{{result.score}}</span>
+                                <br/>
+                                <b>{{result.riskNumber}} </b>
+                            </div>
+                            <div ng-show="topic=='睡眠质量'"  class="col-xs-18">
+                    	<div class="col-xs-12">
+		                	<div>
+		                		睡眠质量
+			                	<span  class="rating"> 
+									<span class="star hover" ng-show="3-sleepQuality >=1"></span>
+									<span class="star hover" ng-show="3-sleepQuality >= 2"></span>
+									<span class="star hover" ng-show="3-sleepQuality == 3"></span>
+									<span class="star" ng-show="3-sleepQuality < 1"></span>
+									<span class="star" ng-show="3-sleepQuality < 2"></span>
+									<span class="star" ng-show="3-sleepQuality < 3"></span>
+								</span>
+							</div>
+							<div>
+		                		入睡时间
+			                	<span  class="rating" > 
+									<span class="star hover" ng-show="3- sleepStartTime >=1"></span>
+									<span class="star hover" ng-show="3- sleepStartTime >= 2"></span>
+									<span class="star hover" ng-show="3- sleepStartTime == 3"></span>	
+									<span class="star" ng-show="3-sleepStartTime < 1"></span>
+									<span class="star" ng-show="3-sleepStartTime < 2"></span>
+									<span class="star" ng-show="3-sleepStartTime < 3"></span>
+								</span>
+							</div>
+							<div>
+		                		睡眠时间
+			                	<span  class="rating" > 
+									<span class="star hover" ng-show="3- sleepTime >=1"></span>
+									<span class="star hover" ng-show="3- sleepTime >= 2"></span>
+									<span class="star hover" ng-show="3- sleepTime == 3"></span>	
+									<span class="star" ng-show="3- sleepTime < 1"></span>
+									<span class="star" ng-show="3- sleepTime < 2"></span>
+									<span class="star" ng-show="3- sleepTime < 3"></span>
+								</span>
+							</div>
+							<div>
+		                		睡眠效率
+			                	<span  class="rating"> 
+									<span class="star hover" ng-show="3- sleepEfficiency >=1"></span>
+									<span class="star hover" ng-show="3- sleepEfficiency >= 2"></span>
+									<span class="star hover" ng-show="3- sleepEfficiency == 3"></span>
+									<span class="star" ng-show="3- sleepEfficiency < 1"></span>
+									<span class="star" ng-show="3- sleepEfficiency < 2"></span>
+									<span class="star" ng-show="3- sleepEfficiency < 3"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<div>
+		                		睡前障碍
+			                	<span  class="rating"> 
+									<span class="star hover" ng-show="3- sleepHard >=1"></span>
+									<span class="star hover" ng-show="3- sleepHard >= 2"></span>
+									<span class="star hover" ng-show="3- sleepHard == 3"></span>
+									<span class="star" ng-show="3- sleepHard < 1"></span>
+									<span class="star" ng-show="3- sleepHard < 2"></span>
+									<span class="star" ng-show="3- sleepHard < 3"></span>
+								</span>
+							</div>
+							<div>
+		                		睡眠药物
+			                	<span  class="rating"> 
+									<span class="star hover" ng-show="3- sleepMedicine >=1"></span>
+									<span class="star hover" ng-show="3- sleepMedicine >= 2"></span>
+									<span class="star hover" ng-show="3- sleepMedicine == 3"></span>
+									<span class="star" ng-show="3- sleepMedicine < 1"></span>
+									<span class="star" ng-show="3- sleepMedicine < 2"></span>
+									<span class="star" ng-show="3- sleepMedicine < 3"></span>
+								</span>
+							</div>
+							<div style="width: 200px;">
+		                		日间功能障碍
+			                	<span  class="rating" > 
+									<span class="star hover" ng-show="3- rijian >=1"></span>
+									<span class="star hover" ng-show="3- rijian >= 2"></span>
+									<span class="star hover" ng-show="3- rijian == 3"></span>
+									<span class="star" ng-show="3- rijian < 1"></span>
+									<span class="star" ng-show="3- rijian < 2"></span>
+									<span class="star" ng-show="3- rijian < 3"></span>
+								</span>
+							</div>
+						</div>
+					</div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="alert alert-{{color}}"  ng-show="result.result != ''">
+                        <h4><i class="fa fa-user-md"></i>症状筛查结果</h4>    
+                        {{result.result}}
+                    </div>
+                
+                    <div class="alert alert-danger" ng-show="checkedItems != ''">
+                        <h4><i class="fa fa-user-md"></i>急需改善 </h4>    
+                        <div ng-bind-html="checkedItems"></div>
+                    </div>
+                
+                	<!-- 健康指导 -->
+               		<!--<div class="alert alert-success ti" >
+                        <h4> <i class="fa fa-user-md"></i>为您推荐的健康管理方案 </h4> 
+                        <p ng-bind-html="healthGuide.sleep" ng-show="healthGuide.sleep != undefined"></p>
+                        <div ng-show="healthGuide.habit != undefined">
+	                        <h4>生活习惯</h4>
+	                        <p ng-bind-html="healthGuide.habit"></p> 
+                        </div>                       
+                      	<div ng-show="healthGuide.diet != undefined">
+	                      	<h4>饮食</h4>
+							<p ng-bind-html="healthGuide.diet" />
+                      	</div> 
+                        <div ng-show="healthGuide.sport != undefined">
+                        	<h4>运动</h4>
+							<p ng-bind-html="healthGuide.sport" />
+                        </div>
+						<div ng-show="healthGuide.drug != undefined">
+							<h4>药物</h4>
+							<p ng-bind-html="healthGuide.drug" />
+						</div>
+                        <div ng-show="healthGuide.complication != undefined"/>
+	                        <h4 ng-show="healthGuide.complication != undefined">并发症管理</h4>
+	                        <p ng-bind-html="healthGuide.complication" />
+                        </div>
+                    </div>
+                    -->
+  	
+          </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="col-xs-5">
+    <div class="panel panel-primary">
+        <div class="panel-heading ">
+            健康风险专项评估
+        </div>
+        <script type="text/ng-template" id="evalViewItems.html" >
+            <div class="test_list_sidebar" ng-repeat="$value in evalViewItems">
+                <a href="#~/evaluate_view/{{$value.id}}" title="">
+                    <img ng-src="{{$value.pic}}" alt="" class="img-responsive" />
+                    <span>{{$value.title}}</span>
+                </a>
+            </div>
+        </script>
+        <div class="panel-body eval-items">
+            <div class="auto-tpl" id="eval-items" win-web-eval-view-items>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- common elements -->
+<script type="text/html" id="tpl-modal-alert">
+    <div class="modal modal-alert fade" id="tpl-modal-alert" >
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                    <div class="modal-title">{{title}}</div>
+                </div>
+                <div class="modal-body alert-{{type}}">
+                    <p>{{content}}</p>
+                    <div class="text-center mt">
+                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" >确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<!-- /common elements -->

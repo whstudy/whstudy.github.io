@@ -1,0 +1,306 @@
+<!-- 家庭成员 -->
+<!-- <div class="familyMenu">
+<a ng-repeat="user in users" ng-click="fnChangeUserGetReports(user.userName)">
+<img ng-src="{{user.iconUrl}}"   data-original-title="{{user.name}}" win-web-tooltip ng-class="{'select':user.name == username}" option="user.userName"/>
+</a>
+</div>  -->
+<div class="col-xs-19">
+    <div class="panel" style="
+    padding: 10px;
+    ">
+        <div class="panel-heading" style="border-bottom: solid 2px;">
+            我的健康档案
+        </div>
+        <div class="" style="position: absolute; top: 76px; right: 50px;width: 80px;">
+            <!-- <div class="bg s_btn"><a style="color:white" href="#~/profileInfo">收到的请求</a></div> -->
+            <!-- <div style="margin-top: 1px" class="bg s_btn">发送的请求</div> -->
+            <div style="
+            border-right: solid 2px;
+            width: 0px;
+            height: 24px;
+            position: absolute;
+            left: 49px;
+            top: -24px;
+            ">
+            </div>          
+                       
+            <a href="#~/report">
+            <button style="display:block;margin-top: 1px"
+            class="bg s_btn" ng-class="{'active':type==null}">
+                全部
+            </button>
+            </a>
+            
+            <a href="#~/report/体检及病历报告">
+            <button style="display:block;margin-top: 1px"
+            class="bg s_btn" ng-class="{'active':type=='体检及病历报告'}">
+                体检及病历报告
+            </button>
+            </a>
+                       
+            <a href="#~/report/化验单">
+            <button style="display:block;margin-top: 1px"
+            class="bg s_btn" ng-class="{'active':type=='化验单'}">
+     	 化验单
+            </button>
+            </a>
+             
+            <a href="#~/report/影像检查">
+            <button style="display:block;margin-top: 1px"
+            class="bg s_btn" ng-class="{'active':type=='影像检查'}">
+                影像检查
+            </button>
+            </a>
+                         
+            <a href="#~/report/其他">
+            <button style="display:block;margin-top: 1px"
+            class="bg s_btn" ng-class="{'active':type=='其他'}">
+                其他
+            </button>
+            </a>
+             
+        </div>
+        <div class="panel-body row" win-web-common-infi-strol data="scrollData"
+        url="healthdoc/getHealthDoc" start='2' on-data="dataHandle(newData)">
+            <div class="col-xs-20">
+                <div class="timeline" id="report-list">
+                    <div class="timeline-item">
+                        <div class="timeline-desk">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <span class="arrow">
+                                    </span>
+                                    <span class="timeline-icon purple alt">
+                                    </span>
+                                    <h1 class="purple">
+                                        此时此刻
+                                    </h1>
+                                    <p>
+                                        建立一个健康档案
+                                        <a href="#~/report#modal-upload" data-toggle="modal" ng-click="fnOpenModal()">
+                                            立即上传
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" ng-class="{alt:$even==true}" ng-repeat="value in scrollData">
+                        <div class="timeline-desk">
+                            <a name="{{value.year}}">
+                            </a>
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <span ng-class="{arrow:$even!=true,'arrow-alt':$even==true}">
+                                    </span>
+                                    <span class="timeline-icon purple">
+                                    </span>
+                                    <div class="row">
+                                        <div class="pull-left">
+                                            <h1 class="purple" class="pull-left">
+                                                <i class="fa fa-clock-o">
+                                                </i>
+                                                {{value.time | date:'yyyy年MM月dd日'}}
+                                            </h1>
+                                        </div>
+
+                                        <div class="pull-right" ng-click="fnAddFile(value.forderId)" style="cursor:pointer">
+                                            <i class="glyphicon glyphicon-plus">
+                                            </i>
+                                        </div>
+
+                                        <div class="pull-right" ng-click="fnDelFile(value.forderId)" style="cursor:pointer;margin-right: 10px;">
+                                            <i class="fa fa-times">
+                                            </i>
+                                        </div>
+
+                                    </div>
+                                    <h4>
+                                        {{value.title}}
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-xs-16">
+                                            <div ng-repeat="doc in value.healthDocList" class="btn-group">
+                                                <!-- doc pdf -->
+                                                <div style="background-color:#E9E9EB;margin-top:5px;padding:10px;width:280px;"
+                                                ng-if="doc.suffix == 'pdf' || doc.suffix == 'doc'">
+                                                    <a ng-href="{{'file/processDownload?file=' + doc.path}}" target="_blank">
+                                                        <span ng-if="doc.suffix == 'doc'">
+                                                            <img src="img/doc.jpg" style="width: 40px;height: 40px;">
+                                                        </span>
+                                                        <span ng-if="doc.suffix == 'pdf'">
+                                                            <img src="img/pdf.jpg" style="width: 40px;height: 40px;">
+                                                        </span>
+                                                        <span style="margin-left:10px;color:#797979" ng-if="doc.suffix != 'pdf' && doc.suffix != 'doc'"
+                                                        title="{{doc.name}}">
+                                                            {{doc.name | subFilter:10}}
+                                                        </span>
+                                                        <span style="margin-left:10px;color:#797979" ng-if="doc.suffix == 'pdf'"
+                                                        title="{{doc.name}}">
+                                                            {{doc.name | subFilter:10}}
+                                                        </span>
+                                                    </a>
+                                                    <button class="btn btn-sm pull-right" style="color:#B3B3B3;margin-top: 7px;"
+                                                    ng-click="fnDeleteFile(value.forderId,doc.docId)">
+                                                        <i class="fa fa-times" ng-click="fnDeleteFile(value.forderId,doc.docId)">
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                                <!-- img -->
+                                                <div style="background-color:#E9E9EB;margin-top:5px;padding:10px;width:280px;cursor: pointer;"
+                                                ng-if="doc.suffix != 'pdf' && doc.suffix != 'doc'">
+                                                    <span ng-click="fnCheckPicture(value.forderId,doc.docId)">
+                                                        <span>
+                                                            <img src="img/new.png" style="width: 40px;height: 40px;">
+                                                        </span>
+                                                        <span style="margin-left:10px;" ng-if="doc.suffix != 'pdf' && doc.suffix != 'doc'"
+                                                        title="{{doc.name}}">
+                                                            {{doc.name | subFilter:10}}
+                                                        </span>
+                                                    </span>
+                                                    <button class="btn btn-sm pull-right" style="color:#B3B3B3;margin-top: 7px;"
+                                                    ng-click="fnDeleteFile(value.forderId,doc.docId)">
+                                                        <i class="fa fa-times" ng-click="fnDeleteFile(value.forderId,doc.docId)">
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-xs-8">
+                                        <a ng-show="value.type"  href="{{value.file}}" target="_blank">
+                                        <img ng-src="{{'img/report-'+value.type+'.png'}}" height="80" alt=""/>
+                                        </a>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-xs-4">
+                <div class="fb-timeliner">
+                <ul ng-repeat="year in report_years">
+                <li class="active">
+                <a href="#{{ year.year }}">
+                {{ year.year }}
+                </a>
+                </li>
+                </ul>
+                </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade " id="modal-upload" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title text-center">
+                    档案袋
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline" action="" method="post">
+                    <div>
+                        <label class="col-xs-6 control-label" style="line-height: 36px;">
+                            档案袋名称：
+                        </label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" placeholder="输入档案袋名称 10个字以内" ng-model="folder.title"
+                            maxLength='10' />
+                        </div>
+                    </div>
+
+                    
+                    <div class="fileupload fileupload-new row" data-provides="fileupload">
+                        <span class="btn btn-white btn-file">
+                            <span class="fileupload-new">
+                                <i class="fa fa-paper-clip">
+                                </i>
+                                选择文件
+                            </span>
+                            <span class="fileupload-exists">
+                                <i class="fa fa-undo">
+                                </i>
+                                继续选择
+                            </span>
+                            <input type="file" class="default" ng-file-select="onFileSelect($files)"
+                            accept="image/*,application/pdf" />
+                            <!-- multiple -->
+                        </span>
+                        <span>
+                            可上传图片和pdf文件
+                        </span>
+                        <!-- <div><span class="badge bg-success">{{uploadState}}</span></div> -->
+                        <div class="row">
+                        </div>
+                        <!-- <span class="fileupload-preview" style="margin-left:5px;"></span> -->
+                        <div ng-repeat="file in folder.healthDocList track by $index" class="btn-group">
+                            <button title="{{file.name }}" class="btn btn-xs btn-success">
+                                {{file.name | subFilter:10}}
+                            </button>
+                            <button class="btn btn-xs btn-success" ng-click="fnDeleteAddFile($index)">
+                                <i class="fa fa-times">
+                                </i>
+                            </button>
+                            &nbsp;
+                        </div>
+                        <a href="#" class="close fileupload-exists" data-dismiss="fileupload"
+                        style="float: none; margin-left:5px;">
+                        </a>
+                    </div>
+                    
+                                        
+                    <div>
+                        <label class="col-xs-6 control-label" style="line-height: 36px;">
+                            档案袋类型：
+                        </label>
+                        <div class="col-xs-8">                            
+                            <select class="form-control" ng-model="folder.folderType">
+                            <option value="">-- 请选择 --</option>
+                            <option>体检及病历报告</option>
+                            <option>化验单</option>
+                            <option>影像检查</option>
+                            <option>其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="uploadConfirm()">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 查看图片 -->
+<div class="modal fade" id="checkPicture">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">
+                    查看图片
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" style="margin-top: -21px;">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img ng-src="{{picture}}" style="max-width:100%" />
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div win-web-common-alert option="alertOption">
+</div>

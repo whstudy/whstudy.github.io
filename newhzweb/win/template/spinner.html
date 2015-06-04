@@ -1,0 +1,15 @@
+<div class="input-group input-group-sm">
+	<div class="spinner-buttons input-group-btn">
+		<button type="button" class="btn spinner-up" ng-click="increase()">
+			<i class="fa fa-plus fa-inverse"></i>
+		</button>
+	</div>
+	<input type="text"
+		class="spinner-input form-control ng-pristine ng-valid" maxlength="3"
+		readOnly  ng-model="value">
+	<div class="spinner-buttons input-group-btn">
+		<button type="button" class="btn spinner-down" ng-click="decrease()">
+			<i class="fa fa-minus fa-inverse"></i>
+		</button>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+<div class="profile-info col-xs-13"  ng-controller="ChronicMainCtrl">
+
+		<!-- <div class="panel">
+		<div class="panel-body">
+			<div class="meals-search">
+				<input type="text" class="form-control" value=""
+					placeholder="资讯搜索" /> <i class="fa fa-search"></i>
+			</div>
+		</div>
+	</div> -->
+
+	<!--target1-->
+	<div class="auto-tpl">
+		<div class="panel" ng-repeat="item in chronicData" style="height: 250px;">
+			<div class="panel-heading">
+				{{typeName[item.type]}}最新文章 
+				<a class="more" ng-href="#~/chronicCat/{{item.type}}">更多&raquo;</a>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-8">
+					<a href=""><img class="img-responsive" ng-src="{{typePic[item.type]}}" alt="" /></a>
+				</div>
+				<div class="col-xs-16">
+					<div id="slide{{$index}}" class="carousel slide wiki-slide" data-ride="carousel">
+						<div class="carousel-inner">
+							<div class="item" ng-repeat='value in item.data' ng-class="{'active': $index==0}">
+								<h4 class="text-center">
+									<a class="" ng-href="#~/chronicDetail/{{value.id}}">{{value.title}}</a>
+								</h4>
+								<p class="ti">
+									{{value.abstracts}}
+								</p>
+							</div>
+						</div>
+						<ol class="carousel-indicators" style="top: 150px;">
+							<li data-target="#slide{{$index}}" data-slide-to="0" class="active"></li>
+							<li data-target="#slide{{$index}}" data-slide-to="1"></li>
+							<li data-target="#slide{{$index}}" data-slide-to="2"></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include="chronicRight"></div>

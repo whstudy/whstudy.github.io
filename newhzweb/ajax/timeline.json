@@ -1,0 +1,41 @@
+[
+    {
+        "color":"purple",
+        "date":"12月3日",
+        "day":"星期六",
+        "time":"1:30 PM",
+        "content":"我补充了个人信息。",
+        "icon":"user",
+        "pos":"left"
+    },
+    {
+        "color":"purple",
+        "date":"12月3日",
+        "day":"星期六",
+        "time":"1:30 PM",
+        "content":"我完成了一次健康监测。",
+        "icon":"bar-chart-o",
+        "pos":"right"
+    },
+    {
+        "color":"purple",
+        "date":"12月3日",
+        "day":"星期六",
+        "time":"1:30 PM",
+        "content":"我上传了一份健康报告。",
+        "icon":"file-text-o",
+        "pos":"left"
+    },
+    "2014 <br/> 12月",
+    {
+        "color":"blue",
+        "date":"12月2日",
+        "day":"星期五",
+        "time":"9:30 AM",
+        "content":"我评估了自己的膳食营养。",
+        "icon":"cutlery",
+        "pos":"right"
+    }
+    
+]
+

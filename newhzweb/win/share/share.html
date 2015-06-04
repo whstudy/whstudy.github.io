@@ -1,0 +1,45 @@
+
+<div class="col-xs-19">
+    
+
+    <div class="panel tasks-widget">
+        <div class="panel-heading">
+            我的分享
+        </div>
+
+        <div class="panel-body">
+            <div class="task-content">
+                <ul id="sortable" class="task-list">
+                    <li ng-repeat="$value in data">
+                        <i class="li-icon fa fa-ellipsis-v"></i>
+                        <div class="task-title">
+                            <span class="task-title-sp" ng-bind="$value.title"></span>
+                            <span class="badge badge-sm label-{{$value.color}}">{{$value.date}}</span>
+                            <span class="badge badge-sm label-{{$value.color}}">分享到{{$value.to}}</span>
+                            <div class="pull-right hidden-phone">
+                                <a class="btn btn-success btn-xs" href="{{$value.url}}"><i class=" fa fa-eye"></i> 查看</a>
+                            </div>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pannel-body mt10">
+        <div class="panel text-center">
+            <ul class="pagination">
+                <li><a href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+

@@ -1,0 +1,53 @@
+ [
+            
+
+            {
+                "name":"高血压",
+                "checked":false,
+                "value":11
+            },
+            
+            {
+                "name":"高血脂",
+                "checked":false,
+                "value":12
+            },
+            {
+                "name":"冠心病",
+                "checked":false,
+                "value":13
+            },
+            {
+                "name":"脂肪肝",
+                "checked":false,
+                "value":6
+            },
+            {
+                "name":"痛风",
+                "checked":false,
+                "value":17
+            },
+            {
+                "name":"肥胖",
+                "checked":false,
+                "value":18
+            },
+            {
+                "name":"糖尿病",
+                "checked":false,
+                "value":19
+            },
+            {
+                "name":"贫血",
+                "checked":false,
+                "value":29
+            },
+            {
+                "name":"骨质疏松",
+                "checked":false,
+                "value":24
+            }  
+             
+        ]
+  
+

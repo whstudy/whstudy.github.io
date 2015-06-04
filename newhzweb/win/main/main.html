@@ -1,0 +1,478 @@
+<!-- 家庭成员 -->
+<!-- <div class="familyMenu"> -->
+<!--     <a ng-repeat="user in users" ng-click="fnChangeUser(user.userName)"> -->
+<!--         <img ng-src="{{user.iconUrl}}" data-original-title="{{user.name}}" win-web-tooltip -->
+<!--         ng-class="{'select':user.name == username}" option="user.userName" /> -->
+<!--     </a> -->
+<!-- </div> -->
+<div class="profile-info col-xs-13">
+    <!-- <div class="alert alert-warning">
+    <button data-dismiss="alert" class="close close-sm" type="button">
+    <i class="fa fa-times"></i>
+    </button>
+    <strong>系统提醒：</strong>为了享受更精准全面的服务，请完善个人信息。
+    </div> -->
+    <!-- 我的指标检测 -->
+    <div class="panel">
+        <div class="panel-heading">
+   <!--          <span ng-if="isMain">
+                我
+            </span>
+            <span ng-if="!isMain">
+             	<span ng-if="$root.gender==1">
+                	他
+                </span>
+                 <span ng-if="$root.gender==0">
+                	她
+                </span>
+            </span>
+            的 -->
+            指标监测
+            <a class="btn btn-xs btn-danger pull-right" style="margin-left:10px;"
+            ng-click="showAddMonitor()">
+                <i class="fa fa-plus">
+                </i>
+                录入记录
+            </a>
+<!--             <a href="#~/monitor#modal-set" class="btn btn-xs btn-primary pull-right"
+            data-toggle="modal">
+                <i class="glyphicon glyphicon-cog">
+                </i>
+                编辑
+            </a> -->
+        </div>
+        <div class="panel-body">
+            <div id="monitor-eval-result">
+            </div>
+            <div win-web-d-monitor-chart option="monitorCharOptions">
+            </div>
+        </div>
+    </div>
+    <!-- 健康行为指数趋势 -->
+    <!-- <div class="panel">
+    <div class="panel-heading" style="background-color:rgb(204, 192, 192);" ng-click="healthChartFlag = !healthChartFlag">健康行为指数趋势</div>
+    <div class="panel-body" ng-show="healthChartFlag">
+    <div win-web-common-chart option="charOption" style="height:270px;"></div>
+    </div>
+    </div> -->
+    <!-- 我的健康报告 -->
+    <div class="panel">
+        <div class="panel-heading">
+       <!--      <span ng-if="isMain">
+                我
+            </span>
+            <span ng-if="!isMain">
+                <span ng-if="gender==1">
+                	他
+                </span>
+                 <span ng-if="gender==0">
+                	她
+                </span>
+            </span>
+            的 -->
+            健康报告
+            <!-- <span class="tools pull-right"> <a class="fa fa-times" href="javascript:;"></a> </span> -->
+        </div>
+        <div class="panel-body" style="
+        padding: 32px;
+        ">
+            <!-- <div id="reports" class="oCarousel"> -->
+            <!-- <i class="fa fa-chevron-left prev"></i> -->
+            <!-- <i class="fa fa-chevron-right next"></i> -->
+            <!-- <ul id="home-report" win-web-main-free-slide> -->
+            <!-- <li ng-repeat='value in reportData' class="tooltips" title='' data-original-title="{{value.title}}"> -->
+            <!-- <a href="{{value.url}}" target="_blank"> -->
+            <!-- <img ng-src="{{'img/report-'+value.type+'.png'}}" alt=""/>
+            -->
+            <!-- </a> -->
+            <!-- </li> -->
+            <!-- <li class="tooltips btn-upload" title="立即上传报告"> -->
+            <!-- <a href="#~index#modal-upload" data-toggle="modal"> -->
+            <!-- <i class="fa fa-plus"></i> -->
+            <!-- </a> -->
+            <!-- </li> -->
+            <!-- </ul> -->
+            <!-- </div> -->
+            <ul id="home-report">
+                <li class="tooltips ng-scope jiankangdangan"
+                title="" data-original-title="2015年02月27日">
+                    <span ng-show="tjbg">
+                        {{tjbg.docCount}}
+                    </span>
+                    <a href="#~/report/体检及病历报告">
+                        体检及病历报告
+                    </a>
+                </li>
+                <li class="tooltips ng-scope jiankangdangan"
+                title="" data-original-title="2015年02月27日">
+                   <span ng-show="jkglbg">
+                        {{jkglbg.docCount}}
+                    </span>
+                    <a href="#~/report/化验单">
+                    化验单
+<!--                         <span>健康管理</span><br><span>报告</span> -->
+                    </a>
+                </li>
+                <li class="tooltips ng-scope jiankangdangan"
+                title="" data-original-title="2015年02月27日">
+                    <span ng-show="rcjc">
+                        {{rcjc.docCount}}
+                    </span>
+                    <a href="#~/report/影像检查">
+                     影像检查
+                    </a>
+                </li>
+                <li class="tooltips ng-scope jiankangdangan"
+                title="" data-original-title="2015年02月27日">
+                    <span ng-show="qt">
+                        {{qt.docCount}}
+                    </span>
+                    <a href="#~/report/其他">
+                        其他
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 我的健康管理 -->
+    <div class="panel" id="healthManage">
+        <div class="panel-heading">
+            <!-- <span ng-if="isMain">
+                我
+            </span>
+            <span ng-if="!isMain">
+                <span ng-if="gender==1">
+                	他
+                </span>
+                 <span ng-if="gender==0">
+                	她
+                </span>
+            </span> 
+            的-->
+            健康管理
+        </div>
+        <div class="panel-body" style="margin-left: 40px">
+            <div class='row'>
+                <div class='col-xs-4' style="line-height:51px;width:35px;background-color:#29A396;color:white">
+                    营养
+                </div>
+                <!-- <div class='col-xs-6 indexNutrition'>
+                    <a href="#~/family_basket">
+                        <img src="img/家庭菜篮.png" style="width:68px;margin-top: 10px;" />
+                        <div style="color:#ffffff;padding:4px;">
+                            家庭菜篮
+                        </div>
+                    </a>
+                </div> -->
+                <!-- <div class='col-xs-6 indexNutrition' style="margin-left:4px;"> -->
+                <div class='col-xs-6 indexNutrition'>
+                    <a href="#~/search1">
+                        <img src="img/食物宜忌.png" style="width:68px;margin-top: 10px;" />
+                        <div style="color:#ffffff;padding:4px;">
+                            食物宜忌
+                        </div>
+                    </a>
+                </div>
+                <div class='col-xs-6 indexNutrition' style="margin-left:4px;">
+                    <a href="#~/meals">
+                        <img src="img/饮食日记.png" style="width:68px;margin-top: 10px;" />
+                        <div style="color:#ffffff;padding:4px;">
+                            饮食日记
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class='row' style="margin-top:4px;">
+                <div class='col-xs-4' style="line-height:51px;width:35px;background-color:#70CCE1;color:white">
+                    运动
+                </div>
+                <div class='col-xs-6 indexMovement'>
+                    <a href="#~/sport">
+                        <img src="img/运动监测.png" style="width:68px;margin-top: 10px;" />
+                        <div style="color:#ffffff;padding:4px;">
+                            运动监测
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class='row' style="margin-top:4px;">
+                <div class='col-xs-4' style="line-height:51px;width:35px;background-color:#FF6D60;color:white">
+                    慢病
+                </div>
+                <div class='col-xs-6 indexChronicDisease'>
+                    <a href="#~/evaluate">
+                        <img src="img/慢病评估.png" style="width:68px;margin-top: 10px;" />
+                        <div style="color:#ffffff;padding:4px;">
+                            慢病风险评估
+                        </div>
+                    </a>
+                </div>
+                <div class='col-xs-6 indexChronicDisease' style="margin-left:4px;">
+                    <a href="#~/search">
+                        <img src="img/三高问答.png" style="width:68px;margin-top: 10px;" />
+                        <div style="color:#ffffff;padding:4px;">
+                            三高问答
+                        </div>
+                    </a>
+                </div>
+                <div class='col-xs-6 indexChronicDisease' style="margin-left:4px;">
+                    <a href="#~/chronic">
+                        <img src="img/慢病资讯.png" style="width:68px;margin-top: 10px;" />
+                        <div style="color:#ffffff;padding:4px;">
+                            慢病资讯
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-6">
+    <!-- <div class="panel">
+        <div class="weather-bg">
+            <div class="weather-body">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <i class="fa fa-cloud"></i>
+                        <img ng-src="{{mainData.weather.pictureUrl}}" style="margin-top: 10px;width:50px;"
+                        />
+                        <br/>
+                        <span style="color:#B7917E">
+                            {{mainData.weather.weather}}
+                        </span>
+                    </div>
+                    <div class="col-xs-14">
+                        <div class="degree">
+                            {{mainData.weather.city}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        天气有问题暂时隐藏
+        <div class="weather-category">
+            <ul>
+                <li class="active">
+                    <h5>
+                        温度
+                    </h5>
+                    {{mainData.weather.temperature}}
+                </li>
+                <li class="active">
+                    <h5>
+                        风力
+                    </h5>
+                    {{mainData.weather.wind}}
+                </li>
+                <li>
+                    <h5>
+                        PM2.5
+                    </h5>
+                    {{mainData.weather.pm25}}
+                </li>
+            </ul>
+        </div>
+    </div> -->
+    <!-- <div class="panel">
+    <div class="panel-body" style="background-color:rgba(238, 127, 127, 1)">
+    <ul class="summary-list">							
+    <li>
+    <a href="#~/medical" style="color:white"> <i class="fa fa-hospital-o"></i> 社区医疗</a>
+    </li>
+    <li><a href="" style="color:white"> 
+    <span class="fa-stack"><i class="fa fa-circle-o" style="font-size:1.8em"></i><i class="fa fa-jpy fa-stack-1x"></i></span><br> 网络缴费</a></li>
+    <li><a href="" style="color:white"> <i class="fa fa-shopping-cart"></i> 社区超市 </a></li>
+    </ul>
+    </div>
+    </div> -->
+    <!-- <div class="panel">
+    <div class="panel-body">
+    <ul class="summary-list">							
+    <li><a href="#~/monitor"> <i class="fa fa-bar-chart-o"></i> 指标监测 </a>
+    </li>
+    <li><a href="#~/search1"> <i class="fa fa-cutlery"></i>
+    食物宜忌 </a>
+    </li>
+    <li><a href="#~/search"> <i class="fa fa-search-plus"></i> 三高问答 </a>
+    </li>
+    </ul>
+    </div>
+    </div> -->
+    <div class="panel">
+        <div class="panel-heading tab-bg-dark-green">
+            <ul class="nav nav-tabs nav-justified ">
+                <li class="active">
+                    <a href="#hot" data-toggle="tab">
+                        热门文章
+                    </a>
+                </li>
+                <li>
+                    <a href="#new" data-toggle="tab">
+                        最新文章
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="tab-content tasi-tab">
+                <div class="tab-pane active" id="hot">
+                    <div class="media" ng-repeat="item in top3">
+                        <a class="pull-left thumb thumb" href="">
+                            <img ng-src="{{item.pic}}" class="img-circle" with="50" height="50">
+                        </a>
+                        <h5>
+                            <a class=" p-head" ng-href="#~/chronicDetail/{{item.id}}">
+                                {{item.title}}
+                            </a>
+                        </h5>
+                        <p>
+                            {{item.abstracts}}
+                        </p>
+                    </div>
+                </div>
+                <div class="tab-pane" id="new">
+                    <div class="media" ng-repeat="item in new3">
+                        <a class="pull-left thumb thumb" href="">
+                            <img ng-src="{{item.pic}}" class="img-circle" with="50" height="50">
+                        </a>
+                        <h5>
+                            <a class=" p-head" ng-href="#~/chronicDetail/{{item.id}}">
+                                {{item.title}}
+                            </a>
+                        </h5>
+                        <p>
+                            {{item.abstracts}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            手机客户端下载
+        </div>
+        <div class="panel-body">
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <i class="fa fa-android fa-xl" data-hover-img="img/qr.jpg">
+                    </i>
+                </div>
+                <div class="col-xs-12">
+                    <i class="fa fa-apple fa-xl" data-hover-img="img/qr.jpg">
+                    </i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade " id="modal-upload" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    上传报告
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline" action="" method="post">
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                        <span class="btn btn-white btn-file">
+                            <span class="fileupload-new">
+                                <i class="fa fa-paper-clip">
+                                </i>
+                                选择文件
+                            </span>
+                            <span class="fileupload-exists">
+                                <i class="fa fa-undo">
+                                </i>
+                                重新选择
+                            </span>
+                            <input type="file" class="default" ng-file-select="onFileSelect($files)"
+                            />
+                        </span>
+                        <span class="fileupload-preview" style="margin-left:5px;">
+                        </span>
+                        <a href="#" class="close fileupload-exists" data-dismiss="fileupload"
+                        style="float: none; margin-left:5px;">
+                        </a>
+                        <span class="badge bg-success">
+                            {{uploadState}}
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 新增指标 -->
+<div class="modal fade " tabindex="-1" id="modal-add">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="" action="" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        新增指标
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <select name="params" id="ms-params" win-web-d-monitor-multi-select multiple
+                    class="multi-select">
+                        <option ng-repeat="monitor in monitorsLeft " value="{{monitor.id}}">
+                            {{monitor.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-shadow" ng-click="addMonitorTypes(monitorsToAdd)">
+                        &nbsp;&nbsp;保存&nbsp;&nbsp;
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 设置指标 -->
+<div class="modal fade " tabindex="-1" id="modal-set">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    设置指标
+                </h4>
+            </div>
+            <div class="modal-body row">
+                <div jq-sortable="option" class="col-xs-24 " id="params" data-toggle="buttons">
+                    <label class="btn" ng-repeat="type in types" style="margin: 2px;" ng-class="{'btn-success':type.selected,'btn-default':!type.selected}"
+                    ng-click="fnSelectType(type.id)">
+                        <input type="checkbox" value="{{type.id}}">
+                        {{type.name}}
+                        <span class="glyphicon" ng-class="{'glyphicon-ok':type.selected,'glyphicon-remove':!type.selected}"
+                        aria-hidden="true">
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <label class="text-center pull-left" style="color:rgb(190, 195, 199)">
+                    拖动排序
+                </label>
+                <button type="submit" class="btn btn-primary" ng-click="saveMyMonitorType()">
+                    &nbsp;&nbsp;保存&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div win-web-common-alert option="alertOption">
+</div>
