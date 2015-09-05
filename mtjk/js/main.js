@@ -18,11 +18,11 @@ $(function(){
         $(".mobile_download").show();
         $(".pc_download").hide();
         $(".bottom_tips").hide();
-        if(bIsIpad || bIsIphoneOs) {
+        /*if(bIsIpad || bIsIphoneOs) {
             $(".mobile_download").attr("href",url[1]);
         } else {
             $(".mobile_download").attr("href",url[0]);
-        }
+        }*/
         
 
     } else {

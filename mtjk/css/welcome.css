@@ -329,12 +329,13 @@ html {
     margin-left: 53px;*/
 /*    top: 74px;
     left: 53px;*/
+    left: 4px;
 }
 #iphone_slider_wrapper {
     position: relative;
     top: 74px;
     /*left: 53px;*/
-    left: 20px;
+    left: 16px;
 }
 #iphone_slider img {
     display: inline-block;
@@ -450,8 +451,8 @@ html {
         zoom: 0.9;
     }
     #iphone_slider {
-        right: 3%!important;
-        top: -20px;
+        right: -2%!important;
+        top: 2px;
         zoom: 0.83;
     }
     .iphone_xxoo {
@@ -524,7 +525,7 @@ html {
 }
 @media ( max-height : 570px) and ( min-height:461px) {
     .iphone .iphone_img {
-        background-size: 200%!important;
+        background-size: 77%!important;
         zoom: .7!important;
     }
     .cod_rom,
