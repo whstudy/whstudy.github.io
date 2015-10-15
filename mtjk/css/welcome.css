@@ -489,8 +489,8 @@ html {
     .download_box .right a{
     }
     .iphone .iphone_img {
-        background-size: 200%;
-        zoom: 0.5;
+        background-size: 75%;
+		zoom:0.5;
     }
 
  }
