@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="overflow: hidden; height: 100%;" class="fp-enabled"><!--@(window)--><!--@(document)--><!--@(window)--><!--@(document)--><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>学园嘉年华</title>
+<link rel="stylesheet" href="fullpage.css">
+<link rel="stylesheet" href="xueyuan.css">
+<!--<link rel="stylesheet" href="xueyuan.css">-->
+<style>
+.section { text-align: center; font: 50px "Microsoft Yahei"; color: #fff;}
+</style>
+</head><body class="fp-viewing-0" style="overflow: hidden; height: 100%;" mycollectionplug="bind">
+
+	<div class="share-mobile">
+	    <div class="share-pic">
+	        <div class="share_pointer"><img src="http://i0.hdslb.com/u_user/activities/10bangumi/img/share_pointer.png"/></div>
+	        <div class="share_img"><img src="http://i0.hdslb.com/u_user/activities/10bangumi/img/share_img.png"/></div>
+	    </div>
+	</div>
+	    	
+    <div class="logo fix">
+    	<img src="img2/top.png">
+    	
+    	<span id='skip'> >>skip </span>
+		<!--<img src="img2/">-->
+    </div>
+
+<!--<div id="dowebok" class="fullpage-wrapper" style="display: none;">-->
+<!--<div id="dowebok" class="fullpage-wrapper" style="height: 100%; position: relative; touch-action: none; transform: translate3d(0px, 0px, 0px); transition: all 700ms ease;">-->
+<div id="dowebok" class="fullpage-wrapper" style="height: 100%; position: relative; touch-action: none; transform: translate3d(0px, 0px, 0px); transition: all 700ms cubic-bezier(0.18, 0.89, 0.43, 1.07);-webkit-transition: all 700ms cubic-bezier(0.18, 0.89, 0.43, 1.07);">
+    <div class="section fp-section top" style="height: 100%; background: url(img2/0-1.png) 50% 50% / cover;">
+                
+	    <div class="new_fan_1">
+	        <div class="index_text">
+	            <img src="img2/0-2.png"/>
+	        </div>
+	    </div>
+	    
+	    <div class="arrow"></div>
+	    
+    </div>
+     
+    <div class="section fp-section comic" style="background-color: rgb(246, 246, 246);">
+                
+    	<img class='1' src="img2/1.png" style='margin-top: 12%;'>
+        
+        <div class='comic2'>
+	        <img class='2-1' src="img2/2-1.png">
+	        
+	    	<img class='2-2' src="img2/2-2.png" >
+	        
+	        <img class='2-3' src="img2/2-3.png" >
+    	</div>
+        
+        <div class='comic3'>
+    		<img class='3-1' src="img2/3-1.png">
+    	
+    		<img class='3-2' src="img2/3-2.png">
+    	</div>
+    	
+    	<div class='comic4'>
+			<img class='4-1' src="img2/4-1.png" style='transform: translate3d(0px, 0px, 0px); opacity: 1;'>
+				
+			<img class='4-2' src="img2/4-2.png">
+		</div>
+			
+		<div class='comic5'>
+			<img class='5-1' src="img2/5-1.png">
+				
+			<img class='5-2' src="img2/5-2.png">
+				
+			<img class='5-3' src="img2/5-3.png">
+		</div>
+		
+		<div class='comic6'>
+			<img class='6-1' src="img2/6-1.png">
+				
+			<img class='6-2' src="img2/6-2.png">
+		</div>
+			
+		<img class='7' src="img2/7.png">
+		
+		<img class='8' src="img2/8.png" style="width: 100%;">
+		<div class='downPng center'><img src='http://i0.hdslb.com/u_user/activities/xueyuan/img/down.png'></div>
+			
+    </div>
+    
+    <div state='end' class="section fp-section end" style="margin-top:20px;height: 100%; background: url(http://172.16.4.67:8020/bili/web/img2/9-2.png) 50% 50% / cover;">
+                
+	    <div class="logo">
+	    	<img src="img2/top.png">
+	    	
+	    	<span id='home'> >>home </span>
+	    </div>
+        
+        <div class="share">
+                <img src="img2/9-1.png">
+                <img class="end_share_button" src="img2/share.png">
+        </div>
+        
+    </div>
+</div>
+
+<script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://static.hdslb.com/mobile/js/base.mobile.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://i1.hdslb.com/u_user/activities/monkey-back/js/jquery.slimscroll.js"></script>
+<script type="text/javascript" src="http://static.hdslb.com/js/activity/jquery.fullPage.min.js"></script>
+<script>
+$(function(){
+	
+
+$('#skip').on('click',function(){
+//	console.log($('.8').offset().top);
+	y=$('#dowebok').css('transform').substring(22,$('#dowebok').css('transform').length-1);
+	console.log(y);
+	y=parseInt(y)+($('#dowebok').height()-$('.8').offset().top-$('.8').height());
+	$('#dowebok').css('transform','translate3d(0px, '+y+'px, 0px)');
+	dq=$('.8');
+	dq.siblings().css('opacity','0.2')
+	dq.css('opacity','1')
+});
+
+$('#home').on('click',function(){
+	$('#dowebok').css('transform','translate3d(0px, 0px, 0px)');
+	s='top';
+	$('.comic img').css('opacity',1);
+	dq=$('.1');
+});
+
+var s='top';
+var canmove=1;
+var dq=$('.1');
+
+//$(document).off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
+
+$(document).off('touchstart MSPointerDown').on("touchstart MSPointerDown", function(e) {
+//  e.preventDefault();
+    startX = e.originalEvent.changedTouches[0].pageX,
+    startY = e.originalEvent.changedTouches[0].pageY;
+    canmove=1;
+});
+
+//$('#dowebok').on("webkitAnimationEnd", function(){
+//	alert(110);
+//});
+
+var y;
+var y1;
+
+var h=$('#dowebok').height();
+
+//$(document).off('touchmove').on("touchmove", function(e) {
+	
+$(document).off('touchmove').on("touchmove", function(e) {
+	e.preventDefault();
+	moveEndY = e.originalEvent.changedTouches[0].pageY;
+	Y = moveEndY - startY;
+	console.log(Y);
+//	y=$('#dowebok').css('transform').substring(22,$('#dowebok').css('transform').length-1)+Y;
+//	$('#dowebok').css('transform','translate3d(0px, -'+y+'px, 0px)');
+});
+	
+$(document).on("touchend", function(e) {
+	if(canmove==1){
+//	    e.preventDefault();
+	    moveEndX = e.originalEvent.changedTouches[0].pageX,
+	    moveEndY = e.originalEvent.changedTouches[0].pageY,
+	    X = moveEndX - startX,
+	    Y = moveEndY - startY;
+     	console.log(Y);
+	    if ( Math.abs(X) > Math.abs(Y) && X > 0 ) {
+	        console.log("left 2 right");
+	    }
+	    else if ( Math.abs(X) > Math.abs(Y) && X < 0 ) {
+	        console.log("right 2 left");
+	    }
+	    else if ( Math.abs(Y) > Math.abs(X) && Y > 0) {
+	        console.log("top 2 bottom");
+			if(dq.attr('class')==1||dq.attr('class')=='logo'){
+				$('#dowebok').css('transform','translate3d(0px, 0px, 0px)');
+				$('.fix').hide();
+				s='top';
+			}else if(dq.attr('class')=='comic2'){
+				$('#dowebok').css('transform','translate3d(0px, -'+h+'px, 0px)');
+				dq.css('opacity','0.2');
+				dq.prev().css('opacity','1');
+				dq=dq.prev();
+			}else if(dq.attr('state')=='end'){
+				y=y+$('#dowebok').height()-$('.8').offset().top-$('.8').height() ;
+				$('#dowebok').css('transform','translate3d(0px, '+y+'px, 0px)');
+				$('.fix').show();
+				dq=$('.8');
+			}else{
+				var syg=dq.prev();
+				y1=($('#dowebok').height()-syg.offset().top)-syg.height();
+				y=y+y1;
+				$('#dowebok').css('transform','translate3d(0px, '+y+'px, 0px)');
+				dq.css('opacity','0.2');
+				syg.css('opacity','1');
+				dq=syg;	
+				
+				if(['comic2','comic3','comic4','comic5','comic6'].indexOf(dq.attr('class'))>-1){
+					var css={
+						'transform':'translate3d(0px, 0px, 0px)'
+						,'opacity':'1'
+					}
+					
+					dq.find('img:nth-child(n+2)').each(function(i,e){
+						setTimeout(function(){
+							$(e).css(css);
+						},500*(i+1));
+					});
+					
+//					dq.siblings().find('img:nth-child(n+2)').each(function(i,e){
+//						$(e).css('');
+//						$(e).removeAttr("style");
+//					});	
+				}
+				
+			}
+	    }
+	    else if ( Math.abs(Y) > Math.abs(X) && Y < 0 ) {
+	        console.log("bottom 2 top");
+			$('.fix').show();
+			if(s=='top'||dq.attr('class')=='logo'){
+				$('#dowebok').css('transform','translate3d(0px, -'+h+'px, 0px)');
+				$('.comic2').css('opacity','0.2');
+				s='comic1';
+			}else if(dq.attr('state')=='end'){
+				$('.fix').hide();
+			}else if(s=='comic1'&&dq.attr('class')!='8'){
+				y=$('#dowebok').css('transform').substring(22,$('#dowebok').css('transform').length-1);
+				var xyg=dq.next();
+				y1=xyg.height()-($('#dowebok').height()-xyg.offset().top);
+				y=y-y1;
+				$('#dowebok').css('transform','translate3d(0px, '+y+'px, 0px)');
+//				dq.css('opacity','0.2');
+				xyg.siblings().css('opacity','0.2');
+				xyg.css('opacity','1');
+				xyg.find('img:eq(0)').css('opacity','1');
+//				s='comic2';
+				dq=xyg;
+				
+				if(['comic2','comic3','comic4','comic5','comic6'].indexOf(dq.attr('class'))>-1){
+					var css={
+						'transform':'translate3d(0px, 0px, 0px)'
+						,'opacity':'1'
+					}
+					
+					dq.find('img:nth-child(n+2)').each(function(i,e){
+						setTimeout(function(){
+							$(e).css(css);
+						},500*(i+1));
+					});
+					
+//					dq.siblings().find('img:nth-child(n+2)').each(function(i,e){
+//						$(e).css('');
+//						$(e).removeAttr("style");
+//					});				
+					
+//					setTimeout(function(){
+//					y=$('#dowebok').css('transform').substring(22,$('#dowebok').css('transform').length-1);
+//					var xyg=dq.next();
+//					y1=xyg.height()-($('#dowebok').height()-xyg.offset().top);
+//					y=y-y1;
+//					$('#dowebok').css('transform','translate3d(0px, '+y+'px, 0px)');
+//					dq.css('opacity','0.2');
+//					xyg.css('opacity','1');
+//	//				s='comic2';
+//					dq=xyg;
+//					},500);
+				}
+				
+			}else if(dq.attr('class')=='8'){
+				y=y-$('.end').offset().top;
+				$('#dowebok').css('transform','translate3d(0px, '+y+'px, 0px)');
+				$('.fix').hide();
+				dq=$('.end');
+			}
+			console.log(dq);
+	    }
+	    else{
+	        console.log("just touch");
+	    }
+	}
+	canmove=0;	
+});
+
+        var mbUa = window.navigator.userAgent,
+        agents = ["weibo","MicroMessenger","QQ"],
+        isQMb = true;
+
+        for (var i = 0, len = agents.length; i < len; i++) {
+            if(agents[i]=='QQ'){
+                if (mbUa.split('QQ').length > 1) {
+                    if (mbUa.split('QQ').length-1 != 2) {
+                        //not in qq
+                        if(mbUa.split('MQQBrowser').length-1 == 0){
+                            isQMb = false;
+                            break;
+                        }else{
+                            isQMb = true;
+                            break;
+                        }
+                    } else{
+                        isQMb = false;
+                        break;
+                    }              
+                }
+            } else if( mbUa.indexOf( agents[i] ) > 0 ) {
+                isQMb = false;
+                break;
+            }
+        }
+
+
+		if ( isQMb == true && !window.biliios && !window.biliandroid ) {
+	//                      $('.end_download_button').show();
+	                      $('.end_share_button').hide();
+	    }  
+
+    var wbUa = window.navigator.userAgent,
+        agents = ["weibo"],
+        isMb = true;
+
+    for (var i = 0, len = agents.length; i < len; i++) {
+        if ( wbUa.indexOf( agents[i] ) > 0 ) {
+            isMb = false;
+            break;
+        }
+    }
+
+    function weixinshare(shareConfig){
+        if ( isMb == true  ) {
+            var app = new Application(".app");
+
+            app.queue("AppLink", "#b_app_link", {
+                share: shareConfig
+            });
+            app.init();
+        }
+    }
+
+        $('.end_share_button').click(
+                function(){
+//              	$('.share-mobile').addClass('show');    
+                    var app = new Application(".app");
+                        var shareConfig={
+                            title: '入职二次元！B站懂你',
+                            comment: '入职二次元！B站懂你',
+                            desc : '入职二次元！B站懂你', //微信
+                            link: 'http://www.bilibili.com/html/campus2015.html',
+                            pics: 'http://i0.hdslb.com/u_user/activities/xueyuan/img/sharemin.png',
+                            imgUrl: 'http://i0.hdslb.com/u_user/activities/xueyuan/img/sharemin.png'//微信
+                        }
+                        weixinshare(shareConfig);
+                        $('.share-mobile').addClass('show');                                                                                                                                    
+        });   
+
+		$('.share-mobile').click(
+                function(){
+                    $('.share-mobile').removeClass('show');
+        });
+        
+        
+         var app = new Application(".app");
+                        var shareConfig={
+                            title: '入职二次元！B站懂你',
+                            comment: '入职二次元！B站懂你',
+                            desc : '入职二次元！B站懂你', //微信
+                            link: 'http://www.bilibili.com/html/campus2015.html',
+                            pics: 'http://i0.hdslb.com/u_user/activities/xueyuan/img/sharemin.png',
+                            imgUrl: 'http://i0.hdslb.com/u_user/activities/xueyuan/img/sharemin.png'//微信
+                        }
+                        weixinshare(shareConfig);
+        
+     });
+</script>
