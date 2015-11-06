@@ -94,7 +94,7 @@ function reset() {
 
 	createInstructions();
 
-	for( i = 0; i < 10; i++ ) {
+	for( i = 0; i < 3; i++ ) {
 
 		createBall();
 
@@ -190,7 +190,7 @@ function onWindowDeviceOrientation( event ) {
 
 function createInstructions() {
 
-	var size = 250;
+	var size = 200;
 
 	var element = document.createElement( 'div' );
 	element.width = size;
@@ -373,7 +373,7 @@ function mouseDrag()
 	// mouse press
 	if (createMode) {
 
-		createBall( mouse.x, mouse.y );
+//		createBall( mouse.x, mouse.y );
 
 	} else if (isMouseDown && !mouseJoint) {
 
