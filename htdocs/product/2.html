@@ -78,14 +78,14 @@
       });
 
       //下单
-      $('#btnOrder').click(function() {
-        var quantity = $("#quantity").val();
-        if(quantity < MIN_QUANTITY || quantity % MIN_QUANTITY != 0) {
-          messageAlert('省级服务商和特级服务商每次购买最小单位' + MIN_QUANTITY + '次');
-          return;
-        }
-        $('#form').submit();
-      });
+      // $('#btnOrder').click(function() {
+      //   var quantity = $("#quantity").val();
+      //   if(quantity < MIN_QUANTITY || quantity % MIN_QUANTITY != 0) {
+      //     messageAlert('省级服务商和特级服务商每次购买最小单位' + MIN_QUANTITY + '次');
+      //     return;
+      //   }
+      //   $('#form').submit();
+      // });
 
     })
   </script>
@@ -148,7 +148,7 @@
         <i class="fa fa-plus"></i>
       </div>
     </div>
-    <a id="btnOrder" class="flex-2 btn-order" href="javascript:;">购买</a>
+    <a id="btnOrder" class="flex-2 btn-order" href="javascript:;" onclick="location.href='../u/order/create.html'">购买</a>
   </nav>
 
 </form>
