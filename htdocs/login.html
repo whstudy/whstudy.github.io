@@ -92,7 +92,7 @@
     </div> -->
 
   </form>
-  
+
   <div class="form-btn">
     <a class="btn btn-block default round-2" href="./u.html"><i class="icon icon-weixin"></i> 微信授权登陆</a>
   </div>
@@ -144,10 +144,13 @@
         location.href='./u.html';
         // alert(11);
       })
-      .fail(function() {
+      .fail(function(data) {
         console.log("error");
+        if(data.status==401){
+          messageFlash('帐号或密码不正确');
+        }
       })
-      .always(function() {
+      .always(function(data) {
         console.log("complete");
       });
     })
