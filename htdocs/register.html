@@ -226,19 +226,23 @@
         data[$(this).attr('id')]=$(this).val();
       })
       if(data.phone==''){
-        layer.msg('手机号不能为空',{time:3000});
+        messageFlash('手机号不能为空');
+        // layer.msg('手机号不能为空',{time:3000});
         return;
       }
       if(data.nickname==''){
-        layer.msg('昵称不能为空',{time:3000});
+        messageFlash('昵称不能为空');
+        // layer.msg('昵称不能为空',{time:3000});
         return;
       }
       if(data.password==''){
-        layer.msg('密码不能为空',{time:3000});
+        messageFlash('密码不能为空');
+        // layer.msg('密码不能为空',{time:3000});
         return;
       }
       if(data.password1!=data.password){
-        layer.msg('确认密码不一致',{time:3000});
+        messageFlash('确认密码不一致');
+        // layer.msg('确认密码不一致',{time:3000});
         return;
       }
       $.ajax({
