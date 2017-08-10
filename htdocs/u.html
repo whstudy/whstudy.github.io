@@ -93,10 +93,10 @@
     <a class="list-item user-profile bd-0" href="./u/info.html">
       <img class="avatar round mr-20 ml-10" src="http://image.zhi-you.net/avatar/09910bff-926c-4e71-8287-fc97d34ec682@240h_240w_1e_1c.jpg">
       <div class="list-text font-white lh-30">
-        <div class="fs-18 bold">付铠博</div>
+        <div class="fs-18 bold">昵称</div>
         
         
-        <label class="label orange">合伙人</label>
+        <label class="label orange">服务商</label>
         
       </div>
       <i class="list-arrow"></i>
@@ -219,6 +219,15 @@
         }
       });
     });
+
+    var partner={
+      'SENIOR_PARTNER':'高级合伙人',
+      'PARTNER':'合伙人',
+      'QUASI_PARTNER':'准合伙人',
+      'ANGEL':'天使',
+    };
+    $('.bold').text(JSON.parse(localStorage.getItem('user')).nickname);
+    $('.orange').text(partner[JSON.parse(localStorage.getItem('user')).roleType]);
   </script>
 
 <nav class="footer footer-nav flex">

@@ -17,11 +17,13 @@
 <link rel="stylesheet" href="http://state.zhi-you.net/plugin/font-awesome-4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.css">
 <script src="http://state.zhi-you.net/plugin/jquery-1.11.0/jquery.min.js"></script>
-<script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
+<script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script>
+<link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
 <script src="http://state.zhi-you.net/js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
+<script src="./js/layer/layer.js"></script>
 <script>
   var Config = {
     stc : '',
@@ -158,6 +160,24 @@
           </div>
         </div>
         <div class="list-item">
+          <label class="list-label" for="phone">昵称</label>
+          <div class="list-text">
+            <input type="text" id="nickname" name="nickname" class="form-input" placeholder="输入昵称" value="">
+          </div>
+        </div>
+        <div class="list-item">
+          <label class="list-label" for="phone">服务商等级</label>
+          <div class="list-text">
+            <select id="roleType" name="roleType" class="form-input">
+              <option value='SENIOR_PARTNER'>高级合伙人</option>
+              <option value="PARTNER">合伙人</option>
+              <option value="QUASI_PARTNER">准合伙人</option>
+              <option value="ANGEL">天使</option>
+            </select>
+            <!-- <input type="text" id="phone" name="roleType" class="form-input" placeholder="输入昵称" value=""> -->
+          </div>
+        </div>
+        <div class="list-item">
           <label class="list-label" for="phone">密码</label>
           <div class="list-text">
             <input type="password" id="password" name="password" class="form-input" placeholder="输入密码" value="">
@@ -166,7 +186,7 @@
         <div class="list-item">
           <label class="list-label" for="phone">确认密码</label>
           <div class="list-text">
-            <input type="password" id="password" name="password" class="form-input" placeholder="输入确认密码" value="">
+            <input type="password" id="password1" name="password1" class="form-input" placeholder="输入确认密码" value="">
           </div>
         </div>
 
@@ -193,11 +213,64 @@
       </div>
       
       <div class="form-btn">
-        <input id="btnSubmit" class="btn orange btn-block round-2" type="submit" value="注册">
+        <input id="btnSubmit" class="btn orange btn-block round-2 register" type="button" value="注册">
       </div>
     </form>
   </article>
-  
 
+  <script type="text/javascript">
+    $()
+    $('.register').click(function(){
+      var data={};
+      $('[type="text"],[type="password"],select').each(function(){
+        data[$(this).attr('id')]=$(this).val();
+      })
+      if(data.phone==''){
+        layer.msg('手机号不能为空',{time:3000});
+        return;
+      }
+      if(data.nickname==''){
+        layer.msg('昵称不能为空',{time:3000});
+        return;
+      }
+      if(data.password==''){
+        layer.msg('密码不能为空',{time:3000});
+        return;
+      }
+      if(data.password1!=data.password){
+        layer.msg('确认密码不一致',{time:3000});
+        return;
+      }
+      $.ajax({
+        url: 'http://122.152.208.113:9999/api/user/regUser ',
+        // url: 'http://122.152.208.113:9999/api/user/getLoginUser',
+        // url: 'http://122.152.208.113:9999/login?username=18930983718&password=123456&callback=callback',
+        // url: 'http://122.152.208.113:9999/login?username=18930983718&password=123456',
+        type: 'POST',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        xhrFields: {
+          withCredentials:true
+        },
+        // jsonp: 'callback',
+        // jsonpCallback: 'callback',
+        data: JSON.stringify(data),
+      })
+      // http://122.152.208.113:9999/login?username=18930983718&password=123456&callback=callback
+      .done(function(data) {
+        console.log("success");
+        console.log(data);
+        location.href='./login.html';
+        // alert(11);
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+    })
+
+  </script>
 
 </body></html>

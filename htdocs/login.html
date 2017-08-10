@@ -31,8 +31,9 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script>
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="./js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
+<script src="./js/layer/layer.js"></script>
 <script>
   var Config = {
     stc : '',
@@ -66,7 +67,7 @@
     <a onclick="history.go(-1);" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
 
-  <form class="valid-form" action="./u.html" method="get">
+  <form class="valid-form" action="" method="get">
     <div class="list-group mt-15">
       <div class="list-item">
         <i class="list-icon fa fa-mobile fs-20"></i>
@@ -83,7 +84,7 @@
     </div>
 
     <div class="form-btn">
-      <input class="btn green btn-block round-2" type="submit" value="登 陆">
+      <input class="btn green btn-block round-2 login" type="button" value="登 陆">
     </div>
     
 <!--     <div class="form-btn">
@@ -102,36 +103,55 @@
     
   <a href="./findPassword.html" class="abs-mb block p-10 mb-10 font-999 fs-13 text-center"><i class="fa fa-question-circle"></i> 忘记密码</a>
   <script type="text/javascript">
-    $.ajax({
-      url: 'http://122.152.208.113:9999/login',
-      // url: 'http://122.152.208.113:9999/api/user/getLoginUser',
-      // url: 'http://122.152.208.113:9999/login?username=18930983718&password=123456&callback=callback',
-      // url: 'http://122.152.208.113:9999/login?username=18930983718&password=123456',
-      type: 'POST',
-      dataType: 'json',
-      xhrFields:{
-        withCredentials:true
-      },
-      // jsonp: 'callback',
-      // jsonpCallback: 'callback',
-      data: {
-        username: '18930983718',
-        password: '123456',
-      },
+
+    $('.login').click(function(){
+
+      var phone = $('#phone').val();
+      var password = $('#password').val();
+      if (!phone) {
+        messageFlash('请输入手机号');
+        return false;
+      }
+      if (!password) {
+        messageFlash('请输入密码');
+        return false;
+      }
+
+      $.ajax({
+        url: 'http://122.152.208.113:9999/login',
+        // url: 'http://122.152.208.113:9999/api/user/getLoginUser',
+        // url: 'http://122.152.208.113:9999/login?username=18930983718&password=123456&callback=callback',
+        // url: 'http://122.152.208.113:9999/login?username=18930983718&password=123456',
+        type: 'POST',
+        dataType: 'json',
+        xhrFields:{
+          withCredentials:true
+        },
+        // jsonp: 'callback',
+        // jsonpCallback: 'callback',
+        data: {
+          username: $('#phone').val(),
+          password: $('#password').val(),
+          // username: '18930983718',
+          // password: '123456',
+        },
+      })
+      // http://122.152.208.113:9999/login?username=18930983718&password=123456&callback=callback
+      .done(function(data) {
+        console.log("success");
+        console.log(data);
+        localStorage.setItem('user',JSON.stringify(data));
+        location.href='./u.html';
+        // alert(11);
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
     })
-    // http://122.152.208.113:9999/login?username=18930983718&password=123456&callback=callback
-    .done(function(data) {
-      console.log("success");
-      console.log(data);
-      // alert(11);
-    })
-    .fail(function() {
-      console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
-    
+
   </script>
 </body>
 </html>

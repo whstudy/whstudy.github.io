@@ -61,7 +61,7 @@
       
         <a class="list-item" href="javascript:;">
           <div class="list-text">昵称</div>
-          <div class="list-unit">付铠博</div>
+          <div class="list-unit nickname">昵称</div>
         </a>
       
       
@@ -69,7 +69,7 @@
         <div class="list-text">手机号</div>
         
         
-        <div class="list-unit">13120576767</div>
+        <div class="list-unit phone">手机号</div>
         
       </a>
 
@@ -86,7 +86,7 @@
       
       <a class="list-item" href="../code/image.html">
         <div class="list-text">我的授权码</div>
-        <div class="list-unit">ZYWT9B8CBWCMX65F</div>
+        <div class="list-unit authorizationCode">我的授权码</div>
       </a>
       
     </div>
@@ -115,7 +115,16 @@
 
   </article>
 
-
-
+  <script>
+    var partner={
+      'SENIOR_PARTNER':'高级合伙人',
+      'PARTNER':'合伙人',
+      'QUASI_PARTNER':'准合伙人',
+      'ANGEL':'天使',
+    };
+    $('.nickname').text(JSON.parse(localStorage.getItem('user')).nickname);
+    $('.phone').text(JSON.parse(localStorage.getItem('user')).phone);
+    $('.authorizationCode').text(JSON.parse(localStorage.getItem('user')).authorizationCode);
+  </script>
 
 </body></html>
