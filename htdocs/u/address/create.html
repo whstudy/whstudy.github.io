@@ -20,7 +20,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="http://whstudy.github.io/htdocs/js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -70,7 +70,7 @@
 
     $('.valid-form').validate({
       rules : {
-        'realname' : {
+        'deliveryMan' : {
           required : true
         },
         'phone' : {
@@ -83,15 +83,15 @@
         'city' : {
           required : true
         },
-        'areaId' : {
+        'region' : {
           required : true
         },
-        'address' : {
+        'detailed' : {
           required : true
         }
       },
       messages : {
-        'realname' : {
+        'deliveryMan' : {
           required : '请输入收货人姓名'
         },
         'phone' : {
@@ -104,10 +104,10 @@
         'city' : {
           required : '请选择市'
         },
-        'areaId' : {
+        'region' : {
           required : '请选择区'
         },
-        'address' : {
+        'detailed' : {
           required : '请输入详细地址'
         }
       }
@@ -132,9 +132,9 @@
       </div>
       <div class="list-group">
         <div class="list-item">
-          <label class="list-label" for="realname">收件人</label>
+          <label class="list-label" for="deliveryMan">收件人</label>
           <div class="list-text">
-            <input type="text" id="realname" name="realname" class="form-input" value="" placeholder="填写收件人姓名">
+            <input type="text" id="deliveryMan" name="deliveryMan" class="form-input" value="" placeholder="填写收件人姓名">
           </div>
         </div>
         <div class="list-item">
@@ -162,14 +162,14 @@
         <div class="list-item">
           <label class="list-label">地区</label>
           <div class="list-text form-select">
-            <select name="areaId" id="district">
+            <select name="region" id="district">
               <option value="">请选择</option>
             </select>
           </div>
         </div>
         <div class="list-item">
           <div class="list-text">
-            <textarea name="address" class="form-input" rows="3" placeholder="填写详细地址，例如街道名称，楼层和门牌号等信息"></textarea>
+            <textarea name="detailed" class="form-input" rows="3" placeholder="填写详细地址，例如街道名称，楼层和门牌号等信息"></textarea>
           </div>
         </div>
         <div class="list-item">
@@ -183,10 +183,63 @@
       </div>
 
       <div class="form-btn">
-        <input id="btnSubmit" class="btn orange btn-block round-2" type="button" href="#" onclick="history.go(-1);" value="保 存">
+        <input id="btnSubmit" class="btn orange btn-block round-2" type="button" href="#" value="保 存">
       </div>
     </form>
   </article>
 
+  <script type="text/javascript">
+    $('#btnSubmit').click(function(){
+      if(!$('.valid-form').valid()){
+        return;
+      }
+
+      // var data={};
+      // $('[type="text"],[type="password"],select').each(function(){
+      //   data[$(this).attr('id')]=$(this).val();
+      // })
+      // if(data.phone==''){
+      //   messageFlash('手机号不能为空');
+      //   return;
+      // }
+      // if(data.nickname==''){
+      //   messageFlash('昵称不能为空');
+      //   return;
+      // }
+      // if(data.password==''){
+      //   messageFlash('密码不能为空');
+      //   return;
+      // }
+      // if(data.password1!=data.password){
+      //   messageFlash('确认密码不一致');
+      //   return;
+      // }
+
+      var data=$('.valid-form').serializeArray();
+
+      $.ajax({
+        url: 'http://122.152.208.113:9999/api/user/saveDeliverAddress',
+        type: 'POST',
+        // dataType: 'json',
+        xhrFields: {
+          withCredentials:true
+        },
+        data: data,
+      })
+      .done(function(data) {
+        console.log("success");
+        console.log(data);
+        history.go(-1);
+      })
+      .fail(function(data) {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+
+    })
+
+  </script>
 
 </body></html>

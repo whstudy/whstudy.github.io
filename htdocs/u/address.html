@@ -20,8 +20,9 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="http://whstudy.github.io/htdocs/js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
+<script src="http://state.zhi-you.net/js/area.js"></script>
 <script>
   var Config = {
     stc : '',
@@ -42,9 +43,9 @@
   <article>
     
     
-    <div class="list-group">
+    <div class="list-group address">
       
-      <a href="../u/address/15375.html" class="list-item">
+      <a href="../u/address/update.html" class="list-item">
         
         <div class="list-text pl-15 pr-10">
           <div>付铠博<span class="right fs-14 font-777">13120576767</span></div>
@@ -64,6 +65,43 @@
     </div>
   </article>
   
+    <script type="text/javascript">
+      $.ajax({
+        url: 'http://122.152.208.113:9999/api/user/getLoginDeliveryAddressList',
+        type: 'POST',
+        dataType: 'json',
+        xhrFields: {
+          withCredentials:true
+        },
+      })
+      .done(function(data) {
+        console.log("success");
+        console.log(data);
 
+        var addressListGroup='';
+        for(var o in data){
+          addressListGroup+='<a class="list-item addressA" info='+JSON.stringify(data[o])+'>\
+            <div class="list-text pl-15 pr-10">\
+              <div>'+data[o].deliveryMan+'<span class="right fs-14 font-777">'+data[o].phone+'</span></div>\
+              <div class="fs-14 font-777">'+areas[data[o].province]+' '+areas[data[o].province+'_'+data[o].city]+' '+areas[data[o].province+'_'+data[o].city+'_'+data[o].region]+' '+data[o].detailed+'</div>\
+            </div>\
+            <i class="list-arrow"></i>\
+          </a>';
+        }
+        $('.list-group.address').html(addressListGroup);
+
+      })
+      .fail(function(data) {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+
+      $('.list-group.address').on('click','.addressA',function(){
+        sessionStorage.setItem('addressInfo',$(this).attr('info'));
+        location.href='../u/address/update.html';
+      })
+  </script>
 
 </body></html>

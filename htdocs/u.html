@@ -20,7 +20,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="http://whstudy.github.io/htdocs/js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -228,6 +228,25 @@
     };
     $('.bold').text(JSON.parse(localStorage.getItem('user')).nickname);
     $('.orange').text(partner[JSON.parse(localStorage.getItem('user')).roleType]);
+
+    $.ajax({
+      url: 'http://122.152.208.113:9999/api/user/getLoginUser',
+      type: 'POST',
+      dataType: 'json',
+      xhrFields: {
+        withCredentials:true
+      },
+    })
+    .done(function(data) {
+      console.log("success");
+      console.log(data);
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
   </script>
 
 <nav class="footer footer-nav flex">

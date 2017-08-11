@@ -20,7 +20,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="http://whstudy.github.io/htdocs/js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -64,74 +64,6 @@
   });
 </script>
 <script src="http://state.zhi-you.net/js/area.js"></script>
-<script>
-  var areaId = '8';
-  $(function() {
-    var area = new areaInit('province', 'city', 'district', areaId/* , defaultAreaId */);
-
-    $('.valid-form').validate({
-      rules : {
-        'realname' : {
-          required : true
-        },
-        'phone' : {
-          required : true,
-          phone : true
-        },
-        'province' : {
-          required : true
-        },
-        'city' : {
-          required : true
-        },
-        'areaId' : {
-          required : true
-        },
-        'address' : {
-          required : true
-        }
-      },
-      messages : {
-        'realname' : {
-          required : '请输入收货人姓名'
-        },
-        'phone' : {
-          required : '请输入收货人手机号',
-          phone : '请输入正确的手机号'
-        },
-        'province' : {
-          required : '请选择省'
-        },
-        'city' : {
-          required : '请选择市'
-        },
-        'areaId' : {
-          required : '请选择区'
-        },
-        'address' : {
-          required : '请输入详细地址'
-        }
-      }
-    });
-
-    $('#btnDelete').click(function() {
-      $.dialog({
-        content : '您确认要删除该收货地址吗?',
-        callback : function(index){
-          if(index == 1) {
-            location.href = '/u/address/delete/15375';
-            return true;
-          }
-        }
-      });
-    });
-
-    $('.form-switch label').click(function() {
-      var checked = $(this).prev().is(':checked');
-      $('#isDefault').val(!checked);
-    });
-  });
-</script>
 </head>
 <body>
   <header class="header">
@@ -141,15 +73,15 @@
   </header>
   <article class="address-edit">
     <form id="addressForm" class="valid-form" action="/u/address/edit" method="post" novalidate="novalidate">
-      <input type="hidden" name="id" value="15375">
+      <input type="hidden" id="id" name="id" value="">
       <div class="form-message note note-warning mb-0 hide">
         <p>输入信息有误，请先更正。</p>
       </div>
       <div class="list-group">
         <div class="list-item">
-          <label class="list-label" for="realname">收件人</label>
+          <label class="list-label" for="deliveryMan">收件人</label>
           <div class="list-text">
-            <input type="text" id="realname" name="realname" class="form-input" value="付铠博" placeholder="填写收件人姓名">
+            <input type="text" id="deliveryMan" name="deliveryMan" class="form-input" value="付铠博" placeholder="填写收件人姓名">
           </div>
         </div>
         <div class="list-item">
@@ -177,14 +109,14 @@
         <div class="list-item">
           <label class="list-label">地区</label>
           <div class="list-text form-select">
-            <select name="areaId" id="district">
+            <select name="region" id="region">
               <option value="">请选择</option>
             <option data-id="1_2_3" value="3">东城区</option><option data-id="1_2_4" value="4">西城区</option><option data-id="1_2_5" value="5">朝阳区</option><option data-id="1_2_6" value="6">丰台区</option><option data-id="1_2_7" value="7">石景山区</option><option data-id="1_2_8" value="8">海淀区</option><option data-id="1_2_9" value="9">门头沟区</option><option data-id="1_2_10" value="10">房山区</option><option data-id="1_2_11" value="11">通州区</option><option data-id="1_2_12" value="12">顺义区</option><option data-id="1_2_13" value="13">昌平区</option><option data-id="1_2_14" value="14">大兴区</option><option data-id="1_2_15" value="15">怀柔区</option><option data-id="1_2_16" value="16">平谷区</option></select>
           </div>
         </div>
         <div class="list-item">
           <div class="list-text">
-            <textarea name="address" class="form-input" rows="3" placeholder="填写详细地址，例如街道名称，楼层和门牌号等信息">中关村 大恒科技大厦</textarea>
+            <textarea id="detailed" name="detailed" class="form-input" rows="3" placeholder="填写详细地址，例如街道名称，楼层和门牌号等信息">中关村 大恒科技大厦</textarea>
           </div>
         </div>
         <div class="list-item">
@@ -198,11 +130,118 @@
       </div>
 
       <div class="form-btn">
-        <input id="btnSubmit" class="btn orange btn-block round-2" type="button" href="#" onclick="history.go(-1);" value="保 存">
+        <input id="btnSubmit" class="btn orange btn-block round-2" type="button" href="#" value="保 存">
       </div>
     </form>
   </article>
 
+  <script type="text/javascript">
 
+    var region = '8';
+    var area = new areaInit('province', 'city', 'region', region/* , defaultregion */);
+
+
+    var addressInfo=JSON.parse(sessionStorage.getItem('addressInfo'));
+    for(var o in addressInfo){
+      $("#"+o).val(addressInfo[o]);
+      $("#"+o).change();
+    }
+
+    $('.valid-form').validate({
+      rules : {
+        'deliveryMan' : {
+          required : true
+        },
+        'phone' : {
+          required : true,
+          phone : true
+        },
+        'province' : {
+          required : true
+        },
+        'city' : {
+          required : true
+        },
+        'region' : {
+          required : true
+        },
+        'detailed' : {
+          required : true
+        }
+      },
+      messages : {
+        'deliveryMan' : {
+          required : '请输入收货人姓名'
+        },
+        'phone' : {
+          required : '请输入收货人手机号',
+          phone : '请输入正确的手机号'
+        },
+        'province' : {
+          required : '请选择省'
+        },
+        'city' : {
+          required : '请选择市'
+        },
+        'region' : {
+          required : '请选择区'
+        },
+        'detailed' : {
+          required : '请输入详细地址'
+        }
+      }
+    });
+
+    $('#btnDelete').click(function() {
+      $.dialog({
+        content : '您确认要删除该收货地址吗?',
+        callback : function(index){
+          if(index == 1) {
+            location.href = '/u/address/delete/update';
+            return true;
+          }
+        }
+      });
+    });
+
+    $('.form-switch label').click(function() {
+      var checked = $(this).prev().is(':checked');
+      $('#isDefault').val(!checked);
+    });
+
+    $('#btnSubmit').click(function(){
+      if(!$('.valid-form').valid()){
+        return;
+      }
+
+      var data=$('.valid-form').serializeArray();
+
+      $.ajax({
+        url: 'http://122.152.208.113:9999/api/user/updateDeliverAddress',
+        type: 'POST',
+        // dataType: 'json',
+        xhrFields: {
+          withCredentials:true
+        },
+        data: data,
+        success: function(data){
+          console.log("success");
+          console.log(data);
+          history.go(-1);
+        }
+      })
+      // .done(function(data) {
+
+      // })
+      // .fail(function(data) {
+      //   console.log("error");
+      // })
+      // .always(function() {
+      //   console.log("complete");
+      // });
+      
+    })
+
+  </script>
 
 </body></html>
