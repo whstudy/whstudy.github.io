@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>服务商套餐</title>
+  <title>合伙人套餐</title>
   
 <link rel="shortcut icon" href="http://state.zhi-you.net/favicon.ico">
 <link rel="stylesheet" href="http://state.zhi-you.net/css/common.css">
@@ -69,7 +69,7 @@
 
       $('#btnSubmit').click(function(){
         if(!$('[name="quantity"]').val()) {
-          messageFlash('请选择服务商套餐');
+          messageFlash('请选择合伙人套餐');
           return false;
         }
         $('#form').submit();
@@ -82,13 +82,13 @@
 <body>
 
 <header class="header">
-  <h1>成为服务商</h1>
+  <h1>成为合伙人</h1>
   <a href="/u" class="button-left"><i class="fa fa-angle-left"></i></a>
   <a class="button-right" href="/help"><i class="fa fa-question-circle"></i></a>
 </header>
 
 <div class="note note-warning mb-0">
-  <p><i class="fa fa-exclamation-circle"></i> 购买下列套餐产品即可成为相应服务商。</p>
+  <p><i class="fa fa-exclamation-circle"></i> 购买下列套餐产品即可成为相应合伙人。</p>
 </div>
 
 <article class="mb-15 clearfix">
@@ -99,6 +99,18 @@
     <div class="list-group">
       <!-- form-radio -->
       
+        <div class="list-item form-radio" data-id="2">
+          <div class="list-icon">
+            <input id="agentLevel4New" type="radio" name="agentLevel" value="V1">
+            <label class="i-checked" for="agentLevel4New"></label>
+          </div>
+          <img class="image-80 block mr-10" src="http://image.zhi-you.net/image/8d5c51ce-a52d-499d-adbf-79640d36a247@320h_320w_1e_1c.jpg">
+          <div class="list-text">
+            <h2 class="font-777 fs-15 lh-24">民康优检合伙人套餐 <span class="quantity">3600</span>次</h2>
+            <div class="lh-30"><label class="label blue">高级合伙人</label></div>
+            <div class="font-orange lh-24">¥ 460800.00</div>
+          </div>
+        </div>      
 
         <div class="list-item form-radio" data-id="2">
           <div class="list-icon">
@@ -107,27 +119,11 @@
           </div>
           <img class="image-80 block mr-10" src="http://image.zhi-you.net/image/8d5c51ce-a52d-499d-adbf-79640d36a247@320h_320w_1e_1c.jpg">
           <div class="list-text">
-            <h2 class="font-777 fs-15 lh-24">服务商套餐 <span class="quantity">240</span>次</h2>
-            <div class="lh-30"><label class="label red">省级服务商</label></div>
+            <h2 class="font-777 fs-15 lh-24">民康优检合伙人套餐 <span class="quantity">240</span>次</h2>
+            <div class="lh-30"><label class="label red">合伙人</label></div>
             <div class="font-orange lh-24">¥ 35520.00</div>
           </div>
         </div>
-
-        
-          
-            
-            
-          
-          
-          
-            
-            
-            
-          
-        
-
-      
-      
 
         <div class="list-item form-radio" data-id="2">
           <div class="list-icon">
@@ -136,26 +132,11 @@
           </div>
           <img class="image-80 block mr-10" src="http://image.zhi-you.net/image/8d5c51ce-a52d-499d-adbf-79640d36a247@320h_320w_1e_1c.jpg">
           <div class="list-text">
-            <h2 class="font-777 fs-15 lh-24">优检一生2.0服务商套餐 <span class="quantity">80</span>次</h2>
-            <div class="lh-30"><label class="label yellow">市级服务商</label></div>
+            <h2 class="font-777 fs-15 lh-24">民康优检合伙人套餐 <span class="quantity">80</span>次</h2>
+            <div class="lh-30"><label class="label yellow">准合伙人</label></div>
             <div class="font-orange lh-24">¥ 13440.00</div>
           </div>
         </div>
-
-        
-          
-            
-            
-          
-          
-          
-            
-            
-            
-          
-        
-      
-      
 
         <div class="list-item form-radio" data-id="2">
           <div class="list-icon">
@@ -164,36 +145,12 @@
           </div>
           <img class="image-80 block mr-10" src="http://image.zhi-you.net/image/8d5c51ce-a52d-499d-adbf-79640d36a247@320h_320w_1e_1c.jpg">
           <div class="list-text">
-            <h2 class="font-777 fs-15 lh-24">优检一生2.0服务商套餐 <span class="quantity">5</span>次</h2>
-            <div class="lh-30"><label class="label green">VIP服务商</label></div>
+            <h2 class="font-777 fs-15 lh-24">民康优检合伙人套餐 <span class="quantity">5</span>次</h2>
+            <div class="lh-30"><label class="label green">天使</label></div>
             <div class="font-orange lh-24">¥ 990.00</div>
           </div>
         </div>
-        
-          
-            
-            
-          
-          
-          
-            
-            
-            
-          
-        
-      
-        <div class="list-item form-radio" data-id="2">
-          <div class="list-icon">
-            <input id="agentLevel4New" type="radio" name="agentLevel" value="V1">
-            <label class="i-checked" for="agentLevel4New"></label>
-          </div>
-          <img class="image-80 block mr-10" src="http://image.zhi-you.net/image/8d5c51ce-a52d-499d-adbf-79640d36a247@320h_320w_1e_1c.jpg">
-          <div class="list-text">
-            <h2 class="font-777 fs-15 lh-24">优检一生2.0服务商套餐 <span class="quantity">3600</span>次</h2>
-            <div class="lh-30"><label class="label blue">特级服务商</label></div>
-            <div class="font-orange lh-24">¥ 460800.00</div>
-          </div>
-        </div>
+
     </div>
 
     <div class="form-btn">
