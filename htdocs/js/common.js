@@ -1,7 +1,7 @@
 /**
  * Common js
  */
-
+domainUrl="http://whstudy.github.io/htdocs/"
 window.messageShow = function(message, icon, timeout) {
   $.message({
     type : icon || 'info',
@@ -53,25 +53,26 @@ $(function() {
     FastClick.attach(document.body);
   }
   
-  // /* 全局的ajax访问，处理ajax清求时sesion超时 */
-  // $(document).ajaxComplete(function(event, XMLHttpRequest, textStatus) {
-  //   //console.log("XMLHttpRequest.responseText=" + XMLHttpRequest.responseText);
-  //   switch (XMLHttpRequest.status) {
-  //     case 401: /* 未登录提示 */
-  //       var result = JSON.parse(XMLHttpRequest.responseText);
-  //       showLogin(result.data);
-  //       //messageFlash('您还没有登录, 请先登录');
-  //       break;
-  //     case 403:
-  //       messageShow('您没有权限执行该操作', 'error');
-  //       break;
-  //     case 500:
-  //       messageFlash('操作失败, 请稍后再试');
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // });
+  /* 全局的ajax访问，处理ajax清求时sesion超时 */
+  $(document).ajaxComplete(function(event, XMLHttpRequest, textStatus) {
+    //console.log("XMLHttpRequest.responseText=" + XMLHttpRequest.responseText);
+    switch (XMLHttpRequest.status) {
+      case 401: /* 未登录提示 */
+        var result = JSON.parse(XMLHttpRequest.responseText);
+        location.href=domainUrl+'login.html';
+        // showLogin(result.data);
+        //messageFlash('您还没有登录, 请先登录');
+        break;
+      case 403:
+        messageShow('您没有权限执行该操作', 'error');
+        break;
+      case 500:
+        messageFlash('操作失败, 请稍后再试');
+        break;
+      default:
+        break;
+    }
+  });
   
   var showLogin = function(url){
     asideHtml 

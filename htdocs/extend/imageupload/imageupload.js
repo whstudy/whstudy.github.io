@@ -152,6 +152,13 @@
       oXHR.addEventListener('error', ths.callbacks.uploadError, false);
       oXHR.addEventListener('progress', ths.callbacks.uploadProgress, false);
       oXHR.addEventListener('abort', ths.callbacks.uploadAbort, false);
+
+      if(options.xhrFields){
+        for (var e in options.xhrFields){
+          oXHR[e] = options.xhrFields[e];
+        }
+      }
+
       oXHR.open('POST', options.url);
       oXHR.send(formData);
     };

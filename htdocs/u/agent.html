@@ -72,7 +72,22 @@
           messageFlash('请选择合伙人套餐');
           return false;
         }
-        $('#form').submit();
+
+// 148
+// 168
+// 128
+// 198
+
+        var obj = {};
+        $.each($('#form').serializeArray(),function(i,v){
+          obj[v.name] = v.value;
+        });
+        obj.priceAll=128*obj.quantity;
+        sessionStorage.setItem('agentLevel',JSON.stringify(obj));
+        
+        location.href='./order/create1.html';
+
+        // $('#form').submit();
       });
 
     });
@@ -155,12 +170,14 @@
 
     <div class="form-btn">
       <!-- <a id="btnSubmit" class="btn orange btn-block" href="javascript:;" onclick="location.href='./u/order/create1.html'">购买套餐</a> -->
-      <a id="btnSubmit1" class="btn orange btn-block" onclick="location.href='./order/create1.html'">购买套餐</a>
+      <a id="btnSubmit" class="btn orange btn-block">购买套餐</a>
     </div>
 
   </form>
 </article>
 
+<script type="text/javascript">
 
+</script>
 
 </body></html>

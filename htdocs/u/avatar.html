@@ -64,7 +64,42 @@ $(function() {
             return;
         mutex.set('local');
         $avatar.attr('src', 'http://state.zhi-you.net/image/loading_circle.gif');
-        $('#uploadForm').submit();
+        // $('#uploadForm').submit();
+
+        var formData = new FormData($('#uploadForm')[0]);
+        // formData.append("myfile", document.getElementById("file1").files[0]);   
+        $.ajax({
+            url: "http://122.152.208.113:9999/api/user/uploadPhoto",
+            type: "POST",
+            data: formData,
+            xhrFields: {
+              withCredentials:true
+            },
+            /**
+            *必须false才会自动加上正确的Content-Type
+            */
+            contentType: false,
+            /**
+            * 必须false才会避开jQuery对 formdata 的默认处理
+            * XMLHttpRequest会对 formdata 进行正确的处理
+            */
+            processData: false,
+            success: function (data) {
+                setAvator('http://122.152.208.133'+data.data);
+                if (data.status == "true") {
+                    alert("上传成功！");
+                }
+                if (data.status == "error") {
+                    alert(data.msg);
+                }
+                $("#imgWait").hide();
+            },
+            error: function () {
+                alert("上传失败！");
+                $("#imgWait").hide();
+            }
+        });
+
     });
     $('#uploadtarget').on('load', function() {
         if (!mutex.is('local'))
@@ -109,7 +144,7 @@ $(function() {
   </header>
 
   <article class="user-avatar">
-    <form id="uploadForm" target="uploadtarget" action="/u/avatar" method="post" enctype="multipart/form-data">
+    <form id="uploadForm" target="uploadtarget" action="http://122.152.208.113:9999/api/user/uploadPhoto" method="post" enctype="multipart/form-data">
       <figure class="avatar">
         <img src="http://image.zhi-you.net/avatar/4e9568e5-ad17-420a-97d6-a6c8e6308c67@240h_240w_1e_1c.jpg">
       </figure>
