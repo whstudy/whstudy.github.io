@@ -20,7 +20,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -65,7 +65,7 @@
   });
 </script>
 
-<script src="../../extend/imageupload/imageupload.js"></script>
+<script src="extend/imageupload/imageupload.js"></script>
 <link rel="stylesheet" href="http://state.zhi-you.net/extend/imageupload/imageupload.css">
 <script>
 $.fn.imageupload.setDefaults({
@@ -85,8 +85,8 @@ $.fn.imageupload.setDefaults({
       var limit = $this.attr('data-limit');
       var name = $this.attr('data-name');
       var imageItem = '<div class="image-item">' 
-                    + '<input type="hidden" name="' + name + '" value="' + result.image + '">'
-                    + '<img src="' + result.imageThumbnail + '">' 
+                    + '<input type="hidden" name="' + name + '" value="' + result + '">'
+                    + '<img src="' +imageNginxUrl+ result + '">' 
                     + '<input type="file">' 
                     + '</div>';
       $(imageItem).insertBefore($this);
@@ -112,7 +112,7 @@ $.fn.imageupload.setDefaults({
 //          required : true,
 //          number : true
 //        },
-        'areaId' : {
+        'region' : {
           required : true
         },
         'sex' : {
@@ -180,13 +180,7 @@ $.fn.imageupload.setDefaults({
           */
           // processData: false,
           success: function (data) {
-              if (data.status == "true") {
-                  alert("上传成功！");
-              }
-              if (data.status == "error") {
-                  alert(data.msg);
-              }
-              $("#imgWait").hide();
+            location.href='u---info.html';
           },
           error: function () {
               alert("上传失败！");
@@ -217,6 +211,15 @@ $.fn.imageupload.setDefaults({
           $('[name="'+o+'"]').val(data[o]);
           $('[name="'+o+'"]').change();
         }
+
+        $('[name="province"]').val(data.province);
+        $('[name="province"]').change();
+        $('[name="city"]').val(data.city);
+        $('[name="city"]').change();
+        $('[name="region"]').val(data.region);
+         
+        $('#idCardPhotoFront').siblings('img').attr('src',imageNginxUrl+data.idCardPhotoFront);
+        $('#idCardPhotoBack').siblings('img').attr('src',imageNginxUrl+data.idCardPhotoBack);
       },
       error: function () {
           alert("上传失败！");

@@ -217,11 +217,11 @@
           } else {
             var inputHidden = container.getElementsByTagName('input')[0];
             if(inputHidden){
-              inputHidden.value = resultData.image;
+              inputHidden.value = resultData;
             }
             var imageObj = container.getElementsByTagName('img')[0];
             if(imageObj) {
-              imageObj.src = resultData.imageThumbnail;
+              imageObj.src = imageNginxUrl+resultData;
               imageObj.onload = function(){
                 ths.stopLoading();
               };

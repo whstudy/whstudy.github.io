@@ -95,9 +95,9 @@
         btn : [ '<a id="btnPay1" class="btn orange block round-2">U币积分支付</a>'/*, '<a id="btnPay2" class="btn green block round-2">银行汇款</a>' */],
         callback : function(index) {
           if (index == 1) {
-            location.href = '/u---pay/order/37988?payType=0';
+            location.href = '/u---pay/order---37988?payType=0';
           }/*  else if (index == 2) {
-            location.href = '/u---pay/order/37988?payType=1';
+            location.href = '/u---pay/order---37988?payType=1';
           } */
         }
       });
@@ -109,7 +109,7 @@
         content : '您确定已收到该订单的商品吗？',
         callback : function(index) {
           if (index == 1) {
-            location.href = '/u---order/confirmDelivery?id=37988';
+            location.href = '/u---order---confirmDelivery?id=37988';
           }
         }
       });
@@ -123,7 +123,7 @@
         content : '您确定要将此订单转给公司发货吗？',
         callback : function(index) {
           if (index == 1) {
-            location.href = '/u---order/platformDeliver?id=37988';
+            location.href = '/u---order---platformDeliver?id=37988';
           }
         }
       });
@@ -135,7 +135,7 @@
         content : '您确定已收到买家款项吗？',
         callback : function(index) {
           if (index == 1) {
-            location.href = '/u---order/confirmPay?id=37988';
+            location.href = '/u---order---confirmPay?id=37988';
           }
         }
       });
@@ -147,7 +147,7 @@
         content : '您确定未收到买家款项并驳回此订单吗？',
         callback : function(index) {
           if (index == 1) {
-            location.href = '/u---order/rejectPay?id=37988';
+            location.href = '/u---order---rejectPay?id=37988';
           }
         }
       });
@@ -159,7 +159,7 @@
         content : '您确定要删除此订单吗？',
         callback : function(index) {
           if (index == 1) {
-            location.href = '/u---order/delete?id=37988';
+            location.href = '/u---order---delete?id=37988';
           }
         }
       });
@@ -171,7 +171,7 @@
         content : '您确定要取消此订单吗？',
         callback : function(index) {
           if (index == 1) {
-            location.href = '/u---order/cancel?id=37988';
+            location.href = '/u---order---cancel?id=37988';
           }
         }
       });
@@ -183,7 +183,7 @@
 <body class="order-detail">
   <header class="header">
     <h1>订单详情</h1>
-    <a href="/u---order/in" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <a href="/u---order---in" class="button-left"><i class="fa fa-angle-left"></i></a>
     
     <a href="javascript:;" class="button-right button-popmenu"><i class="fa fa-ellipsis-h"></i></a>
     <nav class="header-popmenu hide">

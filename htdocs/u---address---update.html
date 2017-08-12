@@ -146,6 +146,9 @@
       $("#"+o).val(addressInfo[o]);
       $("#"+o).change();
     }
+    if(addressInfo.isDefault=="true"){
+      $('#isDefault').click();
+    }
 
     $('.valid-form').validate({
       rules : {
@@ -204,9 +207,8 @@
       });
     });
 
-    $('.form-switch label').click(function() {
-      var checked = $(this).prev().is(':checked');
-      $('#isDefault').val(!checked);
+    $('#isDefault').click(function() {
+      $(this).val($(this).is(':checked'));
     });
 
     $('#btnSubmit').click(function(){
@@ -215,6 +217,7 @@
       }
 
       var data=$('.valid-form').serializeArray();
+      data.push({name:'isDefault',value:$('#isDefault').val()});
 
       $.ajax({
         url: 'http://122.152.208.113:9999/api/user/updateDeliverAddress',
