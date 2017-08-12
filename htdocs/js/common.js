@@ -75,14 +75,25 @@ $(function() {
   });
   
   var showLogin = function(url){
+    // asideHtml 
+    //   = '<aside id="asideLogin" class="fix-lt size-100p hide zindex-100">'
+    //   +   '<div class="aside-mask fix-lt size-100p zindex-100" style="background-color:rgba(0, 0, 0, 0.8)"></div>'
+    //   +   '<a href="javascript:;" class="btn-close abs-rt p-15 zindex-100"><i class="fa fa-times-circle font-white fs-20"></i></a>'
+    //   +   '<div class="abs-mm text-center zindex-100">'
+    //   +     '<p class="font-white fs-15 lh-30">您还没有登录，请先登录</p>'
+    //   +     '<a class="btn green mt-15 width-200 round-2" href="' + url + '"><i class="fa fa-weixin font-white"></i> 去授权登录</a>'
+    //   +     '<a class="btn default mt-15 width-200 round-2" href="${ctx}/login">手机密码登录</a>'
+    //   +   '</div>'
+    //   + '</aside>';
+
     asideHtml 
       = '<aside id="asideLogin" class="fix-lt size-100p hide zindex-100">'
       +   '<div class="aside-mask fix-lt size-100p zindex-100" style="background-color:rgba(0, 0, 0, 0.8)"></div>'
-      +   '<a href="javascript:;" class="btn-close abs-rt p-15 zindex-100"><i class="fa fa-times-circle font-white fs-20"></i></a>'
+      // +   '<a href="javascript:;" class="btn-close abs-rt p-15 zindex-100"><i class="fa fa-times-circle font-white fs-20"></i></a>'
       +   '<div class="abs-mm text-center zindex-100">'
-      +     '<p class="font-white fs-15 lh-30">您还没有登录，请先登录</p>'
-      +     '<a class="btn green mt-15 width-200 round-2" href="' + url + '"><i class="fa fa-weixin font-white"></i> 去授权登录</a>'
-      +     '<a class="btn default mt-15 width-200 round-2" href="${ctx}/login">手机密码登录</a>'
+      +     '<p class="font-white fs-15 lh-30">您的登录已过期，请重新登录</p>'
+      // +     '<a class="btn green mt-15 width-200 round-2" href="' + url + '"><i class="fa fa-weixin font-white"></i> 去授权登录</a>'
+      +     '<a class="btn default mt-15 width-200 round-2" href="'+domainUrl+'/login.html">登录</a>'
       +   '</div>'
       + '</aside>';
     $('body').addClass('o-hidden');
