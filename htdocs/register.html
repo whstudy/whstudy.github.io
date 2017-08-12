@@ -167,7 +167,7 @@
         </div>
         <div class="list-item">
           <label class="list-label" for="phone">服务商等级</label>
-          <div class="list-text">
+          <div class="list-text form-select">
             <select id="roleType" name="roleType" class="form-input">
               <option value='SENIOR_PARTNER'>高级合伙人</option>
               <option value="PARTNER">合伙人</option>
@@ -246,25 +246,16 @@
       }
       $.ajax({
         url: 'http://122.152.208.113:9999/api/user/regUser ',
-        // url: 'http://122.152.208.113:9999/api/user/getLoginUser',
-        // url: 'http://122.152.208.113:9999/login?username=18930983718&password=123456&callback=callback',
-        // url: 'http://122.152.208.113:9999/login?username=18930983718&password=123456',
         type: 'POST',
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
         xhrFields: {
           withCredentials:true
         },
-        // jsonp: 'callback',
-        // jsonpCallback: 'callback',
-        data: JSON.stringify(data),
+        data: data,
       })
-      // http://122.152.208.113:9999/login?username=18930983718&password=123456&callback=callback
       .done(function(data) {
         console.log("success");
         console.log(data);
         location.href='./login.html';
-        // alert(11);
       })
       .fail(function(data) {
         console.log("error");
