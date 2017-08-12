@@ -45,7 +45,7 @@
 
   <header class="header">
     <h1>我的信息</h1>
-    <a onclick="history.go(-1);" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <a href='u.html' class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
 
   <article class="user-info">
@@ -54,12 +54,12 @@
       <a class="list-item" href="u---avatar.html">
         <div class="list-text">头像</div>
         <div class="list-unit">
-          <img class="image-60 round bd" src="images/avatar">
+          <img class="image-60 round bd" src="images/avatar.jpg">
         </div>
         <i class="list-arrow"></i>
       </a>
       
-        <a class="list-item" href="javascript:;">
+        <a class="list-item" href="u---nickname.html">
           <div class="list-text">昵称</div>
           <div class="list-unit nickname">昵称</div>
           <i class="list-arrow"></i>
@@ -133,9 +133,9 @@
     })
     .done(function(data) {
       $('.nickname').text(data.nickname);
-      $('.phone').text(data.phone);
+      $('.phone').text(data.username);
       $('.authorizationCode').text(data.authorizationCode);
-      $('[src="images/avatar"]').attr('src',imageNginxUrl+data.headPortrait);
+      $('[src="images/avatar.jpg"]').attr('src',imageNginxUrl+data.headPortrait);
     })
     .fail(function(data) {
       console.log("error");

@@ -59,6 +59,20 @@ $(function() {
         $avatar.attr('src', src);
     };
     
+    $.ajax({
+      url: 'http://122.152.208.113:9999/api/user/getLoginUser',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+    })
+    .done(function(data) {
+      $avatar.attr('src',imageNginxUrl+data.headPortrait);
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+
     $('#upload').on('change', function(e) {
         if (!this.value)
             return;
@@ -140,13 +154,13 @@ $(function() {
 
   <header class="header">
     <h1>修改头像</h1>
-    <a href="/u---info" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <a href="u---info.html" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
 
   <article class="user-avatar">
     <form id="uploadForm" target="uploadtarget" action="http://122.152.208.113:9999/api/user/uploadPhoto" method="post" enctype="multipart/form-data">
       <figure class="avatar">
-        <img src="http://image.zhi-you.net/avatar/4e9568e5-ad17-420a-97d6-a6c8e6308c67@240h_240w_1e_1c.jpg">
+        <img src="images/avatar.jpg">
       </figure>
       <div class="btns">
         <input type="button" class="btn btn-block orange round-2 mt-10" value="更改头像">

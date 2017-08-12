@@ -2,6 +2,7 @@
  * Common js
  */
 domainUrl="http://whstudy.github.io/htdocs/";
+serviceUrl="http://122.152.208.113:9999/";
 imageNginxUrl="http://122.152.208.113:8080/";
 window.messageShow = function(message, icon, timeout) {
   $.message({
@@ -65,10 +66,10 @@ $(function() {
         //messageFlash('您还没有登录, 请先登录');
         break;
       case 403:
-        messageShow('您没有权限执行该操作', 'error');
+        // messageShow('您没有权限执行该操作', 'error');
         break;
       case 500:
-        messageFlash('操作失败, 请稍后再试');
+        // messageFlash('操作失败, 请稍后再试');
         break;
       default:
         break;
