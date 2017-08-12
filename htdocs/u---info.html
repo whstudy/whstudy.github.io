@@ -133,7 +133,7 @@
     })
     .done(function(data) {
       $('.nickname').text(data.nickname);
-      $('.phone').text(data.username);
+      $('.phone').text(data.phone);
       $('.authorizationCode').text(data.authorizationCode);
       $('[src="images/avatar.jpg"]').attr('src',imageNginxUrl+data.headPortrait);
     })
