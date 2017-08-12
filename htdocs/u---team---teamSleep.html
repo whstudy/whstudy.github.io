@@ -6,7 +6,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>新成员详情</title>
+
+    <title>沉睡成员详情</title>
     
 <link rel="shortcut icon" href="http://state.zhi-you.net/favicon.ico">
 <link rel="stylesheet" href="http://state.zhi-you.net/css/common.css">
@@ -59,7 +60,7 @@
             float: left;line-height: 50px;margin-left: 20px;font-size: 18px;
             color: #838385;
         }
-        .teamAll a,.teamAll span.paim {
+        .teamAll a {
             float: right;
             line-height: 50px;
             color: #6cb92d;
@@ -98,7 +99,7 @@
         }
         .ranking {
             float: left;
-            width:200px;
+            width:100px;
             height:100%;
             text-align: center;
             line-height: 60px;
@@ -108,7 +109,6 @@
             color: #fff;
             font-size: 12px;
         }
-
         .teamTop {
             width:90%;
             height:60px;
@@ -148,12 +148,14 @@
             z-index: 2;
         }
         .rankingTop {font-size: 18px}
-        .rankingAll>span.tel {
-            width:60px;
+        .rankingAll>a.tel,.rankingAll>span.tel {
+            width:110px;
             float: right;
             margin-right: 20px;
             color: #303134;
+            line-height: 60px;
         }
+        .rankingAll>span.telDetil {width:50px;}
         .sanjiao {
             float: left;
             height:60px;
@@ -228,22 +230,8 @@
             background: #fff;
             display: none;
         }
-        .teamListNum {
-            width:100%;
-            height:40px;
-            background: #fff;
-        }
-        .rankingNum {
-            width:100%;
-            height:60px;
-            display: none;
-        }
         .rankingAllList:last-child {
             border-bottom: none;
-        }
-        .ranknumber {
-            float: left;
-            width:25%;
         }
         .ranknumber p {
             width:100%;
@@ -252,16 +240,22 @@
             color: #a6a6a6;
         }
         @media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone5 */
+            .rankingAll>span{
+                width:55px;
+            }
             .ranking {
-                width:150px;
+                width:90px;
+            }
+            .rankingNew {
+                width:110px;
             }
         }
     </style>
 </head>
 <body>
 <header class="header">
-    <h1>新成员详情</h1>
-    <a href="/u---team/newTeam" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <h1>沉睡成员详情</h1>
+    <a href="/u---team---newTeam" class="button-left"><i class="fa fa-angle-left"></i></a>
 </header>
 
 <article>
@@ -281,11 +275,12 @@
                     <span class="rankingTop">高级合伙人</span>
                     <!-- <span class="rankingSpan must">特级</span> -->
                 </div>
-                <span class="tel">0人</span>
+                <span class="tel telDetil">0人</span>
             </div>
         </div>
         <div class="all allLast">
             
+
         </div>
 
         <div class="all" change="false" onclick="showList(this)">
@@ -297,11 +292,12 @@
                     <span class="rankingTop">合伙人</span>
                     <!-- <span class="rankingSpan province">省级</span> -->
                 </div>
-                <span class="tel">0人</span>
+                <span class="tel telDetil">0人</span>
             </div>
         </div>
         <div class="all allLast">
             
+
         </div>
         <div class="all" change="false" onclick="showList(this)">
             <div class="rankingAll">
@@ -312,7 +308,7 @@
                     <span class="rankingTop">准合伙人</span>
                     <!-- <span class="rankingSpan city">市级</span> -->
                 </div>
-                <span class="tel">0人</span>
+                <span class="tel telDetil">0人</span>
             </div>
         </div>
 
@@ -329,42 +325,18 @@
                     <span class="rankingTop">天使</span>
                     <!-- <span class="rankingSpan VIP">VIP</span> -->
                 </div>
-                <span class="tel">0人</span>
+                <span class="tel telDetil">0人</span>
             </div>
         </div>
         <div class="all allLast">
             
+
         </div>
-        
-            
-                
-                    
-                        
-                    
-                    
-                    
-                
-                
-            
-        
-        
-            
-                
-                    
-                        
-                        
-                            
-                        
-                        
-                            
-                        
-                    
-                
-            
-        
     </div>
+    
     <div class="searchList">查无此人!</div>
     <div class="searchListShow">
+
     </div>
 
     
@@ -382,6 +354,7 @@
             $(obj).next(".allLast").hide();
         }
     }
+
     //点击搜索
     function seatch() {
         $(".searchList").hide();
@@ -392,11 +365,11 @@
         }else {
             $(".numberList").hide();
             $(".searchListShow").show();
-
             $.ajax({
-                url : '/u---team/ajaxteamNew',
+                url : '/u---team---ajaxTeamSleep',
                 data : {
-                    nameorPhone:$(".searchInput").val()
+                    nameorPhone:$(".searchInput").val(),
+                    pageNumber:-1
                 },
                 dataType : 'json',
                 type : 'POST',
@@ -406,11 +379,10 @@
                     }
                     var pageData= result.data;
                     if (pageData.length) {
-                        /*var pageData = page.data;*/
                         for ( var i in pageData) {
                             var row = pageData[i];
                             if (row.userRank!="V0"){
-                             buildRow(row);
+                              buildRow(row);
                             }
                         }
                     }
@@ -433,13 +405,12 @@
 <script id="rowTpl" type="text/html">
     <div class="rankingAllList">
         <div class="rankingAll">
-            <img src="{{d.avatar}}" style="margin-left: 20px;margin-right: 20px;"/>
-            <div class="ranking" style="text-align: left;font-size: 18px;">
+            <img src="{{d.avatar}}" style="margin-left: 20px;"/>
+            <div class="ranking rankingNew">
                 <span>{{ d.nickname }}</span>
-                <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通用户':''}}</span>
             </div>
-            <a href="tel:{{ d.phone }}" class="telAll">
-                <img src="/images/tel.png" /></a>
+            <a href="tel:{{ d.phone }}" class="tel"><img src="/images/tel.png" style="width: 15px;height: 15px;padding-right: 5px">{{ d.phone }}</a>
         </div>
     </div>
 </script>

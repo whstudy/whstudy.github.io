@@ -262,7 +262,7 @@
 <body>
 <header class="header">
     <h1>直属团队详情</h1>
-    <a href="/u---team/newTeam" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <a href="/u---team---newTeam" class="button-left"><i class="fa fa-angle-left"></i></a>
 </header>
 
 <article>
@@ -363,7 +363,7 @@
     //点击下拉箭头
     function showNum(obj,id,type,index){
         $.ajax({
-            url : '/u---team/findDirectlyNum',
+            url : '/u---team---findDirectlyNum',
             data : {
                 userId : id
             },
@@ -407,7 +407,7 @@
             var phoneOrmame = $(".searchInput").val();
 
             $.ajax({
-                url : '/u---team/ajaxTeamDetail',
+                url : '/u---team---ajaxTeamDetail',
                 data : {
                     nameorPhone:phoneOrmame
                 },

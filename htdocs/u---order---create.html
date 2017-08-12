@@ -22,7 +22,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -50,20 +50,7 @@
 
       // 检测是否  实名认证realFlage
       
-         $.dialog({
-            content : '实名认证后才能提交订单,去认证？',
-          callback : function(index) {
-            if (index == 1) {
-              $(".miui-dialog").remove();
-              $('#orderForm').attr("action",'/u---userInfo');
-              $('#orderForm').submit();
-             return false;
-          }
-        }
-      });
-       return false;
-      
-      /*if(!false){
+      /*if(!true){
         $.dialog({
           content : '实名认证后才能提交订单,去认证？',
           callback : function(index) {
@@ -77,29 +64,6 @@
         });
         return false;
       }*/
-        
-        var parentPhone = $('#parentPhone').val();
-        if(!parentPhone) {
-          messageFlash('请填写推荐人手机号');
-          return false;
-        }
-        $.ajax({
-          url: '/checkParentPhone',
-          data: {
-            phone: parentPhone
-          },
-          type: 'POST',
-          dataType: 'JSON',
-          success: function(result){
-            if(result.code == 0) {
-              $('[name="parentId"]').val(result.message);
-              $('#orderForm').submit();
-            } else {
-              messageAlert(result.message);
-            }
-          }
-        });
-        return false;
         
     });
     
@@ -158,7 +122,7 @@
       }
 
       $.ajax({
-        url : '/u---address/createAjax',
+        url : '/u---address---createAjax',
         data : {
           realname : $('#realname').val(),
           phone : $('#phone').val(),
@@ -207,7 +171,7 @@
 
   function showAddressList() {
     $.ajax({
-      url : '/u---address/listAjax',
+      url : '/u---address---listAjax',
       type : 'POST',
       dataType : 'json',
       success : function(result) {
@@ -350,37 +314,47 @@
         <div class="list-icon"><i class="fa fa-map-marker fs-24"></i></div>
         <div class="list-text fs-14 font-333 receiver-info">
           
-            <span class="lh-30">您还未设置收货地址</span>
-            <a class="btn-add-address btn orange btn-sm round-2 right width-180" href="javascript:;">设置收货地址</a>
           
+            <div>付铠博<span class="right">13120576767</span></div>
+            <div class="fs-14 font-777">北京市 市辖区 海淀区 中关村 大恒科技大厦</div>
           
         </div>
-        <input type="hidden" id="addressId" name="addressId" value="">
+        <input type="hidden" id="addressId" name="addressId" value="update">
       </div>
     </div>
     
     <div class="list-group">
       <div class="list-title">商品信息</div>
       <div class="list-item">
-        <img class="image-80 block mr-10" alt="" src="http://image.zhi-you.net/image/8d5c51ce-a52d-499d-adbf-79640d36a247@320h_320w_1e_1c.jpg">
+        <img class="image-80 block mr-10" alt="" src="../../images/微信图片_20170726174201.jpg">
         <div class="list-text relative font-333">
-          <div class="fs-14 lh-24">¥ 优检一生2.0</div>
-          <div class="lh-24 fs-14 text-right font-orange">¥ 128.00</div>
-          <div class="lh-24 fs-12 text-right font-gray">x 3600</div>
+          <div class="fs-14 lh-24">¥ 民康优检</div>
+          <div class="lh-24 fs-14 text-right font-orange">¥ 196.00</div>
+          <div class="lh-24 fs-12 text-right font-gray">x 80</div>
           <input type="hidden" name="productId" value="2">
-          <input type="hidden" name="quantity" value="3600">
+          <input type="hidden" name="quantity" value="80">
         </div>
       </div>
       <div class="list-item">
         <div class="list-text text-right">
           
-          <div class="fs-14">应付款： <span class="font-orange fs-16 bold">¥ 460800.00</span></div>
+          <div class="fs-14">应付款： <span class="font-orange fs-16 bold">¥ 11840.00</span></div>
         </div>
       </div>
     </div>
     
     <div class="list-group">
       <div class="list-title">请选择付款方式</div>
+      
+      
+        <div class="list-item form-radio">
+          <label class="list-text" for="isPayToPlatform0">线下转账</label>
+          <div class="list-unit">
+            <input id="isPayToPlatform0" type="radio" name="isPayToPlatform" value="false">
+            <label class="i-checked" for="isPayToPlatform0"></label>
+          </div>
+        </div>
+      
       
       
         <div class="list-item form-radio">
@@ -404,23 +378,8 @@
       </div>
     </div>
     
-    
-      <div class="list-group">
-        <div class="list-item">
-          <label class="list-label">推荐人手机号</label>
-          <div class="list-text">
-            <input id="parentPhone" name="parentPhone" class="form-input" type="tel" value="" placeholder="输入推荐人服务商手机号">
-            <input type="hidden" name="parentId" value="">
-          </div>
-        </div>
-        <div style="color: #8a6d3b; padding: 15px 30px 15px 15px;">
-          <p>此手机号码为直属推荐人的手机号码，填写错误，则推荐关系不予以更改</p>
-        </div>
-      </div>
-    
-    
     <div class="form-btn">
-      <input id="btnSubmit" type="submit" value="确认订单" class="btn btn-block orange round-2">
+      <input id="btnSubmit" type="button" onclick="location.href='37986.html'" value="确认订单" class="btn btn-block orange round-2">
     </div>
     
   </article>
