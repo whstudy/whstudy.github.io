@@ -69,7 +69,10 @@
 <link rel="stylesheet" href="http://state.zhi-you.net/extend/imageupload/imageupload.css">
 <script>
 $.fn.imageupload.setDefaults({
-  url : '/image/upload',
+  url : 'http://122.152.208.113:9999/api/user/uploadFile',
+  xhrFields: {
+    withCredentials:true
+  },
   width : 100,
   height : 100,
   retain : 2,

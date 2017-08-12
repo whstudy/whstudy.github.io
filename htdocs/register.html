@@ -165,7 +165,7 @@
             <input type="text" id="nickname" name="nickname" class="form-input" placeholder="输入昵称" value="">
           </div>
         </div>
-        <div class="list-item">
+        <!-- <div class="list-item">
           <label class="list-label" for="phone">服务商等级</label>
           <div class="list-text form-select">
             <select id="roleType" name="roleType" class="form-input">
@@ -174,9 +174,8 @@
               <option value="QUASI_PARTNER">准合伙人</option>
               <option value="ANGEL">天使</option>
             </select>
-            <!-- <input type="text" id="phone" name="roleType" class="form-input" placeholder="输入昵称" value=""> -->
           </div>
-        </div>
+        </div> -->
         <div class="list-item">
           <label class="list-label" for="phone">密码</label>
           <div class="list-text">
@@ -244,6 +243,7 @@
         // layer.msg('确认密码不一致',{time:3000});
         return;
       }
+      delete data.password1;
       $.ajax({
         url: 'http://122.152.208.113:9999/api/user/regUser ',
         type: 'POST',
