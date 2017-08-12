@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>保险单列表</title>
+<title>设置</title>
 
 <link rel="shortcut icon" href="http://state.zhi-you.net/favicon.ico">
 <link rel="stylesheet" href="http://state.zhi-you.net/css/common.css">
@@ -32,82 +32,57 @@
 
 
 
-<script src="http://state.zhi-you.net/plugin/laytpl-1.1/laytpl.js"></script>
 <script type="text/javascript">
   $(function() {
-    if (!$('.page-more').hasClass('disabled')) {
-      $('.page-more').click(loadMore);
-    }
-  });
-  
-  var timeLT = '2017-07-25 15:23:22';
-  var pageNumber = 0;
+    $('#isDefault').click(function(event) {
+      var $this = $(this);
+      var checked = $this.is(':checked');
 
-  function loadMore() {
-    $.ajax({
-      url : '/u/policy',
-      data : {
-        pageNumber : pageNumber + 1,
-        timeLT : timeLT
-      },
-      dataType : 'json',
-      type : 'POST',
-      success : function(result) {
-        if(result.code != 0) {
-          return;
+      $.ajax({
+        url : '/u---userSetting/modifyIsReceiveTaskSms',
+        data : {
+          isReceiveTaskSms : checked
+        },
+        type : 'POST',
+        dataType : 'JSON',
+        success : function(result) {
+        },
+        error : function() {
         }
-        var page = result.data.page;
-        if (page.data.length) {
-          timeLT = result.data.timeLT;
-          pageNumber = page.pageNumber;
-          var pageData = page.data;
-          for ( var i in pageData) {
-            var row = pageData[i];
-            buildRow(row);
-          }
-        }
-        if (!page.data.length || page.data.length < page.pageSize) {
-          $('.page-more').addClass('disabled').html('<span>没有更多数据了</span>').unbind('click', loadMore);
-        }
-      }
+      });
     });
-  }
-  
-  function buildRow(row){
-    var rowTpl = document.getElementById('rowTpl').innerHTML;
-    laytpl(rowTpl).render(row, function(html) {
-      $('.list-group').append(html);
-    });
-  }
-</script>
-<script id="rowTpl" type="text/html">
-  <a class="list-item" href="javascript:;">
-    <div class="list-text policy">
-      <div class="lh-30 fs-14">报告编号：<span class="fs-13 font-orange">{{ d.reportId }}</span></div>
-      <div class="lh-30 fs-14">{{ d.realname }}<span class="ml-10 fs-12 font-999">&lt;{{ d.gender }}  {{ d.age }}岁&gt;</span><span class="right fs-12 font-999">{{ d.phone }}</span></div>
-    </div>
-  </a>
+  });
 </script>
 </head>
-<body class="header-fixed">
+<body class="user-settings">
+
   <header class="header">
-    <h1>保险单列表</h1>
+    <h1>设置</h1>
     <a onclick="history.go(-1);" class="button-left"><i class="fa fa-angle-left"></i></a>
-    <a href="/u/policy/create" class="button-right">新增</a>
   </header>
-  
+
   <article>
-    
-    
-    
-      <div class="page-empty">
-        <i class="fa fa-file-o"></i>
-        <span>暂无记录</span>
+    <div class="list-group">
+      <div class="list-item">
+        <div class="list-text">接受短信提醒</div>
+        <div class="list-unit form-switch">
+          <input type="checkbox" id="isDefault" name="isDefault" checked="checked">
+          <label class="i-switch" for="isDefault"></label>
+        </div>
       </div>
-    
-    
-    
+      <div class="list-item">
+        <div class="list-text">系统版本</div>
+        <div class="list-unit">v1.1.8 Beta</div>
+      </div>
+    </div>
+
+    <div class="form-btn">
+      <a href="./logout" class="btn red btn-block round-2">退出</a>
+    </div>
+
   </article>
+
+
 
 
 </body></html>

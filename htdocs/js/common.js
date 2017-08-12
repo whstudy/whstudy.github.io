@@ -1,7 +1,8 @@
 /**
  * Common js
  */
-domainUrl="http://whstudy.github.io/htdocs/"
+domainUrl="http://whstudy.github.io/htdocs/";
+imageNginxUrl="http://122.152.208.113:8080/";
 window.messageShow = function(message, icon, timeout) {
   $.message({
     type : icon || 'info',
@@ -59,8 +60,8 @@ $(function() {
     switch (XMLHttpRequest.status) {
       case 401: /* 未登录提示 */
         var result = JSON.parse(XMLHttpRequest.responseText);
-        location.href=domainUrl+'login.html';
-        // showLogin(result.data);
+        // location.href=domainUrl+'login.html';
+        showLogin(result.data);
         //messageFlash('您还没有登录, 请先登录');
         break;
       case 403:
@@ -91,7 +92,7 @@ $(function() {
       +   '<div class="aside-mask fix-lt size-100p zindex-100" style="background-color:rgba(0, 0, 0, 0.8)"></div>'
       // +   '<a href="javascript:;" class="btn-close abs-rt p-15 zindex-100"><i class="fa fa-times-circle font-white fs-20"></i></a>'
       +   '<div class="abs-mm text-center zindex-100">'
-      +     '<p class="font-white fs-15 lh-30">您的登录已过期，请重新登录</p>'
+      +     '<p class="font-white fs-15 lh-30">您的登录已超时，请重新登录</p>'
       // +     '<a class="btn green mt-15 width-200 round-2" href="' + url + '"><i class="fa fa-weixin font-white"></i> 去授权登录</a>'
       +     '<a class="btn default mt-15 width-200 round-2" href="'+domainUrl+'/login.html">登录</a>'
       +   '</div>'

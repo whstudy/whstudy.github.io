@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>设置</title>
+<title>修改昵称</title>
 
 <link rel="shortcut icon" href="http://state.zhi-you.net/favicon.ico">
 <link rel="stylesheet" href="http://state.zhi-you.net/css/common.css">
@@ -20,7 +20,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://whstudy.github.io/htdocs/js/common.js"></script>
+<script src="http://state.zhi-you.net/js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -32,56 +32,38 @@
 
 
 
-<script type="text/javascript">
+<script>
   $(function() {
-    $('#isDefault').click(function(event) {
-      var $this = $(this);
-      var checked = $this.is(':checked');
-
-      $.ajax({
-        url : '/u/userSetting/modifyIsReceiveTaskSms',
-        data : {
-          isReceiveTaskSms : checked
-        },
-        type : 'POST',
-        dataType : 'JSON',
-        success : function(result) {
-        },
-        error : function() {
-        }
-      });
+    $('#form').submit(function() {
+      if (!$('#nickname').val()) {
+        messageFlash('请输入昵称');
+        return false;
+      }
     });
   });
 </script>
 </head>
-<body class="user-settings">
-
+<body>
   <header class="header">
-    <h1>设置</h1>
-    <a onclick="history.go(-1);" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <h1>修改昵称</h1>
+    <a href="/u---info" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
-
   <article>
-    <div class="list-group">
-      <div class="list-item">
-        <div class="list-text">接受短信提醒</div>
-        <div class="list-unit form-switch">
-          <input type="checkbox" id="isDefault" name="isDefault" checked="checked">
-          <label class="i-switch" for="isDefault"></label>
+    <form id="form" class="valid-form" action="/u---nickname" method="post">
+      <div class="list-group">
+        <div class="list-item">
+          <label class="list-label" for="nickname">昵称</label>
+          <div class="list-text">
+            <input type="text" id="nickname" name="nickname" class="form-input" value="随风漂流" placeholder="填写昵称">
+          </div>
         </div>
       </div>
-      <div class="list-item">
-        <div class="list-text">系统版本</div>
-        <div class="list-unit">v1.1.8 Beta</div>
+
+      <div class="form-btn">
+        <input id="btnSubmit" class="btn orange btn-block round-2" type="submit" value="提 交">
       </div>
-    </div>
-
-    <div class="form-btn">
-      <a href="./logout" class="btn red btn-block round-2">退出</a>
-    </div>
-
+    </form>
   </article>
-
 
 
 

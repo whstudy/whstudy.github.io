@@ -72,7 +72,7 @@
     <a href="javascript:;" id="btnDelete" class="button-right"><i class="fa fa-trash"></i></a>
   </header>
   <article class="address-edit">
-    <form id="addressForm" class="valid-form" action="/u/address/edit" method="post" novalidate="novalidate">
+    <form id="addressForm" class="valid-form" action="/u---address/edit" method="post" novalidate="novalidate">
       <input type="hidden" id="id" name="id" value="">
       <div class="form-message note note-warning mb-0 hide">
         <p>输入信息有误，请先更正。</p>
@@ -197,7 +197,7 @@
         content : '您确认要删除该收货地址吗?',
         callback : function(index){
           if(index == 1) {
-            location.href = '/u/address/delete/update';
+            location.href = '/u---address/delete/update';
             return true;
           }
         }

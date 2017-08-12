@@ -22,7 +22,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -85,7 +85,7 @@ $(function() {
             */
             processData: false,
             success: function (data) {
-                setAvator('http://122.152.208.133'+data.data);
+                setAvator(imageNginxUrl+data.data);
                 if (data.status == "true") {
                     alert("上传成功！");
                 }
@@ -140,7 +140,7 @@ $(function() {
 
   <header class="header">
     <h1>修改头像</h1>
-    <a href="/u/info" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <a href="/u---info" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
 
   <article class="user-avatar">

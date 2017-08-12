@@ -45,7 +45,7 @@
 
         function loadMore() {
             $.ajax({
-                url : '/u/notice',
+                url : '/u---notice',
                 data : {
                     pageNumber : pageNumber + 1,
                     timeLT : timeLT
@@ -81,7 +81,7 @@
         }
     </script>
     <script id="rowTpl" type="text/html">
-        <a class="list-item article" href="/u/notice/{{ d.id }}">
+        <a class="list-item article" href="/u---notice/{{ d.id }}">
             <div class="list-text">
                 <h2 class="fs-15 lh-24 o-hidden">{{ d.title }}</h2>
                 <div class="font-777 fs-12">{{ d.createdTimeLabel }}</div>

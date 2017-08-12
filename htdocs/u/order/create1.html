@@ -55,7 +55,7 @@
           callback : function(index) {
             if (index == 1) {
               $(".miui-dialog").remove();
-              $('#orderForm').attr("action",'/u/userInfo');
+              $('#orderForm').attr("action",'/u---userInfo');
               $('#orderForm').submit();
              return false;
           }
@@ -69,7 +69,7 @@
           callback : function(index) {
             if (index == 1) {
               $(".miui-dialog").remove();
-              $('#orderForm').attr("action",'/u/userInfo');
+              $('#orderForm').attr("action",'/u---userInfo');
               $('#orderForm').submit();
               return false;
             }
@@ -158,7 +158,7 @@
       }
 
       $.ajax({
-        url : '/u/address/createAjax',
+        url : '/u---address/createAjax',
         data : {
           realname : $('#realname').val(),
           phone : $('#phone').val(),
@@ -207,7 +207,7 @@
 
   function showAddressList() {
     $.ajax({
-      url : '/u/address/listAjax',
+      url : '/u---address/listAjax',
       type : 'POST',
       dataType : 'json',
       success : function(result) {
@@ -339,7 +339,7 @@
     <a href="javascript:history.back();" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
   
-  <form id="orderForm" class="valid-form" action="/u/order/create" method="post">
+  <form id="orderForm" class="valid-form" action="/u---order/create" method="post">
     <input type="hidden" name="orderType" value="">
   
   

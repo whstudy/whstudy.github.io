@@ -22,7 +22,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://whstudy.github.io/htdocs/js/common.js"></script>
+<script src="js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -51,10 +51,10 @@
   <article class="user-info">
     <div class="list-group mt-10">
       <div class="list-title">基本信息</div>
-      <a class="list-item" href="avatar.html">
+      <a class="list-item" href="u---avatar.html">
         <div class="list-text">头像</div>
         <div class="list-unit">
-          <img class="image-60 round bd" src="http://image.zhi-you.net/avatar/09910bff-926c-4e71-8287-fc97d34ec682@160h_160w_1e_1c.jpg">
+          <img class="image-60 round bd" src="images/avatar">
         </div>
         <i class="list-arrow"></i>
       </a>
@@ -93,19 +93,19 @@
     </div>
 
     <div class="list-group">
-      <a class="list-item list-item-icon" href="../u/password.html">
+      <a class="list-item list-item-icon" href="u---password.html">
         <i class="list-icon icon icon icon-key"></i>
         <div class="list-text">修改密码</div>
         <div class="list-unit"></div>
         <i class="list-arrow"></i>
       </a>
-      <a class="list-item list-item-icon" href="../u/userInfo/create.html">
+      <a class="list-item list-item-icon" href="u---userInfo---create.html">
         <i class="list-icon icon icon-idcard"></i>
         <div class="list-text">实名认证</div>
         <div class="list-unit"></div>
         <i class="list-arrow"></i>
       </a>
-      <a class="list-item list-item-icon" href="../u/address.html">
+      <a class="list-item list-item-icon" href="u---address.html">
         <i class="list-icon icon icon-address"></i>
         <div class="list-text">收货地址</div>
         <div class="list-unit"></div>
@@ -123,9 +123,23 @@
       'QUASI_PARTNER':'准合伙人',
       'ANGEL':'天使',
     };
-    $('.nickname').text(JSON.parse(localStorage.getItem('user')).nickname);
-    $('.phone').text(JSON.parse(localStorage.getItem('user')).phone);
-    $('.authorizationCode').text(JSON.parse(localStorage.getItem('user')).authorizationCode);
+
+    $.ajax({
+      url: 'http://122.152.208.113:9999/api/user/getLoginUser',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+    })
+    .done(function(data) {
+      $('.nickname').text(data.nickname);
+      $('.phone').text(data.phone);
+      $('.authorizationCode').text(data.authorizationCode);
+      $('[src="images/avatar"]').attr('src',imageNginxUrl+data.headPortrait);
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
   </script>
 
 </body></html>
