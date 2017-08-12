@@ -20,7 +20,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -46,7 +46,7 @@
 <body>
   <header class="header">
     <h1>修改昵称</h1>
-    <a href="/u---info" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <a href="u---info.html" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
   <article>
     <form id="form" class="valid-form" action="/u---nickname" method="post">
@@ -54,17 +54,51 @@
         <div class="list-item">
           <label class="list-label" for="nickname">昵称</label>
           <div class="list-text">
-            <input type="text" id="nickname" name="nickname" class="form-input" value="随风漂流" placeholder="填写昵称">
+            <input type="text" id="nickname" name="nickname" class="form-input" value="" placeholder="填写昵称">
           </div>
         </div>
       </div>
 
       <div class="form-btn">
-        <input id="btnSubmit" class="btn orange btn-block round-2" type="submit" value="提 交">
+        <input id="btnSubmit" class="btn orange btn-block round-2" type="button" value="提 交">
       </div>
     </form>
   </article>
 
+  <script type="text/javascript">
 
+    $.ajax({
+      url: serviceUrl+'/api/user/getLoginUser',
+      type: 'POST',
+      data:{nickname:$('#nickname').val()},
+      xhrFields: {
+        withCredentials:true
+      },
+    })
+    .done(function(data) {
+      $('#nickname').val(data.nickname);
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+
+    $('#btnSubmit').click(function(){
+      $.ajax({
+        url: serviceUrl+'/api/user/setNickname',
+        type: 'POST',
+        data:{nickname:$('#nickname').val()},
+        xhrFields: {
+          withCredentials:true
+        },
+      })
+      .done(function(data) {
+        location.href='u.html';
+      })
+      .fail(function(data) {
+        console.log("error");
+      })
+    });
+    
+  </script>
 
 </body></html>

@@ -220,7 +220,7 @@
       data.push({name:'isDefault',value:$('#isDefault').val()});
 
       $.ajax({
-        url: serviceUrl+'api/user/updateDeliverAddress',
+        url: serviceUrl+'/api/user/updateDeliverAddress',
         type: 'POST',
         // dataType: 'json',
         xhrFields: {

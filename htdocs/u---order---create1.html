@@ -119,12 +119,12 @@
       var $this = $(this);
       var address = {};
       address.id = $this.attr('data-id');
-      address.realname = $this.find('.address-name').text();
+      address.deliveryMan = $this.find('.address-name').text();
       address.phone = $this.find('.address-phone').text();
       address.addressText = $this.find('.address-text').text();
       
       $.dialog({
-        content : '您确定要设置收货地址吗？<br>' + '收件人：' + address.realname + '<br>' + '手机号：' + address.phone + '<br>' + '地址：' + address.addressText,
+        content : '您确定要设置收货地址吗？<br>' + '收件人：' + address.deliveryMan + '<br>' + '手机号：' + address.phone + '<br>' + '地址：' + address.addressText,
         callback : function(index){
           if(index == 1) {
             hideAddressList();
@@ -136,11 +136,11 @@
     });
 
     $('body').on('click', '.btn-create', function() {
-      var realname = $('#realname').val();
+      var deliveryMan = $('#deliveryMan').val();
       var phone = $('#phone').val();
       var address = $('#address').val();
-      var areaId = $('#district option:selected').val();
-      if (!realname) {
+      var region = $('#district option:selected').val();
+      if (!deliveryMan) {
         messageFlash('请填写收件人名');
         return;
       }
@@ -148,7 +148,7 @@
         messageFlash('请填写收件人电话');
         return;
       }
-      if (!areaId) {
+      if (!region) {
         messageFlash('请选择收件人省市区');
         return;
       }
@@ -158,12 +158,12 @@
       }
 
       $.ajax({
-        url : '/u---address---createAjax',
+        url : serviceUrl+'/api/user/saveDeliverAddress',
         data : {
-          realname : $('#realname').val(),
+          deliveryMan : $('#deliveryMan').val(),
           phone : $('#phone').val(),
           address : $('#address').val(),
-          areaId : $('#district option:selected').val()
+          region : $('#district option:selected').val()
         },
         type : 'POST',
         dataType : 'json',
@@ -238,7 +238,7 @@
     $('#addressId').val(address.id);
     var addressText = address.addressText ? address.addressText 
         : address.province + ' ' + address.city + ' ' + address.district + ' ' + address.address
-    $('.receiver-info').html('<div>' + address.realname + '<span class="right">' + address.phone + '</span></div>' 
+    $('.receiver-info').html('<div>' + address.deliveryMan + '<span class="right">' + address.phone + '</span></div>' 
         + '<div class="fs-14 font-777">' + addressText+ '</div>')
   }
   
@@ -256,9 +256,9 @@
       </div>
       <div class="list-group">
         <div class="list-item">
-          <label class="list-label" for="realname">收件人</label>
+          <label class="list-label" for="deliveryMan">收件人</label>
           <div class="list-text">
-            <input type="text" id="realname" name="realname" class="form-input" value="" placeholder="填写收件人姓名">
+            <input type="text" id="deliveryMan" name="deliveryMan" class="form-input" value="" placeholder="填写收件人姓名">
           </div>
         </div>
         <div class="list-item">
@@ -286,7 +286,7 @@
         <div class="list-item">
           <label class="list-label">地区</label>
           <div class="list-text form-select">
-            <select name="areaId" id="district">
+            <select name="region" id="district">
               <option value="">请选择</option>
             </select>
           </div>
@@ -324,7 +324,7 @@
     {{# for(var i = 0, len = d.length; i < len; i++){ }}
       <a href="javascript:;" class="list-item address" data-id="{{ d[i].id }}">
         <div class="list-text pl-10 pr-10">
-          <div><span class="address-name">{{ d[i].realname }}</span><span class="address-phone fs-14 font-777 right">{{ d[i].phone }}</span></div>
+          <div><span class="address-name">{{ d[i].deliveryMan }}</span><span class="address-phone fs-14 font-777 right">{{ d[i].phone }}</span></div>
           <div class="fs-14 font-777 address-text">{{ d[i].province }} {{ d[i].city }} {{ d[i].district }} {{ d[i].address }}</div>
         </div>
       </a>

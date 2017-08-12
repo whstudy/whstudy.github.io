@@ -69,7 +69,7 @@
 <link rel="stylesheet" href="http://state.zhi-you.net/extend/imageupload/imageupload.css">
 <script>
 $.fn.imageupload.setDefaults({
-  url : serviceUrl+'api/user/uploadFile',
+  url : serviceUrl+'/api/user/uploadFile',
   xhrFields: {
     withCredentials:true
   },
@@ -164,7 +164,7 @@ $.fn.imageupload.setDefaults({
       // var formData = new FormData($('.valid-form')[0]);
       var formData = $('.valid-form').serializeArray();
       $.ajax({
-          url: serviceUrl+"api/user/regRealInfo",
+          url: serviceUrl+"/api/user/regRealInfo",
           type: "POST",
           data: formData,
           xhrFields: {
@@ -191,7 +191,7 @@ $.fn.imageupload.setDefaults({
     })
 
     $.ajax({
-      url: serviceUrl+"api/user/getLoginUserRealInfo",
+      url: serviceUrl+"/api/user/getLoginUserRealInfo",
       type: "POST",
       // data: formData,
       xhrFields: {

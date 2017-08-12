@@ -60,7 +60,7 @@ $(function() {
     };
     
     $.ajax({
-      url: serviceUrl+'api/user/getLoginUser',
+      url: serviceUrl+'/api/user/getLoginUser',
       type: 'POST',
       xhrFields: {
         withCredentials:true
@@ -83,7 +83,7 @@ $(function() {
         var formData = new FormData($('#uploadForm')[0]);
         // formData.append("myfile", document.getElementById("file1").files[0]);   
         $.ajax({
-            url: serviceUrl+"api/user/uploadPhoto",
+            url: serviceUrl+"/api/user/uploadPhoto",
             type: "POST",
             data: formData,
             xhrFields: {
@@ -158,7 +158,7 @@ $(function() {
   </header>
 
   <article class="user-avatar">
-    <form id="uploadForm" target="uploadtarget" action=serviceUrl+"api/user/uploadPhoto" method="post" enctype="multipart/form-data">
+    <form id="uploadForm" target="uploadtarget" action=serviceUrl+"/api/user/uploadPhoto" method="post" enctype="multipart/form-data">
       <figure class="avatar">
         <img src="images/avatar.jpg">
       </figure>

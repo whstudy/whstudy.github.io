@@ -218,7 +218,7 @@
       var data=$('.valid-form').serializeArray();
 
       $.ajax({
-        url: serviceUrl+'api/user/saveDeliverAddress',
+        url: serviceUrl+'/api/user/saveDeliverAddress',
         type: 'POST',
         // dataType: 'json',
         xhrFields: {
@@ -229,7 +229,7 @@
       .done(function(data) {
         console.log("success");
         console.log(data);
-        history.go(-1);
+        location.href='u---address.html'
       })
       .fail(function(data) {
         console.log("error");
