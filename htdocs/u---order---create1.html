@@ -22,7 +22,7 @@
 <script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
-<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="js/common.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -39,29 +39,29 @@
 <script>
   $(function() {
     $('#btnSubmit').click(function(){
-      if(!$('#addressId').val()) {
-        messageFlash('请先选择收货地址.');
-        return false;  
-      }
-      if($('input[name=isPayToPlatform]:checked').length == 0) {
-        messageFlash('请先选择收款对象.');
-        return false;  
-      }
+      // if(!$('#addressId').val()) {
+      //   messageFlash('请先选择收货地址.');
+      //   return false;  
+      // }
+      // if($('input[name=isPayToPlatform]:checked').length == 0) {
+      //   messageFlash('请先选择收款对象.');
+      //   return false;  
+      // }
 
       // 检测是否  实名认证realFlage
       
-         $.dialog({
-            content : '实名认证后才能提交订单,去认证？',
-          callback : function(index) {
-            if (index == 1) {
-              $(".miui-dialog").remove();
-              $('#orderForm').attr("action",'/u---userInfo');
-              $('#orderForm').submit();
-             return false;
-          }
-        }
-      });
-       return false;
+      //    $.dialog({
+      //       content : '实名认证后才能提交订单,去认证？',
+      //     callback : function(index) {
+      //       if (index == 1) {
+      //         $(".miui-dialog").remove();
+      //         $('#orderForm').attr("action",'/u---userInfo');
+      //         $('#orderForm').submit();
+      //        return false;
+      //     }
+      //   }
+      // });
+       // return false;
       
       /*if(!false){
         $.dialog({
@@ -78,28 +78,42 @@
         return false;
       }*/
         
-        var parentPhone = $('#parentPhone').val();
-        if(!parentPhone) {
-          messageFlash('请填写推荐人手机号');
-          return false;
-        }
+        // var parentPhone = $('#parentPhone').val();
+        // if(!parentPhone) {
+        //   messageFlash('请填写推荐人手机号');
+        //   return false;
+        // }
+        var data=$('#orderForm').serializeArray();
+
         $.ajax({
-          url: '/checkParentPhone',
-          data: {
-            phone: parentPhone
-          },
+          url: serviceUrl+'/api/order/applyOrder',
           type: 'POST',
-          dataType: 'JSON',
-          success: function(result){
-            if(result.code == 0) {
-              $('[name="parentId"]').val(result.message);
-              $('#orderForm').submit();
-            } else {
-              messageAlert(result.message);
-            }
-          }
-        });
-        return false;
+          data: data,
+          xhrFields: {
+            withCredentials:true
+          },
+        })
+        .done(function(data) {
+          messageAlert(result);
+        })
+        .fail(function(data) {
+          console.log("error");
+        })
+
+        // $.ajax({
+        //   url: serviceUrl+'/api/order/applyOrder',
+        //   data: data,
+        //   type: 'POST',
+        //   success: function(result){
+        //     // if(result.code == 0) {
+        //     //   $('[name="parentId"]').val(result.message);
+        //     //   $('#orderForm').submit();
+        //     // } else {
+        //       messageAlert(result);
+        //     // }
+        //   }
+        // });
+        // return false;
         
     });
     
@@ -420,7 +434,7 @@
     
     
     <div class="form-btn">
-      <input id="btnSubmit" type="submit" value="确认订单" class="btn btn-block orange round-2">
+      <input id="btnSubmit" type="button" value="确认订单" class="btn btn-block orange round-2">
     </div>
     
   </article>
