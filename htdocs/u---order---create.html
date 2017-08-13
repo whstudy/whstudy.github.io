@@ -39,14 +39,36 @@
 <script>
   $(function() {
     $('#btnSubmit').click(function(){
-      if(!$('#addressId').val()) {
+      if(!$('#deliverAddressId').val()) {
         messageFlash('请先选择收货地址.');
         return false;  
       }
-      if($('input[name=isPayToPlatform]:checked').length == 0) {
+      if($('input[name=payType]:checked').length == 0) {
         messageFlash('请先选择收款对象.');
         return false;  
       }
+
+      $.ajax({
+        url : serviceUrl+'/api/order/applyOrder',
+        xhrFields: {
+          withCredentials:true
+        },
+        type : 'POST',
+        data : $('#orderForm').serializeArray(),
+        success : function(result) {
+          location.href='u---order---37986.html';
+          // var addressTpl = document.getElementById('addressListTpl').innerHTML;
+          // laytpl(addressTpl).render(result.data, function(html) {
+          //   $('article > .list-item').hide();
+          //   $('body').addClass('o-hidden').append(html);
+          //   $('#addressList').show().animate({
+          //     'left' : 0
+          //   }, 300, function() {
+          //   });
+            
+          // });
+        }
+      });
 
       // 检测是否  实名认证realFlage
       
@@ -122,23 +144,46 @@
       }
 
       $.ajax({
-        url : '/u---address---createAjax',
-        data : {
-          realname : $('#realname').val(),
-          phone : $('#phone').val(),
-          address : $('#address').val(),
-          areaId : $('#district option:selected').val()
+        url : serviceUrl+'/api/order/applyOrder',
+        xhrFields: {
+          withCredentials:true
         },
         type : 'POST',
-        dataType : 'json',
+        data : $('#orderForm').serializeArray(),
         success : function(result) {
-          if (result.code == 0) {
-            var address = result.data;
-            setAddress(address);
-            hideAddressCreate();
-          }
+          location.href='u---order---37986.html';
+          // var addressTpl = document.getElementById('addressListTpl').innerHTML;
+          // laytpl(addressTpl).render(result.data, function(html) {
+          //   $('article > .list-item').hide();
+          //   $('body').addClass('o-hidden').append(html);
+          //   $('#addressList').show().animate({
+          //     'left' : 0
+          //   }, 300, function() {
+          //   });
+            
+          // });
         }
       });
+
+      // $.ajax({
+      //   url : '/u---address---createAjax',
+      //   data : {
+      //     realname : $('#realname').val(),
+      //     phone : $('#phone').val(),
+      //     address : $('#address').val(),
+      //     areaId : $('#district option:selected').val()
+      //   },
+      //   type : 'POST',
+      //   dataType : 'json',
+      //   success : function(result) {
+      //     if (result.code == 0) {
+      //       var address = result.data;
+      //       setAddress(address);
+      //       hideAddressCreate();
+      //     }
+      //   }
+      // });
+
     });
 
     $('.form-switch label').click(function() {
@@ -171,20 +216,29 @@
 
   function showAddressList() {
     $.ajax({
-      url : '/u---address---listAjax',
+      url : serviceUrl+'/api/user/getDefaultDeliveryAddress',
+      xhrFields: {
+        withCredentials:true
+      },
       type : 'POST',
-      dataType : 'json',
+      data : {
+        deliveryMan : $('#deliveryMan').val(),
+        phone : $('#phone').val(),
+        address : $('#address').val(),
+        region : $('#district option:selected').val()
+      },
       success : function(result) {
-        var addressTpl = document.getElementById('addressListTpl').innerHTML;
-        laytpl(addressTpl).render(result.data, function(html) {
-          $('article > .list-item').hide();
-          $('body').addClass('o-hidden').append(html);
-          $('#addressList').show().animate({
-            'left' : 0
-          }, 300, function() {
-          });
+        // onclick="location.href='u---order---37986.html'" 
+        // var addressTpl = document.getElementById('addressListTpl').innerHTML;
+        // laytpl(addressTpl).render(result.data, function(html) {
+        //   $('article > .list-item').hide();
+        //   $('body').addClass('o-hidden').append(html);
+        //   $('#addressList').show().animate({
+        //     'left' : 0
+        //   }, 300, function() {
+        //   });
           
-        });
+        // });
       }
     });
   }
@@ -199,7 +253,7 @@
   }
   
   function setAddress(address) {
-    $('#addressId').val(address.id);
+    $('#deliverAddressId').val(address.id);
     var addressText = address.addressText ? address.addressText 
         : address.province + ' ' + address.city + ' ' + address.district + ' ' + address.address
     $('.receiver-info').html('<div>' + address.realname + '<span class="right">' + address.phone + '</span></div>' 
@@ -319,7 +373,7 @@
             <div class="fs-14 font-777">北京市 市辖区 海淀区 中关村 大恒科技大厦</div>
           
         </div>
-        <input type="hidden" id="addressId" name="addressId" value="update">
+        <input type="hidden" id="deliverAddressId" name="deliverAddressId" value="1">
       </div>
     </div>
     
@@ -330,9 +384,9 @@
         <div class="list-text relative font-333">
           <div class="fs-14 lh-24">¥ 民康优检</div>
           <div class="lh-24 fs-14 text-right font-orange">¥ 196.00</div>
-          <div class="lh-24 fs-12 text-right font-gray">x 80</div>
+          <div class="lh-24 fs-12 text-right font-gray productNum">x 80</div>
           <input type="hidden" name="productId" value="2">
-          <input type="hidden" name="quantity" value="80">
+          <input type="hidden" name="productNum" value="80">
         </div>
       </div>
       <div class="list-item">
@@ -348,20 +402,20 @@
       
       
         <div class="list-item form-radio">
-          <label class="list-text" for="isPayToPlatform0">线下转账</label>
+          <label class="list-text" for="payType0">线下转账</label>
           <div class="list-unit">
-            <input id="isPayToPlatform0" type="radio" name="isPayToPlatform" value="false">
-            <label class="i-checked" for="isPayToPlatform0"></label>
+            <input id="payType0" type="radio" name="payType" value="线下转账">
+            <label class="i-checked" for="payType0"></label>
           </div>
         </div>
       
       
       
         <div class="list-item form-radio">
-          <label class="list-text" for="isPayToPlatform1">余额支付</label>
+          <label class="list-text" for="payType1">余额支付</label>
           <div class="list-unit">
-            <input id="isPayToPlatform1" type="radio" name="isPayToPlatform" value="true">
-            <label class="i-checked" for="isPayToPlatform1"></label>
+            <input id="payType1" type="radio" name="payType" value="余额支付">
+            <label class="i-checked" for="payType1"></label>
           </div>
         </div>
       
@@ -373,18 +427,21 @@
       <div class="list-title">请写下您的订单留言</div>
       <div class="list-item">
         <div class="list-text">
-          <textarea name="buyerMemo" class="form-input" rows="2" placeholder="填写您的订单留言"></textarea>
+          <textarea name="orderComment" class="form-input" rows="2" placeholder="填写您的订单留言"></textarea>
         </div>
       </div>
     </div>
     
     <div class="form-btn">
-      <input id="btnSubmit" type="button" onclick="location.href='u---order---37986.html'" value="确认订单" class="btn btn-block orange round-2">
+      <input id="btnSubmit" type="button" value="确认订单" class="btn btn-block orange round-2">
     </div>
     
   </article>
   </form>
-  
 
+<script type="text/javascript">
+  var order=JSON.parse(sessionStorage.getItem('order'));
+  $('.productNum').text('x '+order.productNum);
+</script>
 
 </body></html>
