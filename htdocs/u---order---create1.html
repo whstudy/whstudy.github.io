@@ -200,6 +200,9 @@
 
   $.ajax({
     url : serviceUrl+'/api/user/getDefaultDeliveryAddress',
+    xhrFields: {
+      withCredentials:true
+    },
     data : {
       deliveryMan : $('#deliveryMan').val(),
       phone : $('#phone').val(),

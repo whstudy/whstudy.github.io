@@ -140,7 +140,7 @@
       .done(function(data) {
         console.log("success");
         console.log(data);
-        localStorage.setItem('user',JSON.stringify(data));
+        sessionStorage.setItem('user',JSON.stringify(data));
         sessionStorage.setItem('isLogin',1);
         location.href='./u.html';
         // alert(11);
