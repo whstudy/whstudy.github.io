@@ -197,6 +197,25 @@
     });
 
   });
+
+  $.ajax({
+    url : serviceUrl+'/api/user/getDefaultDeliveryAddress',
+    data : {
+      deliveryMan : $('#deliveryMan').val(),
+      phone : $('#phone').val(),
+      address : $('#address').val(),
+      region : $('#district option:selected').val()
+    },
+    type : 'POST',
+    dataType : 'json',
+    success : function(result) {
+      if (result.code == 0) {
+        var address = result.data;
+        setAddress(address);
+        hideAddressCreate();
+      }
+    }
+  });
   
   function showAddressCreate() {
     var addressCreateHtml = document.getElementById('addressCreateTpl').innerHTML;
@@ -369,7 +388,7 @@
           
           
         </div>
-        <input type="hidden" id="deliverAddressId" name="deliverAddressId" value="">
+        <input type="hidden" id="deliverAddressId" name="deliverAddressId" value="1">
       </div>
     </div>
     
@@ -400,7 +419,7 @@
         <div class="list-item form-radio">
           <label class="list-text" for="isPayToPlatform1">余额支付</label>
           <div class="list-unit">
-            <input id="isPayToPlatform1" type="radio" name="isPayToPlatform" value="true">
+            <!-- <input id="isPayToPlatform1" type="radio" name="isPayToPlatform" value="true"> -->
             <label class="i-checked" for="isPayToPlatform1"></label>
           </div>
         </div>
@@ -439,7 +458,5 @@
     
   </article>
   </form>
-  
-
 
 </body></html>

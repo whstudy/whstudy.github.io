@@ -118,7 +118,7 @@
     <a class="flex-1 bd-r" href="./u---order---in.html">
       <i class="icon icon-in icon-2x"></i>
       <em>订单</em>
-      <span>240次</span>
+      <span class="orderCount">0次</span>
     </a>
     <a class="flex-1" href="./u---order---out.html">
       <i class="icon icon-out icon-2x"></i>
@@ -249,6 +249,21 @@
       $('.bold').text(data.nickname);
       $('.orange').text(data.roleType);
       $('.avatar').attr('src',imageNginxUrl+data.headPortrait);
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+
+    $.ajax({
+      url: serviceUrl+'/api/order/countByOrderTypeAndUser',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+      data:{orderType:'服务订单'},
+    })
+    .done(function(data) {
+      $('.orderCount').text(data+'次');
     })
     .fail(function(data) {
       console.log("error");

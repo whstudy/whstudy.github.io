@@ -21,6 +21,7 @@
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
 <script src="js/common.js"></script>
+<script src="js/moment.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -95,7 +96,7 @@
         btn : [ '<a id="btnPay1" class="btn orange block round-2">U币积分支付</a>'/*, '<a id="btnPay2" class="btn green block round-2">银行汇款</a>' */],
         callback : function(index) {
           if (index == 1) {
-            location.href = 'u---pay---order---37986?payType=0';
+            location.href = 'u---pay---order.html?payType=0';
           }/*  else if (index == 2) {
             location.href = '/u---pay---order---37988?payType=1';
           } */
@@ -218,8 +219,8 @@
       <div class="list-item">
         <div class="list-icon"><i class="fa fa-map-marker font-orange fs-24"></i></div>
         <div class="list-text fs-14 font-333 pl-5">
-          <div>付铠博<span class="right">13120576767</span></div>
-          <div class="fs-14 font-777">北京市 市辖区 海淀区 中关村 大恒科技大厦</div>
+          <div><span class="receiverName">收货人</span><span class="right receiverPhone">13000000000</span></div>
+          <div class="fs-14 font-777 address">北京市 市辖区 海淀区 中关村 大恒科技大厦</div>
         </div>
       </div>
     </div>
@@ -231,7 +232,7 @@
           <div class="list-text fs-14">发货人</div>
           
           
-            <div class="list-unit">党建平 <small>18805749668</small></div>
+            <div class="list-unit"><span class="sendName">发货人</span> <small class="sendPhone">13000000000</small></div>
             <img class="image-40 round ml-10" src="http://image.zhi-you.net/avatar/2138e45e-09d4-4eaf-b38f-745b17db6df6@160h_160w_1e_1c.jpg">
           
         </div>
@@ -247,16 +248,16 @@
       <div class="list-item">
         <img class="image-80 block mr-10" alt="" src="http://image.zhi-you.net/image/8d5c51ce-a52d-499d-adbf-79640d36a247@160h_160w_1e_1c.jpg">
         <div class="list-text relative font-333">
-          <div class="fs-14 lh-24">¥ 优检一生2.0</div>
-          <div class="lh-24 fs-14 text-right font-orange">¥ 148.00</div>
-          <div class="lh-24 fs-12 text-right font-gray">x 80</div>
+          <div class="fs-14 lh-24 productName">¥ 优检一生2.0</div>
+          <div class="lh-24 fs-14 text-right font-orange productPrice">¥ 148.00</div>
+          <div class="lh-24 fs-12 text-right font-gray productNum">x 80</div>
         </div>
       </div>
       
       <div class="list-item">
         <div class="list-text text-right">
           
-          <div class="fs-14">应付款： <span class="font-orange fs-16 bold">¥ 11840.00</span></div>
+          <div class="fs-14">应付款： <span class="font-orange fs-16 bold productCost">¥ 11840.00</span></div>
         </div>
       </div>
     </div>
@@ -264,11 +265,11 @@
     <div class="list-group">
       <div class="list-item lh-20">
         <div class="list-text fs-14">订单编号</div>
-        <div class="list-unit fs-12">DD201708081054599308</div>
+        <div class="list-unit fs-12 orderCode">DD201708081054599308</div>
       </div>
       <div class="list-item lh-20">
         <div class="list-text fs-14">下单时间</div>
-        <div class="list-unit fs-12">2017-08-08 10:55:00</div>
+        <div class="list-unit fs-12 orderTime">2017-08-08 10:55:00</div>
       </div>
       
       
@@ -292,7 +293,7 @@
       <div class="list-title">买家留言</div>
       <div class="list-item">
         <div class="list-text">
-          <p class="fs-14 font-999">买家无留言</p>
+          <p class="fs-14 font-999 orderComment">买家无留言</p>
         </div>
         
       </div>
@@ -305,18 +306,53 @@
         <div class="form-btn">
           <a id="btnPay" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 立即支付</a>
         </div>
-        
-        
-      
-      
-      
-    
-    
-    
-    
     
   </article>
   
+<script type="text/javascript">
 
+    $.ajax({
+      url: serviceUrl+'/api/order/getOrder',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+      data:{orderId:getQueryString('id')},
+    })
+    .done(function(data) {
+      for(var o in data){
+        $('.'+o).text(data[o]);
+        if(o=='orderTime'){
+          $('.'+o).text(moment(data[o]).format('YYYY-MM-DD HH:mm:ss'));
+        }
+      }
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+
+id: 10
+orderCode: "CF76198C72A9643B681571D971CE237C"
+orderComment: "321"
+orderStatus: "待确认"
+orderTime: 1502600791000
+orderType: "服务订单"
+payWay: null
+productCode: "ASZ2135"
+productCost: 375
+productName: "套餐一"
+productNum: 10
+productPrice: 37.5
+receiverCity: "861"
+receiverDetailed: "四川路123号"
+receiverName: "吴亦凡"
+receiverPhone: "13524998437"
+receiverProvince: "860"
+receiverRegion: "862"
+recommendPhone: null
+sendName: "付凯波"
+sendPhone: "12345678912"
+
+</script>
 
 </body></html>

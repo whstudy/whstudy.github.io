@@ -21,6 +21,7 @@
 <script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
 <script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
 <script src="js/common.js"></script>
+<script src="js/moment.js"></script>
 <script src="http://state.zhi-you.net/js/util.js"></script>
 <script>
   var Config = {
@@ -49,12 +50,12 @@
   
   <nav class="miui-scroll-nav">
     <ul style="left: 0px;">
-      <li class="current"><a href="./u---order---in">全部订单 (1)</a></li>
-      <li><a href="./u---order---in?orderStatus=0">待支付 (0)</a></li>
-      <li><a href="./u---order---in?orderStatus=1">待确认 (0)</a></li>
-      <li><a href="./u---order---in?orderStatus=2">已支付 (0)</a></li>
-      <li><a href="./u---order---in?orderStatus=3">已发货 (1)</a></li>
-      <li><a href="./u---order---in?orderStatus=4">已完成 (0)</a></li>
+      <li class="current"><a >全部订单 (1)</a></li>
+      <li><a>待支付 (0)</a></li>
+      <li><a>待确认 (0)</a></li>
+      <li><a>已支付 (0)</a></li>
+      <li><a>已发货 (1)</a></li>
+      <li><a>已完成 (0)</a></li>
       
       <li><a href="./u---order---in?orderStatus=6">已取消 (0)</a></li>
     <li class="cur-line" style="left: 0px; width: 104px;"></li></ul>
@@ -62,9 +63,7 @@
   
   <article class="order-list">
     
-    
-    
-    <a class="order mt-15 bd-t bd-b" href="u---order---37986.html">
+<!--     <a class="order mt-15 bd-t bd-b" href="u---order---37986.html">
       <div class="order-sn pl-15 pr-15 font-777 fs-12">订单编号：DD201707091303310705</div>
       <label class="order-status label
       
@@ -89,18 +88,78 @@
           <div class="flex-1 font-777 text-right">总金额：<span class="fs-14 font-orange bold">¥ 35520.00</span></div>
         </div>
       </div>
-    </a>
-    
+    </a> -->
     
   </article>
-
-  
-
 
 <aside class="elevator">
   <a href="javascript:;" class="go-top" style="display: none;"><i class="fa fa-angle-up"></i></a>
 </aside>
 
+<script type="text/javascript">
+  
+    $.ajax({
+      url: serviceUrl+'/api/order/findByOrderTypeAndOrderStatusAndUser',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+      data:{orderType:'服务订单',orderStatus:'待确认'},
+    })
+    .done(function(data) {
+      var orderListHtml='';
+      for(var o in data){
+        orderListHtml+='<a class="order mt-15 bd-t bd-b" href="u---order---37986.html?id='+data[o].id+'">\
+                          <div class="order-sn pl-15 pr-15 font-777 fs-12">订单编号：'+data[o].orderCode+'</div>\
+                          <label class="order-status label yellow">'+data[o].orderStatus+'</label>\
+                          <div class="product-info pl-15 pr-15">\
+                            <div class="product relative clearfix mt-5">\
+                              <img class="product-image abs-lt" alt="" src="images/微信图片_20170726174201.jpg">\
+                              <div class="product-title">'+data[o].productName+'</div>\
+                              <div class="product-price abs-rt text-right">\
+                                <div class="lh-24 fs-12">¥ '+data[o].productPrice+'</div>\
+                                <div class="lh-24 fs-12 font-gray">x'+data[o].productNum+'</div>\
+                              </div>\
+                            </div>\
+                          </div>\
+                          <div class="order-info pl-15 pr-15 mt-5 bdd-t">\
+                            <div class="flex lh-30">\
+                              <div class="flex-1 font-999 fs-12"><span>下单时间：'+moment(data[o].orderTime).format('M月D日 HH:mm')+'</span></div>\
+                              <div class="flex-1 font-777 text-right">总金额：\
+                                <span class="fs-14 font-orange bold">¥ '+data[o].productCost+'</span>\
+                              </div>\
+                            </div>\
+                          </div>\
+                        </a>';
+      }
+      $('.order-list').html(orderListHtml);
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
 
+// id: 10
+// orderCode: "CF76198C72A9643B681571D971CE237C"
+// orderComment: "321"
+// orderStatus: "待确认"
+// orderTime: 1502600791000
+// orderType: "服务订单"
+// payWay: null
+// productCode: "ASZ2135"
+// productCost: 375
+// productName: "套餐一"
+// productNum: 10
+// productPrice: 37.5
+// receiverCity: "861"
+// receiverDetailed: "四川路123号"
+// receiverName: "吴亦凡"
+// receiverPhone: "13524998437"
+// receiverProvince: "860"
+// receiverRegion: "862"
+// recommendPhone: null
+// sendName: "付凯波"
+// sendPhone: "12345678912"
+
+</script>
 
 </body></html>

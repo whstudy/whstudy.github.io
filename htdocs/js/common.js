@@ -4,6 +4,13 @@
 domainUrl="http://whstudy.github.io/htdocs/";
 serviceUrl="http://122.152.208.113";
 imageNginxUrl="http://122.152.208.113:8080/";
+
+function getQueryString(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) return unescape(r[2]); return null;
+}
+
 window.messageShow = function(message, icon, timeout) {
   $.message({
     type : icon || 'info',
@@ -61,8 +68,12 @@ $(function() {
     switch (XMLHttpRequest.status) {
       case 401: /* 未登录提示 */
         var result = JSON.parse(XMLHttpRequest.responseText);
+        if(result.message=='Bad credentials'){
+          messageFlash('账号或密码不正确');
+        }else{
+          showLogin(result.data);
+        }
         // location.href=domainUrl+'login.html';
-        showLogin(result.data);
         //messageFlash('您还没有登录, 请先登录');
         break;
       // case 403:
