@@ -235,6 +235,9 @@
               xhrFields: {
                 withCredentials:true
               },
+              beforeSend: function(xhr) {
+                xhr.withCredentials = true;
+              },
             })
             .done(function(data) {
               window.location.href="./login.html";
@@ -261,6 +264,9 @@
       xhrFields: {
         withCredentials:true
       },
+      // beforeSend: function(xhr) {
+      //   xhr.withCredentials = true;
+      // },
     })
     .done(function(data) {
       $('.bold').text(data.nickname);
