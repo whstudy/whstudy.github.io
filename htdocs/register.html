@@ -258,6 +258,7 @@
         location.href='login.html';
       })
       .fail(function(data) {
+        messageFlash(data.responseText);
         console.log("error");
       })
       .always(function() {
