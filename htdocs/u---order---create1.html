@@ -39,7 +39,7 @@
 <script>
   $(function() {
     $('#btnSubmit').click(function(){
-      // if(!$('#addressId').val()) {
+      // if(!$('#deliverAddressId').val()) {
       //   messageFlash('请先选择收货地址.');
       //   return false;  
       // }
@@ -78,8 +78,8 @@
         return false;
       }*/
         
-        // var parentPhone = $('#parentPhone').val();
-        // if(!parentPhone) {
+        // var recommendPhone = $('#recommendPhone').val();
+        // if(!recommendPhone) {
         //   messageFlash('请填写推荐人手机号');
         //   return false;
         // }
@@ -106,7 +106,7 @@
         //   type: 'POST',
         //   success: function(result){
         //     // if(result.code == 0) {
-        //     //   $('[name="parentId"]').val(result.message);
+        //     //   $('[name="recommendPhone"]').val(result.message);
         //     //   $('#orderForm').submit();
         //     // } else {
         //       messageAlert(result);
@@ -249,7 +249,7 @@
   }
   
   function setAddress(address) {
-    $('#addressId').val(address.id);
+    $('#deliverAddressId').val(address.id);
     var addressText = address.addressText ? address.addressText 
         : address.province + ' ' + address.city + ' ' + address.district + ' ' + address.address
     $('.receiver-info').html('<div>' + address.deliveryMan + '<span class="right">' + address.phone + '</span></div>' 
@@ -354,7 +354,7 @@
   </header>
   
   <form id="orderForm" class="valid-form" action="/u---order---create" method="post">
-    <input type="hidden" name="orderType" value="">
+    <!-- <input type="hidden" name="orderType" value=""> -->
   
   
   <article>
@@ -369,7 +369,7 @@
           
           
         </div>
-        <input type="hidden" id="addressId" name="addressId" value="">
+        <input type="hidden" id="deliverAddressId" name="deliverAddressId" value="">
       </div>
     </div>
     
@@ -382,7 +382,7 @@
           <div class="lh-24 fs-14 text-right font-orange">¥ 128.00</div>
           <div class="lh-24 fs-12 text-right font-gray">x 3600</div>
           <input type="hidden" name="productId" value="2">
-          <input type="hidden" name="quantity" value="3600">
+          <input type="hidden" name="productNum" value="3600">
         </div>
       </div>
       <div class="list-item">
@@ -413,7 +413,7 @@
       <div class="list-title">请写下您的订单留言</div>
       <div class="list-item">
         <div class="list-text">
-          <textarea name="buyerMemo" class="form-input" rows="2" placeholder="填写您的订单留言"></textarea>
+          <textarea name="orderComment" class="form-input" rows="2" placeholder="填写您的订单留言"></textarea>
         </div>
       </div>
     </div>
@@ -423,8 +423,8 @@
         <div class="list-item">
           <label class="list-label">推荐人手机号</label>
           <div class="list-text">
-            <input id="parentPhone" name="parentPhone" class="form-input" type="tel" value="" placeholder="输入推荐人服务商手机号">
-            <input type="hidden" name="parentId" value="">
+            <input id="recommendPhone" name="recommendPhone" class="form-input" type="tel" value="" placeholder="输入推荐人服务商手机号">
+            <!-- <input type="hidden" name="recommendPhone" value=""> -->
           </div>
         </div>
         <div style="color: #8a6d3b; padding: 15px 30px 15px 15px;">
