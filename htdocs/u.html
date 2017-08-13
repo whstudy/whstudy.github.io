@@ -10,7 +10,7 @@
 <title>京惠生物 - 我的</title>
 
 <link rel="shortcut icon" href="http://state.zhi-you.net/favicon.ico">
-<link rel="stylesheet" href="http://state.zhi-you.net/css/common.css">
+<link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="http://state.zhi-you.net/css/components.css">
 <link rel="stylesheet" href="http://state.zhi-you.net/css/custom.css">
 <link rel="stylesheet" href="http://state.zhi-you.net/css/icon.css">
@@ -32,7 +32,8 @@
 
 <script>
   $(function() {
-    switch ('0') {
+    if(sessionStorage.getItem('isLogin')==1){
+      switch ('0') {
       case '0':
         messageShow('登录成功', 'success', 5);
         break;
@@ -42,7 +43,9 @@
       default:
         messageShow('登录成功', 'info', 5);
         break;
+      }
     }
+    sessionStorage.setItem('isLogin',2);
   });
 </script>
 
@@ -225,7 +228,21 @@
         content : '您确定要退出吗？',
         callback : function(index) {
           if (index == 1) {
+
+            $.ajax({
+              url: serviceUrl+'/logout',
+              type: 'POST',
+              xhrFields: {
+                withCredentials:true
+              },
+            })
+            .done(function(data) {
               window.location.href="./login.html";
+            })
+            .fail(function(data) {
+              console.log("error");
+            })
+
           }
         }
       });
