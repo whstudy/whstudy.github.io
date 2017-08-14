@@ -7,23 +7,23 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<script src="http://state.zhi-you.net/plugin/laytpl-1.1/laytpl.js"></script>
+<script src="plugin/laytpl-1.1/laytpl.js"></script>
 
 <title>确认订单信息</title>
 
 <link rel="shortcut icon" href="http://state.zhi-you.net/favicon.ico">
 <link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="http://state.zhi-you.net/css/components.css">
-<link rel="stylesheet" href="http://state.zhi-you.net/css/custom.css">
-<link rel="stylesheet" href="http://state.zhi-you.net/css/icon.css">
-<link rel="stylesheet" href="http://state.zhi-you.net/plugin/font-awesome-4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.css">
-<script src="http://state.zhi-you.net/plugin/jquery-1.11.0/jquery.min.js"></script>
-<script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
-<script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
-<script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="css/icon.css">
+<link rel="stylesheet" href="plugin/font-awesome-4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="plugin/miui-1.0/jquery.miui.css">
+<script src="plugin/jquery-1.11.0/jquery.min.js"></script>
+<script src="plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
+<script src="plugin/miui-1.0/jquery.miui.js"></script>
+<script src="plugin/fastclick-1.0/fastclick.js "></script>
 <script src="js/common.js"></script>
-<script src="http://state.zhi-you.net/js/util.js"></script>
+<script src="js/util.js"></script>
 <script>
   var Config = {
     stc : '',
@@ -34,7 +34,7 @@
 
 
 
-<script src="http://state.zhi-you.net/js/area.js"></script>
+<script src="js/area.js"></script>
 
 <script>
   $(function() {
@@ -386,7 +386,7 @@
           <div class="lh-24 fs-14 text-right font-orange">¥ 196.00</div>
           <div class="lh-24 fs-12 text-right font-gray productNum">x 80</div>
           <input type="hidden" name="productId" value="2">
-          <input type="hidden" name="productNum" value="80">
+          <input type="hidden" name="productNum" value="0">
         </div>
       </div>
       <div class="list-item">
@@ -442,6 +442,7 @@
 <script type="text/javascript">
   var order=JSON.parse(sessionStorage.getItem('order'));
   $('.productNum').text('x '+order.productNum);
+  $('[name="productNum"]').val(order.productNum);
 </script>
 
 </body></html>

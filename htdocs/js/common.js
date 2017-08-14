@@ -71,7 +71,7 @@ $(function() {
         if(result.message=='Bad credentials'){
           messageFlash('账号或密码不正确');
         }else{
-          showLogin(result.data);
+          // showLogin(result.data);
         }
         // location.href=domainUrl+'login.html';
         //messageFlash('您还没有登录, 请先登录');
