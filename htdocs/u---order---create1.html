@@ -44,7 +44,7 @@
       //   messageFlash('请先选择收货地址.');
       //   return false;  
       // }
-      // if($('input[name=isPayToPlatform]:checked').length == 0) {
+      // if($('input[name=payType]:checked').length == 0) {
       //   messageFlash('请先选择收款对象.');
       //   return false;  
       // }
@@ -95,10 +95,11 @@
           },
         })
         .done(function(data) {
-          messageAlert(result);
+          location.href='u---order---37986.html'
         })
         .fail(function(data) {
           console.log("error");
+          messageAlert(JSON.parse(data.responseText).message);
         })
 
         // $.ajax({
@@ -389,7 +390,7 @@
           
           
         </div>
-        <input type="hidden" id="deliverAddressId" name="deliverAddressId" value="1">
+        <input type="hidden" id="deliverAddressId" name="deliverAddressId" value="">
       </div>
     </div>
     
@@ -418,10 +419,10 @@
       
       
         <div class="list-item form-radio">
-          <label class="list-text" for="isPayToPlatform1">余额支付</label>
+          <label class="list-text" for="payType1">余额支付</label>
           <div class="list-unit">
-            <input id="isPayToPlatform1" type="radio" name="isPayToPlatform" value="余额支付">
-            <label class="i-checked" for="isPayToPlatform1"></label>
+            <input id="payType1" type="radio" name="payType" value="余额支付">
+            <label class="i-checked" for="payType1"></label>
           </div>
         </div>
       
@@ -468,8 +469,8 @@
           <div class="fs-14 lh-24">¥ {{d.productName}}</div>
           <div class="lh-24 fs-14 text-right font-orange">¥ {{d.retailPrice}}.00</div>
           <div class="lh-24 fs-12 text-right font-gray">x {{d.piece}}</div>
-          <input type="hidden" name="productId" value="2">
-          <!-- <input type="hidden" name="productNum" value="3600"> -->
+          <input type="hidden" name="productId" value="{{d.id}}">
+          <input type="hidden" name="productNum" value="{{d.piece}}">
         </div>
       </div>
       <div class="list-item">
