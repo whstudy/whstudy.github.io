@@ -493,10 +493,7 @@
   })
   .done(function(data) {
 
-    var rowTpl = $('#rowTpl').html();
-    laytpl(rowTpl).render(data, function(html) {
-      $('.list-group.productInfo').html(html);
-    });
+    $('.list-group.productInfo').html(laytpl($('#rowTpl').html()).render(data));
 
   })
   .fail(function(data) {
