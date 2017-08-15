@@ -261,18 +261,19 @@
             },
             data: data,
         })
-            .done(function (data) {
-                console.log("success");
-                console.log(data);
-                location.href = 'login.html';
-            })
-            .fail(function (data) {
-                messageFlash(data.responseText);
-                console.log("error");
-            })
-            .always(function () {
-                console.log("complete");
-            });
+        .done(function (data) {
+            console.log("success");
+            console.log(data);
+            alert("注册成功");
+            location.href = 'login.html';
+        })
+        .fail(function (data) {
+            messageFlash(data.responseText);
+            console.log("error");
+        })
+        .always(function () {
+            console.log("complete");
+        });
     })
 
 </script>
