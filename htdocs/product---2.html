@@ -37,7 +37,7 @@
   <script>
     $(function() {
 
-      var MIN_QUANTITY = 80;
+      var MIN_QUANTITY = 1;
       var MAX_QUANTITY = 10000;
 
       function editQuantity(quantity) {
@@ -62,10 +62,10 @@
       }
 
       //商品数量 加减
-      $('#quantity').blur(function() {
-        var quantity = $("#quantity").val();
-        editQuantity(parseInt(quantity));
-      });
+      // $('#quantity').blur(function() {
+      //   var quantity = $("#quantity").val();
+      //   editQuantity(parseInt(quantity));
+      // });
 
       $('.fa-plus').click(function() {
         var quantity = $("#quantity").val();
