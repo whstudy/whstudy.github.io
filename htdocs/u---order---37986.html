@@ -91,12 +91,29 @@
     //买家支付
     $('#btnPay').click(function() {
       $.dialog({
-        content : '请选择支付方式',
+        content : '请确认支付',
         skin : 'footer',
-        btn : [ '<a id="btnPay1" class="btn orange block round-2">U币积分支付</a>'/*, '<a id="btnPay2" class="btn green block round-2">银行汇款</a>' */],
+        btn : [ '<a id="btnPay1" class="btn orange block round-2">确认支付</a>'/*, '<a id="btnPay2" class="btn green block round-2">银行汇款</a>' */],
         callback : function(index) {
           if (index == 1) {
-            location.href = 'u---pay---order.html?payType=0';
+            // location.href = 'u---pay---order.html?payType=0';
+
+            $.ajax({
+              url: serviceUrl+'/api/order/payOrder',
+              type: 'POST',
+              xhrFields: {
+                withCredentials:true
+              },
+              data:{orderId:getQueryString('id')},
+            })
+            .done(function(data) {
+              location.href = 'u---order---in.html';
+            })
+            .fail(function(data) {
+              console.log("error");
+            })
+
+            location.href = 'u---order---in.html';
           }/*  else if (index == 2) {
             location.href = '/u---pay---order---37988?payType=1';
           } */
@@ -233,7 +250,7 @@
           
           
             <div class="list-unit"><span class="sendName">发货人</span> <small class="sendPhone">13000000000</small></div>
-            <img class="image-40 round ml-10" src="http://image.zhi-you.net/avatar/2138e45e-09d4-4eaf-b38f-745b17db6df6@160h_160w_1e_1c.jpg">
+            <img class="image-40 round ml-10" src="images/wx_20170726174201.jpg">
           
         </div>
       
@@ -246,9 +263,9 @@
       <div class="list-title">商品信息</div>
       
       <div class="list-item">
-        <img class="image-80 block mr-10" alt="" src="http://image.zhi-you.net/image/8d5c51ce-a52d-499d-adbf-79640d36a247@160h_160w_1e_1c.jpg">
+        <img class="image-80 block mr-10" alt="" src="images/wx_20170726174201.jpg">
         <div class="list-text relative font-333">
-          <div class="fs-14 lh-24 productName">¥ 优检一生2.0</div>
+          <div class="fs-14 lh-24 productName">¥ 民康优检</div>
           <div class="lh-24 fs-14 text-right font-orange productPrice">¥ 148.00</div>
           <div class="lh-24 fs-12 text-right font-gray productNum">x 80</div>
         </div>
@@ -331,27 +348,27 @@
       console.log("error");
     })
 
-id: 10
-orderCode: "CF76198C72A9643B681571D971CE237C"
-orderComment: "321"
-orderStatus: "待确认"
-orderTime: 1502600791000
-orderType: "服务订单"
-payWay: null
-productCode: "ASZ2135"
-productCost: 375
-productName: "套餐一"
-productNum: 10
-productPrice: 37.5
-receiverCity: "861"
-receiverDetailed: "四川路123号"
-receiverName: "吴亦凡"
-receiverPhone: "13524998437"
-receiverProvince: "860"
-receiverRegion: "862"
-recommendPhone: null
-sendName: "付凯波"
-sendPhone: "12345678912"
+// id: 10
+// orderCode: "CF76198C72A9643B681571D971CE237C"
+// orderComment: "321"
+// orderStatus: "待确认"
+// orderTime: 1502600791000
+// orderType: "服务订单"
+// payWay: null
+// productCode: "ASZ2135"
+// productCost: 375
+// productName: "套餐一"
+// productNum: 10
+// productPrice: 37.5
+// receiverCity: "861"
+// receiverDetailed: "四川路123号"
+// receiverName: "吴亦凡"
+// receiverPhone: "13524998437"
+// receiverProvince: "860"
+// receiverRegion: "862"
+// recommendPhone: null
+// sendName: "付凯波"
+// sendPhone: "12345678912"
 
 </script>
 
