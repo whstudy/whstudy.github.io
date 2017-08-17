@@ -103,7 +103,9 @@
     
   <a href="./findPassword.html" class="abs-mb block p-10 mb-10 font-999 fs-13 text-center"><i class="fa fa-question-circle"></i> 忘记密码</a>
   <script type="text/javascript">
-
+    // if(sessionStorage.getItem('isLogin')==2){
+    //   location.href='u.html'
+    // }
     $('.login').click(function(){
 
       var phone = $('#phone').val();
@@ -148,7 +150,11 @@
       .fail(function(data) {
         console.log("error");
         if(data.status==401){
-          messageFlash('帐号或密码不正确');
+          if(data.responseJSON.message=='Bad credentials'){
+            messageFlash('帐号或密码不正确');
+          }else if(data.responseJSON.message=='username not found'){
+            messageFlash('帐号不存在');
+          }
         }
       })
       .always(function(data) {

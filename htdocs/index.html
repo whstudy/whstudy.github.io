@@ -113,8 +113,13 @@
         </a>
     </article>
 </div>
+<script src="plugin/jquery-1.11.0/jquery.min.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
+
+    if(sessionStorage.getItem('isLogin')==2){
+      $('[href="./login.html"]').attr('href','u.html');
+    }
 
     var mySwiper = new Swiper('.swiper-container',{
         autoplay : 2000,

@@ -105,12 +105,12 @@
       var $this = $(this);
       var address = {};
       address.id = $this.attr('data-id');
-      address.realname = $this.find('.address-name').text();
+      address.deliveryMan = $this.find('.address-name').text();
       address.phone = $this.find('.address-phone').text();
       address.addressText = $this.find('.address-text').text();
       
       $.dialog({
-        content : '您确定要设置收货地址吗？<br>' + '收件人：' + address.realname + '<br>' + '手机号：' + address.phone + '<br>' + '地址：' + address.addressText,
+        content : '您确定要设置收货地址吗？<br>' + '收件人：' + address.deliveryMan + '<br>' + '手机号：' + address.phone + '<br>' + '地址：' + address.addressText,
         callback : function(index){
           if(index == 1) {
             hideAddressList();
@@ -122,11 +122,11 @@
     });
 
     $('body').on('click', '.btn-create', function() {
-      var realname = $('#realname').val();
+      var deliveryMan = $('#deliveryMan').val();
       var phone = $('#phone').val();
-      var address = $('#address').val();
-      var areaId = $('#district option:selected').val();
-      if (!realname) {
+      var detailed = $('#detailed').val();
+      var region = $('#region option:selected').val();
+      if (!deliveryMan) {
         messageFlash('请填写收件人名');
         return;
       }
@@ -134,24 +134,26 @@
         messageFlash('请填写收件人电话');
         return;
       }
-      if (!areaId) {
+      if (!region) {
         messageFlash('请选择收件人省市区');
         return;
       }
-      if (!address) {
+      if (!detailed) {
         messageFlash('请填写收件人详细地址');
         return;
       }
-
+      var addressFormData=$('.addressForm').serializeObject();
       $.ajax({
-        url : serviceUrl+'/api/order/applyOrder',
+        url : serviceUrl+'/api/user/saveDeliverAddress',
         xhrFields: {
           withCredentials:true
         },
         type : 'POST',
-        data : $('#orderForm').serializeArray(),
+        data : addressFormData,
         success : function(result) {
-          location.href='u---order---37986.html';
+          // location.href='u---order---37986.html';
+          setAddress(addressFormData);
+          hideAddressCreate();
           // var addressTpl = document.getElementById('addressListTpl').innerHTML;
           // laytpl(addressTpl).render(result.data, function(html) {
           //   $('article > .list-item').hide();
@@ -168,10 +170,10 @@
       // $.ajax({
       //   url : '/u---address---createAjax',
       //   data : {
-      //     realname : $('#realname').val(),
+      //     deliveryMan : $('#deliveryMan').val(),
       //     phone : $('#phone').val(),
       //     address : $('#address').val(),
-      //     areaId : $('#district option:selected').val()
+      //     region : $('#region option:selected').val()
       //   },
       //   type : 'POST',
       //   dataType : 'json',
@@ -202,7 +204,7 @@
     }, 300, function() {
       $('#addressList').remove();
     });
-    var area = new areaInit('province', 'city', 'district');
+    var area = new areaInit('province', 'city', 'region');
   }
   
   function hideAddressCreate(){
@@ -225,7 +227,7 @@
         deliveryMan : $('#deliveryMan').val(),
         phone : $('#phone').val(),
         address : $('#address').val(),
-        region : $('#district option:selected').val()
+        region : $('#region option:selected').val()
       },
       success : function(result) {
         // onclick="location.href='u---order---37986.html'" 
@@ -255,8 +257,8 @@
   function setAddress(address) {
     $('#deliverAddressId').val(address.id);
     var addressText = address.addressText ? address.addressText 
-        : address.province + ' ' + address.city + ' ' + address.district + ' ' + address.address
-    $('.receiver-info').html('<div>' + address.realname + '<span class="right">' + address.phone + '</span></div>' 
+        : areas[address.province] + ' ' + areas[address.province+'_'+address.city] + ' ' + areas[address.province+'_'+address.city+'_'+address.region] + ' ' + address.detailed
+    $('.receiver-info').html('<div>' + address.deliveryMan + '<span class="right">' + address.phone + '</span></div>' 
         + '<div class="fs-14 font-777">' + addressText+ '</div>')
   }
   
@@ -268,15 +270,16 @@
     <h1>新增收货地址</h1>
     <a href="javascript:hideAddressCreate();" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
+  <form class="addressForm">
   <article class="address-create">
       <div class="form-message note note-warning mb-0 hide">
         <p>输入信息有误，请先更正。</p>
       </div>
       <div class="list-group">
         <div class="list-item">
-          <label class="list-label" for="realname">收件人</label>
+          <label class="list-label" for="deliveryMan">收件人</label>
           <div class="list-text">
-            <input type="text" id="realname" name="realname" class="form-input" value="" placeholder="填写收件人姓名">
+            <input type="text" id="deliveryMan" name="deliveryMan" class="form-input" value="" placeholder="填写收件人姓名">
           </div>
         </div>
         <div class="list-item">
@@ -304,21 +307,21 @@
         <div class="list-item">
           <label class="list-label">地区</label>
           <div class="list-text form-select">
-            <select name="areaId" id="district">
+            <select name="region" id="region">
               <option value="">请选择</option>
             </select>
           </div>
         </div>
         <div class="list-item">
           <div class="list-text">
-            <textarea id="address" name="address" class="form-input" rows="3" placeholder="填写详细地址，例如街道名称，楼层和门牌号等信息"></textarea>
+            <textarea id="detailed" name="detailed" class="form-input" rows="3" placeholder="填写详细地址，例如街道名称，楼层和门牌号等信息"></textarea>
           </div>
         </div>
         <div class="list-item">
           <div class="list-text">设为默认地址</div>
           <div class="list-unit form-switch">
-            <input type="hidden" name="_isDefault" value="false">
-            <input type="checkbox" id="isDefault" name="isDefault">
+            <input type="hidden" name="" value="false">
+            <input type="checkbox" id="isDefault" name="isDefault" value="true">
             <label class="i-switch" for="isDefault"></label>
           </div>
         </div>
@@ -328,6 +331,7 @@
         <input class="btn-create btn green btn-block" type="button" value="保 存">
       </div>
   </article>
+  </form>
 </aside>
 </script>
 
@@ -342,8 +346,8 @@
     {{# for(var i = 0, len = d.length; i < len; i++){ }}
       <a href="javascript:;" class="list-item address" data-id="{{ d[i].id }}">
         <div class="list-text pl-10 pr-10">
-          <div><span class="address-name">{{ d[i].realname }}</span><span class="address-phone fs-14 font-777 right">{{ d[i].phone }}</span></div>
-          <div class="fs-14 font-777 address-text">{{ d[i].province }} {{ d[i].city }} {{ d[i].district }} {{ d[i].address }}</div>
+          <div><span class="address-name">{{ d[i].deliveryMan }}</span><span class="address-phone fs-14 font-777 right">{{ d[i].phone }}</span></div>
+          <div class="fs-14 font-777 address-text">{{ d[i].province }} {{ d[i].city }} {{ d[i].region }} {{ d[i].address }}</div>
         </div>
       </a>
       {{# } }}
@@ -362,7 +366,7 @@
   
   
   <article>
-    <div class="list-group">
+<!--     <div class="list-group">
       <div class="list-title">收件人信息</div>
       <div class="list-item">
         <div class="list-icon"><i class="fa fa-map-marker fs-24"></i></div>
@@ -375,12 +379,24 @@
         </div>
         <input type="hidden" id="deliverAddressId" name="deliverAddressId" value="1">
       </div>
-    </div>
+    </div> -->
     
+    <div class="list-group">
+      <div class="list-title">收件人信息</div>
+      <div class="list-item">
+        <div class="list-icon"><i class="fa fa-map-marker fs-24"></i></div>
+        <div class="list-text fs-14 font-333 receiver-info">
+            <span class="lh-30">您还未设置收货地址</span>
+            <a class="btn-add-address btn orange btn-sm round-2 right width-180" href="javascript:;">设置收货地址</a>
+        </div>
+        <input type="hidden" id="deliverAddressId" name="deliverAddressId" value="">
+      </div>
+    </div>
+
     <div class="list-group productInfo">
       <div class="list-title">商品信息</div>
       <div class="list-item">
-        <img class="image-80 block mr-10" alt="" src="images/微信图片_20170726174201.jpg">
+        <img class="image-80 block mr-10" alt="" src="images/wx_20170726174201.jpg">
         <div class="list-text relative font-333">
           <div class="fs-14 lh-24">¥ 民康优检</div>
           <div class="lh-24 fs-14 text-right font-orange">¥ 198.00</div>
@@ -442,7 +458,7 @@
 <script id="rowTpl" type="text/html">
   <div class="list-title">商品信息</div>
       <div class="list-item">
-        <img class="image-80 block mr-10" alt="" src="images/微信图片_20170726174201.jpg">
+        <img class="image-80 block mr-10" alt="" src="images/wx_20170726174201.jpg">
         <div class="list-text relative font-333">
           <div class="fs-14 lh-24">¥ {{d.productName}}</div>
           <div class="lh-24 fs-14 text-right font-orange">¥ {{d.retailPrice}}.00</div>
@@ -478,6 +494,34 @@
   .fail(function(data) {
     console.log("error");
   })
+
+  $.ajax({
+    url : serviceUrl+'/api/user/getDefaultDeliveryAddress',
+    xhrFields: {
+      withCredentials:true
+    },
+    data : {
+      deliveryMan : $('#deliveryMan').val(),
+      phone : $('#phone').val(),
+      address : $('#address').val(),
+      region : $('#region option:selected').val()
+    },
+    type : 'POST',
+    dataType : 'json',
+    success : function(data) {
+      setAddress(data);
+      // hideAddressCreate();
+    }
+  });
+
+  function setAddress(address) {
+    $('#deliverAddressId').val(address.id);
+    var addressText = address.addressText ? address.addressText 
+        : areas[address.province] + ' ' + areas[address.province+'_'+address.city] + ' ' + areas[address.province+'_'+address.city+'_'+address.region] + ' ' + address.detailed
+    $('.receiver-info').html('<div>' + address.deliveryMan + '<span class="right">' + address.phone + '</span></div>' 
+        + '<div class="fs-14 font-777">' + addressText+ '</div>')
+  }
+
 </script>
 
 </body></html>

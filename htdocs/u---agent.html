@@ -49,37 +49,6 @@
       font-weight: bold;
     }
   </style>
-
-  <script>
-    $(function() {
-
-      $('.form-radio img, .form-radio .list-text').click(function(){
-        $('[name="agentLevel"]').removeAttr('checked');
-        $(this).parent().find('[name="agentLevel"]').click().attr('checked', 'checked');
-      });
-
-      $('[name="agentLevel"]').click(function(){
-        var item = $(this).parents('.form-radio');
-        item.addClass('current').siblings().removeClass('current');
-        var quantity = item.find('.quantity').text();
-        var productId = item.attr('data-id');
-        $('[name="quantity"]').val(quantity);
-        $('[name="productId"]').val(productId);
-      });
-
-      $('#btnSubmit').click(function(){
-        if(!$('[name="quantity"]').val()) {
-          messageFlash('请选择合伙人套餐');
-          return false;
-        }
-        
-        location.href='./u---order---create1.html?productId='+$('[name="productId"]').val();
-
-      });
-
-    });
-  </script>
-
 </head>
 <body>
 
@@ -98,7 +67,7 @@
     <input type="hidden" name="productId" value="">
     <input type="hidden" name="quantity" value="">
 
-    <div class="list-group">
+    <div class="list-group productList">
       <!-- form-radio -->
       
         <div class="list-item form-radio" data-id="5">
@@ -106,7 +75,7 @@
             <input id="agentLevel4New" type="radio" name="agentLevel" value="V1">
             <label class="i-checked" for="agentLevel4New"></label>
           </div>
-          <img class="image-80 block mr-10" src="images/微信图片_20170726174201.jpg">
+          <img class="image-80 block mr-10" src="images/wx_20170726174201.jpg">
           <div class="list-text">
             <h2 class="font-777 fs-15 lh-24">民康优检合伙人套餐 <span class="quantity">1800</span>次</h2>
             <div class="lh-30"><label class="label blue">高级合伙人</label></div>
@@ -119,7 +88,7 @@
             <input id="agentLevel1New" type="radio" name="agentLevel" value="V3">
             <label class="i-checked" for="agentLevel1New"></label>
           </div>
-          <img class="image-80 block mr-10" src="images/微信图片_20170726174201.jpg">
+          <img class="image-80 block mr-10" src="images/wx_20170726174201.jpg">
           <div class="list-text">
             <h2 class="font-777 fs-15 lh-24">民康优检合伙人套餐 <span class="quantity">150</span>次</h2>
             <div class="lh-30"><label class="label red">合伙人</label></div>
@@ -132,7 +101,7 @@
             <input id="agentLevel2New" type="radio" name="agentLevel" value="V2">
             <label class="i-checked" for="agentLevel2New"></label>
           </div>
-          <img class="image-80 block mr-10" src="images/微信图片_20170726174201.jpg">
+          <img class="image-80 block mr-10" src="images/wx_20170726174201.jpg">
           <div class="list-text">
             <h2 class="font-777 fs-15 lh-24">民康优检合伙人套餐 <span class="quantity">50</span>次</h2>
             <div class="lh-30"><label class="label yellow">准合伙人</label></div>
@@ -145,7 +114,7 @@
             <input id="agentLevel3New" type="radio" name="agentLevel" value="V1">
             <label class="i-checked" for="agentLevel3New"></label>
           </div>
-          <img class="image-80 block mr-10" src="images/微信图片_20170726174201.jpg">
+          <img class="image-80 block mr-10" src="images/wx_20170726174201.jpg">
           <div class="list-text">
             <h2 class="font-777 fs-15 lh-24">民康优检合伙人套餐 <span class="quantity">5</span>次</h2>
             <div class="lh-30"><label class="label green">天使</label></div>
@@ -163,8 +132,71 @@
   </form>
 </article>
 
+<script id="productListTpl" type="text/html">
+{{# for(var o in d){ }}
+      <div class="list-item form-radio" data-id="{{d[o].id}}">
+        <div class="list-icon">
+          <input id="agentLevel4New" type="radio" name="agentLevel" value="V1">
+          <label class="i-checked" for="agentLevel4New"></label>
+        </div>
+        <img class="image-80 block mr-10" src="images/wx_20170726174201.jpg">
+        <div class="list-text">
+          <h2 class="font-777 fs-15 lh-24">{{d[o].productName}} <span class="quantity">{{d[o].piece}}</span>次</h2>
+          <div class="lh-30"><label class="label {{colorAry[d[o].roleType]}}">{{d[o].roleType}}</label></div>
+          <div class="font-orange lh-24">¥ {{d[o].retailPrice*d[o].piece}}.00</div>
+        </div>
+      </div>      
+{{# } }}
+</script>
+<script src="plugin/laytpl-1.1/laytpl.js"></script>
 <script type="text/javascript">
+  var colorAry={
+    "高级合伙人":'blue',
+    "合伙人":'red',
+    "准合伙人":'yellow',
+    "天使":'green',
+  }
+  $.ajax({
+    url: serviceUrl+'/api/product/getProductPackageList',
+    type: 'POST',
+    xhrFields: {
+      withCredentials:true
+    },
+  })
+  .done(function(data) {
+    data.sort(function(a,b){
+      return a.id<b.id;
+    })
+    $('.productList').html(laytpl($('#productListTpl').html()).render(data));
 
+    $('.form-radio img, .form-radio .list-text').click(function(){
+      $('[name="agentLevel"]').removeAttr('checked');
+      $(this).parent().find('[name="agentLevel"]').click().attr('checked', 'checked');
+    });
+
+    $('[name="agentLevel"]').click(function(){
+      var item = $(this).parents('.form-radio');
+      item.addClass('current').siblings().removeClass('current');
+      var quantity = item.find('.quantity').text();
+      var productId = item.attr('data-id');
+      $('[name="quantity"]').val(quantity);
+      $('[name="productId"]').val(productId);
+    });
+
+    $('#btnSubmit').click(function(){
+      if(!$('[name="quantity"]').val()) {
+        messageFlash('请选择合伙人套餐');
+        return false;
+      }
+      
+      location.href='./u---order---create1.html?productId='+$('[name="productId"]').val();
+
+    });
+    
+  })
+  .fail(function(data) {
+    console.log("error");
+  })
 </script>
 
 </body></html>
