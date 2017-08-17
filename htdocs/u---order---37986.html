@@ -327,15 +327,17 @@
     })
     .done(function(data) {
 
+    $('.address').text(areas[data.receiverProvince] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity+'_'+data.receiverRegion] + ' ' + data.receiverDetailed)
+
       if(data.orderStatus=='已支付'){
         $('.statusDiv').addClass('note-success');
-        $('.statusDiv').text(' 订单状态：买家已支付')
+        $('.statusDiv').text(' 订单状态：买家已支付');
         $('.form-btn').hide();
       }
 
       if(data.orderStatus=='待支付'){
         $('.statusDiv').addClass('note-danger');
-        $('.statusDiv').text(' 订单状态：买家未支付')
+        $('.statusDiv').text(' 订单状态：买家未支付');
       }
 
       for(var o in data){
