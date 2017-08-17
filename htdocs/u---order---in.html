@@ -30,15 +30,7 @@
     stccdn : 'http://state.zhi-you.net'
   }
 </script>
-
-
-
 <link rel="stylesheet" href="css/ucenter/order.css">
-<script>
-  $(function() {
-    $('.miui-scroll-nav').scrollableNav();
-  });
-</script>
 </head>
 <body class="header-fixed footer-fixed">
 
@@ -48,7 +40,7 @@
     
   </header>
   
-  <nav class="miui-scroll-nav">
+  <nav class="miui-scroll-nav groupByOrderTypeAndOrderStatusAndUser">
     <ul style="left: 0px;">
       <li class="current"><a >全部订单 (0)</a></li>
       <li><a>待支付 (0)</a></li>
@@ -57,7 +49,8 @@
       <li><a>已发货 (0)</a></li>
       <li><a>已完成 (0)</a></li>
       <li><a>已取消 (0)</a></li>
-    <li class="cur-line" style="left: 0px; width: 104px;"></li></ul>
+      <li class="cur-line" style="left: 0px; width: 104px;"></li>
+    </ul>
   </nav>
   
   <article class="order-list">
@@ -95,43 +88,92 @@
   <a href="javascript:;" class="go-top" style="display: none;"><i class="fa fa-angle-up"></i></a>
 </aside>
 
+<script id="groupByOrderTypeAndOrderStatusAndUserTpl" type="text/html">
+  <ul style="left: 0px;">
+    <li statusName='全部订单' class="current"><a >全部订单 ({{d['全部订单']}})</a></li>
+    <li statusName='待支付'><a>待支付 ({{d['待支付']}})</a></li>
+    <!-- <li><a>待确认 ({{d['待确认']}})</a></li> -->
+    <li statusName='已支付'><a>已支付 ({{d['已支付']}})</a></li>
+    <li statusName='已发货'><a>已发货 ({{d['已发货']}})</a></li>
+    <li statusName='已完成'><a>已完成 ({{d['已完成']}})</a></li>
+    <li statusName='已取消'><a>已取消 ({{d['已取消']}})</a></li>
+  </ul>
+</script>
+<script src="plugin/laytpl-1.1/laytpl.js"></script>
 <script type="text/javascript">
   
+    // $.ajax({
+    //   url: serviceUrl+'/api/order/countByOrderTypeAndUser',
+    //   type: 'POST',
+    //   xhrFields: {
+    //     withCredentials:true
+    //   },
+    // })
+    // .done(function(data) {
+    // })
+    // .fail(function(data) {
+    //   console.log("error");
+    // })
+
+    loadList('全部订单');
+    function loadList(status){
+      $.ajax({
+        url: serviceUrl+'/api/order/findByOrderTypeAndOrderStatusAndUser',
+        type: 'POST',
+        xhrFields: {
+          withCredentials:true
+        },
+        data:{orderType:'进货订单',orderStatus:status},
+      })
+      .done(function(data) {
+        var orderListHtml='';
+        for(var o in data){
+          orderListHtml+='<a class="order bd-t bd-b" href="u---order---37986.html?id='+data[o].id+'">\
+                            <div class="order-sn pl-15 pr-15 font-777 fs-12">订单编号：'+data[o].orderCode+'</div>\
+                            <label class="order-status label yellow">'+data[o].orderStatus+'</label>\
+                            <div class="product-info pl-15 pr-15">\
+                              <div class="product relative clearfix mt-5">\
+                                <img class="product-image abs-lt" alt="" src="images/wx_20170726174201.jpg">\
+                                <div class="product-title">'+data[o].productName+'</div>\
+                                <div class="product-price abs-rt text-right">\
+                                  <div class="lh-24 fs-12">¥ '+data[o].productPrice+'</div>\
+                                  <div class="lh-24 fs-12 font-gray">x'+data[o].productNum+'</div>\
+                                </div>\
+                              </div>\
+                            </div>\
+                            <div class="order-info pl-15 pr-15 mt-5 bdd-t">\
+                              <div class="flex lh-30">\
+                                <div class="flex-1 font-999 fs-12"><span>下单时间：'+moment(data[o].orderTime).format('M月D日 HH:mm')+'</span></div>\
+                                <div class="flex-1 font-777 text-right">总金额：\
+                                  <span class="fs-14 font-orange bold">¥ '+data[o].productCost+'</span>\
+                                </div>\
+                              </div>\
+                            </div>\
+                          </a>';
+        }
+        $('.order-list').html(orderListHtml);
+      })
+      .fail(function(data) {
+        console.log("error");
+      })
+    }
+    
+
     $.ajax({
-      url: serviceUrl+'/api/order/findByOrderTypeAndOrderStatusAndUser',
+      url: serviceUrl+'/api/order/groupByOrderTypeAndOrderStatusAndUser',
       type: 'POST',
       xhrFields: {
         withCredentials:true
       },
-      data:{orderType:'服务订单',orderStatus:'待确认'},
+      data:{orderType:'进货订单'},
     })
     .done(function(data) {
-      var orderListHtml='';
-      for(var o in data){
-        orderListHtml+='<a class="order bd-t bd-b" href="u---order---37986.html?id='+data[o].id+'">\
-                          <div class="order-sn pl-15 pr-15 font-777 fs-12">订单编号：'+data[o].orderCode+'</div>\
-                          <label class="order-status label yellow">'+data[o].orderStatus+'</label>\
-                          <div class="product-info pl-15 pr-15">\
-                            <div class="product relative clearfix mt-5">\
-                              <img class="product-image abs-lt" alt="" src="images/wx_20170726174201.jpg">\
-                              <div class="product-title">'+data[o].productName+'</div>\
-                              <div class="product-price abs-rt text-right">\
-                                <div class="lh-24 fs-12">¥ '+data[o].productPrice+'</div>\
-                                <div class="lh-24 fs-12 font-gray">x'+data[o].productNum+'</div>\
-                              </div>\
-                            </div>\
-                          </div>\
-                          <div class="order-info pl-15 pr-15 mt-5 bdd-t">\
-                            <div class="flex lh-30">\
-                              <div class="flex-1 font-999 fs-12"><span>下单时间：'+moment(data[o].orderTime).format('M月D日 HH:mm')+'</span></div>\
-                              <div class="flex-1 font-777 text-right">总金额：\
-                                <span class="fs-14 font-orange bold">¥ '+data[o].productCost+'</span>\
-                              </div>\
-                            </div>\
-                          </div>\
-                        </a>';
-      }
-      $('.order-list').html(orderListHtml);
+      $('.groupByOrderTypeAndOrderStatusAndUser').html(laytpl($('#groupByOrderTypeAndOrderStatusAndUserTpl').html()).render(data));
+      $('.miui-scroll-nav').scrollableNav();
+      $('[statusName]').click(function(event) {
+        /* Act on the event */
+        loadList($(this).attr('statusName'))
+      });
     })
     .fail(function(data) {
       console.log("error");

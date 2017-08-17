@@ -55,8 +55,8 @@
         },
         type : 'POST',
         data : $('#orderForm').serializeArray(),
-        success : function(result) {
-          location.href='u---order---37986.html';
+        success : function(data) {
+          location.href='u---order---37986.html?id='+data.id;
           // var addressTpl = document.getElementById('addressListTpl').innerHTML;
           // laytpl(addressTpl).render(result.data, function(html) {
           //   $('article > .list-item').hide();
