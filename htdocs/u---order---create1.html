@@ -154,8 +154,8 @@
     $('body').on('click', '.btn-create', function() {
       var deliveryMan = $('#deliveryMan').val();
       var phone = $('#phone').val();
-      var address = $('#address').val();
-      var region = $('#district option:selected').val();
+      var detailed = $('#detailed').val();
+      var region = $('#region option:selected').val();
       if (!deliveryMan) {
         messageFlash('请填写收件人名');
         return;
@@ -168,29 +168,54 @@
         messageFlash('请选择收件人省市区');
         return;
       }
-      if (!address) {
+      if (!detailed) {
         messageFlash('请填写收件人详细地址');
         return;
       }
-
+      var addressFormData=$('.addressForm').serializeObject();
       $.ajax({
         url : serviceUrl+'/api/user/saveDeliverAddress',
-        data : {
-          deliveryMan : $('#deliveryMan').val(),
-          phone : $('#phone').val(),
-          address : $('#address').val(),
-          region : $('#district option:selected').val()
+        xhrFields: {
+          withCredentials:true
         },
         type : 'POST',
-        dataType : 'json',
+        data : addressFormData,
         success : function(result) {
-          if (result.code == 0) {
-            var address = result.data;
-            setAddress(address);
-            hideAddressCreate();
-          }
+          // location.href='u---order---37986.html';
+          setAddress(addressFormData);
+          hideAddressCreate();
+          // var addressTpl = document.getElementById('addressListTpl').innerHTML;
+          // laytpl(addressTpl).render(result.data, function(html) {
+          //   $('article > .list-item').hide();
+          //   $('body').addClass('o-hidden').append(html);
+          //   $('#addressList').show().animate({
+          //     'left' : 0
+          //   }, 300, function() {
+          //   });
+            
+          // });
         }
       });
+
+      // $.ajax({
+      //   url : '/u---address---createAjax',
+      //   data : {
+      //     deliveryMan : $('#deliveryMan').val(),
+      //     phone : $('#phone').val(),
+      //     address : $('#address').val(),
+      //     region : $('#region option:selected').val()
+      //   },
+      //   type : 'POST',
+      //   dataType : 'json',
+      //   success : function(result) {
+      //     if (result.code == 0) {
+      //       var address = result.data;
+      //       setAddress(address);
+      //       hideAddressCreate();
+      //     }
+      //   }
+      // });
+
     });
 
     $('.form-switch label').click(function() {
@@ -209,7 +234,7 @@
       deliveryMan : $('#deliveryMan').val(),
       phone : $('#phone').val(),
       address : $('#address').val(),
-      region : $('#district option:selected').val()
+      region : $('#region option:selected').val()
     },
     type : 'POST',
     dataType : 'json',
@@ -228,7 +253,7 @@
     }, 300, function() {
       $('#addressList').remove();
     });
-    var area = new areaInit('province', 'city', 'district');
+    var area = new areaInit('province', 'city', 'region');
   }
   
   function hideAddressCreate(){
@@ -240,14 +265,45 @@
     });
   }
 
+  // function showAddressList() {
+  //   $.ajax({
+  //     url : '/u---address---listAjax',
+  //     type : 'POST',
+  //     dataType : 'json',
+  //     success : function(result) {
+  //       var addressTpl = document.getElementById('addressListTpl').innerHTML;
+  //       laytpl(addressTpl).render(result.data, function(html) {
+  //         $('article > .list-item').hide();
+  //         $('body').addClass('o-hidden').append(html);
+  //         $('#addressList').show().animate({
+  //           'left' : 0
+  //         }, 300, function() {
+  //         });
+          
+  //       });
+  //     }
+  //   });
+  // }
+  
+
   function showAddressList() {
+
     $.ajax({
-      url : '/u---address---listAjax',
+      url : serviceUrl+'/api/user/getLoginDeliveryAddressList',
+      xhrFields: {
+        withCredentials:true
+      },
+      data : {
+        deliveryMan : $('#deliveryMan').val(),
+        phone : $('#phone').val(),
+        address : $('#address').val(),
+        region : $('#region option:selected').val()
+      },
       type : 'POST',
       dataType : 'json',
-      success : function(result) {
+      success : function(data) {
         var addressTpl = document.getElementById('addressListTpl').innerHTML;
-        laytpl(addressTpl).render(result.data, function(html) {
+        laytpl(addressTpl).render(data, function(html) {
           $('article > .list-item').hide();
           $('body').addClass('o-hidden').append(html);
           $('#addressList').show().animate({
@@ -258,8 +314,36 @@
         });
       }
     });
+
+    // $.ajax({
+    //   url : serviceUrl+'/api/user/getDefaultDeliveryAddress',
+    //   xhrFields: {
+    //     withCredentials:true
+    //   },
+    //   type : 'POST',
+    //   data : {
+    //     deliveryMan : $('#deliveryMan').val(),
+    //     phone : $('#phone').val(),
+    //     address : $('#address').val(),
+    //     region : $('#region option:selected').val()
+    //   },
+    //   success : function(result) {
+    //     // onclick="location.href='u---order---37986.html'" 
+    //     // var addressTpl = document.getElementById('addressListTpl').innerHTML;
+    //     // laytpl(addressTpl).render(result.data, function(html) {
+    //     //   $('article > .list-item').hide();
+    //     //   $('body').addClass('o-hidden').append(html);
+    //     //   $('#addressList').show().animate({
+    //     //     'left' : 0
+    //     //   }, 300, function() {
+    //     //   });
+          
+    //     // });
+    //   }
+    // });
+
   }
-  
+
   function hideAddressList(){
     $('#addressList').animate({
       'left' : '100%'
@@ -285,6 +369,7 @@
     <h1>新增收货地址</h1>
     <a href="javascript:hideAddressCreate();" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
+  <form class="addressForm">
   <article class="address-create">
       <div class="form-message note note-warning mb-0 hide">
         <p>输入信息有误，请先更正。</p>
@@ -321,21 +406,21 @@
         <div class="list-item">
           <label class="list-label">地区</label>
           <div class="list-text form-select">
-            <select name="region" id="district">
+            <select name="region" id="region">
               <option value="">请选择</option>
             </select>
           </div>
         </div>
         <div class="list-item">
           <div class="list-text">
-            <textarea id="address" name="address" class="form-input" rows="3" placeholder="填写详细地址，例如街道名称，楼层和门牌号等信息"></textarea>
+            <textarea id="detailed" name="detailed" class="form-input" rows="3" placeholder="填写详细地址，例如街道名称，楼层和门牌号等信息"></textarea>
           </div>
         </div>
         <div class="list-item">
           <div class="list-text">设为默认地址</div>
           <div class="list-unit form-switch">
-            <input type="hidden" name="_isDefault" value="false">
-            <input type="checkbox" id="isDefault" name="isDefault">
+            <input type="hidden" name="" value="false">
+            <input type="checkbox" id="isDefault" name="isDefault" value="true">
             <label class="i-switch" for="isDefault"></label>
           </div>
         </div>
@@ -345,6 +430,7 @@
         <input class="btn-create btn green btn-block" type="button" value="保 存">
       </div>
   </article>
+  </form>
 </aside>
 </script>
 
@@ -360,7 +446,7 @@
       <a href="javascript:;" class="list-item address" data-id="{{ d[i].id }}">
         <div class="list-text pl-10 pr-10">
           <div><span class="address-name">{{ d[i].deliveryMan }}</span><span class="address-phone fs-14 font-777 right">{{ d[i].phone }}</span></div>
-          <div class="fs-14 font-777 address-text">{{ d[i].province }} {{ d[i].city }} {{ d[i].district }} {{ d[i].address }}</div>
+          <div class="fs-14 font-777 address-text">{{ areas[d[i].province] }} {{ areas[d[i].province+'_'+d[i].city] }} {{ areas[d[i].province+'_'+d[i].city+'_'+d[i].region] }} {{ d[i].detailed }}</div>
         </div>
       </a>
       {{# } }}
@@ -416,8 +502,13 @@
     
     <div class="list-group">
       <div class="list-title">请选择付款方式</div>
-      
-      
+        <div class="list-item form-radio">
+          <label class="list-text" for="payType0">线下转账</label>
+          <div class="list-unit">
+            <input id="payType0" type="radio" name="payType" value="线下转账">
+            <label class="i-checked" for="payType0"></label>
+          </div>
+        </div>
         <div class="list-item form-radio">
           <label class="list-text" for="payType1">余额支付</label>
           <div class="list-unit">
@@ -425,7 +516,6 @@
             <label class="i-checked" for="payType1"></label>
           </div>
         </div>
-      
     </div>
 
     

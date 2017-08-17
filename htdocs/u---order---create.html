@@ -217,32 +217,61 @@
   }
 
   function showAddressList() {
+
     $.ajax({
-      url : serviceUrl+'/api/user/getDefaultDeliveryAddress',
+      url : serviceUrl+'/api/user/getLoginDeliveryAddressList',
       xhrFields: {
         withCredentials:true
       },
-      type : 'POST',
       data : {
         deliveryMan : $('#deliveryMan').val(),
         phone : $('#phone').val(),
         address : $('#address').val(),
         region : $('#region option:selected').val()
       },
-      success : function(result) {
-        // onclick="location.href='u---order---37986.html'" 
-        // var addressTpl = document.getElementById('addressListTpl').innerHTML;
-        // laytpl(addressTpl).render(result.data, function(html) {
-        //   $('article > .list-item').hide();
-        //   $('body').addClass('o-hidden').append(html);
-        //   $('#addressList').show().animate({
-        //     'left' : 0
-        //   }, 300, function() {
-        //   });
+      type : 'POST',
+      dataType : 'json',
+      success : function(data) {
+        var addressTpl = document.getElementById('addressListTpl').innerHTML;
+        laytpl(addressTpl).render(data, function(html) {
+          $('article > .list-item').hide();
+          $('body').addClass('o-hidden').append(html);
+          $('#addressList').show().animate({
+            'left' : 0
+          }, 300, function() {
+          });
           
-        // });
+        });
       }
     });
+
+    // $.ajax({
+    //   url : serviceUrl+'/api/user/getDefaultDeliveryAddress',
+    //   xhrFields: {
+    //     withCredentials:true
+    //   },
+    //   type : 'POST',
+    //   data : {
+    //     deliveryMan : $('#deliveryMan').val(),
+    //     phone : $('#phone').val(),
+    //     address : $('#address').val(),
+    //     region : $('#region option:selected').val()
+    //   },
+    //   success : function(result) {
+    //     // onclick="location.href='u---order---37986.html'" 
+    //     // var addressTpl = document.getElementById('addressListTpl').innerHTML;
+    //     // laytpl(addressTpl).render(result.data, function(html) {
+    //     //   $('article > .list-item').hide();
+    //     //   $('body').addClass('o-hidden').append(html);
+    //     //   $('#addressList').show().animate({
+    //     //     'left' : 0
+    //     //   }, 300, function() {
+    //     //   });
+          
+    //     // });
+    //   }
+    // });
+
   }
   
   function hideAddressList(){
@@ -347,7 +376,7 @@
       <a href="javascript:;" class="list-item address" data-id="{{ d[i].id }}">
         <div class="list-text pl-10 pr-10">
           <div><span class="address-name">{{ d[i].deliveryMan }}</span><span class="address-phone fs-14 font-777 right">{{ d[i].phone }}</span></div>
-          <div class="fs-14 font-777 address-text">{{ d[i].province }} {{ d[i].city }} {{ d[i].region }} {{ d[i].address }}</div>
+          <div class="fs-14 font-777 address-text">{{ areas[d[i].province] }} {{ areas[d[i].province+'_'+d[i].city] }} {{ areas[d[i].province+'_'+d[i].city+'_'+d[i].region] }} {{ d[i].detailed }}</div>
         </div>
       </a>
       {{# } }}

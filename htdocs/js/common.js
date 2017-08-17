@@ -79,54 +79,30 @@ $.ajaxSetup({
 
 $(function() {
   
-  $.fn.serializeObject = function(para){    
-
+  $.fn.serializeObject = function(para){
     var serializeObj={}; // 目标对象 
-
     var tempObj={};//临时对象
-
     var array=this.serializeArray(); // 转换数组格式
-
     if(para!=null&&para!=undefined){
-
       $.each(para,function(name,value) {
-
-      array.push({"name":name,"value":value});
-
-    });
-
+        array.push({"name":name,"value":value});
+      });
     }
-
     // console.log(para);
-
     // console.log(array);
-
     $(array).each(function(){ // 遍历数组的每个元素 {name : xx , value : xxx} 
-
         if(serializeObj[this.name]){ // 判断对象中是否已经存在 name，如果存在name 
-
               if($.isArray(serializeObj[this.name])){ 
-
                  serializeObj[this.name].push(this.value); // 追加一个值 hobby : ['音乐','体育'] 
-
               }else{ 
-
-                      // 将元素变为 数组 ，hobby : ['音乐','体育'] 
-
-                 serializeObj[this.name]=[serializeObj[this.name],this.value]; 
-
+                // 将元素变为 数组 ，hobby : ['音乐','体育'] 
+                serializeObj[this.name]=[serializeObj[this.name],this.value]; 
               } 
-
         }else{ 
-
             serializeObj[this.name]=this.value; // 如果元素name不存在，添加一个属性 name:value 
-
         } 
-
     });     
-
     return serializeObj;    
-
   };
 
   /* 处理移动端click事件 */
