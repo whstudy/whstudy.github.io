@@ -33,17 +33,17 @@
 
 <script>
   $(function() {
-    switch ('0') {
-      case '0':
-        messageShow('下单成功，请继续支付', 'success', 5);
-        break;
-      case '500':
-        messageShow('下单成功，请继续支付', 'error', 5);
-        break;
-      default:
-        messageShow('下单成功，请继续支付', 'info', 5);
-        break;
-    }
+    // switch ('0') {
+    //   case '0':
+    //     messageShow('下单成功，请继续支付', 'success', 5);
+    //     break;
+    //   case '500':
+    //     messageShow('下单成功，请继续支付', 'error', 5);
+    //     break;
+    //   default:
+    //     messageShow('下单成功，请继续支付', 'info', 5);
+    //     break;
+    // }
   });
 </script>
 
@@ -215,20 +215,9 @@
   
   <article>
     
-    
-    <div class="note note-danger mb-0">
+    <div class="note mb-0 statusDiv">
       <p><i class="fa fa-clock-o fs-16"></i> 订单状态：买家未支付</p>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     <div class="list-group">
       <div class="list-title">收货人信息</div>
@@ -337,6 +326,18 @@
       data:{orderId:getQueryString('id')},
     })
     .done(function(data) {
+
+      if(data.orderStatus=='已支付'){
+        $('.statusDiv').addClass('note-success');
+        $('.statusDiv').text(' 订单状态：买家已支付')
+        $('.form-btn').hide();
+      }
+
+      if(data.orderStatus=='待支付'){
+        $('.statusDiv').addClass('note-danger');
+        $('.statusDiv').text(' 订单状态：买家未支付')
+      }
+
       for(var o in data){
         $('.'+o).text(data[o]);
         if(o=='orderTime'){
