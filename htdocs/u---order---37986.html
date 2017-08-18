@@ -107,13 +107,13 @@
               data:{orderId:getQueryString('id')},
             })
             .done(function(data) {
-              location.href = 'u---order---in.html';
+              location.href = 'u---order---in.html?type=in';
             })
             .fail(function(data) {
               console.log("error");
             })
 
-            location.href = 'u---order---in.html';
+            location.href = 'u---order---in.html?type=in';
           }/*  else if (index == 2) {
             location.href = '/u---pay---order---37988?payType=1';
           } */
