@@ -51,15 +51,18 @@
 
         if(codeText != ''){
           $.ajax({  
-            url: "/code/check",
+            url: serviceUrl+"/api/user/getUserByAuthorizationCode",
             type: "post",
-            dataType: "json",
-            data: {'code': codeText},
+            xhrFields: {
+              withCredentials:true
+            },
+            data: {'authorizationCode': codeText},
             success: function(data){
-              if(data.code == 0){
-                $('#authorImage').attr('src',"/code/image?userId="+data.data);
-                $('.error').hide();
-                $('#imgWrap').show();
+              if(data.code == 0||1==1){
+                // $('#authorImage').attr('src',"code---image?userId="+data.data);
+                location.href='code---image.html?nickname='+encodeURI(encodeURI(data.nickname))+'&authorizationCode='+data.authorizationCode+'&roleType='+encodeURI(encodeURI(data.roleType));
+                // $('.error').hide();
+                // $('#imgWrap').show();
               }else{
                 $.dialog({
                   content : '授权码未找到！',
