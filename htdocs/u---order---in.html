@@ -35,7 +35,7 @@
 <body class="header-fixed footer-fixed">
 
   <header class="header">
-    <h1>进货订单</h1>
+    <h1 class='orderTypeH1'>进货订单</h1>
     <a onclick="history.go(-1);" class="button-left"><i class="fa fa-angle-left"></i></a>
     
   </header>
@@ -114,6 +114,14 @@
     // .fail(function(data) {
     //   console.log("error");
     // })
+    var orderType='';
+    if(getQueryString('type')=='in'){
+      orderType='进货订单';
+      $('.orderTypeH1').text('进货订单');
+    }else if(getQueryString('type')=='out'){
+      orderType='服务订单';
+      $('.orderTypeH1').text('出货订单');
+    }
 
     loadList('全部订单');
     function loadList(status){
@@ -123,7 +131,7 @@
         xhrFields: {
           withCredentials:true
         },
-        data:{orderType:'进货订单',orderStatus:status},
+        data:{orderType:orderType,orderStatus:status},
       })
       .done(function(data) {
         var orderListHtml='';
@@ -165,7 +173,7 @@
       xhrFields: {
         withCredentials:true
       },
-      data:{orderType:'进货订单'},
+      data:{orderType:orderType},
     })
     .done(function(data) {
       $('.groupByOrderTypeAndOrderStatusAndUser').html(laytpl($('#groupByOrderTypeAndOrderStatusAndUserTpl').html()).render(data));

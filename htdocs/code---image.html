@@ -8,8 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="keywords" content="微信分销">
 <meta name="description" content="用户信息 ">
-
-<meta name="viewport" content="width=device-width, minimum-scale=0.1"><title>image (599×846)</title></head><body style="margin: 0px;">
+<meta name="viewport" content="width=device-width, minimum-scale=0.1">
+<title>image (599×846)</title></head><body style="margin: 0px;">
 
 <!-- <img style="-webkit-user-select: none; cursor: zoom-in;" src="images/20170808173803.jpg" width="451" height="636"> -->
 
@@ -21,7 +21,7 @@
 <div class="authorizationCode" style="position: absolute;z-index: 10;top: 245px;left: 180px;font-weight: bold;color: #7F7F81;font-size: 12px;">WVFJCA4UDSUMITLPN
 </div>
 
-<div class="authorizationCode" style="position: absolute;z-index: 10;top: 303px;left: 102px;font-weight: bold;color: #206534;font-size: 50px;white-space: nowrap;">高级合伙人</div>
+<div class="roleType" style="position: absolute;z-index: 10;top: 303px;left: 102px;font-weight: bold;color: #206534;font-size: 50px;white-space: nowrap;">高级合伙人</div>
 
 <!-- <div style="position: absolute;z-index: 10;top: 39%;left: 49%;font-weight: bold;color: #7F7F81;font-size: 13px;">FDSAFDS13213214324321
 </div> -->
@@ -32,21 +32,22 @@
 <script type="text/javascript">
 
     $.ajax({
-      url: serviceUrl+'/api/order/countByOrderTypeAndUser',
+      url: serviceUrl+'/api/user/getLoginUser',
       type: 'POST',
       xhrFields: {
         withCredentials:true
       },
-      data:{orderType:'进货订单'},
     })
     .done(function(data) {
-      $('.orderCount').text(data+'次');
     })
     .fail(function(data) {
       console.log("error");
     })
 
-	// $('.nickname').text(decodeURI(getQueryString('nickname')));
-	// $('.authorizationCode').text(getQueryString('authorizationCode'));
+	$('.nickname').text(decodeURI(getQueryString('nickname')));
+	$('.authorizationCode').text(getQueryString('authorizationCode'));
+  $('.roleType').text(decodeURI(getQueryString('roleType')));
+  $('.nickname').css('left',($('img').width()-$('.nickname').width())/2);
+  $('.roleType').css('left',($('img').width()-$('.roleType').width())/2);
 </script>
 </body></html>

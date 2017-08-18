@@ -118,15 +118,15 @@
       <em>积分钱包</em>
       <span>¥0.00</span>
     </a>
-    <a class="flex-1 bd-r" href="./u---order---in.html">
+    <a class="flex-1 bd-r" href="./u---order---in.html?type=in">
       <i class="icon icon-in icon-2x"></i>
       <em>订单</em>
       <span class="orderCount">0次</span>
     </a>
-    <a class="flex-1" href="./u---order---out.html">
+    <a class="flex-1" href="./u---order---in.html?type=out">
       <i class="icon icon-out icon-2x"></i>
       <em>服务单</em>
-      <span>0次</span>
+      <span class="orderCountOut">0次</span>
     </a>
   </div>
   
@@ -287,6 +287,21 @@
     })
     .done(function(data) {
       $('.orderCount').text(data+'次');
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+
+    $.ajax({
+      url: serviceUrl+'/api/order/countByOrderTypeAndUser',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+      data:{orderType:'服务订单'},
+    })
+    .done(function(data) {
+      $('.orderCountOut').text(data+'次');
     })
     .fail(function(data) {
       console.log("error");
