@@ -558,7 +558,7 @@
         <div class="list-text relative font-333">
           <div class="fs-14 lh-24">¥ {{d.productName}}</div>
           <div class="lh-24 fs-14 text-right font-orange">¥ {{d.retailPrice}}.00</div>
-          <div class="lh-24 fs-12 text-right font-gray">x {{d.piece}}</div>
+          <div class="lh-24 fs-12 text-right font-gray productNum">x {{d.piece}}</div>
           <input type="hidden" name="productId" value="{{d.id}}">
           <input type="hidden" name="productNum" value="{{d.piece}}">
         </div>
@@ -566,7 +566,7 @@
       <div class="list-item">
         <div class="list-text text-right">
           
-          <div class="fs-14">应付款： <span class="font-orange fs-16 bold">¥ {{d.retailPrice*d.piece}}.00</span></div>
+          <div class="fs-14">应付款： <span class="font-orange fs-16 bold retailPrice">¥ {{d.retailPrice*d.piece}}.00</span></div>
         </div>
       </div>
 </script>
@@ -581,9 +581,13 @@
     },
   })
   .done(function(data) {
-
     $('.list-group.productInfo').html(laytpl($('#rowTpl').html()).render(data));
-
+    if(data.roleType=='普通'){
+      var order=JSON.parse(sessionStorage.getItem('order'));
+      $('.productNum').text('x '+order.productNum);
+      $('[name="productNum"]').val(order.productNum);
+      $('.retailPrice').text('¥ '+order.productNum*data.retailPrice+'.00')
+    }
   })
   .fail(function(data) {
     console.log("error");
