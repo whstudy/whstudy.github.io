@@ -162,11 +162,27 @@
 </aside>
 
 <script type="text/javascript">
+
+  $.ajax({
+    url: serviceUrl+'/api/product/getProductById',
+    type: 'POST',
+    xhrFields: {
+      withCredentials:true
+    },
+    data:{id:getQueryString('id')},
+  })
+  .done(function(data) {
+    $('.fs-18').text(' ¥ '+data.retailPrice+'.00');
+  })
+  .fail(function(data) {
+    console.log("error");
+  })
+
   $('#btnOrder').click(function(){
     var order={};
     order.productNum=$('#quantity').val();
     sessionStorage.setItem('order',JSON.stringify(order));
-    location.href='u---order---create.html?productId=1';
+    location.href='u---order---create1.html?productId=1';
   })
 </script>
 
