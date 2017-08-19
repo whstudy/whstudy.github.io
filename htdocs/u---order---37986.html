@@ -89,38 +89,77 @@
      */
 
     //买家支付
+    // $('#btnPay').click(function() {
+    //   $.dialog({
+    //     content : '请确认支付',
+    //     skin : 'footer',
+    //     btn : [ '<a id="btnPay1" class="btn orange block round-2">确认支付</a>'/*, '<a id="btnPay2" class="btn green block round-2">银行汇款</a>' */],
+    //     callback : function(index) {
+    //       if (index == 1) {
+    //         // location.href = 'u---pay---order.html?payType=0';
+
+    //         $.ajax({
+    //           url: serviceUrl+'/api/order/payOrder',
+    //           type: 'POST',
+    //           xhrFields: {
+    //             withCredentials:true
+    //           },
+    //           data:{orderId:getQueryString('id')},
+    //         })
+    //         .done(function(data) {
+    //           location.href = 'u---order---in.html?type=in';
+    //         })
+    //         .fail(function(data) {
+    //           console.log("error");
+    //         })
+
+    //         location.href = 'u---order---in.html?type=in';
+    //       }/*  else if (index == 2) {
+    //         location.href = '/u---pay---order---37988?payType=1';
+    //       } */
+    //     }
+    //   });
+    // });
+    
+    /*
+    * 进货订单操作(买家)
+    */
+
+    // 买家支付
     $('#btnPay').click(function() {
-      $.dialog({
-        content : '请确认支付',
-        skin : 'footer',
-        btn : [ '<a id="btnPay1" class="btn orange block round-2">确认支付</a>'/*, '<a id="btnPay2" class="btn green block round-2">银行汇款</a>' */],
-        callback : function(index) {
-          if (index == 1) {
-            // location.href = 'u---pay---order.html?payType=0';
+      location.href = 'u---order---pay.html?id='+getQueryString('id');
+      // $.dialog({
+      //   content : '请确认支付',
+      //   skin : 'footer',
+      //   btn : [ '<a id="btnPay1" class="btn orange block round-2">确认支付</a>'/*, '<a id="btnPay2" class="btn green block round-2">银行汇款</a>' */],
+      //   callback : function(index) {
+      //     if (index == 1) {
+      //       // location.href = 'u---pay---order.html?payType=0';
 
-            $.ajax({
-              url: serviceUrl+'/api/order/payOrder',
-              type: 'POST',
-              xhrFields: {
-                withCredentials:true
-              },
-              data:{orderId:getQueryString('id')},
-            })
-            .done(function(data) {
-              location.href = 'u---order---in.html?type=in';
-            })
-            .fail(function(data) {
-              console.log("error");
-            })
+      //       $.ajax({
+      //         url: serviceUrl+'/api/order/payOrder',
+      //         type: 'POST',
+      //         xhrFields: {
+      //           withCredentials:true
+      //         },
+      //         data:{orderId:getQueryString('id')},
+      //       })
+      //       .done(function(data) {
+      //         location.href = 'u---order---in.html?type=in';
+      //       })
+      //       .fail(function(data) {
+      //         console.log("error");
+      //       })
 
-            location.href = 'u---order---in.html?type=in';
-          }/*  else if (index == 2) {
-            location.href = '/u---pay---order---37988?payType=1';
-          } */
-        }
-      });
+      //       location.href = 'u---order---in.html?type=in';
+      //     }/*  else if (index == 2) {
+      //       location.href = '/u---pay---order---37988?payType=1';
+      //     } */
+      //   }
+      // });
     });
     
+
     //确认收货
     $('#btnConfirm').click(function() {
       $.dialog({
