@@ -392,7 +392,13 @@
         }
       }
 
-      $('#btnPay').hide();
+      if(getQueryString('type')=='out'){
+        $('#btnPay').hide();
+      }
+
+      if(data.payWay=="线下转账"){
+        $('#btnPay').text('上传付款凭证');
+      }
 
       if(getQueryString('type')=='out'&&data.orderStatus=="待确认"){
         $('#btnPayConfirm').show();
