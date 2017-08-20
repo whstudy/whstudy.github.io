@@ -125,14 +125,6 @@
     * 进货订单操作(买家)
     */
 
-    if(getQueryString('type')=='out'){
-      $('#btnPayConfirm').show();
-      $('#btnPay').hide();
-    }else{
-      $('#btnPayConfirm').hide();
-      $('#btnPay').show();
-    }
-
     $('#btnPayConfirm').click(function() {
       location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
     })
@@ -399,6 +391,16 @@
           $('.'+o).text(moment(data[o]).format('YYYY-MM-DD HH:mm:ss'));
         }
       }
+
+      $('#btnPay').hide();
+
+      if(getQueryString('type')=='out'&&data.orderStatus=="待确认"){
+        $('#btnPayConfirm').show();
+        $('#btnPay').hide();
+      }else{
+        $('#btnPayConfirm').hide();
+      }
+
     })
     .fail(function(data) {
       console.log("error");
