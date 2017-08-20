@@ -59,6 +59,9 @@ $.ajaxSetup({
   xhrFields: {
     withCredentials:true
   },
+  traditional:true,
+  // contentType:"application/json;charset=UTF-8",
+  // contentType:"multipart/form-data;;charset=UTF-8",
 }); 
 
 // $.ajaxTransport(function( options, originalOptions, jqXHR ){

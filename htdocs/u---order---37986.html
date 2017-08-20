@@ -125,9 +125,22 @@
     * 进货订单操作(买家)
     */
 
+    if(getQueryString('type')=='out'){
+      $('#btnPayConfirm').show();
+      $('#btnPay').hide();
+    }else{
+      $('#btnPayConfirm').hide();
+      $('#btnPay').show();
+    }
+
+    $('#btnPayConfirm').click(function() {
+      location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
+    })
+
+
     // 买家支付
     $('#btnPay').click(function() {
-      location.href = 'u---order---pay.html?id='+getQueryString('id');
+      location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
       // $.dialog({
       //   content : '请确认支付',
       //   skin : 'footer',
@@ -350,6 +363,7 @@
         
         <div class="form-btn">
           <a id="btnPay" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 立即支付</a>
+          <a id="btnPayConfirm" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 确认凭证</a>
         </div>
     
   </article>

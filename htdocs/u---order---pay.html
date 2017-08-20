@@ -166,11 +166,11 @@ $.fn.imageupload.setDefaults({
     <a href="javascript:history.go(-1);" class="button-left"><i class="fa fa-angle-left"></i></a>
   </header>
 
-  <div class="note note-warning mb-0">
+  <!-- <div class="note note-warning mb-0">
     <p>
       <i class="fa fa-exclamation-circle"></i> 请将本次交易金额<span class="font-orange">11840.00元</span>汇入以下银行账户，并将<span class="font-orange">汇款凭证</span>拍照或截图上传。
     </p>
-  </div>
+  </div> -->
 
   <article class="mt-15 mb-15 clearfix">
     <div class="orderInfo">
@@ -220,6 +220,7 @@ $.fn.imageupload.setDefaults({
 
       <div class="form-btn">
         <input type="button" value="提交" class="btn orange btn-block round-2" id="btnSubmit">
+        <input type="button" value="确认" class="btn orange btn-block round-2" id="btnSubmitConfirm">
       </div>
     </form>
   </article>
@@ -244,6 +245,28 @@ $.fn.imageupload.setDefaults({
 
   <script src="plugin/laytpl-1.1/laytpl.js"></script>
   <script type="text/javascript">
+
+    $('#btnSubmitConfirm').click(function(){
+      if(!$('.valid-form').valid()){
+        return;
+      }
+      var data={};
+      data.orderId=getQueryString('id');
+      $.ajax({
+        url: serviceUrl+'/api/order/sureOrder',
+        type: 'POST',
+        xhrFields: {
+          withCredentials:true
+        },
+        data:data,
+      })
+      .done(function(data) {
+        location.href='u---order---in.html?type=out';
+      })
+      .fail(function(data) {
+        console.log("error");
+      })
+    })
     
     $('#btnSubmit').click(function(){
       if(!$('.valid-form').valid()){
@@ -264,7 +287,7 @@ $.fn.imageupload.setDefaults({
         // laytpl(rowTpl).render(data, function(html) {
         //   $('.orderInfo').html(html);
         // });
-
+        location.href='u---order---in.html?type=in';
       })
       .fail(function(data) {
         console.log("error");
@@ -286,6 +309,35 @@ $.fn.imageupload.setDefaults({
       });
 
       $('[name="payCertInfo"]').val(data.payCertInfo);
+
+      var $this = $('.image-add');
+      for(var o in data.payCertPhoto){
+        var limit = $this.attr('data-limit');
+        var name = $this.attr('data-name');
+        var imageItem = '<div class="image-item">' 
+                      + '<input type="hidden" name="' + name + '" value="' + data.payCertPhoto[o] + '">'
+                      + '<img src="' + imageNginxUrl + data.payCertPhoto[o] + '">' 
+                      + '<input name="file" type="file">' 
+                      + '</div>';
+        $(imageItem).insertBefore($this);
+        var imageItems = $this.siblings('.image-item');
+        if (limit && limit <= imageItems.length) {
+          $this.remove();
+        }
+        imageItems.last().imageupload();
+      }
+
+      if(getQueryString('type')=='out'){
+        $('.image-add').hide();
+        $('[type="file"]').hide();
+        $('[name="payCertInfo"]').attr('readonly','true');
+        $('#btnSubmit').hide();
+        $('#btnSubmitConfirm').show();
+      }else{
+        $('#btnSubmit').show();
+        $('#btnSubmitConfirm').hide();
+      }
+      
 
     })
     .fail(function(data) {
