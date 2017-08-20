@@ -221,11 +221,29 @@
 </article>
 <script src="./js/echarts.min.js"></script>
 <script type="text/javascript">
+  var result={};
+  $.ajax({
+      url : serviceUrl+'/api/report/analysisOrderVolume',
+      type : 'POST',
+      async: false,
+      success : function(data) {
+
+        result =data;
+
+      }
+  });
+
   var svArray = "0,0,0,0,0,0";
-  var array = svArray.split(",");
+  var array = [];
+  for(var o in result['个人进货量']){
+    array.push(result['个人进货量'][o].value);
+  }
 
   var sArray = "0,0,0,0,0,0";
-  var arrayT = sArray.split(",");
+  var arrayT = [];
+  for(var o in result['个人销货量']){
+    arrayT.push(result['个人销货量'][o].value);
+  }
 
   var mbolSize = 20;
   // 基于准备好的dom，初始化echarts实例
@@ -288,11 +306,35 @@
 </script>
 
 <script type="text/javascript">
-  var svArray = "0.00,0.00,0.00,0.00,0.00,0.00";
-  var array = svArray.split(",");
+  var result={};
+  $.ajax({
+      url : serviceUrl+'/api/report/analysisOrderShare',
+      type : 'POST',
+      async: false,
+      success : function(data) {
 
-  var sArray = "0.00,0.00,0.00,0.00,0.00,0.00";
-  var arrayT = sArray.split(",");
+         result =data;
+
+      }
+  });
+
+  var svArray = "0,0,0,0,0,0";
+  var array = [];
+  for(var o in result['个人进货量环比']){
+    array.push(result['个人进货量环比'][o].value);
+  }
+
+  var sArray = "0,0,0,0,0,0";
+  var arrayT = [];
+  for(var o in result['个人销货量环比']){
+    arrayT.push(result['个人销货量环比'][o].value);
+  }
+
+  // var svArray = "0.00,0.00,0.00,0.00,0.00,0.00";
+  // var array = svArray.split(",");
+
+  // var sArray = "0.00,0.00,0.00,0.00,0.00,0.00";
+  // var arrayT = sArray.split(",");
 
   var mbolSize =40;
   // 基于准备好的dom，初始化echarts实例
@@ -336,12 +378,12 @@
         name:'销货量环比',
         type:'line',
         stack: '总量',
-//        label: {
-//          normal: {
-//            show: true,
-//            position: 'top'
-//          }
-//        },
+       label: {
+         normal: {
+           show: true,
+           position: 'top'
+         }
+       },
         itemStyle: {
           normal: {
             color:'#fc4e33'
@@ -363,62 +405,62 @@
 
   var mbolSize = 20;
   // 基于准备好的dom，初始化echarts实例
-  var myChart = echarts.init(document.getElementById('echartTeamAll'));
+  // var myChart = echarts.init(document.getElementById('echartTeamAll'));
   // 指定图表的配置项和数据
-  option = {
-    tooltip : {
-      trigger: 'axis',
-      axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-      }
-    },
-    legend: {
-      data:['团队进货量','团队销货量']
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    xAxis : [
-      {
-        type : 'category',
-        data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
-      }
-    ],
-    yAxis : [
-      {
-        type : 'value'
-      }
-    ],
-    series : [
-      {
-        name:'团队进货量',
-        type:'bar',
-        stack: '广告',
-        itemStyle: {
-          normal: {
-            color:'#6cb92d'
-          }
-        },
-        data:array
-      },
+  // option = {
+  //   tooltip : {
+  //     trigger: 'axis',
+  //     axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+  //       type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+  //     }
+  //   },
+  //   legend: {
+  //     data:['团队进货量','团队销货量']
+  //   },
+  //   grid: {
+  //     left: '3%',
+  //     right: '4%',
+  //     bottom: '3%',
+  //     containLabel: true
+  //   },
+  //   xAxis : [
+  //     {
+  //       type : 'category',
+  //       data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+  //     }
+  //   ],
+  //   yAxis : [
+  //     {
+  //       type : 'value'
+  //     }
+  //   ],
+  //   series : [
+  //     {
+  //       name:'团队进货量',
+  //       type:'bar',
+  //       stack: '广告',
+  //       itemStyle: {
+  //         normal: {
+  //           color:'#6cb92d'
+  //         }
+  //       },
+  //       data:array
+  //     },
 
-      {
-        name:'团队销货量',
-        type:'bar',
-        itemStyle: {
-          normal: {
-            color:'#add889'
-          }
-        },
-        data:arrayT
-      }
-    ]
-  };
+  //     {
+  //       name:'团队销货量',
+  //       type:'bar',
+  //       itemStyle: {
+  //         normal: {
+  //           color:'#add889'
+  //         }
+  //       },
+  //       data:arrayT
+  //     }
+  //   ]
+  // };
   // 使用刚指定的配置项和数据显示图表。
-  myChart.setOption(option);
+  // myChart.setOption(option);
 </script>
 
 

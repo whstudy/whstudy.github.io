@@ -385,6 +385,11 @@
         $('.statusDiv').text(' 订单状态：买家未支付');
       }
 
+      if(data.orderStatus=='待确认'){
+        $('.statusDiv').addClass('note-danger');
+        $('.statusDiv').text(' 订单状态：上家未确认');
+      }
+
       for(var o in data){
         $('.'+o).text(data[o]);
         if(o=='orderTime'){

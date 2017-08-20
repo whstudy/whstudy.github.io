@@ -235,7 +235,16 @@
 <script src="./js/echarts.min.js"></script>
 <script type="text/javascript">
 
-  var counts = "0,0,0,0";
+    $.ajax({
+      url: serviceUrl+'/api/report/analysisMemberDistribution',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+    })
+    .done(function(data) {
+      
+var counts = "0,0,0,0";
   var array=counts.split(",");
   var mbolSize = 20;
   var arrayNum=parseInt(array[0])+parseInt(array[1])+parseInt(array[2])+parseInt(array[3]);
@@ -272,10 +281,10 @@
         radius: ['40%', '55%'],
         color:['#ffcd48','#7ed1df','#ffb558','#51c187'],
         data:[
-          {value:array[0], name:'高级合伙人('+Math.round(array[0]/arrayNum*100*100)/100+'%)'},
-          {value:array[1], name:'合伙人('+Math.round(array[1]/arrayNum*100*100)/100+'%)'},
-          {value:array[2], name:'准合伙人('+Math.round(array[2]/arrayNum*100*100)/100+'%)'},
-          {value:array[3], name:'天使('+Math.round(array[3]/arrayNum*100*100)/100+'%)'}
+          {value:data['高级合伙人'], name:'高级合伙人('+Math.round(data['高级合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['合伙人'], name:'合伙人('+Math.round(data['合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['准合伙人'], name:'准合伙人('+Math.round(data['准合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['天使'], name:'天使('+Math.round(data['天使']/arrayNum*100*100)/100+'%)'}
         ]
       },
 //        {
@@ -302,8 +311,24 @@
   };
   // 使用刚指定的配置项和数据显示图表。
   myChart.setOption(option);
+
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+
 </script>
 <script type="text/javascript">
+
+    $.ajax({
+      url: serviceUrl+'/api/report/analysisImmediateMemberDistribution',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+    })
+    .done(function(data) {
+      
   var counts = "0,0,0,0,0";
   var array=counts.split(",");
   var arrayNum=parseInt(array[0])+parseInt(array[1])+parseInt(array[2])+parseInt(array[3]);
@@ -340,12 +365,11 @@
         center: ['50%', '50%'],
         color:['#ffcd48','#7ed1df','#ffb558','#51c187'],
 //        color:['#ffcd48','#7ed1df','#ffb558','#51c187','#91c7ae'],
-        data: [
-          {value: array[0], name: '高级合伙人('+Math.round(array[0]/arrayNum*100*100)/100+'%)'},
-          {value: array[1], name: '合伙人('+Math.round(array[1]/arrayNum*100*100)/100+'%)'},
-          {value: array[2], name: '准合伙人('+Math.round(array[2]/arrayNum*100*100)/100+'%)'},
-          {value: array[3], name: '天使('+Math.round(array[3]/arrayNum*100*100)/100+'%)'}
-//          {value: array[4], name: '普通服务商('+Math.round(array[4]/arrayNum*100*100)/100+'%)'}
+        data:[
+          {value:data['高级合伙人'], name:'高级合伙人('+Math.round(data['高级合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['合伙人'], name:'合伙人('+Math.round(data['合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['准合伙人'], name:'准合伙人('+Math.round(data['准合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['天使'], name:'天使('+Math.round(data['天使']/arrayNum*100*100)/100+'%)'}
         ],
         itemStyle: {
           emphasis: {
@@ -389,8 +413,24 @@
   };
   // 使用刚指定的配置项和数据显示图表。
   myChart.setOption(optionTwo);
+
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+
 </script>
 <script type="text/javascript">
+
+    $.ajax({
+      url: serviceUrl+'/api/report/analysisNewMemberDistribution',
+      type: 'POST',
+      xhrFields: {
+        withCredentials:true
+      },
+    })
+    .done(function(data) {
+      
   var counts = "0,0,0,0,0";
   var array=counts.split(",");
   var arrayNum=parseInt(array[0])+parseInt(array[1])+parseInt(array[2])+parseInt(array[3]);
@@ -432,12 +472,11 @@
         color:['#ffcd48','#7ed1df','#ffb558','#51c187'],
 //        color:['#ffcd48','#7ed1df','#ffb558','#51c187','#91c7ae'],
         data:[
-          {value:array[0], name:'高级合伙人('+Math.round(array[0]/arrayNum*100*100)/100+'%)'},
-          {value:array[1], name:'合伙人('+Math.round(array[1]/arrayNum*100*100)/100+'%)'},
-          {value:array[2], name:'准合伙人('+Math.round(array[2]/arrayNum*100*100)/100+'%)'},
-          {value:array[3], name:'天使('+Math.round(array[3]/arrayNum*100*100)/100+'%)'},
-//          {value:array[4], name:'普通服务商('+Math.round(array[4]/arrayNum*100*100)/100+'%)'}
-        ]
+          {value:data['高级合伙人'], name:'高级合伙人('+Math.round(data['高级合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['合伙人'], name:'合伙人('+Math.round(data['合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['准合伙人'], name:'准合伙人('+Math.round(data['准合伙人']/arrayNum*100*100)/100+'%)'},
+          {value:data['天使'], name:'天使('+Math.round(data['天使']/arrayNum*100*100)/100+'%)'}
+        ],
       },
 //        {
 //          name:'团队新成员',
@@ -466,6 +505,12 @@
   };
   // 使用刚指定的配置项和数据显示图表。
   myChart.setOption(optionFor);
+
+    })
+    .fail(function(data) {
+      console.log("error");
+    })
+
 </script>
 
 

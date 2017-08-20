@@ -360,26 +360,31 @@
             $(obj).next(".allLast").hide();
         }
     }
+
+    showNum();
+
     //点击下拉箭头
     function showNum(obj,id,type,index){
         $.ajax({
-            url : '/u---team---findDirectlyNum',
-            data : {
-                userId : id
-            },
-            dataType : 'json',
+            url : serviceUrl+'/api/report/analysisImmediateMemberDistribution',
             type : 'POST',
             success : function(result) {
-                if(result.code != 0) {
-                    return;
-                }
-                var arrys = result.message;
-                var arry =arrys.split(",");
-                $("#"+type+"must"+index).text(arry[0]+"人");
-                $("#"+type+"pro"+index).text(arry[1]+"人");
-                $("#"+type+"city"+index).text(arry[2]+"人");
-                $("#"+type+"vip"+index).text(arry[3]+"人");
-                $("#"+type+"com"+index).text(arry[4]+"人");
+                // if(result.code != 0) {
+                //     return;
+                // }
+                // var arrys = result.message;
+                // var arry =arrys.split(",");
+                // $("#"+type+"must"+index).text(result['高级合伙人']+"人");
+                // $("#"+type+"pro"+index).text(result['合伙人']+"人");
+                // $("#"+type+"city"+index).text(result['准合伙人']+"人");
+                // $("#"+type+"vip"+index).text(result['天使']+"人");
+
+                $(".tel").eq(0).text(result['高级合伙人']+"人");
+                $(".tel").eq(1).text(result['合伙人']+"人");
+                $(".tel").eq(2).text(result['准合伙人']+"人");
+                $(".tel").eq(3).text(result['天使']+"人");
+
+                // $("#"+type+"com"+index).text(arry[4]+"人");
                 if($(obj).attr("change")=="true"){
                     $(obj).parents(".rankingAll").next(".rankingNum").show();
                     $(obj).find("img").attr("src","/images/jian2.png");

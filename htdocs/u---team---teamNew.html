@@ -370,6 +370,20 @@
     
 </article>
 <script>
+
+        $.ajax({
+            url : serviceUrl+'/api/report/analysisNewMemberDistribution',
+            type : 'POST',
+            success : function(result) {
+
+                $(".tel").eq(0).text(result['高级合伙人']+"人");
+                $(".tel").eq(1).text(result['合伙人']+"人");
+                $(".tel").eq(2).text(result['准合伙人']+"人");
+                $(".tel").eq(3).text(result['天使']+"人");
+
+            }
+        });
+
     //点击特级省级列表
     function showList(obj){
         if($(obj).attr("change")=="false"){
