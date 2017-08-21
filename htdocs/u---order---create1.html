@@ -40,14 +40,14 @@
   $(function() {
 
     $('#btnSubmit').click(function(){
-      // if(!$('#deliverAddressId').val()) {
-      //   messageFlash('请先选择收货地址.');
-      //   return false;  
-      // }
-      // if($('input[name=payType]:checked').length == 0) {
-      //   messageFlash('请先选择收款对象.');
-      //   return false;  
-      // }
+      if(!$('#deliverAddressId').val()) {
+        messageFlash('请先选择收货地址.');
+        return false;  
+      }
+      if($('input[name=payType]:checked').length == 0) {
+        messageFlash('请先选择付款方式.');
+        return false;  
+      }
 
       // 检测是否  实名认证realFlage
       
@@ -79,11 +79,12 @@
         return false;
       }*/
         
-        // var recommendPhone = $('#recommendPhone').val();
-        // if(!recommendPhone) {
-        //   messageFlash('请填写推荐人手机号');
-        //   return false;
-        // }
+        var recommendPhone = $('#recommendPhone').val();
+        if(!recommendPhone) {
+          messageFlash('请填写推荐人手机号');
+          return false;
+        }
+        
         var data=$('#orderForm').serializeArray();
 
         $.ajax({
@@ -99,7 +100,7 @@
         })
         .fail(function(data) {
           console.log("error");
-          messageAlert(JSON.parse(data.responseText).message);
+          // messageAlert(JSON.parse(data.responseText).message);
         })
 
         // $.ajax({

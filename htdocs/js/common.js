@@ -136,9 +136,9 @@ $(function() {
       // case 403:
       //   messageShow('您没有权限执行该操作', 'error');
       //   break;
-      // case 500:
-      //   messageFlash('操作失败, 请稍后再试');
-      //   break;
+      case 500:
+        messageFlash(XMLHttpRequest.responseText);
+        break;
       // default:
       //   break;
     }
