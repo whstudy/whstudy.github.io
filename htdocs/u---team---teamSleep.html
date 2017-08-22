@@ -410,7 +410,7 @@
                 <span>{{ d.nickname }}</span>
                 <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通用户':''}}</span>
             </div>
-            <a href="tel:{{ d.phone }}" class="tel"><img src="/images/tel.png" style="width: 15px;height: 15px;padding-right: 5px">{{ d.phone }}</a>
+            <a href="tel:{{ d.phone }}" class="tel"><img src="images/tel.png" style="width: 15px;height: 15px;padding-right: 5px">{{ d.phone }}</a>
         </div>
     </div>
 </script>

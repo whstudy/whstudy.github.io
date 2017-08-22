@@ -347,6 +347,204 @@
 
     
 </article>
+
+<script id="numberList" type="text/html">
+        <div class="all" change="false" onclick="showList(this)">
+            <div class="rankingAll">
+                <div class="ranking">
+                    <div class="sanjiao">
+                        <div class="jiaoOne"></div>
+                    </div>
+                    <span class="rankingTop">高级合伙人</span>
+                    <!-- <span class="rankingSpan must">特级</span> -->
+                </div>
+                <span class="tel">{{d['高级合伙人'].length}}人</span>
+            </div>
+        </div>
+        <div class="all allLast">
+            {{# for(var o in d['高级合伙人']){ }}
+            <div class="rankingAllList">
+                <div class="rankingAll">
+                    <img src="{{ imageNginxUrl+d['高级合伙人'][o].headPortrait }}" style="margin-left: 20px;margin-right: 20px;"/>
+                     <div class="ranking" style="text-align: left;font-size: 18px;">
+                         <span>{{ d['高级合伙人'][o].nickname }}</span>
+                         <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                     </div>
+                    <div class="telAll jian" onclick="showNum(this,'{{ d.id }}','qv','{{ d.id }}')" change="true">
+                        <img src="images/jian.png" />
+                    </div>
+                    <a href="tel:{{ d['高级合伙人'][o].phone }}" class="telAll">
+                      <img src="images/tel.png" /></a>
+                </div>
+                <div class="rankingNum">
+                    <div class="ranknumber">
+                        <p id="qvmust{{d.id}}"></p>
+                        <p>特级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvpro{{d.id}}"></p>
+                        <p>省级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvcity{{d.id}}"></p>
+                        <p>市级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvvip{{d.id}}"></p>
+                        <p>VIP</p>
+                    </div>
+                </div>
+            </div>
+            {{#}}}
+        </div>
+
+        <div class="all" change="false" onclick="showList(this)">
+            <div class="rankingAll">
+                <div class="ranking">
+                    <div class="sanjiao">
+                        <div class="jiaoOne"></div>
+                    </div>
+                    <span class="rankingTop">合伙人</span>
+                    <!-- <span class="rankingSpan province">省级</span> -->
+                </div>
+                <span class="tel">{{d['合伙人'].length}}人</span>
+            </div>
+        </div>
+        <div class="all allLast">
+            {{# for(var o in d['合伙人']){ }}
+            <div class="rankingAllList">
+                <div class="rankingAll">
+                    <img src="{{ imageNginxUrl+d['合伙人'][o].headPortrait }}" style="margin-left: 20px;margin-right: 20px;"/>
+                     <div class="ranking" style="text-align: left;font-size: 18px;">
+                         <span>{{ d['合伙人'][o].nickname }}</span>
+                         <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                     </div>
+                    <div class="telAll jian" onclick="showNum(this,'{{ d.id }}','qv','{{ d.id }}')" change="true">
+                        <img src="images/jian.png" />
+                    </div>
+                    <a href="tel:{{ d['合伙人'][o].phone }}" class="telAll">
+                      <img src="images/tel.png" /></a>
+                </div>
+                <div class="rankingNum">
+                    <div class="ranknumber">
+                        <p id="qvmust{{d.id}}"></p>
+                        <p>特级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvpro{{d.id}}"></p>
+                        <p>省级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvcity{{d.id}}"></p>
+                        <p>市级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvvip{{d.id}}"></p>
+                        <p>VIP</p>
+                    </div>
+                </div>
+            </div>
+            {{#}}}
+        </div>
+        <div class="all" change="false" onclick="showList(this)">
+            <div class="rankingAll">
+                <div class="ranking">
+                    <div class="sanjiao">
+                        <div class="jiaoOne"></div>
+                    </div>
+                    <span class="rankingTop">准合伙人</span>
+                    <!-- <span class="rankingSpan city">市级</span> -->
+                </div>
+                <span class="tel">{{d['准合伙人'].length}}人</span>
+            </div>
+        </div>
+
+        <div class="all allLast">
+            {{# for(var o in d['准合伙人']){ }}
+            <div class="rankingAllList">
+                <div class="rankingAll">
+                    <img src="{{ imageNginxUrl+d['准合伙人'][o].headPortrait }}" style="margin-left: 20px;margin-right: 20px;"/>
+                     <div class="ranking" style="text-align: left;font-size: 18px;">
+                         <span>{{ d['准合伙人'][o].nickname }}</span>
+                         <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                     </div>
+                    <div class="telAll jian" onclick="showNum(this,'{{ d.id }}','qv','{{ d.id }}')" change="true">
+                        <img src="images/jian.png" />
+                    </div>
+                    <a href="tel:{{ d['准合伙人'][o].phone }}" class="telAll">
+                      <img src="images/tel.png" /></a>
+                </div>
+                <div class="rankingNum">
+                    <div class="ranknumber">
+                        <p id="qvmust{{d.id}}"></p>
+                        <p>特级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvpro{{d.id}}"></p>
+                        <p>省级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvcity{{d.id}}"></p>
+                        <p>市级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvvip{{d.id}}"></p>
+                        <p>VIP</p>
+                    </div>
+                </div>
+            </div>
+            {{#}}}
+        </div>
+        <div class="all" change="false" onclick="showList(this)">
+            <div class="rankingAll">
+                <div class="ranking">
+                    <div class="sanjiao">
+                        <div class="jiaoOne"></div>
+                    </div>
+                    <span class="rankingTop">天使</span>
+                    <!-- <span class="rankingSpan VIP">VIP</span> -->
+                </div>
+                <span class="tel">{{d['天使'].length}}人</span>
+            </div>
+        </div>
+        <div class="all allLast">
+            {{# for(var o in d['天使']){ }}
+            <div class="rankingAllList">
+                <div class="rankingAll">
+                    <img src="{{ imageNginxUrl+d['天使'][o].headPortrait }}" style="margin-left: 20px;margin-right: 20px;"/>
+                     <div class="ranking" style="text-align: left;font-size: 18px;">
+                         <span>{{ d['天使'][o].nickname }}</span>
+                         <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                     </div>
+                    <div class="telAll jian" onclick="showNum(this,'{{ d.id }}','qv','{{ d.id }}')" change="true">
+                        <img src="images/jian.png" />
+                    </div>
+                    <a href="tel:{{ d['天使'][o].phone }}" class="telAll">
+                      <img src="images/tel.png" /></a>
+                </div>
+                <div class="rankingNum">
+                    <div class="ranknumber">
+                        <p id="qvmust{{d.id}}"></p>
+                        <p>特级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvpro{{d.id}}"></p>
+                        <p>省级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvcity{{d.id}}"></p>
+                        <p>市级</p>
+                    </div>
+                    <div class="ranknumber">
+                        <p id="qvvip{{d.id}}"></p>
+                        <p>VIP</p>
+                    </div>
+                </div>
+            </div>
+            {{#}}}
+        </div>
+</script>
+
 <script>
     //点击特级省级列表
     function showList(obj){
@@ -359,6 +557,22 @@
             $(obj).attr("change","false");
             $(obj).next(".allLast").hide();
         }
+    }
+
+    loadPage();
+    //点击下拉箭头
+    function loadPage(obj,id,type,index){
+        $.ajax({
+            // url : serviceUrl+'/api/report/analysisImmediateMemberDistribution',
+            url : serviceUrl+'/api/report/findMyZxTeamUser',
+            type : 'POST',
+            success : function(result) {
+                var rowTpl = document.getElementById('numberList').innerHTML;
+                laytpl(rowTpl).render(result,function(html) {
+                    $('.numberList').html(html);
+                });
+            }
+        });
     }
 
     showNum();
@@ -391,7 +605,7 @@
                     $(obj).attr("change","false");
                 }else {
                     $(obj).parents(".rankingAll").next(".rankingNum").hide();
-                    $(obj).find("img").attr("src","/images/jian.png");
+                    $(obj).find("img").attr("src","images/jian.png");
                     $(obj).attr("change","true");
                 }
 
@@ -452,16 +666,15 @@
     <div class="rankingAllList">
         <div class="rankingAll">
             <img src="{{d.avatar}}" style="margin-left: 20px;margin-right: 20px;"/>
-             <div class="ranking" style="text-align: left;font-size: 18px;">
-                 <span>{{ d.nickname }}</span>
-                 <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
-                
-             </div>
+            <div class="ranking" style="text-align: left;font-size: 18px;">
+                <span>{{ d.nickname }}</span>
+                <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+            </div>
             <div class="telAll jian" onclick="showNum(this,'{{ d.id }}','qv','{{ d.id }}')" change="true">
-                <img src="/images/jian.png" />
+                <img src="images/jian.png" />
             </div>
             <a href="tel:{{ d.phone }}" class="telAll">
-              <img src="/images/tel.png" /></a>
+            <img src="images/tel.png" /></a>
         </div>
         <div class="rankingNum">
             <div class="ranknumber">
@@ -480,10 +693,6 @@
                 <p id="qvvip{{d.id}}"></p>
                 <p>VIP</p>
             </div>
-            
-                
-                
-            
         </div>
     </div>
 </script>

@@ -261,7 +261,7 @@
 <body>
 <header class="header">
     <h1>新成员详情</h1>
-    <a href="/u---team---newTeam" class="button-left"><i class="fa fa-angle-left"></i></a>
+    <a href="u---team---newTeam.html" class="button-left"><i class="fa fa-angle-left"></i></a>
 </header>
 
 <article>
@@ -336,32 +336,6 @@
             
         </div>
         
-            
-                
-                    
-                        
-                    
-                    
-                    
-                
-                
-            
-        
-        
-            
-                
-                    
-                        
-                        
-                            
-                        
-                        
-                            
-                        
-                    
-                
-            
-        
     </div>
     <div class="searchList">查无此人!</div>
     <div class="searchListShow">
@@ -369,20 +343,150 @@
 
     
 </article>
+
+<script id="numberList" type="text/html">
+        <div class="all" change="false" onclick="showList(this)">
+            <div class="rankingAll">
+                <div class="ranking">
+                    <div class="sanjiao">
+                        <div class="jiaoOne"></div>
+                    </div>
+                    <span class="rankingTop">高级合伙人</span>
+                    <!-- <span class="rankingSpan must">特级</span> -->
+                </div>
+                <span class="tel">{{d['高级合伙人'].length}}人</span>
+            </div>
+        </div>
+        <div class="all allLast">
+            {{# for(var o in d['高级合伙人']){ }}
+            <div class="rankingAllList">
+                <div class="rankingAll">
+                    <img src="{{ imageNginxUrl+d['高级合伙人'][o].headPortrait }}" style="margin-left: 20px;margin-right: 20px;"/>
+                    <div class="ranking" style="text-align: left;font-size: 18px;">
+                        <span>{{ d['高级合伙人'][o].nickname }}</span>
+                        <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                    </div>
+                    <a href="tel:{{ d.phone }}" class="telAll">
+                        <img src="images/tel.png" /></a>
+                </div>
+            </div>
+            {{# } }}
+        </div>
+
+        <div class="all" change="false" onclick="showList(this)">
+            <div class="rankingAll">
+                <div class="ranking">
+                    <div class="sanjiao">
+                        <div class="jiaoOne"></div>
+                    </div>
+                    <span class="rankingTop">合伙人</span>
+                    <!-- <span class="rankingSpan province">省级</span> -->
+                </div>
+                <span class="tel">{{d['合伙人'].length}}人</span>
+            </div>
+        </div>
+        <div class="all allLast">
+            {{# for(var o in d['合伙人']){ }}
+            <div class="rankingAllList">
+                <div class="rankingAll">
+                    <img src="{{ imageNginxUrl+d['合伙人'][o].headPortrait }}" style="margin-left: 20px;margin-right: 20px;"/>
+                    <div class="ranking" style="text-align: left;font-size: 18px;">
+                        <span>{{ d['合伙人'][o].nickname }}</span>
+                        <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                    </div>
+                    <a href="tel:{{ d.phone }}" class="telAll">
+                        <img src="images/tel.png" /></a>
+                </div>
+            </div>
+            {{# } }}
+        </div>
+        <div class="all" change="false" onclick="showList(this)">
+            <div class="rankingAll">
+                <div class="ranking">
+                    <div class="sanjiao">
+                        <div class="jiaoOne"></div>
+                    </div>
+                    <span class="rankingTop">准合伙人</span>
+                    <!-- <span class="rankingSpan city">市级</span> -->
+                </div>
+                <span class="tel">{{d['准合伙人'].length}}人</span>
+            </div>
+        </div>
+
+        <div class="all allLast">
+            {{# for(var o in d['准合伙人']){ }}
+            <div class="rankingAllList">
+                <div class="rankingAll">
+                    <img src="{{ imageNginxUrl+d['准合伙人'][o].headPortrait }}" style="margin-left: 20px;margin-right: 20px;"/>
+                    <div class="ranking" style="text-align: left;font-size: 18px;">
+                        <span>{{ d['准合伙人'][o].nickname }}</span>
+                        <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                    </div>
+                    <a href="tel:{{ d.phone }}" class="telAll">
+                        <img src="images/tel.png" /></a>
+                </div>
+            </div>
+            {{# } }}
+        </div>
+        <div class="all" change="false" onclick="showList(this)">
+            <div class="rankingAll">
+                <div class="ranking">
+                    <div class="sanjiao">
+                        <div class="jiaoOne"></div>
+                    </div>
+                    <span class="rankingTop">天使</span>
+                    <!-- <span class="rankingSpan VIP">VIP</span> -->
+                </div>
+                <span class="tel">{{d['天使'].length}}人</span>
+            </div>
+        </div>
+        <div class="all allLast">
+            {{# for(var o in d['天使']){ }}
+            <div class="rankingAllList">
+                <div class="rankingAll">
+                    <img src="{{ imageNginxUrl+d['天使'][o].headPortrait }}" style="margin-left: 20px;margin-right: 20px;"/>
+                    <div class="ranking" style="text-align: left;font-size: 18px;">
+                        <span>{{ d['天使'][o].nickname }}</span>
+                        <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+                    </div>
+                    <a href="tel:{{ d.phone }}" class="telAll">
+                        <img src="images/tel.png" /></a>
+                </div>
+            </div>
+            {{# } }}
+        </div>
+</script>
+
 <script>
 
+    loadPage();
+    //点击下拉箭头
+    function loadPage(obj,id,type,index){
         $.ajax({
-            url : serviceUrl+'/api/report/analysisNewMemberDistribution',
+            // url : serviceUrl+'/api/report/analysisImmediateMemberDistribution',
+            url : serviceUrl+'/api/report/findMyNewTeamUser',
             type : 'POST',
             success : function(result) {
-
-                $(".tel").eq(0).text(result['高级合伙人']+"人");
-                $(".tel").eq(1).text(result['合伙人']+"人");
-                $(".tel").eq(2).text(result['准合伙人']+"人");
-                $(".tel").eq(3).text(result['天使']+"人");
-
+                var rowTpl = document.getElementById('numberList').innerHTML;
+                laytpl(rowTpl).render(result,function(html) {
+                    $('.numberList').html(html);
+                });
             }
         });
+    }
+
+        // $.ajax({
+        //     url : serviceUrl+'/api/report/analysisNewMemberDistribution',
+        //     type : 'POST',
+        //     success : function(result) {
+
+        //         $(".tel").eq(0).text(result['高级合伙人']+"人");
+        //         $(".tel").eq(1).text(result['合伙人']+"人");
+        //         $(".tel").eq(2).text(result['准合伙人']+"人");
+        //         $(".tel").eq(3).text(result['天使']+"人");
+
+        //     }
+        // });
 
     //点击特级省级列表
     function showList(obj){
@@ -453,7 +557,7 @@
                 <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
             </div>
             <a href="tel:{{ d.phone }}" class="telAll">
-                <img src="/images/tel.png" /></a>
+                <img src="images/tel.png" /></a>
         </div>
     </div>
 </script>
