@@ -252,6 +252,18 @@ var counts = "0,0,0,0";
   if(arrayNum==0){
     arrayNum=1;
   }
+
+    var numAll=0;
+    for(var o in data){
+      numAll+=data[o];
+    }
+
+    var optionData=[];
+    for(var o in data){
+      var o1={value:data[o], name:o+'('+Math.round(data[o]/numAll*100*100)/100+'%)'};
+      optionData.push(o1);
+    }
+
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('echartTeam'));
   // 指定图表的配置项和数据
@@ -280,12 +292,7 @@ var counts = "0,0,0,0";
         type:'pie',
         radius: ['40%', '55%'],
         color:['#ffcd48','#7ed1df','#ffb558','#51c187'],
-        data:[
-          {value:data['高级合伙人'], name:'高级合伙人('+Math.round(data['高级合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['合伙人'], name:'合伙人('+Math.round(data['合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['准合伙人'], name:'准合伙人('+Math.round(data['准合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['天使'], name:'天使('+Math.round(data['天使']/arrayNum*100*100)/100+'%)'}
-        ]
+        data:optionData
       },
 //        {
 //          name:'团队总人数',
@@ -336,6 +343,19 @@ var counts = "0,0,0,0";
   if(arrayNum==0){
     arrayNum=1;
   }
+
+
+    var numAll=0;
+    for(var o in data){
+      numAll+=data[o];
+    }
+
+    var optionData=[];
+    for(var o in data){
+      var o1={value:data[o], name:o+'('+Math.round(data[o]/numAll*100*100)/100+'%)'};
+      optionData.push(o1);
+    }
+
   var mbolSize = 20;
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('echartTeamTwo'));
@@ -365,12 +385,7 @@ var counts = "0,0,0,0";
         center: ['50%', '50%'],
         color:['#ffcd48','#7ed1df','#ffb558','#51c187'],
 //        color:['#ffcd48','#7ed1df','#ffb558','#51c187','#91c7ae'],
-        data:[
-          {value:data['高级合伙人'], name:'高级合伙人('+Math.round(data['高级合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['合伙人'], name:'合伙人('+Math.round(data['合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['准合伙人'], name:'准合伙人('+Math.round(data['准合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['天使'], name:'天使('+Math.round(data['天使']/arrayNum*100*100)/100+'%)'}
-        ],
+        data:optionData,
         itemStyle: {
           emphasis: {
             shadowBlur: 10,
@@ -438,6 +453,18 @@ var counts = "0,0,0,0";
   if(arrayNum==0){
     arrayNum=1;
   }
+
+    var numAll=0;
+    for(var o in data){
+      numAll+=data[o];
+    }
+
+    var optionData=[];
+    for(var o in data){
+      var o1={value:data[o], name:o+'('+Math.round(data[o]/numAll*100*100)/100+'%)'};
+      optionData.push(o1);
+    }
+  
   var mbolSize = 20;
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('echartTeamFor'));
@@ -471,12 +498,7 @@ var counts = "0,0,0,0";
         radius: ['40%', '55%'],
         color:['#ffcd48','#7ed1df','#ffb558','#51c187'],
 //        color:['#ffcd48','#7ed1df','#ffb558','#51c187','#91c7ae'],
-        data:[
-          {value:data['高级合伙人'], name:'高级合伙人('+Math.round(data['高级合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['合伙人'], name:'合伙人('+Math.round(data['合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['准合伙人'], name:'准合伙人('+Math.round(data['准合伙人']/arrayNum*100*100)/100+'%)'},
-          {value:data['天使'], name:'天使('+Math.round(data['天使']/arrayNum*100*100)/100+'%)'}
-        ],
+        data:optionData,
       },
 //        {
 //          name:'团队新成员',
