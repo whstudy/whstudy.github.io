@@ -2,8 +2,10 @@
  * Common js
  */
 domainUrl="http://whstudy.github.io/htdocs/";
-serviceUrl="http://122.152.208.113";
-imageNginxUrl="http://122.152.208.113:8080/";
+// serviceUrl="http://122.152.208.113";
+serviceUrl="http://www.jinhuishengwu.cn";
+// imageNginxUrl="http://122.152.208.113:8080/";
+imageNginxUrl="http://www.jinhuishengwu.cn:8080/";
 
 function getQueryString(name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
