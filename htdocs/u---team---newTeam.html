@@ -253,16 +253,20 @@ var counts = "0,0,0,0";
     arrayNum=1;
   }
 
-    var numAll=0;
-    for(var o in data){
-      numAll+=data[o];
-    }
+  var numAll=0;
+  for(var o in data){
+    numAll+=data[o];
+  }
 
-    var optionData=[];
-    for(var o in data){
-      var o1={value:data[o], name:o+'('+Math.round(data[o]/numAll*100*100)/100+'%)'};
-      optionData.push(o1);
-    }
+  $("#teamNewCount").text("("+numAll+"人)");
+
+  numAll=numAll==0?1:numAll;
+
+  var optionData=[];
+  for(var o in data){
+    var o1={value:data[o], name:o+'('+Math.round(data[o]/numAll*100*100)/100+'%)'};
+    optionData.push(o1);
+  }
 
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('echartTeam'));
@@ -349,6 +353,7 @@ var counts = "0,0,0,0";
     for(var o in data){
       numAll+=data[o];
     }
+    numAll=numAll==0?1:numAll;
 
     var optionData=[];
     for(var o in data){
@@ -458,6 +463,7 @@ var counts = "0,0,0,0";
     for(var o in data){
       numAll+=data[o];
     }
+    numAll=numAll==0?1:numAll;
 
     var optionData=[];
     for(var o in data){
