@@ -131,8 +131,8 @@
 
 
     // 买家支付
-    $('#btnPay').click(function() {
-      location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
+    // $('#btnPay').click(function() {
+      // location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
       // $.dialog({
       //   content : '请确认支付',
       //   skin : 'footer',
@@ -162,8 +162,61 @@
       //     } */
       //   }
       // });
-    });
-    
+    // });
+
+   // 买家支付
+    $('#btnPay').click(function() {
+
+      $.ajax({
+        url: serviceUrl+'/api/order/payOrder',
+        type: 'POST',
+        xhrFields: {
+          withCredentials:true
+        },
+        data:{orderId:getQueryString('id')},
+      })
+      .done(function(data) {
+
+        onBridgeReady(data);
+
+      })
+      .fail(function(data) {
+        console.log("error");
+      })
+
+    });    
+
+
+    function onBridgeReady(data){
+       WeixinJSBridge.invoke(
+           'getBrandWCPayRequest', {
+               "appId":data.appid,     //公众号名称，由商户传入     
+               "timeStamp":new Date().getTime().toString(),         //时间戳，自1970年以来的秒数     
+               "nonceStr":data.nonceStr, //随机串     
+               "package":"prepay_id="+data.prepayId,     
+               "signType":"MD5",         //微信签名方式：     
+               "paySign":data.sign //微信签名 
+           },
+           function(res){     
+               if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                  location.href='u---order---in.html?type=in'
+               }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+           }
+       ); 
+    }
+    if (typeof WeixinJSBridge == "undefined"){
+       if( document.addEventListener ){
+           document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+       }else if (document.attachEvent){
+           document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+           document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+       }
+    }else{
+       onBridgeReady();
+    } 
+
+
+
 
     //确认收货
     $('#btnConfirm').click(function() {
@@ -372,7 +425,7 @@
     })
     .done(function(data) {
 
-    $('.address').text(areas[data.receiverProvince] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity+'_'+data.receiverRegion] + ' ' + data.receiverDetailed)
+      $('.address').text(areas[data.receiverProvince] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity+'_'+data.receiverRegion] + ' ' + data.receiverDetailed)
 
       if(data.orderStatus=='已支付'){
         $('.statusDiv').addClass('note-success');
