@@ -89,9 +89,9 @@
           </div>
         </div>
         <div class="list-item phone-captcha">
-          <label class="list-label" for="sendPwFoundCode">手机验证码</label>
+          <label class="list-label" for="regCode">手机验证码</label>
           <div class="list-text">
-            <input type="text" id="sendPwFoundCode" name="sendPwFoundCode" class="form-input" placeholder="手机验证码" value="">
+            <input type="text" id="regCode" name="regCode" class="form-input" placeholder="手机验证码" value="">
           </div>
           <div class="list-unit">
             <a id="btnSend" class="btn blue btn-sm">发送验证码</a>
@@ -111,17 +111,17 @@
       $('#btnSubmit').click(function() {
         $('.valid-form').validate();
         var phone = $('[name="phone"]:visible').val();
-        var sendPwFoundCode = $('[name="sendPwFoundCode"]:visible').val();
+        var regCode = $('[name="regCode"]:visible').val();
 
         $.ajax({
-          url: serviceUrl+'/api/user/passwordFoundNext',
+          url: serviceUrl+'/api/user/editPhone',
           type: 'POST',
           xhrFields:{
             withCredentials:true
           },
           data: {
             phone: phone,
-            sendPwFoundCode: sendPwFoundCode
+            regCode: regCode
           },
         })
         .done(function(data) {
@@ -134,7 +134,7 @@
         })
 
         // $.ajax({
-        //     url: serviceUrl+'/api/user/sendPwFoundCode',
+        //     url: serviceUrl+'/api/user/regCode',
         //     type: 'POST',
         //     xhrFields: {
         //       withCredentials:true
@@ -191,7 +191,7 @@
         var leftTime = 120;
 
         $.ajax({
-            url: serviceUrl+'/api/user/sendPwFoundCode',
+            url: serviceUrl+'/api/user/sendRegCode',
             type: 'POST',
             xhrFields: {
               withCredentials:true
@@ -256,7 +256,7 @@
           'captcha' : {
             required : true
           },
-          'sendPwFoundCode' : {
+          'regCode' : {
             required : true
           }
         }
