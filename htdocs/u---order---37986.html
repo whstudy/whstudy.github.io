@@ -129,6 +129,9 @@
       location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
     })
 
+    $('#btnPayAdd').click(function() {
+      location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
+    })
 
     // 买家支付
     // $('#btnPay').click(function() {
@@ -386,7 +389,7 @@
       </div>
       <div class="list-item lh-20">
         <div class="list-text fs-14">类型</div>
-        <div class="list-unit fs-12">普通订单</div>
+        <div class="list-unit fs-12 payWay">普通订单</div>
       </div>
     </div>
     
@@ -409,6 +412,7 @@
         <div class="form-btn">
           <a id="btnPay" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 立即支付</a>
           <a id="btnPayConfirm" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 确认凭证</a>
+          <a id="btnPayAdd" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 上传凭证</a>
         </div>
     
   </article>
@@ -451,17 +455,30 @@
       }
 
       if(getQueryString('type')=='out'){
-        $('#btnPay').hide();
-      }
 
-      if(data.payWay=="线下转账"){
-        $('#btnPay').text('上传付款凭证');
-      }
+        if(data.payWay=="线下转账"){
+          if(data.orderStatus=="待确认"){
+            $('#btnPayConfirm').show();
+          }else{
+            $('#btnPayConfirm').hide();
+          }
+        }
 
-      if(getQueryString('type')=='out'&&data.orderStatus=="待确认"){
-        $('#btnPayConfirm').show();
         $('#btnPay').hide();
+        $('#btnPayAdd').hide();
       }else{
+        if(data.payWay=="线下转账"){
+          $('#btnPayAdd').show();
+          $('#btnPay').hide();
+          if(data.orderStatus=="待确认"||data.orderStatus=="待支付"){
+            $('#btnPayAdd').show();
+          }else{
+            $('#btnPayAdd').hide();
+          }
+        }else{
+          $('#btnPayAdd').hide();
+          $('#btnPay').show();
+        }
         $('#btnPayConfirm').hide();
       }
 

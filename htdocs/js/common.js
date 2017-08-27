@@ -139,6 +139,9 @@ $(function() {
       //   messageShow('您没有权限执行该操作', 'error');
       //   break;
       case 500:
+        if(XMLHttpRequest.responseText.indexOf("您的账号尚未认证,正在为您认证..请稍后")!=-1){
+          XMLHttpRequest.responseText="您的账号尚未认证,正在为您认证..请稍后";
+        }
         messageFlash(XMLHttpRequest.responseText);
         break;
       // default:

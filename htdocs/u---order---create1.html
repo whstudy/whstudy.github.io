@@ -100,6 +100,9 @@
         })
         .fail(function(data) {
           console.log("error");
+          if(data.responseText.indexOf("您的账号尚未认证,正在为您认证..请稍后")!=-1){
+            location.href=serviceUrl+'/api/wechat/user/login?phone='+data.responseText.split(':')[1]
+          }
           // messageAlert(JSON.parse(data.responseText).message);
         })
 
