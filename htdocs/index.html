@@ -109,7 +109,7 @@
             <img src="images/inquiry[1].png">
             <span>授权查询</span>
         </a>
-        <a href="./login.html" class="notice">
+        <a href="./login.html" class="notice u---userInfo---create">
             <img src="images/realName.png">
             <span>实名认证</span>
         </a>
@@ -125,6 +125,7 @@
 
     if(sessionStorage.getItem('isLogin')==2){
       $('[href="./login.html"]').attr('href','u.html');
+      $('.u---userInfo---create').attr('href','u---userInfo---create.html');
     }
 
     var mySwiper = new Swiper('.swiper-container',{

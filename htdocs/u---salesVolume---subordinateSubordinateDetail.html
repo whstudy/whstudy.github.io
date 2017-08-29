@@ -1,0 +1,510 @@
+<html><!--@(window)--><!--@(document)--><head>
+  <meta http-equiv="Content-Type" content="text; charset=utf-8">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>直属团队进销单详情</title>
+  
+<link rel="shortcut icon" href="http://state.zhi-you.net/favicon.ico">
+<link rel="stylesheet" href="http://state.zhi-you.net/css/common.css">
+<link rel="stylesheet" href="http://state.zhi-you.net/css/components.css">
+<link rel="stylesheet" href="http://state.zhi-you.net/css/custom.css">
+<link rel="stylesheet" href="http://state.zhi-you.net/css/icon.css">
+<link rel="stylesheet" href="http://state.zhi-you.net/plugin/font-awesome-4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.css">
+<script src="http://state.zhi-you.net/plugin/jquery-1.11.0/jquery.min.js"></script>
+<script src="http://state.zhi-you.net/plugin/layer-mobile-2.0/layer.js"></script><link href="http://state.zhi-you.net/plugin/layer-mobile-2.0/need/layer.css?2.0" type="text/css" rel="styleSheet" id="layermcss">
+<script src="http://state.zhi-you.net/plugin/miui-1.0/jquery.miui.js"></script>
+<script src="http://state.zhi-you.net/plugin/fastclick-1.0/fastclick.js "></script>
+<script src="http://state.zhi-you.net/js/common.js"></script>
+<script src="http://state.zhi-you.net/js/util.js"></script>
+<script>
+  var Config = {
+    stc : '',
+    ctx : '',
+    stccdn : 'http://state.zhi-you.net'
+  }
+</script>
+
+
+
+  <script src="http://state.zhi-you.net/plugin/laytpl-1.1/laytpl.js"></script>
+  <style>
+    body {background: #f7f7f9}
+    body,html {font-family:  "Microsoft YaHei";text-overflow: ellipsis;
+      white-space: nowrap;}
+    a {display: block;}
+    .all {
+      width: 100%;
+      background: #fff !important;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .teamAll img {float: left;width: 50px;height: 50px;margin-left: 8px;}
+    .teamAll span {
+      float: left;line-height: 50px;margin-left: 20px;font-size: 18px;
+      color: #838385;
+    }
+    .teamAll a {
+      float: right;
+      line-height: 50px;
+      color: #6cb92d;
+      margin-right: 15px;
+    }
+    .TeamName img {
+      width:55%;
+      margin-top:20px;
+    }
+    .TeamName span {
+      display: block;
+      margin-top:10px;
+    }
+    .rankingAllList {border-bottom: 1px solid #e5e5e5;}
+    .rankingAll {
+      width:100%;
+      height:60px;
+    }
+    .rankingAll>span {
+      float: left;
+      display: block;;
+      width:65px;
+      height:100%;
+      text-align: center;
+      line-height:60px;
+    }
+    .rankingAll>img {
+      float: left;
+      width: 40px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      height:40px;
+      -webkit-border-radius:50%;
+      -moz-border-radius:50%;
+      border-radius:50%;
+      margin-left: 15px;
+    }
+    .ranking {
+      float: left;
+      width:80px;
+      height:100%;
+      text-align: center;
+      line-height: 60px;
+    }
+    .rankingSpan {
+      padding:0 8px 0 8px;
+      color: #fff;
+      font-size: 12px;
+    }
+    .teamTop {
+      width:90%;
+      height:60px;
+      margin-left: 5%;
+      position: relative;
+    }
+    .teamTop img {
+      position: absolute;
+      width:70%;
+      height:30px;
+      top: 15px;
+      z-index: 1;
+    }
+    .teamTop input {
+      position: absolute;
+      background: none;
+      width:70%;
+      height:30px;
+      border: none;
+      top: 15px;
+      z-index: 2;
+    }
+    .teamTop img.seatchImg,.searchBtn {
+      width:20%;
+      height:30px;
+      color: #6cb92d;
+      text-align: center;
+      line-height: 30px;
+      position: absolute;
+      left:80%;
+      top:15px;
+      z-index: 1;
+    }
+    .searchBtn {
+      background: none;
+      border:none;
+      z-index: 2;
+    }
+    .rankingTop {font-size: 18px}
+    .rankingAll>a.tel,.rankingAll>span.tel {
+      width:110px;
+      float: right;
+      margin-right: 15px;
+      color: #303134;
+      line-height: 60px;
+    }
+    .rankingAll>span.telDetil {width:50px;}
+    .sanjiao {
+      float: left;
+      height:60px;
+      width:50px;
+      position: relative;
+    }
+    .jiaoOne {
+      width: 0;
+      height: 0;
+      border-top:8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 8px solid #b4b4b4;
+      position: absolute;
+      left: 50%;
+      top:50%;
+      margin-left: -4px;
+      margin-top: -8px;
+    }
+    .jiaoTwo {
+      width: 0;
+      height: 0;
+      border-left:8px solid transparent;
+      border-right:8px solid transparent;
+      border-top:8px solid #b4b4b4;
+      border-bottom: 0px solid transparent;
+      position: absolute;
+      left: 50%;
+      top:50%;
+      margin-left: -8px;
+      margin-top: -4px;
+    }
+    /*特级*/
+    .must {
+      background: #ffcd48;
+    }
+    .province {
+      background: #7ed1df;
+    }
+    .city {
+      background: #ffb558;
+    }
+    .VIP {
+      background: #51c187;
+    }
+    .com {
+      background: #91c7ae;
+    }
+    .telAll img {
+      width:20px;
+      margin-top: 20px;
+    }
+    .allLast {display: none;}
+    .searchList {
+      width:100%;
+      height: 80px;
+      background: #fff;
+      text-align: center;
+      line-height:80px;
+      font-size: 20px;
+      display: none;
+    }
+    .searchListShow {
+      background: #fff;
+      display: none;
+    }
+    .rankingAllList:last-child {
+      border-bottom: none;
+    }
+    .ranknumber p {
+      width:100%;
+      text-align: center;
+      line-height: 25px;
+      color: #a6a6a6;
+    }
+    .rankingBtn {
+      float: right;
+      width:80px;
+      height:30px;
+      margin-top: 15px;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 10px;
+      border:1px solid #6cb92d;
+      -webkit-border-radius:5px;
+      -moz-border-radius:5px;
+      border-radius:5px;
+      color: #6cb92d;
+    }
+    @media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone5 */
+      .ranking {
+        width:80px;
+      }
+      .rankingBtn {
+        width: 65px;
+        font-size: 12px;
+      }
+      .rankingAll>a.tel, .rankingAll>span.tel {margin-right: 10px;width: 90px;}
+      .rankingBtnNew {
+        width: 55px;
+        font-size: 12px;
+      }
+      .rankingNew {    width: 100px;}
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <h1>直属团队进销单详情</h1>
+  <a href="#" onclick="javascript :history.back(-1);" class="button-left"><i class="fa fa-angle-left"></i></a>
+</header>
+
+<article>
+  <div class="teamTop">
+    <img src="/images/seatch.png">
+    <input type="search" class="searchInput" placeholder="请输入姓名或手机号">
+    <img src="/images/searchBtn.png" class="seatchImg" onclick="seatch()">
+    <div class="searchBtn" onclick="seatch()">搜索</div>
+  </div>
+  <div class="numberList">
+    <div class="all" change="false" onclick="showList(this)">
+      <div class="rankingAll">
+        <div class="ranking">
+          <div class="sanjiao">
+            <div class="jiaoOne"></div>
+          </div>
+          <span class="rankingTop">特级服务商</span>
+          <span class="rankingSpan must">特级</span>
+        </div>
+        <span class="tel telDetil">1人</span>
+      </div>
+    </div>
+    <div class="all allLast">
+      <div class="rankingAllList">
+        
+          <div class="rankingAll">
+            <img src="http://image.zhi-you.net/avatar/a5706e62-2c13-4be4-a264-c1cc84f83e7e">
+            <div class="ranking">
+              <span>刘议阳</span>
+            </div>
+            <a href="u---salesVolume---salesVolumeDetail.html?userId=2307&amp;userName=刘议阳" class="rankingBtn">查看销量</a>
+            <span class="tel">18216167333</span>
+          </div>
+        
+      </div>
+    </div>
+
+    <div class="all" change="false" onclick="showList(this)">
+      <div class="rankingAll">
+        <div class="ranking">
+          <div class="sanjiao">
+            <div class="jiaoOne"></div>
+          </div>
+          <span class="rankingTop">省级服务商</span>
+          <span class="rankingSpan province">省级</span>
+        </div>
+        <span class="tel telDetil">5人</span>
+      </div>
+    </div>
+    <div class="all allLast">
+      <div class="rankingAllList">
+        
+          <div class="rankingAll">
+            <img src="http://image.zhi-you.net/avatar/a59da662-4cd7-4999-9abe-cf65fdce368a">
+            <div class="ranking">
+              <span>罗东</span>
+            </div>
+            <a href="u---salesVolume---salesVolumeDetail.html?userId=11514&amp;userName=罗东" class="rankingBtn">查看销量</a>
+            <span class="tel">17775748238</span>
+          </div>
+        
+          <div class="rankingAll">
+            <img src="http://image.zhi-you.net/avatar_default.jpg">
+            <div class="ranking">
+              <span>胡生苹</span>
+            </div>
+            <a href="u---salesVolume---salesVolumeDetail.html?userId=2943&amp;userName=胡生苹" class="rankingBtn">查看销量</a>
+            <span class="tel">15886651771</span>
+          </div>
+        
+          <div class="rankingAll">
+            <img src="http://image.zhi-you.net/avatar/9dd2bf3a-1e84-49db-805f-a54e572f3a65">
+            <div class="ranking">
+              <span>尹杰</span>
+            </div>
+            <a href="u---salesVolume---salesVolumeDetail.html?userId=2620&amp;userName=尹杰" class="rankingBtn">查看销量</a>
+            <span class="tel">18973642221</span>
+          </div>
+        
+          <div class="rankingAll">
+            <img src="http://wx.qlogo.cn/mmopen/Un6z2yNCJbo4v4FHsEu169LyW1F7F29E2m3YyqWJ1UP6OhPaEJq05fjXE70grfTturlhMDh7Qicp5BOo81DWN3ktRXNngPyoS/0">
+            <div class="ranking">
+              <span>唐西凯</span>
+            </div>
+            <a href="u---salesVolume---salesVolumeDetail.html?userId=2291&amp;userName=唐西凯" class="rankingBtn">查看销量</a>
+            <span class="tel">13974286035</span>
+          </div>
+        
+          <div class="rankingAll">
+            <img src="http://wx.qlogo.cn/mmopen/Un6z2yNCJbrAvvKAHtYOSepicP0jJ7tzJCpRuOUY88qiaMJW4OQA7uqhrqdB7ND3mjiaA14Kc9XgrziasB1P5OWWE8WuD1ianyUUj/0">
+            <div class="ranking">
+              <span>西宝</span>
+            </div>
+            <a href="u---salesVolume---salesVolumeDetail.html?userId=2286&amp;userName=西宝" class="rankingBtn">查看销量</a>
+            <span class="tel">13923316520</span>
+          </div>
+        
+      </div>
+    </div>
+    <div class="all" change="false" onclick="showList(this)">
+      <div class="rankingAll">
+        <div class="ranking">
+          <div class="sanjiao">
+            <div class="jiaoOne"></div>
+          </div>
+          <span class="rankingTop">市级服务商</span>
+          <span class="rankingSpan city">市级</span>
+        </div>
+        <span class="tel telDetil">0人</span>
+      </div>
+    </div>
+    <div class="all allLast">
+      <div class="rankingAllList">
+        
+      </div>
+    </div>
+    <div class="all" change="false" onclick="showList(this)">
+      <div class="rankingAll">
+        <div class="ranking">
+          <div class="sanjiao">
+            <div class="jiaoOne"></div>
+          </div>
+          <span class="rankingTop">VIP服务商</span>
+          <span class="rankingSpan VIP">VIP</span>
+        </div>
+        <span class="tel telDetil">2人</span>
+      </div>
+    </div>
+    <div class="all allLast">
+      
+        <div class="rankingAll">
+          <img src="http://image.zhi-you.net/avatar_default.jpg">
+          <div class="ranking">
+            <span>吴琳</span>
+          </div>
+          <a href="u---salesVolume---salesVolumeDetail.html?userId=4911&amp;userName=吴琳" class="rankingBtn">查看销量</a>
+          <span class="tel">18175622000</span>
+        </div>
+      
+        <div class="rankingAll">
+          <img src="http://image.zhi-you.net/avatar_default.jpg">
+          <div class="ranking">
+            <span>刘朋军</span>
+          </div>
+          <a href="u---salesVolume---salesVolumeDetail.html?userId=4015&amp;userName=刘朋军" class="rankingBtn">查看销量</a>
+          <span class="tel">15857141969</span>
+        </div>
+      
+    </div>
+    <div class="all" change="false" onclick="showList(this)">
+      <div class="rankingAll">
+        <div class="ranking">
+          <div class="sanjiao">
+            <div class="jiaoOne"></div>
+          </div>
+          <span class="rankingTop">普通用户</span>
+          <span class="rankingSpan com">普通</span>
+        </div>
+        <span class="tel telDetil">0人</span>
+      </div>
+    </div>
+    <div class="all allLast">
+      
+    </div>
+  </div>
+  
+  <div class="searchList">查无此人!</div>
+  <div class="searchListShow">
+
+  </div>
+  
+</article>
+<script>
+  //点击特级省级列表
+  function showList(obj){
+    if($(obj).attr("change")=="false"){
+      $(obj).next(".allLast").show();
+      $(obj).attr("change","true");
+      $(obj).find(".jiaoOne").addClass("jiaoTwo");
+    }else {
+      $(obj).find(".jiaoOne").removeClass("jiaoTwo");
+      $(obj).attr("change","false");
+      $(obj).next(".allLast").hide();
+    }
+  }
+  //点击搜索
+  function seatch() {
+    $(".searchList").hide();
+    $(".searchListShow").html("");
+
+    if($(".searchInput").val()==""){
+      $(".numberList").show();
+      $(".searchListShow").hide();
+    }else {
+      $(".numberList").hide();
+      $(".searchListShow").show();
+      var phoneOrmame = $(".searchInput").val();
+      $.ajax({
+        url : '/u/salesVolume/ajaxTeamDetail',
+        data : {
+          nameorPhone:phoneOrmame
+        },
+        dataType : 'json',
+        type : 'POST',
+        success : function(result) {
+          if(result.code != 0) {
+            return;
+          }
+          var page = result.data.page;
+          if (page.data.length) {
+            var pageData = page.data;
+            for ( var i in pageData) {
+              var row = pageData[i];
+              buildRow(row);
+            }
+          }
+          if (!page.data.length || page.data.length <= 0) {
+            $(".searchList").show();
+          }
+        }
+      });
+    }
+  }
+  function buildRow(row,indexs){
+    var rowTpl = document.getElementById('rowTpl').innerHTML;
+    laytpl(rowTpl).render(row,function(html) {
+      $('.searchListShow').append(html);
+    });
+  }
+</script>
+<script id="rowTpl" type="text/html">
+  <div class="rankingAllList">
+    <div class="rankingAll">
+      <img src="{{d.avatar}}" />
+      <div class="ranking rankingNew">
+        <span>{{ d.nickname }}</span>
+        <span class="rankingSpan {{ d.userRank =='V4'?'must':d.userRank =='V3'?'province':d.userRank =='V2'?'city':d.userRank =='V1'?'VIP':d.userRank=='V0'?'com':''}}">{{d.userRank =='V4'?'特级':d.userRank =='V3'?'省级':d.userRank =='V2'?'市级':d.userRank =='V1'?'VIP':d.userRank =='V0'?'普通':''}}</span>
+      </div>
+      <a href="u---salesVolume---salesVolumeDetail.html?userId={{ d.id }}&userName={{ d.nickname }}"  class="rankingBtn rankingBtnNew">查看销量</a>
+      <span class="tel">{{d.phone}}</span>
+
+    </div>
+  </div>
+</script>
+
+
+
+<aside class="elevator">
+  <a href="javascript:;" class="go-top" style="display: none;"><i class="fa fa-angle-up"></i></a>
+</aside>
+
+
+
+</body></html>

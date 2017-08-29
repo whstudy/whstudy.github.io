@@ -206,17 +206,70 @@
     <div id="echartTeamFor" style="margin-top: 20px; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; position: relative; background: transparent;" _echarts_instance_="ec_1500550797745"><div style="position: relative; overflow: hidden; width: 375px; height: 250px; padding: 0px; margin: 0px; border-width: 0px;"><canvas width="750" height="500" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 375px; height: 250px; -webkit-user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
   </div>
 
-  <div class="all allLast">
+<div class="all allLast">
     <div class="teamAll allList">
-      <img src="./images/findVolume.png">
+      <img src="images/findVolume.png">
       <span>直属团队进销单</span>
     </div>
     
+      <div class="rankingAll">
+        <img src="http://image.zhi-you.net/avatar/a59da662-4cd7-4999-9abe-cf65fdce368a">
+        <div class="ranking">
+          <span>罗东</span>
+          <span class="rankingSpan province">省级</span>
+        </div>
+        <span class="tel">17775748238</span>
+        <a href="u---salesVolume---salesVolumeDetail.html?userId=11514&amp;userName=罗东" class="rankingBtn">查看销量</a>
+      </div>
     
+      <div class="rankingAll">
+        <img src="http://image.zhi-you.net/avatar_default.jpg">
+        <div class="ranking">
+          <span>吴琳</span>
+          <span class="rankingSpan VIP">VIP级</span>
+        </div>
+        <span class="tel">18175622000</span>
+        <a href="u---salesVolume---salesVolumeDetail.html?userId=4911&amp;userName=吴琳" class="rankingBtn">查看销量</a>
+      </div>
+    
+      <div class="rankingAll">
+        <img src="http://image.zhi-you.net/avatar_default.jpg">
+        <div class="ranking">
+          <span>刘朋军</span>
+          <span class="rankingSpan VIP">VIP级</span>
+        </div>
+        <span class="tel">15857141969</span>
+        <a href="u---salesVolume---salesVolumeDetail.html?userId=4015&amp;userName=刘朋军" class="rankingBtn">查看销量</a>
+      </div>
+    
+      <a href="u---salesVolume---subordinateSubordinateDetail.html" class="lookDetil">更多详情&gt;&gt;</a>
   </div>
 
-  
+ <div class="all allLast">
+      <div class="teamAll allList">
+        <img src="images/mustVolume.png">
+        <span>直属特级进销单</span>
+      </div>
+      
+        <div class="rankingAll">
+          <img src="http://image.zhi-you.net/avatar/a5706e62-2c13-4be4-a264-c1cc84f83e7e">
+          <div class="ranking">
+            <span>刘议阳</span>
+          </div>
+          <span class="tel">18216167333</span>
+          <a href="u---salesVolume---salesVolumeDetail.html?userId=2307&amp;userName=刘议阳" class="rankingBtn">查看销量</a>
+        </div>
+      
+      
+    </div> 
 
+<div class="all" style="background: #f9f9f9 !important;padding-bottom: 20px;">
+      <div class="teamAll">
+        <img src="images/teamVolume.png">
+        <span>团队销量</span>
+      </div>
+      <div id="echartTeamAll" _echarts_instance_="ec_1503978148316" style="-webkit-tap-highlight-color: transparent; -webkit-user-select: none; position: relative; background: transparent;"><div style="position: relative; overflow: hidden; width: 375px; height: 200px; padding: 0px; margin: 0px; border-width: 0px;"><canvas width="750" height="400" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 375px; height: 200px; -webkit-user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
+    </div>
   
 </article>
 <script src="./js/echarts.min.js"></script>
@@ -396,6 +449,92 @@
   // 使用刚指定的配置项和数据显示图表。
   myChart.setOption(optionFor);
 </script>
+
+<script type="text/javascript">
+  var result={};
+  $.ajax({
+      url : serviceUrl+'/api/report/analysisOrderVolume',
+      type : 'POST',
+      async: false,
+      success : function(data) {
+
+        result =data;
+
+      }
+  });
+
+  var svArray = "0,0,0,0,0,0";
+  var array = [];
+  for(var o in result['个人进货量']){
+    array.push(result['个人进货量'][o].value);
+  }
+
+  var sArray = "0,0,0,0,0,0";
+  var arrayT = [];
+  for(var o in result['个人销货量']){
+    arrayT.push(result['个人销货量'][o].value);
+  }
+
+  var mbolSize = 20;
+  // 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('echartTeamAll'));
+  // 指定图表的配置项和数据
+  optionTwo = {
+    tooltip : {
+      trigger: 'axis',
+      axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+      }
+    },
+    legend: {
+      data:['团队进货量','团队销货量']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis : [
+      {
+        type : 'category',
+        data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+      }
+    ],
+    yAxis : [
+      {
+        type : 'value'
+      }
+    ],
+    series : [
+      {
+        name:'团队进货量',
+        type:'bar',
+        stack: '广告',
+        itemStyle: {
+          normal: {
+            color:'#6cb92d'
+          }
+        },
+        data:array
+      },
+
+      {
+        name:'团队销货量',
+        type:'bar',
+        itemStyle: {
+          normal: {
+            color:'#add889'
+          }
+        },
+        data:arrayT
+      }
+    ]
+  };
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(optionTwo);
+</script>
+
 <script type="text/javascript">
   var svArray = "0,0,0,0,0,0";
   var array = svArray.split(",");
