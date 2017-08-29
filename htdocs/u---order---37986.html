@@ -129,10 +129,13 @@
       location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
     })
 
+    $('#btnPayAdd').click(function() {
+      location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
+    })
 
     // 买家支付
-    $('#btnPay').click(function() {
-      location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
+    // $('#btnPay').click(function() {
+      // location.href = 'u---order---pay.html?id='+getQueryString('id')+'&type='+getQueryString('type');
       // $.dialog({
       //   content : '请确认支付',
       //   skin : 'footer',
@@ -162,8 +165,61 @@
       //     } */
       //   }
       // });
-    });
-    
+    // });
+
+   // 买家支付
+    $('#btnPay').click(function() {
+
+      $.ajax({
+        url: serviceUrl+'/api/order/payOrder',
+        type: 'POST',
+        xhrFields: {
+          withCredentials:true
+        },
+        data:{orderId:getQueryString('id')},
+      })
+      .done(function(data) {
+
+        onBridgeReady(data);
+
+      })
+      .fail(function(data) {
+        console.log("error");
+      })
+
+    });    
+
+
+    function onBridgeReady(data){
+       WeixinJSBridge.invoke(
+           'getBrandWCPayRequest', {
+               "appId":data.appId,     //公众号名称，由商户传入     
+               "timeStamp":data.timeStamp,         //时间戳，自1970年以来的秒数     
+               "nonceStr":data.nonceStr, //随机串     
+               "package":data.package,     
+               "signType":data.signType,         //微信签名方式：     
+               "paySign":data.paySign //微信签名 
+           },
+           function(res){     
+               if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                  location.href='u---order---in.html?type=in'
+               }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
+           }
+       ); 
+    }
+    // if (typeof WeixinJSBridge == "undefined"){
+    //    if( document.addEventListener ){
+    //        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    //    }else if (document.attachEvent){
+    //        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+    //        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    //    }
+    // }else{
+    //    onBridgeReady();
+    // } 
+
+
+
 
     //确认收货
     $('#btnConfirm').click(function() {
@@ -333,7 +389,7 @@
       </div>
       <div class="list-item lh-20">
         <div class="list-text fs-14">类型</div>
-        <div class="list-unit fs-12">普通订单</div>
+        <div class="list-unit fs-12 payWay">普通订单</div>
       </div>
     </div>
     
@@ -356,6 +412,7 @@
         <div class="form-btn">
           <a id="btnPay" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 立即支付</a>
           <a id="btnPayConfirm" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 确认凭证</a>
+          <a id="btnPayAdd" class="btn btn-block green round-2" href="javascript:;"><i class="fa fa-cny"></i> 上传凭证</a>
         </div>
     
   </article>
@@ -372,7 +429,7 @@
     })
     .done(function(data) {
 
-    $('.address').text(areas[data.receiverProvince] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity+'_'+data.receiverRegion] + ' ' + data.receiverDetailed)
+      $('.address').text(areas[data.receiverProvince] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity] + ' ' + areas[data.receiverProvince+'_'+data.receiverCity+'_'+data.receiverRegion] + ' ' + data.receiverDetailed)
 
       if(data.orderStatus=='已支付'){
         $('.statusDiv').addClass('note-success');
@@ -398,17 +455,30 @@
       }
 
       if(getQueryString('type')=='out'){
-        $('#btnPay').hide();
-      }
 
-      if(data.payWay=="线下转账"){
-        $('#btnPay').text('上传付款凭证');
-      }
+        if(data.payWay=="线下转账"){
+          if(data.orderStatus=="待确认"){
+            $('#btnPayConfirm').show();
+          }else{
+            $('#btnPayConfirm').hide();
+          }
+        }
 
-      if(getQueryString('type')=='out'&&data.orderStatus=="待确认"){
-        $('#btnPayConfirm').show();
         $('#btnPay').hide();
+        $('#btnPayAdd').hide();
       }else{
+        if(data.payWay=="线下转账"){
+          $('#btnPayAdd').show();
+          $('#btnPay').hide();
+          if(data.orderStatus=="待确认"||data.orderStatus=="待支付"){
+            $('#btnPayAdd').show();
+          }else{
+            $('#btnPayAdd').hide();
+          }
+        }else{
+          $('#btnPayAdd').hide();
+          $('#btnPay').show();
+        }
         $('#btnPayConfirm').hide();
       }
 

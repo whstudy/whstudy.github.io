@@ -2,8 +2,10 @@
  * Common js
  */
 domainUrl="http://whstudy.github.io/htdocs/";
-serviceUrl="http://122.152.208.113";
-imageNginxUrl="http://122.152.208.113:8080/";
+// serviceUrl="http://122.152.208.113";
+serviceUrl="http://www.jinhuishengwu.cn";
+// imageNginxUrl="http://122.152.208.113:8080/";
+imageNginxUrl="http://www.jinhuishengwu.cn:8080/";
 
 function getQueryString(name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -137,6 +139,9 @@ $(function() {
       //   messageShow('您没有权限执行该操作', 'error');
       //   break;
       case 500:
+        if(XMLHttpRequest.responseText.indexOf("您的账号尚未认证,正在为您认证..请稍后")!=-1){
+          XMLHttpRequest.responseText="您的账号尚未认证,正在为您认证..请稍后";
+        }
         messageFlash(XMLHttpRequest.responseText);
         break;
       // default:

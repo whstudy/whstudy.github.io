@@ -66,12 +66,10 @@
         </a>
       
       
-      <a class="list-item" href="javascript:;">
+      <a class="list-item" href="u---phone.html">
         <div class="list-text">手机号</div>
-        
-        
         <div class="list-unit phone">手机号</div>
-        
+        <i class="list-arrow"></i>
       </a>
 
       <!-- <a class="list-item" href="./help/userRank">
@@ -85,9 +83,9 @@
         <i class="list-arrow"></i>
       </a> -->
       
-      <a class="list-item authorizationCodeHref" href="code---image.html">
+      <a class="list-item authorizationCodeHref">
         <div class="list-text">我的授权码</div>
-        <div class="list-unit authorizationCode">我的授权码</div>
+        <div class="list-unit authorizationCode">无</div>
       </a>
       
     </div>
@@ -134,8 +132,10 @@
     .done(function(data) {
       $('.nickname').text(data.nickname);
       $('.phone').text(data.phone);
-      $('.authorizationCode').text(data.authorizationCode);
-      $('.authorizationCodeHref').attr('href','code---image.html?nickname='+encodeURI(encodeURI(data.nickname))+'&authorizationCode='+data.authorizationCode+'&roleType='+encodeURI(encodeURI(data.roleType)))
+      if(data.authorizationCode){
+        $('.authorizationCode').text(data.authorizationCode);
+        $('.authorizationCodeHref').attr('href','code---image.html?nickname='+encodeURI(encodeURI(data.nickname))+'&authorizationCode='+data.authorizationCode+'&roleType='+encodeURI(encodeURI(data.roleType)))
+      }
       $('[src="images/avatar.jpg"]').attr('src',data.headPortrait?(imageNginxUrl+data.headPortrait):'images/avatar.jpg');
     })
     .fail(function(data) {
