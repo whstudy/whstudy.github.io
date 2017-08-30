@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>沉睡成员详情</title>
+    <title>新晋高级合伙人详情</title>
     
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/common.css">
@@ -254,7 +254,7 @@
 </head>
 <body>
 <header class="header">
-    <h1>沉睡成员详情</h1>
+    <h1>新晋高级合伙人详情</h1>
     <a href="u---team---newTeam.html" class="button-left"><i class="fa fa-angle-left"></i></a>
 </header>
 
@@ -495,7 +495,7 @@
     function loadPage(obj,id,type,index){
         $.ajax({
             // url : serviceUrl+'/api/report/analysisImmediateMemberDistribution',
-            url : serviceUrl+'/api/report/findMyNewTeamUser',
+            url : serviceUrl+'/api/report/findNewSeniorImmediateMemberList',
             type : 'POST',
             success : function(result) {
                 var rowTpl = document.getElementById('numberList').innerHTML;

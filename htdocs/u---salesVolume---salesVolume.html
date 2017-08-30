@@ -58,7 +58,7 @@
     #echartTeamFor {
       height:250px;
     }
-    #echartTeamAll {
+    #echartTeamAll,#echartTeamAll1 {
       width:100%;
       height:200px;
       background: #f9f9f9 !important;
@@ -206,7 +206,7 @@
     <div id="echartTeamFor" style="margin-top: 20px; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; position: relative; background: transparent;" _echarts_instance_="ec_1500550797745"><div style="position: relative; overflow: hidden; width: 375px; height: 250px; padding: 0px; margin: 0px; border-width: 0px;"><canvas width="750" height="500" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 375px; height: 250px; -webkit-user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
   </div>
 
-<div class="all allLast">
+<!-- <div class="all allLast">
     <div class="teamAll allList">
       <img src="images/findVolume.png">
       <span>直属团队进销单</span>
@@ -261,7 +261,7 @@
         </div>
       
       
-    </div> 
+    </div> --> 
 
 <div class="all" style="background: #f9f9f9 !important;padding-bottom: 20px;">
       <div class="teamAll">
@@ -269,6 +269,7 @@
         <span>团队销量</span>
       </div>
       <div id="echartTeamAll" _echarts_instance_="ec_1503978148316" style="-webkit-tap-highlight-color: transparent; -webkit-user-select: none; position: relative; background: transparent;"><div style="position: relative; overflow: hidden; width: 375px; height: 200px; padding: 0px; margin: 0px; border-width: 0px;"><canvas width="750" height="400" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 375px; height: 200px; -webkit-user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
+      <div id="echartTeamAll1" style="margin-top: 20px; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; position: relative; background: transparent;" _echarts_instance_="ec_1500550797745"><div style="position: relative; overflow: hidden; width: 375px; height: 250px; padding: 0px; margin: 0px; border-width: 0px;"><canvas width="750" height="500" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 375px; height: 250px; -webkit-user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div></div></div>
     </div>
   
 </article>
@@ -453,7 +454,7 @@
 <script type="text/javascript">
   var result={};
   $.ajax({
-      url : serviceUrl+'/api/report/analysisOrderVolume',
+      url : serviceUrl+'/api/report/analysisImmediateTeamOrderSaleVolume',
       type : 'POST',
       async: false,
       success : function(data) {
@@ -465,14 +466,14 @@
 
   var svArray = "0,0,0,0,0,0";
   var array = [];
-  for(var o in result['个人进货量']){
-    array.push(result['个人进货量'][o].value);
+  for(var o in result['直属团队进货量']){
+    array.push(result['直属团队进货量'][o].value);
   }
 
   var sArray = "0,0,0,0,0,0";
   var arrayT = [];
-  for(var o in result['个人销货量']){
-    arrayT.push(result['个人销货量'][o].value);
+  for(var o in result['直属团队销货量']){
+    arrayT.push(result['直属团队销货量'][o].value);
   }
 
   var mbolSize = 20;
@@ -534,6 +535,99 @@
   // 使用刚指定的配置项和数据显示图表。
   myChart.setOption(optionTwo);
 </script>
+
+<script type="text/javascript">
+  var result={};
+  $.ajax({
+      url : serviceUrl+'/api/report/analysisTeamOrderShare',
+      type : 'POST',
+      async: false,
+      success : function(data) {
+
+         result =data;
+
+      }
+  });
+
+  var svArray = "0,0,0,0,0,0";
+  var array = [];
+  for(var o in result['直属团队进货量环比']){
+    array.push(result['直属团队进货量环比'][o].value);
+  }
+
+  var sArray = "0,0,0,0,0,0";
+  var arrayT = [];
+  for(var o in result['直属团队销货量环比']){
+    arrayT.push(result['直属团队销货量环比'][o].value);
+  }
+
+  // var svArray = "0.00,0.00,0.00,0.00,0.00,0.00";
+  // var array = svArray.split(",");
+
+  // var sArray = "0.00,0.00,0.00,0.00,0.00,0.00";
+  // var arrayT = sArray.split(",");
+
+  var mbolSize =40;
+  // 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('echartTeamAll1'));
+  // 指定图表的配置项和数据
+  optionFor = {
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data:['进货量环比','销货量环比']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        name:'进货量环比',
+        type:'line',
+        stack: '总量',
+        itemStyle: {
+          normal: {
+            color:'#6cb92d'
+          }
+        },
+        data:array
+      },
+      {
+        name:'销货量环比',
+        type:'line',
+        stack: '总量',
+       label: {
+         normal: {
+           show: true,
+           position: 'top'
+         }
+       },
+        itemStyle: {
+          normal: {
+            color:'#fc4e33'
+          }
+        },
+        data:arrayT
+      }
+    ]
+  };
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(optionFor);
+</script>
+
 
 <script type="text/javascript">
   var svArray = "0,0,0,0,0,0";
