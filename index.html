@@ -1,100 +1,165 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <meta charset='utf-8'>
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <meta name="description" content="Whstudy.GitHub.io : ">
         <title>
-            Whstudy.GitHub.io
+            whstudy的前端作品
         </title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     </head>
-    
     <body>
-        <ul>
-            <li>
-                <a href="game/index.html" style="
-                font-size: 500%;
-                ">
-               		天天爱消除223344
-                </a>
-            </li>
-            <li>
-                <a href="http://www.dowebok.com/demo/2014/93/index2.html" style="font-size: 500%;">
-                	幻灯片
-                </a>
-            </li>
-			<li>
-                <a href="mtjk/index.html" style="
-                font-size: 500%;
-                ">
-                    mtjk
-                </a>
-            </li>
-            <li>
-                <a href="ngrouteanimate" style="
-                font-size: 500%;
-                ">
-                    ngrouteanimate
-                </a>
-            </li>
-            <li>
-                <a href="newhzweb" style="
-                font-size: 500%;
-                ">
-            		健康控件
-                </a>
-            </li>
-            <li>
-                <a href="campus2015" style="
-                font-size: 500%;
-                ">
-            		学园嘉年华
-                </a>
-            </li>
-            <li>
-                <a href="cartoon_10" style="
-                font-size: 500%;
-                ">
-                    10月新番
-                </a>
-            </li>
-			<li>
-                <a href="scrollReveal/index.html" style="
-                font-size: 500%;
-                ">
-                    scrollReveal
-                </a>
-            </li>
-			<li>
-                <a href="scrollReveal/index2.html" style="
-                font-size: 500%;
-                ">
-                    scrollReveal1
-                </a>
-            </li>
-			<li>
-                <a href="ball-Physics" style="
-                font-size: 500%;
-                ">
-                    ball-Physics
-                </a>
-            </li>
-			<li>
-                <a href="htdocs/index.html" style="
-                font-size: 500%;
-                ">
-                    生物
-                </a>
-            </li>
-            <li>
-                <a href="lrs.html" style="
-                font-size: 500%;
-                ">
-                    LRS
-                </a>
-            </li>
-        </ul>
+        <div id="app">
+            <h1>whstudy的前端作品</h1>
+            <ul v-for="o in menu">
+                <li class="menu-li">
+                    <a :href="o.toHref">
+                        {{o.name}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    menu: [
+                        {
+                            name:`天天爱消除223344`,
+                            toHref:`game/index.html`,
+                        },
+                        {
+                            name:`幻灯片`,
+                            toHref:`http://www.dowebok.com/demo/2014/93/index2.html`,
+                        },
+                        {
+                            name:`mtjk`,
+                            toHref:`mtjk/index.html`,
+                        },
+                        {
+                            name:`ngrouteanimate`,
+                            toHref:`ngrouteanimate`,
+                        },
+                        {
+                            name:`健康控件`,
+                            toHref:`newhzweb`,
+                        },
+                        {
+                            name:`学园嘉年华`,
+                            toHref:`campus2015`,
+                        },
+                        {
+                            name:`10月新番`,
+                            toHref:`cartoon_10`,
+                        },
+                        {
+                            name:`scrollReveal`,
+                            toHref:`scrollReveal/index.html`,
+                        },
+                        {
+                            name:`scrollReveal1`,
+                            toHref:`scrollReveal/index2.html`,
+                        },
+                        {
+                            name:`ball-Physics`,
+                            toHref:`ball-Physics`,
+                        },
+                        {
+                            name:`生物`,
+                            toHref:`htdocs/index.html`,
+                        },
+                        {
+                            name:`LRS`,
+                            toHref:`lrs.html`,
+                        },
+                    ],
+                }
+            })
+        </script>
     </body>
-
+    <style lang="scss">
+        html {
+            overflow-x:auto;
+            overflow-y:scroll;
+        }
+        body, dl, dt, dd, ul, ol, li, pre, form, fieldset, input, p, blockquote, th, td {
+            font-weight:400;
+            margin:0;
+            padding:0;
+        }
+        h1, h2, h3, h4, h4, h5 {
+            margin:0;
+            padding:0;
+        }
+        body {
+            font-family:Helvetica,Arial,sans-serif;
+            font-size:12px;
+            text-align:left;
+        }
+        select {
+            font-size:12px;
+        }
+        table {
+            border-collapse:collapse;
+        }
+        fieldset, img {
+            border:0 none;
+        }
+        fieldset {
+            margin:0;
+            padding:0;
+        }
+        fieldset p {
+            margin:0;
+            padding:0 0 0 8px;
+        }
+        legend {
+            display:none;
+        }
+        address, caption, em, strong, th, i {
+            font-style:normal;
+            font-weight:400;
+        }
+        table caption {
+            margin-left:-1px;
+        }
+        hr {
+            border-bottom:1px solid #FFFFFF;
+            border-top:1px solid #E4E4E4;
+            border-width:1px 0;
+            clear:both;
+            height:2px;
+            margin:5px 0;
+            overflow:hidden;
+        }
+        ol, ul {
+            list-style-image:none;
+            list-style-position:outside;
+            list-style-type:none;
+        }
+        caption, th {
+            text-align:left;
+        }
+        q:before, q:after, blockquote:before, blockquote:after {
+            content:"";
+        }
+        html{
+            height: 100vh;
+            background: #2f4d73;
+        }
+        h1{
+            font-size: 6rem;
+            color: #d6c68d;
+        }
+        .menu-li{
+            font-size: 3rem;
+            background: url("https://image-1251917893.file.myqcloud.com/igame/match/pvp-Platformcompetition/images/col-bg1.jpg") no-repeat;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .menu-li a{
+            color: #d6c68d;
+        }
+    </style>
 </html>
