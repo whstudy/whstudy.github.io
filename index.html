@@ -12,8 +12,9 @@
     <body>
         <div id="app">
             <h1>whstudy的前端作品</h1>
-            <ul v-for="o in menu">
-                <li class="menu-li">
+            <ul>
+                <li class="menu-li" v-for="o in menu">
+                    <div data-v-5a6ac6ee="" class="left-border"></div>
                     <a :href="o.toHref">
                         {{o.name}}
                     </a>
@@ -153,10 +154,21 @@
             color: #d6c68d;
         }
         .menu-li{
-            font-size: 3rem;
+            position: relative;
+            font-size: 2rem;
             background: url("https://image-1251917893.file.myqcloud.com/igame/match/pvp-Platformcompetition/images/col-bg1.jpg") no-repeat;
             padding: 1rem;
             margin-bottom: 1rem;
+        }
+        .menu-li .left-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background:
+                url("https://image-1251917893.file.myqcloud.com/igame/match/pvp-Platformcompetition/images/border.png")
+                no-repeat;
         }
         .menu-li a{
             color: #d6c68d;
