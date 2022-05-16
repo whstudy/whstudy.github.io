@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>React搜索QQ</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        input{
+            outline: none;
+            border: none;
+            border-bottom: 1px solid black;
+        }
+        .user {
+            display: flex;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 30px;
+            width: 160px;
+            justify-content: center;
+            margin-top: 10px;
+            padding: 6px;
+            background: #cdcccc;
+        }
+        .user img{
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="example">
+    </div>
+</body>
+<script type="text/babel">
+    //防抖
+    const debounce = (fn, wait = 500) => {
+        var timer = null;
+        return function () {
+            var context = this
+            var args = arguments
+            if (timer) {
+                clearTimeout(timer);
+                timer = null;
+            }
+            timer = setTimeout(function () {
+                fn.apply(context, args)
+            }, wait)
+        }
+    }
+    class UserGist extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { name: '', qlogo: '' };
+            this.search = debounce(this.search, 500)
+        }
+        search(name) {
+            if(!name){
+                this.setState({
+                    name:``
+                })
+                return;
+            }
+            $.get(this.props.source + name, function (res) {
+                res=JSON.parse(res)
+                this.setState({
+                    name: res.name,
+                    qlogo: res.qlogo,
+                    qq: res.qq,
+                });
+            }.bind(this))
+        }
+        handleKeyUp(e) {
+            // this.setState({
+            //     qq: e.target.value,
+            // });
+            this.search(e.target.value)
+        }
+
+        componentDidMount() {
+
+        }
+
+        componentWillUnmount() {
+            this.serverRequest.abort();
+        }
+
+        render() {
+            return (
+                <div>
+                    <h1>QQ号查询</h1>
+                    <div>
+                        <span>QQ</span>
+                        <input onChange={this.handleKeyUp.bind(this)}></input>
+                    </div>
+                    {this.state.name?
+                    <div className="user">
+                        <img src={this.state.qlogo} />
+                        <div>
+                            <div>
+                                {this.state.name}
+                            </div>
+                            <div>
+                                {this.state.qq}
+                            </div>
+                        </div>
+                    </div>:``}
+                </div>
+
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <UserGist source="https://api.uomg.com/api/qq.info?qq=" />,
+        document.getElementById('example')
+    );
+</script>
+
+</html>
