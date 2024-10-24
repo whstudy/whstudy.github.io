@@ -98,6 +98,7 @@
                         <span>QQ</span>
                         <input onChange={this.handleKeyUp.bind(this)}></input>
                     </div>
+                    {this.state.qlogo&&
                     <div className="user">
                         <img src={this.state.qlogo} />
                         <div>
@@ -108,7 +109,7 @@
                                 {this.state.qq}
                             </div>
                         </div>
-                    </div>
+                    </div>}
                 </div>
 
             );
